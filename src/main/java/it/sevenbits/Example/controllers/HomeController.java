@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
-    @RequestMapping
-    @ResponseBody
+    @RequestMapping(value = "/")
     public String index() {
-        return "Hello Spring Boot";
+        return "home/index";
     }
 }
