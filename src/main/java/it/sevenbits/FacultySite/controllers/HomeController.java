@@ -17,9 +17,21 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/news")
-    public String news(@RequestParam(value="NewsType") String newsType, Model model) {
-        LOG.info("Search param: " + newsType);
+    public String news(@RequestParam(value="NewsType", required = false) String newsType, @RequestParam(value="NewsId", required = false) String newsId, Model model) {
+        LOG.info("News type param: " + newsType);
+        LOG.info("News id param: " + newsId);
+        if (newsType == null)
+            newsType = "All-news";
         model.addAttribute("newsType", newsType);
+        try {
+            if (newsId == null || Integer.parseInt(newsId) < 1)
+                newsId = "0";
+        }
+        catch (Exception e){
+            LOG.info("NewsId is incorrect: " + newsId);
+            newsId = "0";
+        }
+        model.addAttribute("newsId", newsId);
         return "home/news";
     }
 
