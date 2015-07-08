@@ -17,16 +17,16 @@
       <profile default="true" name="Default" enabled="false">
         <processorPath useClasspath="true" />
       </profile>
-      <profile default="false" name="Annotation profile for internship-2015-faculty-site" enabled="true">
+      <profile default="false" name="Annotation profile for faculty-site" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="internship-2015-faculty-site" />
+        <module name="faculty-site" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="internship-2015-faculty-site" target="1.7" />
+      <module name="faculty-site" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
