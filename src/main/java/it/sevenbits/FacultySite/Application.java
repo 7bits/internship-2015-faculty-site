@@ -1,4 +1,4 @@
-package it.sevenbits.Example;
+package it.sevenbits.FacultySite;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

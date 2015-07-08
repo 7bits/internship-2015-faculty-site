@@ -8,4 +8,7 @@ html
 		include general-includes.jade
 	body
 		include forms/header.jade
-		include forms/lost.jade
+		div.container
+			ul.media-list
+				each link, num in ["http://img.youtube.com/vi/F8-KMsFYhbY/0.jpg", "http://www.fitnessandfreebies.com/blog/wp-content/uploads/2011/09/Big_smile-300x300.png", "http://muslimvillage.com/wp-content/uploads/2011/04/Smile.jpg"]
+					include forms/news.jade

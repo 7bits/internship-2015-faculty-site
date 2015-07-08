@@ -7,12 +7,15 @@ nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
             li(type="presentation")
                 a(href="/main") Главная
             li.dropdown
-                a(href="#",data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false").dropdown-toggle Dropdown
+                a(href="#",data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false").dropdown-toggle Новости
                     span.caret
                 ul.dropdown-menu
-                    li a(href="#") Action
-                    li a(href="#") Another action
-                    li a(href="#") Something else here
+                    li 
+                        a(href="/news?NewsType=All-news") Все
+                    li 
+                        a(href="/news?NewsType=Learn-news") Учебные
+                    li 
+                        a(href="/news?NewsType=Social-news") Внеучебные новости
             li(type="presentation")
                 a(href="/applicants") Поступающим
             li(type="presentation")

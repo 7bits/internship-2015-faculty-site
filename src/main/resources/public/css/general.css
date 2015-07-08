@@ -3,3 +3,8 @@
     padding: 10px;
     text-align: center;
 }
+
+.news-form-image {
+    max-height: 150px;
+    max-width: 150px;
+}
