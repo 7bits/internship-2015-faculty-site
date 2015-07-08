@@ -4,7 +4,12 @@
     text-align: center;
 }
 
-.news-form-image {
-    max-height: 150px;
-    max-width: 150px;
+.news-preview-general-form {
+    max-height: 400px;
+    width: 200px;
+}
+.news-preview-general-form img{
+    width: 200px;
+    max-height:200px;
+    margin: 10px;
 }
