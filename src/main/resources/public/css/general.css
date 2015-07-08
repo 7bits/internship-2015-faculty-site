@@ -13,3 +13,11 @@
     max-height:200px;
     margin: 10px;
 }
+
+.news-full-image{
+    max-width: 80%;
+    height: 30%;
+}
+.news-full-text{
+    text-align: left;
+}
