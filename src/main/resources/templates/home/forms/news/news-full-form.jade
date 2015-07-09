@@ -3,7 +3,7 @@ mixin news-full-form(links, title, text, date)
 		div
 			each link in links
 				div.news-full-image-container
-					img.news-full-image(src= !{link})
+					img.news-full-image(src= link)
 	p
 	div
 		if date != null
