@@ -1,8 +1,8 @@
 mixin news-full-form(links, title, text, date)
 	div.center(style="overflow: hidden;")
-		div
-			each link in links
-				div.news-full-image-container
+		each link in links
+			div.news-full-image-container
+				a(href= link, target="_blank")
 					img.news-full-image(src= link)
 	p
 	div

@@ -11,9 +11,12 @@ html
 		div.container.center
 			if (newsId == "0")
 				ul.media-list
-					each link, num in ["http://img.youtube.com/vi/F8-KMsFYhbY/0.jpg", "http://www.fitnessandfreebies.com/blog/wp-content/uploads/2011/09/Big_smile-300x300.png", "http://muslimvillage.com/wp-content/uploads/2011/04/Smile.jpg"]
+					each link, num in ["http://cs622829.vk.me/v622829584/118a5/J5JSiHfTn2U.jpg", "http://cs624520.vk.me/v624520413/199b5/Ulyg-wYzPwI.jpg", "http://cs624520.vk.me/v624520413/196f4/FzzCHAvvePg.jpg"]
 						include forms/news/news-preview.jade
 			else
 				include forms/news/news-full-form.jade
-				- links = ["http://img.youtube.com/vi/F8-KMsFYhbY/0.jpg", "http://www.fitnessandfreebies.com/blog/wp-content/uploads/2011/09/Big_smile-300x300.png"];
-				+news-full-form(links , "Это какой-то заголовок новости", oldText)
+				- links = ["http://cs622829.vk.me/v622829584/118a5/J5JSiHfTn2U.jpg", "http://cs624520.vk.me/v624520413/199b5/Ulyg-wYzPwI.jpg", "http://cs624520.vk.me/v624520413/196f4/FzzCHAvvePg.jpg", "http://cs624520.vk.me/v624520413/18b32/WwFrZ9nBksA.jpg"];
+				- title = "26 января 2014 года состоялся ректорский бал";
+				- text = "26 января 2014 г.- одно из самых красивых событий для студентов ОмГУ. Его ждут, к нему готовятся. Ректорский бал - бал для самых-самых…";
+				- date = "27.01.2014";
+				+news-full-form(links , title, text, date)

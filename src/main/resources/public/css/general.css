@@ -23,7 +23,6 @@
     height: 250px;
     float: left;
     margin: 10px;
-
 }
 .news-full-text{
     text-align: left;
@@ -35,5 +34,5 @@
 
 .navbar-header-brand{
     margin: 0px;
-    height: 51px;
+    height: 50px;
 }
