@@ -2,17 +2,55 @@ doctype html
 html(lang="en")
 	head
 		meta(charset="utf-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
-		meta(name="viewport", content="width=device-width, initial-scale=1")
 		title Контакты - ОмГУ
+		//-------------
+		style.
+			html, body, #map-canvas {
+			height: 100%;
+			margin-left: 190px;
+			margin-right: 190px;
+			padding: 0px
+			}
+		//-------------
 		include general-includes.jade
-	body
+		//-------------
+		script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true')
+		script.
+			function initialize() {
+			var myLatlng = new google.maps.LatLng(55.02836648,73.26195359);
+			var mapOptions = {
+			zoom: 17,
+			center: myLatlng
+			};
+			var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+			var contentString = '<div id="content">'+
+			'<div id="siteNotice">'+
+			'</div>'+
+			'<h1 id="firstHeading" class="firstHeading">Первый корпус ОмГУ</h1>'+
+			'<div id="bodyContent">'+
+			'<p>Директор ИМИТ: Латыпов Ильяс Абдульхаевич<br />Секретарь: Жилова Юлия Валерьевна<br />Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217<br />Телефоны: (3812) 64-42-38, (3812) 22-56-96<br />Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)</p>'+
+			'</div>'+
+			'</div>';
+			var infowindow = new google.maps.InfoWindow({
+			content: contentString
+			});
+			var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title: 'Uluru (Ayers Rock)'
+			});
+			infowindow.open(map,marker);
+			google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map,marker);
+			});
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
 		include forms/header.jade
-		.container
-			p Директор ИМИТ: Латыпов Ильяс Абдульхаевич
-			p Секретарь: Жилова Юлия Валерьевна
-			p Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217
-			p Телефоны: (3812) 64-42-38, (3812) 22-56-96
-			p Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)
-			iframe(src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1143.4235449171454!2d73.26190885165582!3d55.02837212133563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1436347022558', width='600', height='450', frameborder='0', style='border:0', allowfullscreen='')
-		//include forms/lost.jade
+		//.container
+		//	p Директор ИМИТ: Латыпов Ильяс Абдульхаевич
+		//	p Секретарь: Жилова Юлия Валерьевна
+		//	p Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217
+		//	p Телефоны: (3812) 64-42-38, (3812) 22-56-96
+		//	p Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)
+		#map-canvas
+			//include forms/lost.jade
