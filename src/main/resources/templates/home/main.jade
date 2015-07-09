@@ -1,11 +1,39 @@
 doctype html
-html(lang="en")
-	head
-		meta(charset="utf-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
-		meta(name="viewport", content="width=device-width, initial-scale=1")
-		title Главная - ОмГУ
-		include general-includes.jade
-	body
-		include forms/header.jade
-		include forms/lost.jade
+head
+  meta(content='charset=utf-8')
+  meta(http-equiv="X-UA-Compatible", content="IE=edge")
+  meta(name="viewport", content="width=device-width, initial-scale=1")
+  title Главная - ОмГУ
+  include general-includes.jade
+  link(rel='stylesheet', href='/css/flexslider.css', type='text/css', media='screen')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+  script(src='/js/jquery.flexslider-min.js')
+  link(rel='stylesheet', href='/css/demo.css', type='text/css', media='screen')
+  script(type='text/javascript').
+    $(window).load(function() {
+    $('.flexslider').flexslider();
+    });
+body
+  include forms/header.jade
+  .container.first-tag
+    p
+      Институт математики и информационных технологий (ранее – математический факультет) для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.
+      br
+      br
+      На нашем факультете прием абитуриентов и обучение студентов ведётся по направлению: «Прикладная математика и информатика». На младших курсах даётся фундаментальная (общая) подготовка, а на старших обучение ведётся по широкому спектру специализаций: системное программирование; математические методы защиты информации; программное обеспечение вычислительных машин; математическое моделирование; математическое и информационное обеспечение экономической деятельности и т.д..
+      br
+      br
+      Что немаловажно, у нас целых 90 (девяносто!) бюджетных , то есть  совершенно бесплатных (для абитуриентов!) мест и целых 20 бюджетных мест в магистратуре.. Поступай и учись бесплатно на лучшем факультете города!
+    .flexslider
+      ul.slides
+        li
+          img(src='/img/main-page-slider-photo/1.jpg')
+          p.flex-caption Картинка 1!
+        li
+          a(href='http://www.google.com')
+            img(src='/img/main-page-slider-photo/2.jpg')
+          p.flex-caption Картинка 2!
+        li
+          img(src='/img/main-page-slider-photo/3.jpg')
+        li
+          img(src='/img/main-page-slider-photo/4.jpg')

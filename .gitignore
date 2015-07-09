@@ -12,5 +12,10 @@
 hs_err_pid*
 
 .idea
+<<<<<<< HEAD
 target/
 *.iml
+=======
+*.iml
+target
+>>>>>>> main-page-release1
