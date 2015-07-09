@@ -32,3 +32,8 @@
 .first-tag{
     margin-top: 60px;
 }
+
+.navbar-header-brand{
+    margin: 0px;
+    height: 51px;
+}
