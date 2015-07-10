@@ -16,16 +16,36 @@ head
 body
   include forms/header.jade
   .container.first-tag
-    font(size='5', color='blue', align='center') ИНСТИТУТ МАТЕМАТИКИ И ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ
+    .textCenter
+      font(size='5', color="blue") 
+        b 
+          ИНСТИТУТ МАТЕМАТИКИ И ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ
+    .main-page-main-block
+      .textLeft
+        font(size='3')
+          b.
+            Высококвалифицированные 
+        br
+        font(size='3')  
+          b.
+            преподователи
+      .textRight
+        font(size='3')
+          b.
+            Высококвалифицированные 
+        br
+        font(size='3')  
+          b.
+            преподователи
     .flexslider
       br
       ul.slides
         li
-          a(href='http://www.google.com')
+          a(href='/img/main-page-slider-photo/1.jpg')
             img(src='/img/main-page-slider-photo/1.jpg')
           p.flex-caption Ректороский бал.
         li
-          a(href='http://www.google.com')
+          a(href='/img/main-page-slider-photo/2.jpg')
             img(src='/img/main-page-slider-photo/2.jpg')
           p.flex-caption 40 лет ОмГУ!
         li

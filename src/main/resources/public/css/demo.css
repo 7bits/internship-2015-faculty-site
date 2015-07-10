@@ -24,3 +24,23 @@ body {background: url(/img/body.png) repeat left top; font-family: 'Georgia', 'A
 h2 {padding: 20px 0 30px; font-size: 18px; line-height: 22px; font-style: italic;}
 h2 a {text-decoration: none; color: #427f9e;}
 h2 a:hover {border-bottom: 1px dotted #427f9e;}
+
+.main-page-main-block{
+	padding-top: 50px;
+	overflow: hidden;
+}
+
+.textCenter{
+	text-align: center;
+}
+
+.textLeft{
+	float: left;
+	text-align: left;
+}
+
+.textRight{
+	text-align: right;
+}
+
+
