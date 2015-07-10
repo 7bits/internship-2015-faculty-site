@@ -8,7 +8,7 @@ html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockqu
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, section {display: block;}
 body {line-height: 1;}
 ol, ul {list-style: none;}
 blockquote, q {quotes: none;}
@@ -17,10 +17,10 @@ table {border-collapse: collapse; border-spacing: 0;}
 strong {font-weight: bold;}
 em {font-style: italic;}
 
-body {background: url(/img/body.png) repeat left top; font-family: 'Georgia', 'Arial', sans-serif;}
+body {background: url(/img/body.png) repeat left top;}
 #container {width: 80%; max-width: 800px; margin: 0 auto;}
-s
-h2 {padding: 20px 0 30px; font-size: 18px; line-height: 22px; font-style: italic;}
+
+h2 {padding: 20px 0 30px; line-height: 22px;}
 h2 a {text-decoration: none; color: #427f9e;}
 h2 a:hover {border-bottom: 1px dotted #427f9e;}
 
