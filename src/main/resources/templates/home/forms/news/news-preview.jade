@@ -1,6 +1,10 @@
-a(href='/news?NewsId=#{num+1}')
-	div.media-body.news-preview-general-form
-		img.media-object.news-preview-image.center(src='#{link}')
-		div.center
-			h4.media-header.news-preview-general-form#title_post Это название какой-то новости факультета
-			h5.media-text.news-preview-general-form#post_text #{num+1}.07.2015
+mixin news-preview-form(type, link, id, title, date)
+	a(href='/news?NewsType=#{type}&NewsId=#{id+1}').news-preview-general-form
+		div.media-body.news-preview-general-form
+			img.media-object.news-preview-image.center(src= link)
+			div.center
+				h4.media-header.news-preview-general-form#title_post= title
+				if date != null
+					h5.media-text.news-full-text#post_date= date
+				else
+					h5.media-text.news-full-text#post_date= 'so.me.date'

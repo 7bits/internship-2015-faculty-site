@@ -1,14 +1,14 @@
 mixin news-full-form(links, title, text, date)
-	div.center(style="overflow: hidden;")
-		div
-			each link in links
-				div.news-full-image-container
-					img.news-full-image(src= link)
-	p
 	div
 		if date != null
 			h6.media-text.news-full-text#post_date= date
 		else
 			h6.media-text.news-full-text#post_date= 'so.me.date'
-		h2.media-header.center#title_post= title
-		h4.media-text.news-full-text#post_text= text
+		h2.media-header.center#title_post!= title
+		h4.media-text.news-full-text#post_text!= text
+	p
+	div.center(style="overflow: hidden;")
+		each link in links
+			div.news-full-image-container
+				a(href= link, target="_blank")
+					img.news-full-image(src= link)
