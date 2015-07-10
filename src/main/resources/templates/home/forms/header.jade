@@ -16,8 +16,19 @@ nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
                         a(href="/news?NewsType=Learn-news") Учебные
                     li 
                         a(href="/news?NewsType=Social-news") Внеучебные новости
-            li(type="presentation")
-                a(href="/applicants") Поступающим
+            li.dropdown(type="presentation")
+                a(href="#",data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false").dropdown-toggle Поступающим
+                    span.caret
+                ul.dropdown-menu
+                    li 
+                        a(href="/applicants") Абитуриент
+                    li 
+                        a(href="/applicants") Магистранту
+                    li 
+                        a(href="/applicants") Аспиранту
+                    li 
+                        a(href="/applicants") FAQ
+
             li(type="presentation")
                 a(href="/gallery") Галерея
             li(type="presentation")
