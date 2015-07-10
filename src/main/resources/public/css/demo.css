@@ -20,27 +20,48 @@ em {font-style: italic;}
 
 body {background: url(/img/body.png) repeat left top; font-family: 'Georgia', 'Arial', sans-serif;}
 #container {width: 80%; max-width: 800px; margin: 0 auto;}
-
+s
 h2 {padding: 20px 0 30px; font-size: 18px; line-height: 22px; font-style: italic;}
 h2 a {text-decoration: none; color: #427f9e;}
 h2 a:hover {border-bottom: 1px dotted #427f9e;}
 
 .main-page-main-block{
-	padding-top: 50px;
+	padding-left: 80px;
+	padding-top: 20px;
 	overflow: hidden;
+	width:90%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-.textCenter{
+.textHeadCenter{
 	text-align: center;
 }
-
-.textLeft{
-	float: left;
-	text-align: left;
+.textLeftUP{
+	padding-left: 100px;
+	padding-top: 10px;
+	vertical-align: top;
+	display: table-cell;   
+    width: 33.3%;    
 }
 
-.textRight{
-	text-align: right;
+.textLeftDown{
+	vertical-align: bottom;
+	display: table-cell;       
 }
 
 
+.textCenter{
+	padding-top: 40px;
+	padding-right: 30px;
+	display: table-cell;   
+    width: 33.3%;
+    text-align: center;
+}
+
+.textRightUP{
+	padding-top: 10px;
+	vertical-align: top;
+	display: table-cell;   
+    width: 33.3%;
+}

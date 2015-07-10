@@ -1,0 +1,5 @@
+mixin main-page-info-container(title, text)
+	include main-page-info-block.jade
+	div.main-page-info-container
+		each titleCurrent, num in title
+			+main-page-info-block(titleCurrent, text[num])

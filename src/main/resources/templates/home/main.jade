@@ -15,29 +15,47 @@ head
     });
 body
   include forms/header.jade
+  include forms/main/main-page-info-container.jade
   .container.first-tag
-    .textCenter
+    .textHeadCenter
       font(size='5', color="blue") 
         b 
           ИНСТИТУТ МАТЕМАТИКИ И ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ
-    .main-page-main-block
-      .textLeft
-        font(size='3')
-          b.
-            Высококвалифицированные 
-        br
-        font(size='3')  
-          b.
-            преподователи
-      .textRight
-        font(size='3')
-          b.
-            Высококвалифицированные 
-        br
-        font(size='3')  
-          b.
-            преподователи
-    .flexslider
+    - titles = ["Высококвалифицированные преподователи", "", "", "Бюджетные места"];
+    - texts = [" 17 докторов наук<p> 64 доцента и кандидата наук", "", "", " Самое большое количество бюджетных мест в ОмГУ", ""];
+    div.main-page-main-block
+      p
+      +main-page-info-container(titles, texts)
+      div.main-page-info-container
+        img(src='/img/graf.png')
+      - titles = ["Востребованность", "", "", "Технологии"];
+      - texts = ["О нас знают! Большинство наших<p> студентов трудостроены еще до<p> окончания учебы", "", "", " Изучайте новые технологии<p> используя современное оборудование", ""];
+      +main-page-info-container(titles, texts)
+      //- .textLeftUP
+      //-   p 
+      //-     b Высококлалифицированные преподователи
+      //-   p 17 докторов наук
+      //-   p 64 доцента и кандидата наук
+      //- .textCenter    
+      //-     img(src='/img/graf.png')
+      //-     p 
+      //-       b Диплом
+      //-     p О нас знают! Большинство наших
+      //-     p студентов трудостроены еще до
+      //-     p окончания учебы.
+      //- .textRightUP
+      //-   p 
+      //-     b Востребованность
+      //-   p О нас знают! Большинство наших
+      //-   p студентов трудостроены еще до
+      //-   p окончания учебы.
+      p
+      +main-page-info-container([""], [""])
+      - titles = ["Диплом"];
+      - texts = ["Наш диплом высоко котируется не только в России, но и за рубежом"];
+      +main-page-info-container(titles, texts)
+      +main-page-info-container([""], [""])
+    div.flexslider
       br
       ul.slides
         li
@@ -49,12 +67,14 @@ body
             img(src='/img/main-page-slider-photo/2.jpg')
           p.flex-caption 40 лет ОмГУ!
         li
-          img(src='/img/main-page-slider-photo/3.jpg')
+          a(href='/img/main-page-slider-photo/3.jpg')
+            img(src='/img/main-page-slider-photo/3.jpg')
           p.flex-caption Селфи с ведущим.
         li
-          img(src='/img/main-page-slider-photo/4.jpg')
+          a(href='/img/main-page-slider-photo/4.jpg')
+            img(src='/img/main-page-slider-photo/4.jpg')
           p.flex-caption Екатерина Георгиевна в восторге
-    .container.first-tag
+    div.container.first-tag
       p
         Институт математики и информационных технологий (ранее – математический факультет) для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.
         br
