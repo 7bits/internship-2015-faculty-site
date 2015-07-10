@@ -7,6 +7,7 @@
 .news-preview-general-form {
     max-height: 400px;
     width: 200px;
+    vertical-align: center;
 }
 .news-preview-general-form img{
     width: 200px;
