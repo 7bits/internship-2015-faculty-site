@@ -10,46 +10,12 @@ public class ImageDescription {
     private String link;
     private boolean is_head;
 
+    public int getId() {
+        return id;
+    }
 
     public int getAlbum() {
         return album;
-    }
-
-    public void setAlbum(int album) {
-        this.album = album;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCreating_date(String creating_date) {
-        this.creating_date = creating_date;
-    }
-
-    public void setCreating_time(String creating_time) {
-        this.creating_time = creating_time;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
-    }
-
-
-    public int getId() {
-        return id;
     }
 
     public String getTitle() {
@@ -77,4 +43,35 @@ public class ImageDescription {
     }
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAlbum(int album) {
+        this.album = album;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCreating_date(String creating_date) {
+        this.creating_date = creating_date;
+    }
+
+    public void setCreating_time(String creating_time) {
+        this.creating_time = creating_time;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public void setIs_head(boolean is_head) {
+        this.is_head = is_head;
+    }
 }

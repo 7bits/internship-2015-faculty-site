@@ -18,19 +18,28 @@ public class ImageDescriptionService {
     @Autowired
     private ImageDescriptionRepository repository;
 
-    public void save(final ImageDescriptionForm form) throws ServiceException {
+    public void saveImage(final ImageDescriptionForm form) throws ServiceException {
         final ImageDescription ImageDescription = new ImageDescription();
-        ImageDescription.setId(form.getId());
         ImageDescription.setTitle(form.getTitle());
         ImageDescription.setDescription(form.getDescription());
         ImageDescription.setAlbum(form.getAlbum());
         ImageDescription.setLink(form.getLink());
         ImageDescription.setIs_head(form.is_head());
         try {
-            repository.save(ImageDescription);
+            repository.saveImage(ImageDescription);
         } catch (Exception e) {
             throw new ServiceException("An error occurred while saving ImageDescription: " + e.getMessage(), e);
         }
+    }
+
+    public boolean removeImage(Long id) throws ServiceException{
+        try{
+            repository.removeImage(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+        }
+        return true;
     }
 
     public List<ImageDescriptionModel>getAllImages() throws ServiceException {
@@ -45,7 +54,6 @@ public class ImageDescriptionService {
                         s.getLink()
                 ));
             }
-
             return models;
         } catch (Exception e) {
             throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);

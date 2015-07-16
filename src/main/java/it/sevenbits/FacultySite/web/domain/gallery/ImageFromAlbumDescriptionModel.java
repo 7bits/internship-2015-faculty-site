@@ -1,9 +1,6 @@
 package it.sevenbits.FacultySite.web.domain.gallery;
 
 public class ImageFromAlbumDescriptionModel {
-
-
-
     private Long id;
     private String album_title;
     private String title;

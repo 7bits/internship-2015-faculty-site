@@ -1,5 +1,7 @@
 package it.sevenbits.FacultySite.web.controllers;
 
+import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
+import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
 import it.sevenbits.FacultySite.web.service.ServiceException;
@@ -30,15 +32,6 @@ public class HomeController {
     public String news(@RequestParam(value="NewsType", required = false) String newsType, @RequestParam(value="NewsId", required = false) String newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
-
-        try {
-            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(1);
-            for (ImageFromAlbumDescriptionModel image : images)
-                LOG.info(image.toString());
-        }
-        catch (ServiceException e){
-            LOG.info(e.getMessage());
-        }
 
         if (newsType == null)
             newsType = "All-news";

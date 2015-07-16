@@ -10,6 +10,24 @@ public class ImageDescriptionForm {
     private String link;
     private boolean is_head;
 
+    public ImageDescriptionForm(Integer album, String title, String description, String creating_date, String creating_time, String link, boolean is_head) {
+        if (album != null)
+            this.album = album;
+        this.title = title;
+        this.description = description;
+        this.creating_date = creating_date;
+        this.creating_time = creating_time;
+        this.link = link;
+        this.is_head = is_head;
+    }
+
+    public ImageDescriptionForm(){
+        this.title = null;
+        this.description = null;
+        this.creating_date = null;
+        this.creating_time = null;
+        this.link = null;
+    }
 
     public int getAlbum() {
         return album;

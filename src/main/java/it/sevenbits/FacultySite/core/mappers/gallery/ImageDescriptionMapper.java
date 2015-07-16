@@ -29,6 +29,9 @@ public interface ImageDescriptionMapper {
     })
     List<ImageFromAlbumDescription> getImagesFromAlbum(@Param("album_id") Long album_id);
 
-    @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album) VALUES (#{title}, #{subscription}, #{link}, #{creating_date}, #{creating_time}, #{album})")
-    void saveImage(final ImageDescription subscription);
+    @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album, is_head) VALUES (#{title}, #{description}, #{link}, #{creating_date}, #{creating_time}, #{album}, #{is_head})")
+    void saveImage(final ImageDescription description);
+
+    @Delete("DELETE FROM image WHERE id=#{id}")
+    void removeImage(final Long id);
 }
