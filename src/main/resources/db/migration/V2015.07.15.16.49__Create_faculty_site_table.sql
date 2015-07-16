@@ -1,2 +1,2 @@
 CREATE TABLE album (id BIGSERIAL PRIMARY KEY, title VARCHAR(256) NOT NULL, description TEXT, creating_date DATE, creating_time TIME);
-CREATE TABLE image (id BIGSERIAL PRIMARY KEY, text TEXT, creating_date DATE, creating_time TIME, link TEXT, is_head BOOLEAN);
+CREATE TABLE image (id BIGSERIAL PRIMARY KEY, title VARCHAR(256), description TEXT, creating_date DATE, creating_time TIME, link TEXT, is_head BOOLEAN, album INTEGER REFERENCES album(id));

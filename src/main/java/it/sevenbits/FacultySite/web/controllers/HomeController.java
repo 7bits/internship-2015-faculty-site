@@ -1,11 +1,12 @@
-package it.sevenbits.FacultySite.controllers;
+package it.sevenbits.FacultySite.web.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import it.sevenbits.FacultySite.web.domain.ImageDescriptionForm;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
@@ -17,7 +18,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/news")
-    public String news(@RequestParam(value="NewsType", required = false) String newsType, @RequestParam(value="NewsId", required = false) String newsId, Model model) {
+    public String news(@RequestParam(value="NewsType", required = false) String newsType, @RequestParam(value="NewsId", required = false) String newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
         if (newsType == null)
