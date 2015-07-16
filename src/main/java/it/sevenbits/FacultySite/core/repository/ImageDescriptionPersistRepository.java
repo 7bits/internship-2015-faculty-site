@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-@Qualifier(value = "DescriptionPersistRepository")
 public class ImageDescriptionPersistRepository implements ImageDescriptionRepository {
     private static Logger LOG = Logger.getLogger(ImageDescriptionPersistRepository.class);
 

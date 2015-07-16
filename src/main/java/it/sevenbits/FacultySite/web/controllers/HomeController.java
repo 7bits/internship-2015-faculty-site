@@ -4,6 +4,7 @@ import it.sevenbits.FacultySite.web.domain.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.service.ImageDescriptionService;
 import it.sevenbits.FacultySite.web.service.ServiceException;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import it.sevenbits.FacultySite.web.domain.ImageDescriptionForm;
@@ -17,6 +18,9 @@ import java.util.List;
 public class HomeController {
     private static Logger LOG = Logger.getLogger(HomeController.class);
 
+    @Autowired
+    ImageDescriptionService imageDescriptionService;
+
     @RequestMapping(value = "/")
     public String index() {
         return "redirect:/main";
@@ -28,7 +32,7 @@ public class HomeController {
         LOG.info("News id param: " + newsId);
 
         try {
-            List<ImageDescriptionModel> images = (new ImageDescriptionService()).getAllImages();
+            List<ImageDescriptionModel> images = imageDescriptionService.getAllImages();
             for (ImageDescriptionModel image : images)
                 LOG.info(image.toString());
         }

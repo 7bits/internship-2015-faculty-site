@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ImageDescriptionMapper {
 
-    @Select("SELECT id, title, subscription, link, album FROM image")
+    @Select("SELECT id, title, description, link, album FROM image")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "link", property = "link"),

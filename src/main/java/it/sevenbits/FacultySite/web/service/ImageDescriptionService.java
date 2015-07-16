@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class ImageDescriptionService {
     @Autowired
-    @Qualifier(value = "ImageDescriptionPersistRepository")
     private ImageDescriptionRepository repository;
 
     public void save(final ImageDescriptionForm form) throws ServiceException {
