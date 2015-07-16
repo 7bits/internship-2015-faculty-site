@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.web.domain;
+package it.sevenbits.FacultySite.web.domain.gallery;
 
 public class ImageDescriptionModel {
     private final Long id;

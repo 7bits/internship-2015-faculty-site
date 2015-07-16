@@ -1,10 +1,10 @@
 package it.sevenbits.FacultySite.core.repository;
 
-import it.sevenbits.FacultySite.core.domain.ImageDescription;
-import it.sevenbits.FacultySite.core.mappers.ImageDescriptionMapper;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
+import it.sevenbits.FacultySite.core.mappers.gallery.ImageDescriptionMapper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -37,4 +37,14 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
             throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);
         }
     }
+
+    @Override
+    public List<ImageFromAlbumDescription> getImagesFromAlbum(long id) throws RepositoryException {
+        try {
+            return mapper.getImagesFromAlbum(id);
+        } catch (Exception e) {
+            throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);
+        }
+    }
+
 }

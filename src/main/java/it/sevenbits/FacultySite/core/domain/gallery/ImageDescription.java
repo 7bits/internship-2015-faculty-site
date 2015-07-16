@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.core.domain;
+package it.sevenbits.FacultySite.core.domain.gallery;
 
 public class ImageDescription {
     private int id;

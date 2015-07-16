@@ -1,8 +1,8 @@
-package it.sevenbits.FacultySite.web.domain;
+package it.sevenbits.FacultySite.web.domain.gallery;
 
-public class ImageDescriptionForm {
+public class ImageFromAlbumDescriptionForm {
     private int id;
-    private int album;
+    private String album_title;
     private String title;
     private String description;
     private String creating_date;
@@ -11,16 +11,12 @@ public class ImageDescriptionForm {
     private boolean is_head;
 
 
-    public int getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(int album) {
-        this.album = album;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setAlbum_title(String album_title) {
+        this.album_title = album_title;
     }
 
     public void setTitle(String title) {
@@ -47,9 +43,12 @@ public class ImageDescriptionForm {
         this.is_head = is_head;
     }
 
-
     public int getId() {
         return id;
+    }
+
+    public String getAlbum_title() {
+        return album_title;
     }
 
     public String getTitle() {
@@ -78,7 +77,7 @@ public class ImageDescriptionForm {
 
     @Override
     public String toString(){
-        return String.format("Title: %s\nDescription: %s\nLink: %s\n", title, description, link);
+        return String.format("Title: %s\nDescription: %s\nLink: %s\nAlbum: %s\n", title, description, link, album_title);
     }
 
 }

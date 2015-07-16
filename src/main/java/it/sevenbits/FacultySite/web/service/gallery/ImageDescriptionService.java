@@ -1,11 +1,13 @@
-package it.sevenbits.FacultySite.web.service;
+package it.sevenbits.FacultySite.web.service.gallery;
 
-import it.sevenbits.FacultySite.core.domain.ImageDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.core.repository.ImageDescriptionRepository;
-import it.sevenbits.FacultySite.web.domain.ImageDescriptionForm;
-import it.sevenbits.FacultySite.web.domain.ImageDescriptionModel;
+import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
+import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
+import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
+import it.sevenbits.FacultySite.web.service.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -33,9 +35,9 @@ public class ImageDescriptionService {
 
     public List<ImageDescriptionModel>getAllImages() throws ServiceException {
         try {
-            List<ImageDescription> ImageDescriptions = repository.getAllImages();
-            List<ImageDescriptionModel> models = new ArrayList<>(ImageDescriptions.size());
-            for (ImageDescription s: ImageDescriptions) {
+            List<ImageDescription> descriptions = repository.getAllImages();
+            List<ImageDescriptionModel> models = new ArrayList<>(descriptions.size());
+            for (ImageDescription s: descriptions) {
                 models.add(new ImageDescriptionModel(
                         (long)s.getId(),
                         s.getTitle(),
@@ -49,4 +51,24 @@ public class ImageDescriptionService {
             throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
         }
     }
+
+    public List<ImageFromAlbumDescriptionModel>getImagesFromAlbum(long id) throws ServiceException {
+        try {
+            List<ImageFromAlbumDescription> descriptions = repository.getImagesFromAlbum(id);
+            List<ImageFromAlbumDescriptionModel> models = new ArrayList<>(descriptions.size());
+            for (ImageFromAlbumDescription s: descriptions) {
+                models.add(new ImageFromAlbumDescriptionModel(
+                        (long)s.getId(),
+                        s.getTitle(),
+                        s.getDescription(),
+                        s.getLink(),
+                        s.getAlbum_title()
+                ));
+            }
+            return models;
+        } catch (Exception e) {
+            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+        }
+    }
+
 }
