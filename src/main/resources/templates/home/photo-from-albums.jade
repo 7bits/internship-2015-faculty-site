@@ -1,0 +1,19 @@
+doctype html
+head
+	meta(charset="utf-8")
+	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	meta(name="viewport", content="width=device-width, initial-scale=1")
+	title Галерея - ОмГУ
+	include general-includes.jade
+body(body onload="L.create()")
+	include forms/header.jade
+	div.container.center
+		include forms/page-gallery/gallery-page-fill.jade
+		h2 Альбом посвещенный событию ImitMovieAwards
+		- mini = ["/img/gallery-page-gallery-photo/mini/1.jpg", "/img/gallery-page-gallery-photo/mini/2.jpg", "/img/gallery-page-gallery-photo/mini/3.jpg", "/img/gallery-page-gallery-photo/mini/4.jpg"]
+		- covers = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/2.jpg", "/img/gallery-page-gallery-photo/bigi/3.jpg","/img/gallery-page-gallery-photo/bigi/4.jpg"]
+		- titles =["Картинка 1", "Картинка 2", "3", "4"]
+		div
+			each cover, index in covers
+				+gallery-page-fill(mini[index], cover, titles[index])
+		script(type='text/javascript', src='/js/gallery/iLoad.js')

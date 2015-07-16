@@ -54,4 +54,11 @@ public class HomeController {
     public String contacts() {
         return "home/contacts";
     }
+
+    @RequestMapping(value = "/photo-from-albums")
+    public String photo_from_albums() {
+        return "home/photo-from-albums";
+    }
+
+
 }
