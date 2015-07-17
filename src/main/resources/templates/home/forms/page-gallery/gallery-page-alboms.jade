@@ -1,0 +1,10 @@
+mixin gallery-page-albums(cover, title, date)
+		div.media-body.news-preview-general-form
+			a(href='/forms/page-gallery/photo-from-albums.jade')
+				//-img(src= cover)
+			div.center
+				h4.media-header.news-preview-general-form#title_post= title
+				if date != null
+					h5.media-text.news-full-text#post_date= date
+				else
+					h5.media-text.news-full-text#post_date so.me.date

@@ -1,86 +1,70 @@
 doctype html
 head
-  meta(content='charset=utf-8')
-  meta(http-equiv="X-UA-Compatible", content="IE=edge")
-  meta(name="viewport", content="width=device-width, initial-scale=1")
-  title Главная - ОмГУ
-  include general-includes.jade
-  link(rel='stylesheet', href='/css/flexslider.css', type='text/css', media='screen')
-  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
-  script(src='/js/jquery.flexslider-min.js')
-  link(rel='stylesheet', href='/css/demo.css', type='text/css', media='screen')
-  script(type='text/javascript').
-    $(window).load(function() {
-    $('.flexslider').flexslider();
-    });
+	meta(content='charset=utf-8')
+	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	meta(name="viewport", content="width=device-width, initial-scale=1")
+	title Главная - ОмГУ
+	include general-includes.jade
+	link(rel='stylesheet', href='/css/flexslider.css', type='text/css', media='screen')
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+	script(src='/js/jquery.flexslider-min.js')
+	link(rel='stylesheet', href='/css/demo.css', type='text/css', media='screen')
+	script(type='text/javascript').
+		$(window).load(function() {
+		$('.flexslider').flexslider();
+		});
 body
-  include forms/header.jade
-  include forms/main/main-page-info-container.jade
-  .container.first-tag
-    .textHeadCenter
-      font(size='5', color="blue") 
-        b 
-          ИНСТИТУТ МАТЕМАТИКИ И ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ
-    - titles = ["Высококвалифицированные преподователи", "", "", "Бюджетные места"];
-    - texts = [" 17 докторов наук<p> 64 доцента и кандидата наук", "", "", " Самое большое количество бюджетных мест в ОмГУ", ""];
-    div.main-page-main-block
-      p
-      +main-page-info-container(titles, texts)
-      div.main-page-info-container
-        img(src='/img/graf.png')
-      - titles = ["Востребованность", "", "", "Технологии"];
-      - texts = ["О нас знают! Большинство наших<p> студентов трудостроены еще до<p> окончания учебы", "", "", " Изучайте новые технологии<p> используя современное оборудование", ""];
-      +main-page-info-container(titles, texts)
-      //- .textLeftUP
-      //-   p 
-      //-     b Высококлалифицированные преподователи
-      //-   p 17 докторов наук
-      //-   p 64 доцента и кандидата наук
-      //- .textCenter    
-      //-     img(src='/img/graf.png')
-      //-     p 
-      //-       b Диплом
-      //-     p О нас знают! Большинство наших
-      //-     p студентов трудостроены еще до
-      //-     p окончания учебы.
-      //- .textRightUP
-      //-   p 
-      //-     b Востребованность
-      //-   p О нас знают! Большинство наших
-      //-   p студентов трудостроены еще до
-      //-   p окончания учебы.
-      p
-      +main-page-info-container([""], [""])
-      - titles = ["Диплом"];
-      - texts = ["Наш диплом высоко котируется не только в России, но и за рубежом"];
-      +main-page-info-container(titles, texts)
-      +main-page-info-container([""], [""])
-    div.flexslider
-      br
-      ul.slides
-        li
-          a(href='/img/main-page-slider-photo/1.jpg')
-            img(src='/img/main-page-slider-photo/1.jpg')
-          p.flex-caption Ректороский бал.
-        li
-          a(href='/img/main-page-slider-photo/2.jpg')
-            img(src='/img/main-page-slider-photo/2.jpg')
-          p.flex-caption 40 лет ОмГУ!
-        li
-          a(href='/img/main-page-slider-photo/3.jpg')
-            img(src='/img/main-page-slider-photo/3.jpg')
-          p.flex-caption Селфи с ведущим.
-        li
-          a(href='/img/main-page-slider-photo/4.jpg')
-            img(src='/img/main-page-slider-photo/4.jpg')
-          p.flex-caption Екатерина Георгиевна в восторге
-    div.container.first-tag
-    .mar
-      p
-        Институт математики и информационных технологий (ранее – математический факультет) для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.
-        br
-        br
-        На нашем факультете прием абитуриентов и обучение студентов ведётся по направлению: «Прикладная математика и информатика». На младших курсах даётся фундаментальная (общая) подготовка, а на старших обучение ведётся по широкому спектру специализаций: системное программирование; математические методы защиты информации; программное обеспечение вычислительных машин; математическое моделирование; математическое и информационное обеспечение экономической деятельности и т.д..
-        br
-        br
-        Что немаловажно, у нас целых 90 (девяносто!) бюджетных , то есть  совершенно бесплатных (для абитуриентов!) мест и целых 20 бюджетных мест в магистратуре.. Поступай и учись бесплатно на лучшем факультете города!  
+	include forms/header.jade
+	include forms/main/main-page-info-container.jade
+	.container.first-tag
+		.textHeadCenter
+			font(size='5', color="blue") 
+				b 
+					ИНСТИТУТ МАТЕМАТИКИ И ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ
+
+
+		- titles = ["Высококвалифицированные преподователи", "", "", "Бюджетные места"];
+		- texts = [" 17 докторов наук<p> 64 доцента и кандидата наук", "", "", " Самое большое количество бюджетных мест в ОмГУ", ""];
+		div.main-page-main-block
+			p
+			+main-page-info-container(titles, texts)
+			div.main-page-info-container
+				img(src='/img/graf.png')
+			- titles = ["Востребованность", "", "", "Технологии"];
+			- texts = ["О нас знают! Большинство нашихстудентов трудостроены еще до окончания учебы", "", "", " Изучайте новые технологии<p> используя современное оборудование", ""];
+			+main-page-info-container(titles, texts)
+			p
+			+main-page-info-container([""], [""])
+			- titles = ["Диплом"];
+			- texts = ["Наш диплом высоко котируется не только в России, но и за рубежом"];
+			+main-page-info-container(titles, texts)
+			+main-page-info-container([""], [""])
+		div.flexslider
+			br
+			ul.slides
+				li
+					a(href='/img/main-page-slider-photo/1.jpg')
+						img(src='/img/main-page-slider-photo/1.jpg')
+					p.flex-caption Ректороский бал.
+				li
+					a(href='/img/main-page-slider-photo/2.jpg')
+						img(src='/img/main-page-slider-photo/2.jpg')
+					p.flex-caption 40 лет ОмГУ!
+				li
+					a(href='/img/main-page-slider-photo/3.jpg')
+						img(src='/img/main-page-slider-photo/3.jpg')
+					p.flex-caption Селфи с ведущим.
+				li
+					a(href='/img/main-page-slider-photo/4.jpg')
+						img(src='/img/main-page-slider-photo/4.jpg')
+					p.flex-caption Екатерина Георгиевна в восторге
+		div.container.first-tag
+		.mar
+			p
+				Институт математики и информационных технологий (ранее – математический факультет) для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.
+				br
+				br
+				На нашем факультете прием абитуриентов и обучение студентов ведётся по направлению: «Прикладная математика и информатика». На младших курсах даётся фундаментальная (общая) подготовка, а на старших обучение ведётся по широкому спектру специализаций: системное программирование; математические методы защиты информации; программное обеспечение вычислительных машин; математическое моделирование; математическое и информационное обеспечение экономической деятельности и т.д..
+				br
+				br
+				Что немаловажно, у нас целых 90 (девяносто!) бюджетных , то есть	совершенно бесплатных (для абитуриентов!) мест и целых 20 бюджетных мест в магистратуре.. Поступай и учись бесплатно на лучшем факультете города!	++
