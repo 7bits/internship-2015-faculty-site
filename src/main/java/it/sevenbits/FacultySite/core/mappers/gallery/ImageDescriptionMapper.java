@@ -36,6 +36,6 @@ public interface ImageDescriptionMapper {
     @Delete("DELETE FROM image WHERE id=#{id}")
     void removeImage(final Long id);
 
-    @Update("UPDATE image SET #{update_query} WHERE id=#{id}")
+    @Update("UPDATE image SET #{setPartQuery} WHERE #{wherePartQuery}")
     void changeImage(final UpdateContainer container);
 }
