@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,17 @@ public class HomeController {
     public String news(@RequestParam(value="NewsType", required = false) String newsType, @RequestParam(value="NewsId", required = false) String newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
+
+        ArrayList<String> columns = new ArrayList<>();
+        ArrayList<String> values = new ArrayList<>();
+        columns.add("title");
+        values.add("Changed");
+        try {
+            imageDescriptionService.changeImage((long) 1, columns, values);
+        }
+        catch (Exception e){
+            LOG.info(e.getMessage());
+        }
 
         if (newsType == null)
             newsType = "All-news";

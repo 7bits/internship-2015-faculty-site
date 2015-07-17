@@ -60,6 +60,16 @@ public class ImageDescriptionService {
         }
     }
 
+    public boolean changeImage(Long id, List<String> columns, List<String> values) throws ServiceException{
+        try{
+            repository.changeImage(id, columns, values);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+        }
+        return true;
+    }
+
     public List<ImageFromAlbumDescriptionModel>getImagesFromAlbum(long id) throws ServiceException {
         try {
             List<ImageFromAlbumDescription> descriptions = repository.getImagesFromAlbum(id);

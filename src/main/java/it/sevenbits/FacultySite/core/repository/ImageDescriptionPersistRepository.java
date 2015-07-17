@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.core.repository;
 
+import it.sevenbits.FacultySite.core.common.UpdateContainer;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.core.mappers.gallery.ImageDescriptionMapper;
@@ -38,6 +39,16 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
             mapper.removeImage(id);
         } catch (Exception e) {
             throw new RepositoryException("An error occurred while saving Description: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void changeImage(UpdateContainer container) throws  RepositoryException{
+        try{
+            mapper.changeImage(container);
+        }
+        catch (Exception e){
+            throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);
         }
     }
 
