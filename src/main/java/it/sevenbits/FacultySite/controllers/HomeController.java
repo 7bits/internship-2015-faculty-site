@@ -60,5 +60,8 @@ public class HomeController {
         return "home/photo-from-albums";
     }
 
-
+    @RequestMapping(value = "/enrollee")
+    public String enrolle() {
+        return "home/enrollee";
+    }
 }

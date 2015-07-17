@@ -1,0 +1,21 @@
+ul#navigation2 {
+margin-left:0;
+padding-left:0;
+list-style-type:none;
+}
+ul#navigation2 a {
+display:block;
+text-decoration:none;
+color:#fff; /*цвет шрифта*/
+background:#036; /*цвет фона*/
+padding:.2em .5em;
+border-bottom:1px solid #fff;
+width:7em;
+}
+ul#navigation2 a:hover {
+color:#00FF00; /* Цвет Текста при наведении мышки */
+background:#FF0000; /* Цвет фона при наведении мышки */
+}
+ul#navigation2 li {
+display:inline;
+}
