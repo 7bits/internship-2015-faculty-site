@@ -34,14 +34,6 @@ public class HomeController {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
 
-        try {
-            ImageDescription toUpdate = new ImageDescription((long)1, "bla", "blablabla", 1, true, "link");
-            imageDescriptionService.changeImage(toUpdate);
-        }
-        catch (Exception e){
-            LOG.info(e.getMessage());
-        }
-
         if (newsType == null)
             newsType = "All-news";
         model.addAttribute("newsType", newsType);
