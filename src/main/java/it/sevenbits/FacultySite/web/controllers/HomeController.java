@@ -34,12 +34,9 @@ public class HomeController {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
 
-        ArrayList<String> columns = new ArrayList<>();
-        ArrayList<String> values = new ArrayList<>();
-        columns.add("title");
-        values.add("Changed");
         try {
-            imageDescriptionService.changeImage((long) 1, columns, values);
+            ImageDescription toUpdate = new ImageDescription((long)1, "bla", "blablabla", 1, true, "link");
+            imageDescriptionService.changeImage(toUpdate);
         }
         catch (Exception e){
             LOG.info(e.getMessage());

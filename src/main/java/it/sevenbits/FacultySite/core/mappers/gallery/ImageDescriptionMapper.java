@@ -1,6 +1,5 @@
 package it.sevenbits.FacultySite.core.mappers.gallery;
 
-import it.sevenbits.FacultySite.core.common.UpdateContainer;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import org.apache.ibatis.annotations.*;
@@ -36,6 +35,6 @@ public interface ImageDescriptionMapper {
     @Delete("DELETE FROM image WHERE id=#{id}")
     void removeImage(final Long id);
 
-    @Update("UPDATE image SET #{setPartQuery} WHERE #{wherePartQuery}")
-    void changeImage(final UpdateContainer container);
+    @Update("UPDATE image SET title=#{title}, description=#{description}, album=#{album}, is_head=#{is_head} WHERE id=#{id}")
+    void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Integer album, @Param("is_head")boolean is_head, @Param("id")Long id);
 }

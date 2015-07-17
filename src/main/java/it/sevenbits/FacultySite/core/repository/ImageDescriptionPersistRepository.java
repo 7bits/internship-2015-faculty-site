@@ -1,6 +1,5 @@
 package it.sevenbits.FacultySite.core.repository;
 
-import it.sevenbits.FacultySite.core.common.UpdateContainer;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.core.mappers.gallery.ImageDescriptionMapper;
@@ -43,9 +42,9 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
     }
 
     @Override
-    public void changeImage(UpdateContainer container) throws  RepositoryException{
+    public void changeImage(final ImageDescription container) throws  RepositoryException{
         try{
-            mapper.changeImage(container);
+            mapper.changeImage(container.getTitle(), container.getDescription(), container.getAlbum(), container.is_head(), container.getId());
         }
         catch (Exception e){
             throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);

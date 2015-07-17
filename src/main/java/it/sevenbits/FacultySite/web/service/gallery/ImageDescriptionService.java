@@ -1,6 +1,5 @@
 package it.sevenbits.FacultySite.web.service.gallery;
 
-import it.sevenbits.FacultySite.core.common.UpdateContainer;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.core.repository.ImageDescriptionRepository;
@@ -61,9 +60,9 @@ public class ImageDescriptionService {
         }
     }
 
-    public boolean changeImage(Long id, List<String> columns, List<String> values) throws ServiceException{
+    public boolean changeImage(ImageDescription container) throws ServiceException{
         try{
-            repository.changeImage(new UpdateContainer(columns, values, id));
+            repository.changeImage(container);
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
