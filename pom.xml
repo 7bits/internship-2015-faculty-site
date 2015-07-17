@@ -25,6 +25,7 @@
             <artifactId>spring-boot-starter-jade4j</artifactId>
             <version>0.2</version>
         </dependency>
+<<<<<<< HEAD
 
         <!-- Add web driver selenium -->
 
@@ -45,6 +46,14 @@
 
 
         
+=======
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1103-jdbc41</version>
+            <scope>runtime</scope>
+        </dependency>
+>>>>>>> e3a7409ad567a7d73e6cbe987e13bdd5f8bdab98
     </dependencies>
 
     <!-- Package as an executable jar -->
