@@ -3,47 +3,44 @@ html(lang="en")
 	head
 		meta(charset="utf-8")
 		title Контакты - ОмГУ
-		//-------------
-		//-------------
 		include general-includes.jade
-		//-------------
-		//- script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true')
-		//- script.
-		//- 	function initialize() {
-		//- 	var myLatlng = new google.maps.LatLng(55.02836648,73.26195359);
-		//- 	var mapOptions = {
-		//- 	zoom: 17,
-		//- 	center: myLatlng
-		//- 	};
-		//- 	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		//- 	var contentString = '<div id="content">'+
-		//- 	'<div id="siteNotice">'+
-		//- 	'</div>'+
-		//- 	'<h1 id="firstHeading" class="firstHeading">Первый корпус ОмГУ</h1>'+
-		//- 	'<div id="bodyContent">'+
-		//- 	'<p>Директор ИМИТ: Латыпов Ильяс Абдульхаевич<br />Секретарь: Жилова Юлия Валерьевна<br />Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217<br />Телефоны: (3812) 64-42-38, (3812) 22-56-96<br />Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)</p>'+
-		//- 	'</div>'+
-		//- 	'</div>';
-		//- 	var infowindow = new google.maps.InfoWindow({
-		//- 	content: contentString
-		//- 	});
-		//- 	var marker = new google.maps.Marker({
-		//- 	position: myLatlng,
-		//- 	map: map,
-		//- 	title: 'Uluru (Ayers Rock)'
-		//- 	});
-		//- 	infowindow.open(map,marker);
-		//- 	google.maps.event.addListener(marker, 'click', function() {
-		//- 	infowindow.open(map,marker);
-		//- 	});
-		//- 	}
-		//- 	google.maps.event.addDomListener(window, 'load', initialize);
+		div.container.center
+			script(src='https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true')
+			script.
+				function initialize() {
+				var myLatlng = new google.maps.LatLng(55.02836648,73.26195359);
+				var mapOptions = {
+				zoom: 17,
+				center: myLatlng
+				};
+				var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+				var contentString = '<div id="content">'+
+				'<div id="siteNotice">'+
+				'</div>'+
+				'<h1 id="firstHeading" class="firstHeading">Первый корпус ОмГУ</h1>'+
+				'<div id="bodyContent">'+
+				'<p>Директор ИМИТ: Латыпов Ильяс Абдульхаевич<br />Секретарь: Жилова Юлия Валерьевна<br />Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217<br />Телефоны: (3812) 64-42-38, (3812) 22-56-96<br />Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)</p>'+
+				'</div>'+
+				'</div>';
+				var infowindow = new google.maps.InfoWindow({
+				content: contentString
+				});
+				var marker = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				title: 'Uluru (Ayers Rock)'
+				});
+				infowindow.open(map,marker);
+				google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map,marker);
+				});
+				}
+				google.maps.event.addDomListener(window, 'load', initialize);
 	body
 		include forms/header.jade
-		//.container
-		//	p Директор ИМИТ: Латыпов Ильяс Абдульхаевич
-		//	p Секретарь: Жилова Юлия Валерьевна
-		//	p Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217
-		//	p Телефоны: (3812) 64-42-38, (3812) 22-56-96
-		//	p Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)
-			//include forms/lost.jade
+			div.container.center
+				p Директор ИМИТ: Латыпов Ильяс Абдульхаевич
+				p Секретарь: Жилова Юлия Валерьевна
+				p Дирекция (Деканат) находится по адресу: г. Омск, пр. Мира 55 (первый корпус ОмГУ), каб. 217
+				p Телефоны: (3812) 64-42-38, (3812) 22-56-96
+				p Часы работы деканата: с 9.00 до 17.00 (кроме субботы и воскресенья)
