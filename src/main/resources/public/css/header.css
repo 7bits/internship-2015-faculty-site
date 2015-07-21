@@ -1,0 +1,38 @@
+.header {
+	position: fixed;
+	width: 100%;
+	overflow-x: hidden;
+    height: 45px;
+    background-color: #319bba;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: "Open Sans Light";
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.header-element {
+    margin: 0px 10px;
+    float: left;
+    max-height: 100%;
+	outline: none;
+}
+
+.header-element-text {
+	padding-top: 13px;
+	color: #ffffff;
+	outline: none;
+}
+
+.header-element-text:hover{
+	text-decoration: none;
+	color: #ffffff;
+	padding-top: 13px;
+	padding-bottom: 10px;
+	border-bottom: 4px solid #52c5de;
+	outline: none;
+}
+
+.header-element-logo{
+	margin-left: 25px;
+}
