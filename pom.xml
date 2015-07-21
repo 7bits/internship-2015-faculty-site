@@ -25,7 +25,6 @@
             <artifactId>spring-boot-starter-jade4j</artifactId>
             <version>0.2</version>
         </dependency>
-<<<<<<< HEAD
         <!-- Add web driver selenium -->
 
         <dependency>
@@ -41,13 +40,11 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
-=======
-
+        </dependency>
         <!-- spring-jdbc for embedded db auto-configuration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
->>>>>>> 9f8f690ffe3c7bd6543b3615626e31343741aada
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
