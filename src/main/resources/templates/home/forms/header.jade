@@ -4,9 +4,12 @@ header.header
 		a.header-element(href="/main")
 			img.header-element.header-element-logo(src="img/logo-imit.png")
 		a.header-element.header-element-text(href="/main") ГЛАВНАЯ
-		a.header-element.header-element-text НОВОСТИ
-		a.header-element.header-element-text ПОСТУПАЮЩИМ
-		a.header-element.header-element-text СТРУКТУРА ИМИТ
-		a.header-element.header-element-text ГАЛЕРЕЯ
-		a.header-element.header-element-text ПАРТНЕРЫ
-		a.header-element.header-element-text КОНТАКТЫ
+		a.header-element.header-element-text(href="/news") НОВОСТИ
+		a.header-element.header-element-text(href="/#") ПОСТУПАЮЩИМ
+			ul.dropdown-list
+				li one
+				li two
+		a.header-element.header-element-text(href="/main") СТРУКТУРА ИМИТ
+		a.header-element.header-element-text(href="/gallery") ГАЛЕРЕЯ
+		a.header-element.header-element-text(href="/main") ПАРТНЕРЫ
+		a.header-element.header-element-text(href="/contacts") КОНТАКТЫ
