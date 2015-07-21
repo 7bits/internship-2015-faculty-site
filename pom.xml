@@ -25,11 +25,29 @@
             <artifactId>spring-boot-starter-jade4j</artifactId>
             <version>0.2</version>
         </dependency>
+<<<<<<< HEAD
+        <!-- Add web driver selenium -->
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.46.0</version>
+        </dependency>
+
+
+        <!-- Add junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+=======
 
         <!-- spring-jdbc for embedded db auto-configuration -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+>>>>>>> 9f8f690ffe3c7bd6543b3615626e31343741aada
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -77,8 +95,21 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.18.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
+
 
 
 </project>
