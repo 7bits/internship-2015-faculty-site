@@ -4,7 +4,7 @@ div.header
 		a.header-element(href="/main")
 			img.header-element.header-element-logo(src="img/logo-imit.png")
 		a.header-element.header-element-text(href="/main") ГЛАВНАЯ
-		div.header-element.header-element-text НОВОСТИ
+		div.header-element.header-element-text= '☰ НОВОСТИ'
 			ul.header-dropdown-container
 				li
 					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=All-news") Все
@@ -12,7 +12,7 @@ div.header
 					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=Learn-news") Учебные
 				li
 					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=Social-news") Внеучебные
-		div.header-element.header-element-text ПОСТУПАЮЩИМ
+		div.header-element.header-element-text= '☰ ПОСТУПАЮЩИМ'
 			ul.header-dropdown-container
 				li
 					a.header-element.header-element-text.header-dropdown-element(href="/enrollee") АБИТУРИЕНТУ
