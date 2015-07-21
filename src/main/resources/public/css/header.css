@@ -42,10 +42,6 @@
 	outline: none;
 }
 
-.header-element-text:active {
-	outline: none;
-}
-
 .header-element-logo{
 	margin-left: 25px;
 }

@@ -78,4 +78,15 @@ public class HomeController {
     public String enrolle() {
         return "home/enrollee";
     }
+
+
+    @RequestMapping(value = "/partners")
+    public String partners() {
+        return "home/partners";
+    }
+
+    @RequestMapping(value = "/structure-imit")
+    public String structureImit() {
+        return "home/structure-imit";
+    }
 }
