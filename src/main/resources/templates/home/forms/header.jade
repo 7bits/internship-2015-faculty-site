@@ -1,14 +1,25 @@
 link(rel='stylesheet', href='/css/header.css', type='text/css', media='screen')
-header.header
-	div.header-container
+div.header
+	div
 		a.header-element(href="/main")
 			img.header-element.header-element-logo(src="img/logo-imit.png")
 		a.header-element.header-element-text(href="/main") ГЛАВНАЯ
-		a.header-element.header-element-text(href="/news") НОВОСТИ
-		a.header-element.header-element-text(href="/#") ПОСТУПАЮЩИМ
-			ul.dropdown-list
-				li one
-				li two
+		div.header-element.header-element-text НОВОСТИ
+			ul.header-dropdown-container
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=All-news") Все
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=Learn-news") Учебные
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=Social-news") Внеучебные
+		div.header-element.header-element-text ПОСТУПАЮЩИМ
+			ul.header-dropdown-container
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/enrollee") АБИТУРИЕНТУ
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/master") МАГИСТРАНТУ
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/applicants") АСПИРАНТУ
 		a.header-element.header-element-text(href="/main") СТРУКТУРА ИМИТ
 		a.header-element.header-element-text(href="/gallery") ГАЛЕРЕЯ
 		a.header-element.header-element-text(href="/main") ПАРТНЕРЫ
