@@ -4,6 +4,7 @@ head
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
 	meta(name="viewport", content="width=device-width, initial-scale=1")
 	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
+	link(rel='stylesheet', href='/css/enrollee-reviews.css', type='text/css', media='screen')
 	script(src='/js/bootstrap.js')
 	title Абитуриентам
 	include general-includes.jade
@@ -20,32 +21,69 @@ body
 			#home.tab-pane.active
 				include forms/tab1.html
 			#profile.tab-pane
-				h1 Отзывы от выпускников хорошие!
-				div.reviewsContainer
-					.row
-					.col-sm-6.col-md-4
-						.thumbnail
-							h3 Сергей Кормаков
-							img(src='/img/reviwes-page-photo/SergKorsakov.jpg', alt='aСергей Корсаков')
-							.caption
-								p ...
-								p
+				
+				div.reviews-container
+					div.history-container.history_left
+						h3 Сергей Корcаков
+						h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+						img(src='/img/reviwes-page-photo/SergKorsakov.jpg', alt='aСергей Корсаков')
+						.caption
+							p 
+							h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+							p
 									
-					.row
-						.col-sm-6.col-md-4
-							.thumbnail
+					
+					
+					div.history-container.history_center
 								h3 Ольга Кукина
-								img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
+								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
+								p
+									div.img 
+										img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
 								.caption
-									p ...
-									p
+								p
+								h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
+								p
 										
-					.row
-						.col-sm-6.col-md-4
-							.thumbnail
+					div.history-container.history_right
 								h3 Николай Косарев
+								h5 Quintiq, Голландия, разработчик и аналитик
 								img(src='/img/reviwes-page-photo/NickKorsakov.jpg', alt='Николай Косарев')
 								.caption
-									p ...
+									p 
+									h4 «Математика идеальна для обучения критическому мышлению и анализу»
+									p
+
+					div.history-container.history_left
+						
+								h3 Николай Косарев
+								h5 Quintiq, Голландия, разработчик и аналитик
+								img(src='/img/reviwes-page-photo/NickKorsakov.jpg', alt='Николай Косарев')
+								.caption
+									p 
+									h4 «Математика идеальна для обучения критическому мышлению и анализу»
 									p
 										
+					div.history-container.history_center
+						h3 Сергей Корcаков
+						h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+						img(src='/img/reviwes-page-photo/SergKorsakov.jpg', alt='aСергей Корсаков')
+						.caption
+							p 
+							h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+							p
+									
+					
+					
+					div.history-container.history_right
+								h3 Ольга Кукина
+								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
+								p
+									div.img 
+										img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
+								.caption
+								p 
+								h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
+								p
+										
+					

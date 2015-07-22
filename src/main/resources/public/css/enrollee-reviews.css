@@ -1,6 +1,35 @@
-.reviewsContainer {
-	border: 5px double black;
-	width: 90%;
-	height: auto;
+.img{
+	width:auto;
 
+}
+.reviews-container {
+	
+	width: auto;
+	height: auto;
+	padding-top: 25px;
+	text-align: center;
+	
+}
+.history-container {
+	border: 1px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	float: left;
+	width: 30%;
+	height: 400px;
+	 
+	margin: 15px 15px 15px 15px;
+	display: inline-block;
+}
+
+.history_left {
+	float: left;
+}
+
+.history_right {
+	float: right;
+}
+
+.history_center {
+	float: none;
 }
