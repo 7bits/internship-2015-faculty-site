@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.web.controllers;
 
+import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
@@ -60,7 +61,14 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/gallery")
-    public String gallery() {
+    public String gallery(Model model) {
+        try {
+            List<AlbumDescription> albums = imageDescriptionService.getAllAlbumsWithUniqueLink();
+            model.addAttribute("albums", albums);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
         return "home/gallery";
     }
 
