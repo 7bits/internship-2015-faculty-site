@@ -8,6 +8,7 @@ public class AlbumDescription {
     private String creatingDate;
     private String creatingTime;
     private String link;
+    private Long length;
 
     public Long getId() {
         return id;
@@ -33,6 +34,10 @@ public class AlbumDescription {
         return creatingTime;
     }
 
+    public Long getLength() {
+        return length;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -55,5 +60,9 @@ public class AlbumDescription {
 
     public void setCreatingTime(String creatingTime) {
         this.creatingTime = creatingTime;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
     }
 }

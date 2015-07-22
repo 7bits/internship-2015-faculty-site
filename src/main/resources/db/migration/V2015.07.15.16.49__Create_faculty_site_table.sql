@@ -5,7 +5,11 @@ INSERT INTO album (title, description) VALUES ('ImitMovieAwards', '');
 
 INSERT INTO image (title, link, album) VALUES ('', '1.jpg', 1);
 INSERT INTO image (title, link, album) VALUES ('', '2.jpg', 1);
-INSERT INTO image (title, link, album, is_head) VALUES ('', '3.jpg', 1, 'true');
+INSERT INTO image (title, link, album, is_head) VALUES ('', '2.jpg', 1, 'true');
 INSERT INTO image (title, link, album) VALUES ('', '4.jpg', 1);
-
-
+INSERT INTO image (title, link, album) VALUES ('', '2.jpg', 1);
+INSERT INTO image (title, link, album) VALUES ('', '4.jpg', 1);
+INSERT INTO image (title, link, album) VALUES ('', '1.jpg', 1);
+INSERT INTO image (title, link, album) VALUES ('', '4.jpg', 1);
+INSERT INTO image (title, link, album) VALUES ('', '2.jpg', 1);
+INSERT INTO image (title, link, album) VALUES ('', '1.jpg', 1);

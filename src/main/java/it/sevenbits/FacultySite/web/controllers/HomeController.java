@@ -82,6 +82,7 @@ public class HomeController {
         try {
             List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(albumId);
             AlbumDescription album = imageDescriptionService.getAlbumById(albumId);
+            album.setLength((long)images.size());
             model.addAttribute("images", images);
             model.addAttribute("album", album);
         }

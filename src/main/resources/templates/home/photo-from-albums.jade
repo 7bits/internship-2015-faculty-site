@@ -18,4 +18,7 @@ body(body onload="L.create()")
 		div
 			each image in images
 				+gallery-page-fill(image)
+		if (album.length == 0)
+			include forms/lost.jade
+			+lost("В этом альбоме ещё нет фотографий")
 		script(type='text/javascript', src='/js/gallery/iLoad.js')

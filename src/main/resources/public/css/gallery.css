@@ -8,7 +8,6 @@
 	max-height: 30%;
 	max-width: 30%;
 	margin: 5px;
-	padding: 1px;
 	text-align: center;
 	text-decoration: none;
 	float: left;
@@ -16,8 +15,6 @@
 }
 
 .gallery-album-container:hover {
-	/*border: 1px groove #888888;
-	padding: 0px;*/
 	text-decoration: none;
 }
 
