@@ -78,10 +78,17 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/photo-from-albums")
-    public String photo_from_albums(@RequestParam(value="albumId", required = false) String albumId) {
+    public String photo_from_albums(@RequestParam(value="albumId", required = false) Long albumId, Model model) {
         try {
-            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum()
+            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(albumId);
+            AlbumDescription album = imageDescriptionService.getAlbumById(albumId);
+            model.addAttribute("images", images);
+            model.addAttribute("album", album);
         }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+
         return "home/photo-from-albums";
     }
 

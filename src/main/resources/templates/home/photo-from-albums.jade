@@ -9,11 +9,13 @@ body(body onload="L.create()")
 	include forms/header.jade
 	div.container.center
 		include forms/page-gallery/gallery-page-fill.jade
-		h2 Альбом посвещенный событию ImitMovieAwards
-		- mini = ["/img/gallery-page-gallery-photo/mini/1.jpg", "/img/gallery-page-gallery-photo/mini/2.jpg", "/img/gallery-page-gallery-photo/mini/3.jpg", "/img/gallery-page-gallery-photo/mini/4.jpg"]
-		- covers = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/2.jpg", "/img/gallery-page-gallery-photo/bigi/3.jpg","/img/gallery-page-gallery-photo/bigi/4.jpg"]
-		- titles =["Картинка 1", "Картинка 2", "3", "4"]
+		//- h2 Альбом посвещенный событию ImitMovieAwards
+		//- - mini = ["/img/gallery-page-gallery-photo/mini/1.jpg", "/img/gallery-page-gallery-photo/mini/2.jpg", "/img/gallery-page-gallery-photo/mini/3.jpg", "/img/gallery-page-gallery-photo/mini/4.jpg"]
+		//- - covers = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/2.jpg", "/img/gallery-page-gallery-photo/bigi/3.jpg","/img/gallery-page-gallery-photo/bigi/4.jpg"]
+		//- - titles =["Картинка 1", "Картинка 2", "3", "4"]
+		h2= album.title
+		h4= album.description
 		div
-			each cover, index in covers
-				+gallery-page-fill(mini[index], cover, titles[index])
+			each image in images
+				+gallery-page-fill(image)
 		script(type='text/javascript', src='/js/gallery/iLoad.js')

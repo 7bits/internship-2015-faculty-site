@@ -38,7 +38,7 @@ public class ImageDescriptionService {
             repository.removeImage(id);
         }
         catch (Exception e){
-            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+            throw new ServiceException("An error occurred while saving ImageDescriptions: " + e.getMessage(), e);
         }
         return true;
     }
@@ -66,7 +66,16 @@ public class ImageDescriptionService {
             return repository.getAllAlbums();
         }
         catch (Exception e){
-            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+            throw new ServiceException("An error occurred while getting albums: " + e.getMessage(), e);
+        }
+    }
+
+    public AlbumDescription getAlbumById(Long id) throws ServiceException {
+        try{
+            return repository.getAlbumById(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while get album by id: " + e.getMessage(), e);
         }
     }
 
@@ -85,7 +94,7 @@ public class ImageDescriptionService {
             return uniqAlbums;
         }
         catch (Exception e){
-            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+            throw new ServiceException("An error occurred while getting uniq albums: " + e.getMessage(), e);
         }
 
     }
@@ -95,7 +104,7 @@ public class ImageDescriptionService {
             repository.changeImage(container);
         }
         catch (Exception e){
-            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+            throw new ServiceException("An error occurred while changing image: " + e.getMessage(), e);
         }
         return true;
     }
@@ -115,7 +124,7 @@ public class ImageDescriptionService {
             }
             return models;
         } catch (Exception e) {
-            throw new ServiceException("An error occurred while retrieving ImageDescriptions: " + e.getMessage(), e);
+            throw new ServiceException("An error occurred while get image description: " + e.getMessage(), e);
         }
     }
 

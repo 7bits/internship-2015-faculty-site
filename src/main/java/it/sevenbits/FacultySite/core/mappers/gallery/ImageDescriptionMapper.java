@@ -56,5 +56,5 @@ public interface ImageDescriptionMapper {
             @Result(column = "creating_date", property = "creatingDate"),
             @Result(column = "creating_time", property = "creatingTime")
     })
-    AlbumDescription getAlbumById();
+    AlbumDescription getAlbumById(@Param("albumId")Long id);
 }
