@@ -1,5 +1,42 @@
-.bottom_block {
-	position:absolute;
-	bottom:0; 
-	left:0;
+.gallery-container {
+	overflow: hidden;
+}
+
+.gallery-album-container {
+	max-height: 300px;
+	width: 200px;
+	margin: 5px;
+	padding: 1px;
+	text-align: center;
+	text-decoration: none;
+	float: left;
+}
+
+.gallery-album-container:hover {
+	/*border: 1px groove #888888;
+	padding: 0px;*/
+	text-decoration: none;
+}
+
+.gallery-album-image-container {
+	height: 200px;
+	width: 200px;
+}
+
+.gallery-album-image {
+	max-height: 200px;
+	max-width: 200px;
+}
+
+.gallery-album-description-container {
+	max-height: 100px;
+	width: 200px;
+}
+
+.gallery-album-title {
+	font-size: 18px;
+}
+
+.gallery-album-date {
+	font-size: 16px;
 }

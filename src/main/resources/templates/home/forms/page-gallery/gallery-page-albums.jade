@@ -1,10 +1,7 @@
-mixin gallery-page-albums(cover, title, date)
-	div.media-body.news-preview-general-form
-		a(href='/photo-from-albums.jade')
-			img.media-object.news-preview-image.center(src= cover)
-		div.center
-			h4.media-header.news-preview-general-form#title_post= title
-			if date != null
-				h5.media-text.news-full-text#post_date= date
-			else
-				h5.media-text.news-full-text#post_date so.me.date
+mixin gallery-page-albums(album)
+	a.gallery-album-container(href='/photo-from-albums?albumId=#{album.id}')
+		img.gallery-album-image(src= "/img/gallery-page-gallery-photo/mini/#{album.link}")
+		div.gallery-album-description-container
+			div.gallery-album-title#title_post= album.title
+			if album.creatingDate != null
+				div.gallery-album-date#post_date= album.creatingDate

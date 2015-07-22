@@ -47,4 +47,14 @@ public interface ImageDescriptionMapper {
             @Result(column = "link", property = "link")
     })
     List<AlbumDescription> getAllAlbums();
+
+    @Select("SELECT id, title, description, creating_date, creating_time FROM album WHERE id=#{albumId}")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "title", property = "title"),
+            @Result(column = "description", property = "description"),
+            @Result(column = "creating_date", property = "creatingDate"),
+            @Result(column = "creating_time", property = "creatingTime")
+    })
+    AlbumDescription getAlbumById();
 }
