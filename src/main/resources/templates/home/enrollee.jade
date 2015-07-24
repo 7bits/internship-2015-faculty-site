@@ -10,6 +10,7 @@ head
 	include general-includes.jade
 body
 	include forms/header.jade
+	include forms/enrollee_mixin.jade
 
 	div.container.center
 		ul#myTab.nav.nav-tabs
@@ -23,14 +24,12 @@ body
 			#profile.tab-pane
 				
 				div.reviews-container
-					div.history-container.history_left
-						h3 Сергей Корcаков
-						h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
-						img(src='/img/reviwes-page-photo/SergKorsakov.jpg', alt='aСергей Корсаков')
-						.caption
-							p 
-							h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
-							p
+					
+					- name = "Сергей Корсаков";
+					- placeOfWork = "Яндекс, Москва, менеджер проектов в отделе контент-системы";
+					- link = "/img/reviwes-page-photo/SergKorsakov.jpg";
+					- citation = "Матфак научил меня быть антишестерёнкой и уметь браться за любые задачи и проекты";
+					+enrollee-page-add-reviews(name, placeOfWork, link, citation);
 									
 					
 					
@@ -38,8 +37,7 @@ body
 								h3 Ольга Кукина
 								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
 								p
-									div.img 
-										img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
+								img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
 								.caption
 								p
 								h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
