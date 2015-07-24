@@ -1,17 +1,23 @@
 .gallery-container {
 	height: 100%;
+	font-family: "Open Sans Light";
 }
 
 .gallery-album-container {
-	height: 300px;
-	width: 200px;
-	max-height: 30%;
-	max-width: 30%;
-	margin: 5px;
+	max-height: 100%;
+	max-width: 100%;
+	min-height: 90%;
 	text-align: center;
 	text-decoration: none;
-	float: left;
 	background-color: #efefef;
+	display: block;
+}
+
+.gallery-album-main-container {
+	width: 200px;
+	height: 220px;
+	margin: 5px;
+	float: left;
 }
 
 .gallery-album-container:hover {
@@ -35,8 +41,11 @@
 
 .gallery-album-title {
 	font-size: 18px;
+	line-height: 1em;
 }
 
 .gallery-album-date {
-	font-size: 16px;
+	font-size: 14px;
+	bottom: 0px;
+	text-align: left;
 }
