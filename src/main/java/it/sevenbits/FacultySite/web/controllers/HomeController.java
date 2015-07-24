@@ -79,7 +79,7 @@ public class HomeController {
 
     @RequestMapping(value = "/undergraduate")
     public String undergraduate() {
-        return "home/unaadergraduate";
+        return "home/undergraduate";
     }
 
     @RequestMapping(value = "/photo-from-albums")
