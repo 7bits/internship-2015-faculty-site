@@ -69,6 +69,11 @@ public class HomeController {
         return "home/contacts";
     }
 
+    @RequestMapping(value = "/undergraduate")
+    public String undergraduate() {
+        return "home/unaadergraduate";
+    }
+
     @RequestMapping(value = "/photo-from-albums")
     public String photo_from_albums() {
         return "home/photo-from-albums";
