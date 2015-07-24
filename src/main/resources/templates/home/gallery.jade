@@ -3,23 +3,17 @@ head
 	meta(charset="utf-8")
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
 	meta(name="viewport", content="width=device-width, initial-scale=1")
-	link(rel='stylesheet', href='/css/gallery.css', type='text/css', media='screen')
 	title Галерея - ОмГУ
 	include general-includes.jade
+	link(rel='stylesheet', href='/css/gallery.css', type='text/css', media='screen')
 body
 	include forms/header.jade
-	div.container.center
-		h2 Фотоальбомы Института Математики и Информационных Технологий
+	div.container.gallery-container
 		include forms/page-gallery/gallery-page-albums.jade
-		- covers = ["/img/gallery-page-gallery-photo/mini/1.jpg"]
-		- titles =["ImitMovieAwards"]
-		each cover, index in covers
-			+gallery-page-albums(cover, titles[index])
-		//- else
-		//- include forms/page-gallery/gallery-page-fill.jade
-		//- - covers = ["/img/gallery-page-gallery-photo/3.jpg", "/img/gallery-page-gallery-photo/2.jpg"]
-		//- - titles =["Картинка 1", "Картинка 2"]
-		//- div
-		//- 	each cover, index in covers
-		//- 		+gallery-page-fill(cover, titles[index])
-		//- script(type='text/javascript', src='/js/gallery/iLoad.js')
+		each album in albums
+			+gallery-page-albums(album)
+		//- h2 Фотоальбомы Института Математики и Информационных Технологий
+		//- include forms/page-gallery/gallery-page-albums.jade
+		//- each album in albums
+		//- 	+gallery-page-albums(album)
+
