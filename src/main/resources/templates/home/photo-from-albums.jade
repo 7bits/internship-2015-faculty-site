@@ -17,7 +17,7 @@ body(body onload="L.create()")
 		h4= album.description
 		div
 			each image in images
-				+gallery-page-fill(image)
+				+gallery-page-fill(image, album.title)
 		if (album.length == 0)
 			include forms/lost.jade
 			+lost("В этом альбоме ещё нет фотографий")
