@@ -47,7 +47,8 @@ public class AlbumDescription {
     }
 
     public void setCreatingDate(String creatingDate) {
-        this.creatingDate = creatingDate;
+        String date[] = creatingDate.split("-");
+        this.creatingDate = date[2]+"."+date[1]+"."+date[0];
     }
 
     public void setLink(String link) {
