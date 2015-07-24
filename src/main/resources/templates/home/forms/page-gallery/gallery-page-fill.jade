@@ -1,3 +1,3 @@
-mixin gallery-page-fill(mini, link, title)
-	a(href=link, rel='iLoad|Альбом', title=title)  
-		img(src=mini)
+mixin gallery-page-fill(image, album)
+	a(href= "/img/gallery-page-gallery-photo/bigi/#{image.link}", rel='iLoad|#{album}', title= image.title)  
+		img(src= "/img/gallery-page-gallery-photo/mini/#{image.link}")

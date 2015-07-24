@@ -1,3 +1,8 @@
-div.center
-	img(src='/img/lost-page.png').center
-h3.center.alert.alert-info Скоро мы найдём эту страницу, нужно немного подождать^^'
+
+mixin lost(title)
+	div.center
+		img(src='/img/lost-page.png').center
+	if (title == null)
+		h3.center.alert.alert-info Скоро мы найдём эту страницу, нужно немного подождать^^'
+	else
+		h3.center.alert.alert-info= title

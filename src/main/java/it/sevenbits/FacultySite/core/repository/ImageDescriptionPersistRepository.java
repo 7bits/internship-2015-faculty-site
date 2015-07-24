@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.core.repository;
 
+import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.core.mappers.gallery.ImageDescriptionMapper;
@@ -48,6 +49,26 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
         }
         catch (Exception e){
             throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<AlbumDescription> getAllAlbums() throws RepositoryException{
+        try {
+            return mapper.getAllAlbums();
+        }
+        catch (Exception e){
+            throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public AlbumDescription getAlbumById(Long id) throws RepositoryException {
+        try{
+            return mapper.getAlbumById(id);
+        }
+        catch (Exception e){
+            throw new RepositoryException("An error occurred while getting album by id: " + e.getMessage(), e);
         }
     }
 

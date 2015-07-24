@@ -1,5 +1,57 @@
-.bottom_block {
-	position:absolute;
-	bottom:0; 
-	left:0;
+.gallery-container {
+	height: 100%;
+	font-family: "Open Sans Light";
+}
+
+.gallery-album-container {
+	max-height: 100%;
+	max-width: 100%;
+	min-height: 90%;
+	text-align: center;
+	text-decoration: none;
+	background-color: #efefef;
+	display: block;
+	border-radius: 5px;
+	vertical-align: middle;
+	border: 2px solid #898989;
+}
+
+.gallery-album-main-container {
+	width: 200px;
+	height: 220px;
+	margin: 5px;
+	float: left;
+}
+
+.gallery-album-container:hover {
+	text-decoration: none;
+}
+
+.gallery-album-image-container {
+	height: 60%;
+	width: 100%;
+}
+
+.gallery-album-image {
+	max-height: 100%;
+	max-width: 100%;
+	margin: 2px;
+}
+
+.gallery-album-description-container {
+	max-height: 20%;
+	width: 100%;
+}
+
+.gallery-album-title {
+	color: #292929;
+	font-size: 18px;
+	line-height: 1em;
+	border-top: 1px solid #898989;
+	border-radius: 5px;
+}
+
+.gallery-album-date {
+	color: #292929;
+	font-size: 12px;
 }
