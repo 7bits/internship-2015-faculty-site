@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface ContentOfPagesRepository {
     public List<ContentDescription> getAllPages() throws RepositoryException;
+    public void saveContent(ContentDescription description) throws RepositoryException;
 }

@@ -1,5 +1,8 @@
 package it.sevenbits.FacultySite.core.domain.contentOfPages;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 public class ContentDescription {
     private Long id;
     private String title;
@@ -7,6 +10,14 @@ public class ContentDescription {
     private String creatingDate;
     private String creatingTime;
     private String type;
+
+    public ContentDescription(String title, String description, String creatingDate, String creatingTime, String type) {
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.type = type;
+    }
 
     public void setId(Long id) {
         this.id = id;

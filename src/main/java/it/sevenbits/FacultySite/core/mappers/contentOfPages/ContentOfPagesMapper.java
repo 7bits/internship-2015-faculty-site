@@ -17,4 +17,8 @@ public interface ContentOfPagesMapper {
             @Result(column = "type", property = "type")
     })
     List<ContentDescription> getAllPages();
+
+    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, type) VALUES (#{title}, #{description}, #{creatingDate}, #{creatingTime}, #{type})")
+    void saveContentOfPage(final ContentDescription description);
+
 }

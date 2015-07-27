@@ -23,4 +23,14 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
             throw new RepositoryException("Error with getting all pages: "+e.getMessage());
         }
     }
+
+    public void saveContent(ContentDescription description) throws RepositoryException{
+        try{
+            mapper.saveContentOfPage(description);
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with adding content: "+e.getMessage());
+        }
+    }
+
 }

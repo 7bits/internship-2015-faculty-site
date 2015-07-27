@@ -56,11 +56,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/main")
-    public String main() {
+    public String main(Model model) {
         try {
-            List<ContentDescriptionModel> pages = contentOfPagesService.getAllPages();
-            for (ContentDescriptionModel tmp : pages)
-                LOG.info(tmp.toString());
+            contentOfPagesService.saveContentOfPage("Example", "<h2> Hello World!^^</h2>", "News:All");
         }
         catch (Exception e) {
             LOG.error(e.getMessage());
