@@ -2,24 +2,28 @@ div.header
 	div
 		a.header-element(href="/main")
 			img.header-element.header-element-logo(src="img/logo-imit.png")
-		a.header-element.header-element-text(href="/main") ГЛАВНАЯ
-		div.header-element.header-element-text= '☰ НОВОСТИ'
-			ul.header-dropdown-container
-				li
-					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=All-news") Все
-				li
-					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=Learn-news") Учебные
-				li
-					a.header-element.header-element-text.header-dropdown-element(href="/news?NewsType=Social-news") Внеучебные
-		div.header-element.header-element-text= '☰ ПОСТУПАЮЩИМ'
+		div.header-element.header-element-text= 'ПОСТУПАЮЩИМ ⇂'
 			ul.header-dropdown-container
 				li
 					a.header-element.header-element-text.header-dropdown-element(href="/enrollee") АБИТУРИЕНТУ
 				li
-					a.header-element.header-element-text.header-dropdown-element(href="/undergraduate") МАГИСТРАНТУ
+					a.header-element.header-element-text.header-dropdown-element(href="/master") МАГИСТРАНТУ
 				li
 					a.header-element.header-element-text.header-dropdown-element(href="/applicants") АСПИРАНТУ
-		a.header-element.header-element-text(href="/structure-imit") СТРУКТУРА ИМИТ
-		a.header-element.header-element-text(href="/gallery") ГАЛЕРЕЯ
-		a.header-element.header-element-text(href="/partners") ПАРТНЕРЫ
-		a.header-element.header-element-text(href="/contacts") КОНТАКТЫ
+		div.header-element.header-element-text= 'СТУДЕНТАМ ⇂'
+			ul.header-dropdown-container
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/gallery") ГАЛЕРЕЯ
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/news") НОВОСТИ
+				li
+					a.header-element.header-element-text.header-dropdown-element КАЛЕНДАРЬ СОБЫТИЙ
+
+		div.header-element.header-element-text= 'О ФАКУЛЬТЕТЕ ⇂'
+			ul.header-dropdown-container
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/structure-imit") СТРУКТУРА ИМИТ
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/partners") ПАРТНЕРЫ
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/contacts") КОНТАКТЫ
