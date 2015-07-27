@@ -2,8 +2,10 @@ package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
+import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
+import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
 import it.sevenbits.FacultySite.web.service.ServiceException;
 import org.apache.log4j.Logger;
@@ -24,6 +26,9 @@ public class HomeController {
 
     @Autowired
     ImageDescriptionService imageDescriptionService;
+
+    @Autowired
+    ContentOfPagesService contentOfPagesService;
 
     @RequestMapping(value = "/")
     public String index() {
@@ -52,6 +57,14 @@ public class HomeController {
 
     @RequestMapping(value = "/main")
     public String main() {
+        try {
+            List<ContentDescriptionModel> pages = contentOfPagesService.getAllPages();
+            for (ContentDescriptionModel tmp : pages)
+                LOG.info(tmp.toString());
+        }
+        catch (Exception e) {
+            LOG.error(e.getMessage());
+        }
         return "home/main";
     }
 
