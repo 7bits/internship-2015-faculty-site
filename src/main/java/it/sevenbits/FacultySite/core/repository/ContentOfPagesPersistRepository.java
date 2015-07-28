@@ -33,4 +33,22 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
         }
     }
 
+    public void updatePage(String newTitle, String newDescription, String newType, Long id) throws RepositoryException{
+        try{
+            mapper.updatePage(newTitle, newDescription, newType, id);
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with updating page: " + e.getMessage());
+        }
+    }
+
+    public List<ContentDescription> getPagesByType(String type) throws RepositoryException{
+        try {
+            return mapper.getPagesByType(type);
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with getting all pages: "+e.getMessage());
+        }
+    }
+
 }

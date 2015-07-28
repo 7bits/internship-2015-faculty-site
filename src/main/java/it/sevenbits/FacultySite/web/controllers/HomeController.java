@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.web.controllers;
 
+import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionModel;
@@ -58,7 +59,7 @@ public class HomeController {
     @RequestMapping(value = "/main")
     public String main(Model model) {
         try {
-            contentOfPagesService.saveContentOfPage("Example", "<h2> Hello World!^^</h2>", "News:All");
+            contentOfPagesService.updatePage(new ContentDescription((long)3, "New Title", "<h3> New Hello World</h3>", ""));
         }
         catch (Exception e) {
             LOG.error(e.getMessage());

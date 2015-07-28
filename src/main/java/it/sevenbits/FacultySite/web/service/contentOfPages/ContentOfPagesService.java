@@ -33,6 +33,23 @@ public class ContentOfPagesService {
         }
     }
 
+    public List<ContentDescriptionModel> getPagesByType(String type) throws ServiceException {
+        try {
+            List<ContentDescription> pages = repository.getPagesByType(type);
+            List<ContentDescriptionModel> models = new ArrayList<>();
+            for (ContentDescription tmp : pages)
+                try {
+                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType()));
+                }
+                catch (Exception e){
+                    throw new ServiceException(e.getMessage(), e);
+                }
+            return models;
+        } catch (Exception e) {
+            throw new ServiceException("An error occurred while get content: " + e.getMessage(), e);
+        }
+    }
+
     public void saveContentOfPage(String title, String description, String type) throws ServiceException{
         try{
             ContentDescription res = new ContentDescription(title, description, type);
@@ -41,7 +58,15 @@ public class ContentOfPagesService {
         catch (Exception e){
             throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);
         }
+    }
 
+    public void updatePage(ContentDescription description) throws ServiceException{
+        try{
+            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getId());
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);
+        }
     }
 
 }

@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface ContentOfPagesRepository {
     public List<ContentDescription> getAllPages() throws RepositoryException;
+    public List<ContentDescription> getPagesByType(String type) throws RepositoryException;
     public void saveContent(ContentDescription description) throws RepositoryException;
+    public void updatePage(String newTitle, String newDescription, String newType, Long id) throws RepositoryException;
 }
