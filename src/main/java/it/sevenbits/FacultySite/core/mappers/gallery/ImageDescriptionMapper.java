@@ -30,7 +30,7 @@ public interface ImageDescriptionMapper {
     })
     List<ImageFromAlbumDescription> getImagesFromAlbum(@Param("album_id") Long album_id);
 
-    @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album, is_head) VALUES (#{title}, #{description}, #{link}, #{creating_date}, #{creating_time}, #{album}, #{is_head})")
+    @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album, is_head) VALUES (#{title}, #{description}, #{link}, 'today', 'now', #{album}, #{is_head})")
     void saveImage(final ImageDescription description);
 
     @Delete("DELETE FROM image WHERE id=#{id}")
