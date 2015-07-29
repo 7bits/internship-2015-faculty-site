@@ -58,12 +58,6 @@ public class HomeController {
 
     @RequestMapping(value = "/main")
     public String main(Model model) {
-        try {
-            //contentOfPagesService.removePageByType("");
-        }
-        catch (Exception e) {
-            LOG.error(e.getMessage());
-        }
         return "home/main";
     }
 
