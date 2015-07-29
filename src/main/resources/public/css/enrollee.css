@@ -1,0 +1,17 @@
+.enrollee-tab-container{
+	width: 100%;
+	margin: 10px 15px;
+	border: 1px groove #aaaaaa;
+}
+
+.enrollee-tab-element{
+	width: 50%;
+	height: 100%;
+	border: 1px solid #aaaaaa;
+	text-align: left;
+}
+
+.enrollee-list-container{
+	list-style: none;
+	padding: 0px;
+}

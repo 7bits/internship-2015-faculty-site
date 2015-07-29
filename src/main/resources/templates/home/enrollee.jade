@@ -5,6 +5,7 @@ head
 	meta(name="viewport", content="width=device-width, initial-scale=1")
 	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
 	link(rel='stylesheet', href='/css/enrollee-reviews.css', type='text/css', media='screen')
+	link(rel='stylesheet', href='/css/enrollee.css', type='text/css', media='screen')
 	script(src='/js/bootstrap.js')
 	title Абитуриентам
 	include general-includes.jade
@@ -12,7 +13,7 @@ body
 	include forms/header.jade
 	include forms/enrollee_mixin.jade
 
-	div.container.center
+	div.container
 		ul#myTab.nav.nav-tabs
 			li.active
 				a(href='#home', data-toggle='tab') Основная информация
@@ -20,7 +21,7 @@ body
 				a(href='#profile', data-toggle='tab') Отзывы от выпускников
 		.tab-content
 			#home.tab-pane.active
-				include forms/tab1.html
+				include forms/applicants/enrollee.jade
 			#profile.tab-pane
 				
 				div.reviews-container
