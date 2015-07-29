@@ -51,4 +51,23 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
         }
     }
 
+    public void removePageById(Long id) throws RepositoryException{
+        try{
+            mapper.removePageById(id);
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with deleting page: " + e.getMessage());
+        }
+    }
+
+    public void removePageByType(String type) throws RepositoryException{
+        try{
+            mapper.removePageByType(type);
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with deleting page: " + e.getMessage());
+        }
+    }
+
+
 }

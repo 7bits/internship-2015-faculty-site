@@ -35,4 +35,10 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getPagesByType(@Param("type")String type);
 
+    @Delete("DELETE FROM content_of_pages WHERE id=#{id};")
+    void removePageById(final Long id);
+
+    @Delete("DELETE FROM content_of_pages WHERE type=#{type};")
+    void removePageByType(final String type);
+
 }

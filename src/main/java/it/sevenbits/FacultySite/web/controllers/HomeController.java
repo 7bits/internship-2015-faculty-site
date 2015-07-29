@@ -59,7 +59,7 @@ public class HomeController {
     @RequestMapping(value = "/main")
     public String main(Model model) {
         try {
-            contentOfPagesService.updatePage(new ContentDescription((long)3, "New Title", "<h3> New Hello World</h3>", ""));
+            //contentOfPagesService.removePageByType("");
         }
         catch (Exception e) {
             LOG.error(e.getMessage());

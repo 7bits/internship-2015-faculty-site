@@ -69,4 +69,22 @@ public class ContentOfPagesService {
         }
     }
 
+    public void removePageById(Long id) throws ServiceException{
+        try{
+            repository.removePageById(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while delete content: " + e.getMessage(), e);
+        }
+    }
+
+    public void removePageByType(String type) throws ServiceException{
+        try{
+            repository.removePageByType(type);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while delete content: " + e.getMessage(), e);
+        }
+    }
+
 }
