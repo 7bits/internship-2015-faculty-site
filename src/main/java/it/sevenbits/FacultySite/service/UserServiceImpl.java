@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
     public Admin getUser(String login) {
         Admin admin = new Admin();
         admin.setLogin(login);
-        admin.setPassword("7110eda4d09e062aa5e4a390b0a572ac0d2c0220");
+        admin.setPassword("7110eda4d09e062aa5e4a390b0a572ac0d2c0220");//sha1
 
         return admin;
     }

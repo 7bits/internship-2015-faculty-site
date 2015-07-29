@@ -35,11 +35,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/pages/**").addResourceLocations("/pages/");
+        registry.addResourceHandler("/**").addResourceLocations("/");
     }
-    //Для того что бы была верстка
-       public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/resources/**");}
 
     @Bean
     public UrlBasedViewResolver setupViewResolver() {

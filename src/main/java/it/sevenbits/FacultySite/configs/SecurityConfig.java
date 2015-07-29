@@ -8,6 +8,7 @@ import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -34,22 +35,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // включаем защиту от CSRF атак
-        http.csrf()
+        HttpSecurity and = http.csrf()
                 .disable()
                         // указываем правила запросов
                         // по которым будет определятся доступ к ресурсам и остальным данным
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().permitAll()
                 .and();
 
         http.formLogin()
                 // указываем страницу с формой логина
-                .loginPage("/login")
+                .loginPage("/admin")
                         // указываем action с формы логина
                 .loginProcessingUrl("/j_spring_security_check")
                         // указываем URL при неудачном логине
-                .failureUrl("/login?error")
+                .failureUrl("/admin?error")
                         // Указываем параметры логина и пароля с формы логина
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
@@ -68,8 +69,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Override
+    public void configure(WebSecurity webSecurity) throws Exception {
+        webSecurity.ignoring().antMatchers("/resources/**");
+    }
+
     // Указываем Spring контейнеру, что надо инициализировать <b></b>ShaPasswordEncoder
-    // Это можно вынести в WebAppConfig, но для понимаемости оставил тут
+    // Это можно вынести в WebAppConfig,
     @Bean
     public ShaPasswordEncoder getShaPasswordEncoder(){
         return new ShaPasswordEncoder();
