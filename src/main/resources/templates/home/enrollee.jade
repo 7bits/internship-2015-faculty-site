@@ -5,6 +5,7 @@ head
 	meta(name="viewport", content="width=device-width, initial-scale=1")
 	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
 	link(rel='stylesheet', href='/css/enrollee-reviews.css', type='text/css', media='screen')
+	link(rel='stylesheet', href='', type='js', media='screen')
 	script(src='/js/bootstrap.js')
 	title Абитуриентам
 	include general-includes.jade
@@ -22,66 +23,96 @@ body
 			#home.tab-pane.active
 				include forms/tab1.html
 			#profile.tab-pane
-				
-				div.reviews-container
-					
-					- name = "Сергей Корсаков";
-					- placeOfWork = "Яндекс, Москва, менеджер проектов в отделе контент-системы";
-					- link = "/img/reviwes-page-photo/SergKorsakov.jpg";
-					- citation = "Матфак научил меня быть антишестерёнкой и уметь браться за любые задачи и проекты";
-					+enrollee-page-add-reviews(name, placeOfWork, link, citation);
-									
-					
-					
-					div.history-container.history_center
+						div.reviews-container
+							- name = "Сергей Корсаков";
+							- placeOfWork = "Яндекс, Москва, менеджер проектов в отделе контент-системы";
+							- link = "/img/reviwes-page-photo/SergKorsakov.jpg";
+							- citation = "\"Матфак научил меня быть антишестерёнкой и уметь браться за любые задачи и проекты\"";
+							- width = "60%"
+							+enrollee-page-add-reviews(name, placeOfWork, link, citation, width);					
+							
+							div.history-container
 								h3 Ольга Кукина
 								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
-								p
-								img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
+								img(src='/img/reviwes-page-photo/OlyaKukina.jpg',width='60%', alt='Ольга Кукина')
 								.caption
-								p
-								h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
-								p
-										
-					div.history-container.history_right
+									p
+									h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
+									p
+									
+												
+							div.history-container
 								h3 Николай Косарев
 								h5 Quintiq, Голландия, разработчик и аналитик
-								img(src='/img/reviwes-page-photo/NickKorsakov.jpg', alt='Николай Косарев')
+								img(src='/img/reviwes-page-photo/NickKorsakov.jpg',width='60%', alt='Николай Косарев')
 								.caption
 									p 
 									h4 «Математика идеальна для обучения критическому мышлению и анализу»
 									p
 
-					div.history-container.history_left
-						
-								h3 Николай Косарев
-								h5 Quintiq, Голландия, разработчик и аналитик
-								img(src='/img/reviwes-page-photo/NickKorsakov.jpg', alt='Николай Косарев')
+							div.history-container
+								
+										h3 Николай Косарев
+										h5 Quintiq, Голландия, разработчик и аналитик
+										img(src='/img/reviwes-page-photo/NickKorsakov.jpg',width='60%', alt='Николай Косарев')
+										.caption
+											p 
+											h4 «Математика идеальна для обучения критическому мышлению и анализу»
+											p
+												
+							div.history-container
+								h3 Сергей Корcаков
+								h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+								img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='60%', alt='aСергей Корсаков')
 								.caption
 									p 
-									h4 «Математика идеальна для обучения критическому мышлению и анализу»
+									h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
 									p
-										
-					div.history-container.history_center
-						h3 Сергей Корcаков
-						h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
-						img(src='/img/reviwes-page-photo/SergKorsakov.jpg', alt='aСергей Корсаков')
-						.caption
-							p 
-							h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
-							p
-									
-					
-					
-					div.history-container.history_right
+											
+							
+							
+							div.history-container
 								h3 Ольга Кукина
 								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
-								p
-									div.img 
-										img(src='/img/reviwes-page-photo/OlyaKukina.jpg', alt='Ольга Кукина')
+								img(src='/img/reviwes-page-photo/OlyaKukina.jpg',width='60%', alt='Ольга Кукина')
 								.caption
-								p 
-								h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
-								p
-										
-					
+									p 
+									div.citation_style
+										«Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
+									p
+												
+							div.history-container
+								h3 Ольга Кукина
+								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
+								img(src='/img/reviwes-page-photo/OlyaKukina.jpg',width='60%', alt='Ольга Кукина')
+								.caption
+									p 
+									h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
+									p
+
+							div.history-container
+								h3 Сергей Корcаков
+								h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+								img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='60%', alt='aСергей Корсаков')
+								.caption
+									p 
+									h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+									p
+
+							div.history-container
+								h3 Сергей Корcаков
+								h5 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+								img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='60%', alt='aСергей Корсаков')
+								.caption
+									p 
+									h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+									p
+
+							div.history-container
+								h3 Ольга Кукина
+								h5 Cеллинговое агентство при ВГТРК, Москва, бизнес-аналитик
+								img(src='/img/reviwes-page-photo/OlyaKukina.jpg',width='60%', alt='Ольга Кукина')
+								.caption
+									p 
+									h4 «Нас учили разбираться в том, что ты делаешь, а не просто зубрить и заучивать»
+									p

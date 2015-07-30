@@ -1,13 +1,10 @@
-.img{
-	width:auto;
-
-}
 .reviews-container {
 	
 	width: auto;
 	height: auto;
 	padding-top: 25px;
 	text-align: center;
+	display: inline-block;
 	
 }
 .history-container {
@@ -17,19 +14,53 @@
 	float: left;
 	width: 30%;
 	height: 400px;
-	 
 	margin: 15px 15px 15px 15px;
-	display: inline-block;
+	
 }
 
 .history_left {
+	width: 30%;
 	float: left;
 }
 
 .history_right {
+	width: 30%;
 	float: right;
 }
 
 .history_center {
+	width: 30%;
 	float: none;
+	
+}
+
+.citation_style{
+	font-size: medium;
+	
+}
+
+.href{
+	color: black;
+	text-decoration: underline;
+	
+}
+.href:hover{
+	
+    color: blue; /* Цвет ссылки */ 
+}
+
+.b_popup{
+	opacity: 0.8;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 16px;
+	background-color: rgba(1, 1, 1, 0.725);
+	z-index: 100;
+	overflow: auto;
+}
+.b_popup_on{
+	
 }
