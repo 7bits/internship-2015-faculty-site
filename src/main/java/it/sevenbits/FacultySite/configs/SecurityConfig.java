@@ -1,84 +1,55 @@
 package it.sevenbits.FacultySite.configs;
 
-import it.sevenbits.FacultySite.service.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
-/**
- * Created by igodyaev on 28.07.15.
- */
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableWebMvcSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
-
-    // регистрируем нашу реализацию UserDetailsService
-    // а также PasswordEncoder для приведения пароля в формат SHA1
-    @Autowired
-    public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(getShaPasswordEncoder());
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // включаем защиту от CSRF атак
-        HttpSecurity and = http.csrf()
-                .disable()
-                        // указываем правила запросов
-                        // по которым будет определятся доступ к ресурсам и остальным данным
-                .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().permitAll()
-                .and();
-
-        http.formLogin()
-                // указываем страницу с формой логина
+        http
+            .authorizeRequests()
+                .antMatchers("/admin", "/css/**","/js/**", "/img/**","/fonts/**").permitAll()
+                .anyRequest().authenticated();
+        http
+            .formLogin()
                 .loginPage("/admin")
-                        // указываем action с формы логина
-                .loginProcessingUrl("/j_spring_security_check")
-                        // указываем URL при неудачном логине
-                .failureUrl("/admin?error")
-                        // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                        // даем доступ к форме логина всем
-                .permitAll();
-
-        http.logout()
-                // разрешаем делать логаут всем
                 .permitAll()
-                        // указываем URL логаута
+                .and()
+            .logout()
+                .permitAll()
                 .logoutUrl("/logout")
-                        // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout")
-                        // делаем не валидной текущую сессию
+                // указываем URL при удачном логауте
+                .logoutSuccessUrl("/admin")
+                // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
+              http.csrf().disable();
 
     }
-
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("/resources/**");
+        webSecurity.ignoring().antMatchers("css/**","js/**");
     }
 
-    // Указываем Spring контейнеру, что надо инициализировать <b></b>ShaPasswordEncoder
-    // Это можно вынести в WebAppConfig,
-    @Bean
-    public ShaPasswordEncoder getShaPasswordEncoder(){
-        return new ShaPasswordEncoder();
+    @Configuration
+    protected static class AuthenticationConfiguration extends
+            GlobalAuthenticationConfigurerAdapter {
+
+    @Override
+    public void init(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .withUser("root").password("root").roles("USER");
+    }
+
+
+
     }
 
 }

@@ -9,10 +9,17 @@ head
 	include general-includes.jade
 body
 	include forms/header.jade
-	.container(style='width: 300px;')
-		c:url(value='/j_spring_security_check', var='loginUrl')
-			form(action='${loginUrl}', method='post')
-				h2.form-signin-heading Please sign in
-				input.form-control(type='text', name='j_username', placeholder='Email address', required='', autofocus='', value='colibri')
-				input.form-control(type='password', name='j_password', placeholder='Password', required='', value='1234')
-				button.btn.btn-lg.btn-primary.btn-block(type='submit') Войти
+	div.container
+		div(th:if='${param.error}')
+			|Invalid username and password.
+		div(th:if='${param.logout}')
+			|You have been logged out.
+		form(th:action='@{/admin}', method='post')
+			div
+				label
+					input(type='text', name='username', placeholder='Логин')
+			div
+				label
+					input(type='password', name='password', placeholder='Пароль')
+			div
+				input(type='submit', value='Войти')
