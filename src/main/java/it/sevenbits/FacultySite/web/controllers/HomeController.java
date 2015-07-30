@@ -33,7 +33,7 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public String index() {
-        return "redirect:/main";
+        return "redirect:/edit_content";
     }
 
     @RequestMapping(value = "/news")
@@ -59,6 +59,11 @@ public class HomeController {
     @RequestMapping(value = "/main")
     public String main(Model model) {
         return "home/main";
+    }
+
+    @RequestMapping(value = "/edit_content")
+    public String editContent(Model model) {
+        return "home/edit_content";
     }
 
     @RequestMapping(value = "/applicants")
