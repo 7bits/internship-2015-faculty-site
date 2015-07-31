@@ -98,7 +98,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/admin")
-    public String admin() {
+    public String admin(@RequestParam(value="logout", required = false) boolean logout, Model model) {
+        model.addAttribute("logout", logout);
         return "home/admin";
     }
 }

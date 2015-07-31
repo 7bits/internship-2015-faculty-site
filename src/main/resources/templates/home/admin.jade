@@ -10,10 +10,11 @@ head
 body
 	include forms/header.jade
 	div.container
-		div(th:if='${param.error}')
-			|Invalid username and password.
-		div(th:if='${param.logout}')
-			|You have been logged out.
+		div(th:if='${param.error}', style="color:green;")
+			|You are not authorised. May be should you to enter correct login and password?
+		if (logout)
+			div(th:if='${param.logout}')
+				|You have been logged out.
 		form(th:action='@{/admin}', method='post')
 			div
 				label
