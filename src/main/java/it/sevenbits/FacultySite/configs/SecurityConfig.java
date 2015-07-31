@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/admin", "/css/**","/js/**", "/img/**","/fonts/**").permitAll()
+                .antMatchers("/admin", "/css/**","/js/**", "/img/**","/fonts/**", "/**").permitAll()
                 .anyRequest().authenticated();
         http
             .formLogin()
@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("css/**","js/**");
+        webSecurity.ignoring().antMatchers("css/**","js/**", "fonts/**");
     }
 
     @Configuration
