@@ -96,4 +96,9 @@ public class HomeController {
     public String structureImit() {
         return "home/structure-imit";
     }
+
+    @RequestMapping(value = "/admin")
+    public String admin() {
+        return "home/admin";
+    }
 }
