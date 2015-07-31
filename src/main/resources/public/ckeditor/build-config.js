@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/01c28b407cb4ffedec99c72f4c91074b
+ * (2) http://ckeditor.com/builder/c219e9d035de8b8ee6e2328bd2f75142
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/01c28b407cb4ffedec99c72f4c91074b
+ * (3) http://ckeditor.com/builder/download/c219e9d035de8b8ee6e2328bd2f75142
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -53,6 +53,8 @@ var CKBUILDER_CONFIG = {
 		'SimpleImage' : 1,
 		'a11yhelp' : 1,
 		'about' : 1,
+		'autocorrect' : 1,
+		'autosave' : 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
 		'clipboard' : 1,
@@ -61,6 +63,7 @@ var CKBUILDER_CONFIG = {
 		'contextmenu' : 1,
 		'dialogadvtab' : 1,
 		'div' : 1,
+		'divarea' : 1,
 		'elementspath' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
@@ -71,33 +74,40 @@ var CKBUILDER_CONFIG = {
 		'font' : 1,
 		'format' : 1,
 		'forms' : 1,
+		'glyphicons' : 1,
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
 		'iframe' : 1,
 		'image' : 1,
 		'imagepaste' : 1,
 		'indentlist' : 1,
+		'lineheight' : 1,
 		'link' : 1,
 		'list' : 1,
+		'locationmap' : 1,
 		'magicline' : 1,
 		'maximize' : 1,
 		'pastebase64' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
+		'preview' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
+		'save' : 1,
 		'scayt' : 1,
 		'showborders' : 1,
+		'simplebutton' : 1,
+		'smiley' : 1,
 		'sourcearea' : 1,
 		'specialchar' : 1,
 		'spoiler' : 1,
 		'stylescombo' : 1,
+		'symbol' : 1,
 		'syntaxhighlight' : 1,
 		'tab' : 1,
 		'table' : 1,
 		'tableresize' : 1,
 		'tabletools' : 1,
-		'templates' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
 		'uploadwidget' : 1,
