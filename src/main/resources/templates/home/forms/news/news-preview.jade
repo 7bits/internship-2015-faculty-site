@@ -1,10 +1,10 @@
 mixin news-preview-form(link, id, title, date)
-	a(href='/news?NewsId=#{id+1}').news-preview-general-form
-		div.media-body.news-preview-general-form
-			img.media-object.news-preview-image.center(src= link)
-			div.center
-				h4.media-header.news-preview-general-form#title_post= title
-				if date != null
-					h5.media-text.news-full-text#post_date= date
-				else
-					h5.media-text.news-full-text#post_date= 'so.me.date'
+	div.gallery-album-main-container
+		a.gallery-album-container(href='/news?NewsId=#{id}')
+			if (album.link != null)
+				img.gallery-album-image(src= link)
+			else
+				img.gallery-album-image(src= "/img/lost-page.png")
+			div.gallery-album-title.gallery-album-description-container#title_post= title
+			if album.creatingDate != null
+				div.gallery-album-date.gallery-album-description-container#post_date= date

@@ -30,7 +30,7 @@ public class NewsController {
         if (newsId != null){
             ContentDescription news = getContentById(newsId);
             if (news == null)
-                return "redirect: home/news?News='All'";
+                return "redirect:/news?News=All";
             model.addAttribute("title", news.getTitle());
             model.addAttribute("description", news.getDescription());
             model.addAttribute("do", "id");
@@ -68,7 +68,7 @@ public class NewsController {
 
     public List<ContentDescriptionModel> getContentByType(String type){
         try{
-            if (type.equals("All"))
+            if (type == null || type.equals("All"))
                 return contentOfPagesService.getPagesWhichContainType("News:%");
             return contentOfPagesService.getPagesByType("News:"+type);
         }
