@@ -8,6 +8,7 @@ public class ContentDescriptionModel {
     private final String creatingDate;
     private final String creatingTime;
     private final String type;
+    private final String imageLink;
 
     public ContentDescriptionModel(){
         this.id = (long)0;
@@ -16,6 +17,7 @@ public class ContentDescriptionModel {
         this.creatingDate = "";
         this.creatingTime = "";
         this.type = "";
+        this.imageLink = "";
     }
 
     public ContentDescriptionModel(String description) {
@@ -25,15 +27,17 @@ public class ContentDescriptionModel {
         this.creatingDate = "";
         this.creatingTime = "";
         this.type = "";
+        this.imageLink = "";
     }
 
-    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type) {
+    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creatingDate = creatingDate;
         this.creatingTime = creatingTime;
         this.type = type;
+        this.imageLink = imageLink;
     }
 
     public Long getId() {
@@ -58,6 +62,10 @@ public class ContentDescriptionModel {
 
     public String getType() {
         return type;
+    }
+
+    public String getImageLink() {
+        return imageLink;
     }
 
     @Override

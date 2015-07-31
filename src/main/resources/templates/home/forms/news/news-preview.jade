@@ -1,5 +1,5 @@
-mixin news-preview-form(type, link, id, title, date)
-	a(href='/news?NewsType=#{type}&NewsId=#{id+1}').news-preview-general-form
+mixin news-preview-form(link, id, title, date)
+	a(href='/news?NewsId=#{id+1}').news-preview-general-form
 		div.media-body.news-preview-general-form
 			img.media-object.news-preview-image.center(src= link)
 			div.center

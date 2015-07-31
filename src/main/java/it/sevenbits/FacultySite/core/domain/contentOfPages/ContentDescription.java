@@ -8,6 +8,10 @@ public class ContentDescription {
     private String creatingDate;
     private String creatingTime;
     private String type;
+    private String imageLink;
+
+    public ContentDescription() {
+    }
 
     public ContentDescription(String title, String description, String creatingDate, String creatingTime, String type) {
         this.title = title;
@@ -17,17 +21,28 @@ public class ContentDescription {
         this.type = type;
     }
 
-    public ContentDescription(Long id, String title, String description, String type) {
+    public ContentDescription(Long id, String title, String description, String type, String imageLink) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.type = type;
+        this.imageLink = imageLink;
     }
 
     public ContentDescription(String title, String description, String type) {
         this.title = title;
         this.description = description;
         this.type = type;
+    }
+
+    public ContentDescription(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.type = type;
+        this.imageLink = imageLink;
     }
 
     public void setId(Long id) {
@@ -55,6 +70,10 @@ public class ContentDescription {
         this.type = type;
     }
 
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     public Long getId() {
         return id;
     }
@@ -77,5 +96,9 @@ public class ContentDescription {
 
     public String getType() {
         return type;
+    }
+
+    public String getImageLink() {
+        return imageLink;
     }
 }
