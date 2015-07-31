@@ -1,9 +1,0 @@
-mixin enrolee-page-add-reviews(name, placeOfWork, link, citation)
-		div.history-container.history_left
-			h3 name
-			h5 placeOfWork
-			img(src=link, alt=name)
-			.caption
-				p 
-				h4 citation
-				p

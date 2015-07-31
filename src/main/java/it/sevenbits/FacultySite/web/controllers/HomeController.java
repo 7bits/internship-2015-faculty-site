@@ -82,7 +82,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/enrollee")
-    public String enrolle() {
+    public String enrollee() {
         return "home/enrollee";
     }
 
