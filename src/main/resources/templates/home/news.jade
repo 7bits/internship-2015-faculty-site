@@ -6,31 +6,14 @@ html
 		meta(name="viewport", content="width=device-width, initial-scale=1")
 		title Новости - ОмГУ - Общие
 		include general-includes.jade
+		link(rel='stylesheet', href='/css/gallery.css')
 	body
 		include forms/header.jade
 		div.container.center
-			if (newsId == "0")
-				include forms/news/news-preview.jade
-				if newsType == 'Social-news'
-					- links = ["http://cs624520.vk.me/v624520413/199b5/Ulyg-wYzPwI.jpg"]
-				if newsType == 'Learn-news'
-					- links = ["http://cs622829.vk.me/v622829584/118a5/J5JSiHfTn2U.jpg"]
-				if newsType == 'All-news'
-					- links = ["http://cs624520.vk.me/v624520413/199b5/Ulyg-wYzPwI.jpg", "http://cs622829.vk.me/v622829584/118a5/J5JSiHfTn2U.jpg"]
-				ul.media-list
-					each link, num in links
-						- title = 'Новость сайта ИМИТ';
-						+news-preview-form(newsType, link, num, title)
-			else
+			if (do == "id")
 				include forms/news/news-full-form.jade
-				if (newsType == "Social-news" || (newsType =="All-news" && newsId == "1"))
-					- links = ["http://cs622829.vk.me/v622829584/118a5/J5JSiHfTn2U.jpg", "http://cs624520.vk.me/v624520413/199b5/Ulyg-wYzPwI.jpg", "http://cs624520.vk.me/v624520413/196f4/FzzCHAvvePg.jpg", "http://cs624520.vk.me/v624520413/18b32/WwFrZ9nBksA.jpg"];
-					- title = "26 января 2014 года состоялся ректорский бал";
-					- text = "26 января 2014 г.- одно из самых красивых событий для студентов ОмГУ. Его ждут, к нему готовятся. Ректорский бал - бал для самых-самых…";
-					- date = "27.01.2014";
-				if (newsType == "Learn-news" || (newsType =="All-news" && newsId == "2"))
-					- links = ["http://cs616419.vk.me/v616419575/a330/V92h7RM4fHc.jpg", "http://cs616419.vk.me/v616419575/a339/WtudoeA73Tw.jpg", "http://cs616419.vk.me/v616419575/a3c0/xO-FYTwzvQQ.jpg"];
-					- title = "13 апреля 2014 года состоялся Ломоносовский турнир среди школьников";
-					- text = "Ломоносовский турнир – это традиционное мероприятие для школьников, проводимое ОмГУ им. Ф.М. Достоевского. Первый турнир им. М.В. Ломоносова состоялся в феврале 2000 г. В нём приняло участие около 800 омских школьников. С тех пор турнир получил широкую известность не только в омском регионе, но и далеко за его пределами. Только в прошлом учебном году в нём приняли участие 18 067 школьников из 557 общеобразовательных учреждений 47 регионов России и Республики Казахстан. Более тысячи школьников стали участниками финальной части турнира, 342 из них награждены дипломами призёров и похвальными грамотами, а 19 школьников стали обладателями главной награды – звания «Юный Ломоносов».<p><p>Ломоносовский турнир – это интеллектуальное соревнование, рассчитанное на участие в нём школьников без предварительного отбора.<p><p>По итогам турнира каждый участник получает сертификат участника, победители и призёры в каждой предметной секции - дипломы и памятные подарки. Те же школьники, которые заняли призовые места в нескольких секциях становятся обладателями высшего достижения на турнире – специального диплома с присвоением почетного звания «Юный Ломоносов».";
-					- date = "13.04.2014";
-				+news-full-form(links , title, text, date)
+				+news-full-form(title, description)
+			else
+				include forms/news/news-preview.jade
+				each id, i in ids
+					+news-preview-form(img_links[i], id, titles[i], dates[i])

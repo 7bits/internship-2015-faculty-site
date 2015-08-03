@@ -7,6 +7,7 @@ public class ContentDescriptionForm {
     private String creatingDate;
     private String creatingTime;
     private String type;
+    private String imageLink;
 
     public void setId(Long id) {
         this.id = id;
@@ -33,6 +34,10 @@ public class ContentDescriptionForm {
         this.type = type;
     }
 
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     public Long getId() {
         return id;
     }
@@ -55,6 +60,10 @@ public class ContentDescriptionForm {
 
     public String getType() {
         return type;
+    }
+
+    public String getImageLink() {
+        return imageLink;
     }
 
     @Override
