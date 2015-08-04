@@ -19,9 +19,9 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getAllPages();
 
-    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, type, image_link) VALUES (#{title}, #{description}, 'today', 'now', #{type}, #{imageLink}) RETURNING id")
-    @Result(column = "id", property = "id")
-    Long saveContentOfPage(final ContentDescription description);
+    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, type, image_link) VALUES (#{title}, #{description}, 'today', 'now', #{type}, #{imageLink})")
+    @Options(keyProperty = "id", useGeneratedKeys = true)
+    void saveContentOfPage(final ContentDescription description);
 
     @Update("UPDATE content_of_pages SET title=#{title}, description=#{description}, type=#{type}, image_link=#{imageLink} WHERE id=#{id}")
     void updatePage(@Param("title")String title, @Param("description")String description, @Param("type")String type, @Param("imageLink")String imageLink, @Param("id")Long id);

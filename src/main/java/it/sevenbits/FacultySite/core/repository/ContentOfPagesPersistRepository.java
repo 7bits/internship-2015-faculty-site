@@ -24,9 +24,9 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
         }
     }
 
-    public Long saveContent(ContentDescription description) throws RepositoryException{
+    public void saveContent(ContentDescription description) throws RepositoryException{
         try{
-            return mapper.saveContentOfPage(description);
+            mapper.saveContentOfPage(description);
         }
         catch (Exception e){
             throw new RepositoryException("Error with adding content: "+e.getMessage());

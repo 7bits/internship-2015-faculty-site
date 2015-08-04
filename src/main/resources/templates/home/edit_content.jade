@@ -4,13 +4,17 @@ head
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
 	meta(name="viewport", content="width=device-width, initial-scale=1")
 	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
+	link(rel='stylesheet', href='/css/edit_content.css', type='text/css', media='screen')
 	script(src='/js/bootstrap.js')
 	include general-includes.jade
 	script(src="/ckeditor/ckeditor.js")
 body
 	include forms/header.jade
 	form(method="post")
-		input(name="title")= title
-		textarea#editor(name="content", rows="10", cols="80")!= content
+		if (id>0)
+			input.edit-content-text-edit(name="id", disabled,  value="#{id}")
+		input.edit-content-text-edit(name="title", maxlength="255", placeholder="Заголовок", value="#{title}")
+		input.edit-content-text-edit(name="type", maxlength="255", placeholder="Тип записи", value="#{type}")
+		textarea#editor(name="content", rows="10", cols="80", placeholder="Контент")!= content
 		script.
 			CKEDITOR.replace('content');

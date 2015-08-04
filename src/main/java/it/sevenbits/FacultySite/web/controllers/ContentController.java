@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.web.controllers;
 
+import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +36,24 @@ public class ContentController {
             type = "";
         if (!content.isEmpty() && !title.isEmpty())
             try {
-                id = contentOfPagesService.saveContentOfPage(title, content, type);
-            }
-            catch (Exception e){
+                if (id == null)
+                    id = contentOfPagesService.saveContentOfPage(title, content, type);
+                else if (id > 0) {
+                    ContentDescription last = contentOfPagesService.getPageById(id);
+                    last.setDescription(content);
+                    last.setTitle(title);
+                    last.setType(type);
+                }
+            } catch (Exception e) {
                 LOG.error(e.getMessage(), e);
             }
+        if (id == null)
+            id = (long) -1;
         model.addAttribute("content", content);
         model.addAttribute("title", title);
-        return "home/edit_content?id=#{id}";
-    }
-
-
-    @RequestMapping(value = "/save-data")
-    public String saveData(@RequestParam(value="content", required = false) String content, Model model) {
-        LOG.info("Content : \n" + content);
-        return "home/main";
+        model.addAttribute("type", type);
+        model.addAttribute("id", id);
+        return "home/edit_content";
     }
 
 }
