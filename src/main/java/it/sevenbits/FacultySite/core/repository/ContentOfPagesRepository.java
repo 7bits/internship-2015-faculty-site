@@ -13,7 +13,7 @@ public interface ContentOfPagesRepository {
     public List<ContentDescription> getPagesWhichContainType(String type) throws RepositoryException;
     public ContentDescription getPageById(Long id) throws RepositoryException;
 
-    public void saveContent(ContentDescription description) throws RepositoryException;
+    public Long saveContent(ContentDescription description) throws RepositoryException;
     public void updatePage(String newTitle, String newDescription, String newType, String newImageLink, Long id) throws RepositoryException;
     public void removePageById(Long id) throws RepositoryException;
 

@@ -10,7 +10,7 @@ head
 body
 	include forms/header.jade
 	form(method="post")
-		input(name="title")
-		textarea#editor(name="content", rows="10", cols="80")
+		input(name="title")= title
+		textarea#editor(name="content", rows="10", cols="80")!= content
 		script.
 			CKEDITOR.replace('content');

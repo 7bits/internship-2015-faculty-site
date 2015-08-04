@@ -67,10 +67,10 @@ public class ContentOfPagesService {
         }
     }
 
-    public void saveContentOfPage(String title, String description, String type) throws ServiceException{
+    public Long saveContentOfPage(String title, String description, String type) throws ServiceException{
         try{
             ContentDescription res = new ContentDescription(title, description, type);
-            repository.saveContent(res);
+            return repository.saveContent(res);
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);

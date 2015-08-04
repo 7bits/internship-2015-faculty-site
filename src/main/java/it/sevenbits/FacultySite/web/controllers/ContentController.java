@@ -22,9 +22,27 @@ public class ContentController {
     }
 
     @RequestMapping(value = "/edit_content")
-    public String editContent(@RequestParam(value = "content", required = false)String content, @RequestParam(value = "title", required = false)String title, Model model) {
-        LOG.info("Content: \n" + content);
-        return "home/edit_content?editor="+content+"&title="+title;
+    public String editContent(@RequestParam(value = "content", required = false)String content,
+                              @RequestParam(value = "title", required = false)String title,
+                              @RequestParam(value = "type", required = false)String type,
+                              @RequestParam(value = "id", required = false)Long id,
+                              Model model) {
+        if (content == null)
+            content = "";
+        if (title == null)
+            title = "";
+        if (type == null)
+            type = "";
+        if (!content.isEmpty() && !title.isEmpty())
+            try {
+                id = contentOfPagesService.saveContentOfPage(title, content, type);
+            }
+            catch (Exception e){
+                LOG.error(e.getMessage(), e);
+            }
+        model.addAttribute("content", content);
+        model.addAttribute("title", title);
+        return "home/edit_content?id=#{id}";
     }
 
 
