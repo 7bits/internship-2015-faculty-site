@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 public class NewsController {
-    private static Logger LOG = Logger.getLogger(HomeController.class);
+    private static Logger LOG = Logger.getLogger(NewsController.class);
 
     @Autowired
     ContentOfPagesService contentOfPagesService;

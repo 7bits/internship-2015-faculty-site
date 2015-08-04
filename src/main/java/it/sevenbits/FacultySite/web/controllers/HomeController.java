@@ -38,10 +38,6 @@ public class HomeController {
         return "home/main";
     }
 
-    @RequestMapping(value = "/edit_content")
-    public String editContent(Model model) {
-        return "home/edit_content";
-    }
 
     @RequestMapping(value = "/applicants")
     public String applicants() {

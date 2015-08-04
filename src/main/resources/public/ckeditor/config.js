@@ -8,4 +8,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	config.uiColor = '#208AB9';
 	config.language = 'ru';
+	config.saveTargetUrl = '/save-data';
 };

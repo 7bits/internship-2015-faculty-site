@@ -9,7 +9,8 @@ head
 	script(src="/ckeditor/ckeditor.js")
 body
 	include forms/header.jade
-	textarea#editor1(name="editor1", rows="10", cols="80")
-	script.
-		CKEDITOR.replace('editor1');
-	button(align="right") Submit
+	form(method="post")
+		input(name="title")
+		textarea#editor(name="content", rows="10", cols="80")
+		script.
+			CKEDITOR.replace('content');
