@@ -12,7 +12,7 @@ body
 	include forms/header.jade
 	form(method="post")
 		if (id>0)
-			input.edit-content-text-edit(name="id", disabled,  value="#{id}")
+			input.edit-content-text-edit(name="id", readonly="readonly",  value="#{id}")
 		input.edit-content-text-edit(name="title", maxlength="255", placeholder="Заголовок", value="#{title}")
 		input.edit-content-text-edit(name="type", maxlength="255", placeholder="Тип записи", value="#{type}")
 		textarea#editor(name="content", rows="10", cols="80", placeholder="Контент")!= content
