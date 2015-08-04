@@ -137,7 +137,23 @@
                         <artifactId>surefire-junit47</artifactId>
                         <version>2.18.1</version>
                     </dependency>                
-		</dependencies>
+		        </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <server>tomcat7_manager</server>
+                    <path>/</path>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                        <version>1.7.6</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
