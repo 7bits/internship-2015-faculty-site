@@ -32,7 +32,7 @@ public class ContentController {
                           @RequestParam(value = "redact", required = false)Boolean redact,
                           @RequestParam(value = "delete", required = false)Boolean delete,
                           @RequestParam(value = "redactId", required = false)Long redactId,
-                          @RequestParam(value = "deleteFrom", required = false)Long deleteId,
+                          @RequestParam(value = "deleteId", required = false)Long deleteId,
                           @RequestParam(value = "createType", required = false)String createType,
                           Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
