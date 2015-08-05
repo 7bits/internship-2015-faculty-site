@@ -3,10 +3,7 @@ package it.sevenbits.FacultySite.web.controllers;
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
-import org.omg.PortableInterceptor.RequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,11 +55,14 @@ public class ContentController {
         }
         if (delete != null && delete && deleteId > 0){
             try{
-                ContentDescription res = contentOfPagesService.getPageById(redactId);
+                ContentDescription res = contentOfPagesService.getPageById(deleteId);
                 LOG.info("Record: " + res.toString());
                 String type = res.getType();
                 contentOfPagesService.removePageById(res.getId());
-                return "home/edit_content";
+                if (type.contains("News"))
+                    return "home/news";
+                else
+                    return "home/gallery";
             }
             catch (Exception e) {
                 LOG.error(e.getMessage());
