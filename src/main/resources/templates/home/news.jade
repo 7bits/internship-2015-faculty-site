@@ -9,10 +9,10 @@ html
 		link(rel='stylesheet', href='/css/gallery.css')
 	body
 		include forms/header.jade
-		if (root)
-			include forms/redact-content.jade
-			+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 		div.container.center
+			if (root)
+				include forms/redact-content.jade
+				+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 			if (do == "id")
 				include forms/news/news-full-form.jade
 				+news-full-form(title, description)

@@ -36,11 +36,11 @@ public class NewsController {
             model.addAttribute("title", news.getTitle());
             model.addAttribute("description", news.getDescription());
             model.addAttribute("do", "id");
-            if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-                model.addAttribute("create", true);
+            if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+                model.addAttribute("canCreate", true);
                 model.addAttribute("createType", news.getType());
-                model.addAttribute("redact", true);
-                model.addAttribute("delete", true);
+                model.addAttribute("canRedact", true);
+                model.addAttribute("canDelete", true);
                 model.addAttribute("redactId", news.getId());
                 model.addAttribute("deleteId", news.getId());
                 model.addAttribute("root", true);
