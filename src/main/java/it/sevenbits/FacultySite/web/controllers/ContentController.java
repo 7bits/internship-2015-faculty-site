@@ -18,20 +18,13 @@ public class ContentController {
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
-
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(@RequestParam(value = "main-content", required = false) String mainContent, Model model) {
-        return "home/main";
-    }
-
-    @RequestMapping(value = "/edit_content", method = RequestMethod.GET)
-    public String editContentGet(@RequestParam(value = "create", required = false)Boolean create,
-                          @RequestParam(value = "redact", required = false)Boolean redact,
-                          @RequestParam(value = "delete", required = false)Boolean delete,
-                          @RequestParam(value = "redactId", required = false)Long redactId,
-                          @RequestParam(value = "deleteId", required = false)Long deleteId,
-                          @RequestParam(value = "createType", required = false)String createType,
-                          Model model){
+    public String editContentAction(Boolean create,
+                                    Boolean redact,
+                                    Boolean delete,
+                                    Long redactId,
+                                    Long deleteId,
+                                    String createType,
+                                    Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         if (create != null && create) {
@@ -77,9 +70,17 @@ public class ContentController {
                               @RequestParam(value = "type", required = false)String type,
                               @RequestParam(value = "miniContent", required = false)String miniContent,
                               @RequestParam(value = "id", required = false)Long id,
+                              @RequestParam(value = "create", required = false)Boolean create,
+                              @RequestParam(value = "redact", required = false)Boolean redact,
+                              @RequestParam(value = "delete", required = false)Boolean delete,
+                              @RequestParam(value = "redactId", required = false)Long redactId,
+                              @RequestParam(value = "deleteId", required = false)Long deleteId,
+                              @RequestParam(value = "createType", required = false)String createType,
                               Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
+        if ((create != null && create) || (redact != null && redact) || (delete != null && delete))
+            return editContentAction(create, redact, delete, redactId, deleteId, createType, model);
         ContentDescription res;
         if (id == null || id < 1) {
             res = createContent(title, content, miniContent, type);

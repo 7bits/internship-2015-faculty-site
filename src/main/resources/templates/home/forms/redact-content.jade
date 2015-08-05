@@ -1,7 +1,14 @@
 mixin redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 	if (canCreate)
-		a(href="/edit_content?create=true&createType=#{createType}") add
+		form(action="/edit_content", method="post")
+			input(type="submit", value="Создать")
 	if (canRedact && redactId > 0)
-		a(href="/edit_content?redact=true&redactId=#{redactId}") change
+		form(action="/edit_content", method="post")
+			input(style='display: none;', readonly='readonly', name="redactId", value="#{redactId}")
+			input(style='display: none;', readonly='readonly', name="redact", value="true")
+			input(type="submit", value="Редактировать")
 	if (canDelete)
-		a(href="/edit_content?delete=true&deleteId=#{deleteId}") delete
+		form(action="/edit_content", method="post")
+			input(style='display: none;', readonly='readonly', name="deleteId", value="#{deleteId}")
+			input(style='display: none;', readonly='readonly', name="delete", value="true")
+			input(type="submit", value="Удалить")
