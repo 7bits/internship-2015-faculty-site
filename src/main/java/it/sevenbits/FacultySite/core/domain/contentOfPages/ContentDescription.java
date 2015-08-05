@@ -135,7 +135,8 @@ public class ContentDescription {
     @Override
     public String toString() {
         return "Title: " + getTitle() + "\n"
-                + "Page: \n" + getDescription() + "\n"
+                + "Page:\n" + getDescription() + "\n"
+                + "Mini content:\n" + getMiniContent() + "\n"
                 + "Date: " + getCreatingDate() + "\n"
                 + "Time: " + getCreatingTime() + "\n"
                 + "Type: " + getType() + "\n";

@@ -40,6 +40,7 @@ public class ContentController {
             model.addAttribute("content", res.getDescription());
             model.addAttribute("title", res.getTitle());
             model.addAttribute("type", res.getType());
+            model.addAttribute("miniContent", res.getMiniContent());
             model.addAttribute("id", res.getId());
             LOG.info("Record: " + res.toString());
         }

@@ -6,11 +6,7 @@ mixin editForm(id, title, content, miniContent, type)
 			input.edit-content-text-edit(name="id", readonly="readonly",  value="#{id}")
 		input.edit-content-text-edit(name="title", maxlength="255", placeholder="Заголовок", value="#{title}")
 		input.edit-content-text-edit(name="type", maxlength="255", placeholder="Тип записи", value="#{type}")
-		p Содержание
 		textarea#content-editor(name="content", rows="10", cols="80")!= content
-		p Текст для отображения в мини-формочках(например, на главной странице)
-		textarea#mini-content-editor(name="mini-content", rows="10", cols="80")!= miniContent
+		input.edit-content-text-edit(name="type", placeholder="Текст для предпросмотра новости", value="#{miniContent}")
 		script.
 			CKEDITOR.replace('content');
-		script.
-			CKEDITOR.replace('mini-content');
