@@ -20,17 +20,18 @@
 }
 
 footer{
+	background: #319bba;
 	overflow: hidden;
 }
 
 .social-net{
 	float: left;
-	width: 24%;
+	width: 35%;
 }
 
 .copyright{
 	float: left;
-	width: 24%;
+	width: 30%;
 }
 .slider-footer{
 	max-width:100%;
@@ -42,4 +43,9 @@ footer{
 .one-page-slider-img{
 	float: left;
 	width: 22%;
+}
+
+.info-about-faculty{
+	float: left;
+	width: 34%
 }
