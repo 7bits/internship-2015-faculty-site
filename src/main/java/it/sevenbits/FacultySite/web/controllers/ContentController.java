@@ -60,9 +60,9 @@ public class ContentController {
                 String type = res.getType();
                 contentOfPagesService.removePageById(res.getId());
                 if (type.contains("News"))
-                    return "home/news";
+                    return "redirect:/news";
                 else
-                    return "home/gallery";
+                    return "redirect:/gallery";
             }
             catch (Exception e) {
                 LOG.error(e.getMessage());

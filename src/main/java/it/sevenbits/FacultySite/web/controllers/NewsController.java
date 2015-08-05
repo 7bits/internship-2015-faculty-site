@@ -27,6 +27,10 @@ public class NewsController {
     public String news(@RequestParam(value="News", required = false) String newsType, @RequestParam(value="NewsId", required = false) Long newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("root", true);
+            model.addAttribute("canCreate", true);
+        }
         if (newsId != null){
             if (newsId < 1)
                 return "redirect:/news?News=All";
@@ -37,13 +41,11 @@ public class NewsController {
             model.addAttribute("description", news.getDescription());
             model.addAttribute("do", "id");
             if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-                model.addAttribute("canCreate", true);
                 model.addAttribute("createType", news.getType());
                 model.addAttribute("canRedact", true);
                 model.addAttribute("canDelete", true);
                 model.addAttribute("redactId", news.getId());
                 model.addAttribute("deleteId", news.getId());
-                model.addAttribute("root", true);
             }
         }
         else{
