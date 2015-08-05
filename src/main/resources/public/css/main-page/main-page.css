@@ -1,0 +1,38 @@
+.content{
+	overflow: hidden;
+}
+.main-info{
+	padding: 8px;
+	float: left;
+	width: 70%;
+}
+
+.all-news{
+	float: left;
+	width: 20%;
+	background: #DBDBDB;
+	/*height: 20%;*/
+}
+.news{
+	/*float: left;*/
+	padding: 5px;
+	height: 20%;
+}
+
+footer{
+	overflow: hidden;
+}
+
+.social-net{
+	float: left;
+	width: 24%;
+}
+
+.copyright{
+	float: left;
+	width: 24%;
+}
+.slider-footer{
+	float: left;
+	width: 50%;
+}

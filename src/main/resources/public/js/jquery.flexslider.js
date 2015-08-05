@@ -58,6 +58,7 @@
           slider.container.append(slider.slides.filter(':first').clone().addClass('clone')).prepend(slider.slides.filter(':last').clone().addClass('clone'));
         }
         slider.container.width(((slider.count + slider.cloneCount) * slider.width()) + 2000); //extra width to account for quirks
+        slider.container.height(((slider.count + slider.cloneCount) * slider.height()) + 2000); //extra width to account for quirks
         //create newSlides to capture possible clones
         slider.newSlides = $('.slides > li', slider);
         //Timeout function to give browser enough time to get proper width initially
@@ -66,7 +67,7 @@
         }, 100);
         slider.container.css({"marginLeft": (-1 * (slider.currentSlide + slider.cloneOffset))* slider.width() + "px"});
       } else { //Default to fade
-        slider.slides.css({"width": "100%", "float": "left", "marginRight": "-100%"}).filter(':first').fadeIn(400, function() {
+        slider.slides.css({"width": "100%", "float": "left", "marginRight": "-100%", "height": "300px"}).filter(':first').fadeIn(400, function() {
         });
       }
       ///////////////////////////////////////////////////////////////////
@@ -249,8 +250,10 @@
         slider.sliderTimer;
         $(window).resize(function(){
           slider.newSlides.width(slider.width());
+          slider.newSlides.height(slider.height());
           slider.container.width(((slider.count + slider.cloneCount) * slider.width()) + 2000); //extra width to account for quirks
-    
+          slider.container.height(((slider.count + slider.cloneCount) * slider.height()) + 2000); //extra width to account for quirks
+
           //Slider resize reset
           clearTimeout(slider.sliderTimer);
           slider.sliderTimer = setTimeout(function(){
