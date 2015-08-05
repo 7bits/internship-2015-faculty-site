@@ -1,0 +1,7 @@
+mixin redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
+	if (canCreate)
+		a(href="/admin_redact?create=true&createType=#{createType}") add
+	if (canRedact && redactId > 0)
+		a(href="/admin_redact?redact=true&redactId=#{redactId}") change
+	if (canDelete)
+		a(href="/admin_redact?delete=true&deleteId=#{deleteId}") delete

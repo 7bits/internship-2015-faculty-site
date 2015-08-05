@@ -3,6 +3,7 @@ package it.sevenbits.FacultySite.web.controllers;
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
+import org.omg.PortableInterceptor.RequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,7 +27,51 @@ public class ContentController {
         return "home/main";
     }
 
-    @RequestMapping(value = "/edit_content")
+    @RequestMapping(value = "/edit_content", method = RequestMethod.GET)
+    public String editContentGet(@RequestParam(value = "create", required = false)Boolean create,
+                          @RequestParam(value = "redact", required = false)Boolean redact,
+                          @RequestParam(value = "delete", required = false)Boolean delete,
+                          @RequestParam(value = "redactId", required = false)Long redactId,
+                          @RequestParam(value = "deleteFrom", required = false)Long deleteId,
+                          @RequestParam(value = "createType", required = false)String createType,
+                          Model model){
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "redirect:/main";
+        if (create) {
+            model.addAttribute("type", createType);
+            return "home/edit_content";
+        }
+        if (redact && redactId>0){
+            try{
+                ContentDescription res = contentOfPagesService.getPageById(redactId);
+                model.addAttribute("content", res.getDescription());
+                model.addAttribute("title", res.getTitle());
+                model.addAttribute("type", res.getType());
+                model.addAttribute("miniContent", res.getMiniContent());
+                model.addAttribute("id", res.getId());
+                LOG.info("Record: " + res.toString());
+                return "home/edit_content";
+            }
+            catch (Exception e) {
+                LOG.error(e.getMessage());
+            }
+        }
+        if (delete && deleteId > 0){
+            try{
+                ContentDescription res = contentOfPagesService.getPageById(redactId);
+                LOG.info("Record: " + res.toString());
+                String type = res.getType();
+                contentOfPagesService.removePageById(res.getId());
+                return "home/edit_content";
+            }
+            catch (Exception e) {
+                LOG.error(e.getMessage());
+            }
+        }
+        return "home/edit_content";
+    }
+
+    @RequestMapping(value = "/edit_content", method = RequestMethod.POST)
     public String editContent(@RequestParam(value = "content", required = false)String content,
                               @RequestParam(value = "title", required = false)String title,
                               @RequestParam(value = "type", required = false)String type,

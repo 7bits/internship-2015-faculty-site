@@ -5,6 +5,7 @@ import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionMode
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
@@ -26,14 +27,24 @@ public class NewsController {
     public String news(@RequestParam(value="News", required = false) String newsType, @RequestParam(value="NewsId", required = false) Long newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
-
         if (newsId != null){
+            if (newsId < 1)
+                return "redirect:/news?News=All";
             ContentDescription news = getContentById(newsId);
             if (news == null)
                 return "redirect:/news?News=All";
             model.addAttribute("title", news.getTitle());
             model.addAttribute("description", news.getDescription());
             model.addAttribute("do", "id");
+            if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+                model.addAttribute("create", true);
+                model.addAttribute("createType", news.getType());
+                model.addAttribute("redact", true);
+                model.addAttribute("delete", true);
+                model.addAttribute("redactId", news.getId());
+                model.addAttribute("deleteId", news.getId());
+                model.addAttribute("root", true);
+            }
         }
         else{
             List<ContentDescriptionModel> news = getContentByType(newsType);
