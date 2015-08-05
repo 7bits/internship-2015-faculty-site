@@ -1,0 +1,11 @@
+.admin-instruments-content-redact-forms-container{
+    overflow:hidden;
+    right:0px;
+    top:50px;
+    width: 20%;
+    position: fixed;
+}
+
+.admin-instruments-content-redact-forms {
+    float:left;
+}

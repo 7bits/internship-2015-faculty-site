@@ -30,6 +30,7 @@ public class NewsController {
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
             model.addAttribute("root", true);
             model.addAttribute("canCreate", true);
+            model.addAttribute("createType", "News:");
         }
         if (newsId != null){
             if (newsId < 1)
