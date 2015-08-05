@@ -26,34 +26,39 @@ public class ContentController {
     public String editContent(@RequestParam(value = "content", required = false)String content,
                               @RequestParam(value = "title", required = false)String title,
                               @RequestParam(value = "type", required = false)String type,
+                              @RequestParam(value = "miniContent", required = false)String miniContent,
                               @RequestParam(value = "id", required = false)Long id,
                               Model model) {
         ContentDescription res;
         if (id == null || id < 1) {
-            res = createContent(title, content, type);
+            res = createContent(title, content, miniContent, type);
         }
         else {
-            res = updateContent(id, title, content, type);
+            res = updateContent(id, title, content, miniContent, type);
         }
         if (res != null) {
             model.addAttribute("content", res.getDescription());
             model.addAttribute("title", res.getTitle());
             model.addAttribute("type", res.getType());
             model.addAttribute("id", res.getId());
+            LOG.info("Record: " + res.toString());
         }
         return "home/edit_content";
     }
 
-    private ContentDescription updateContent(Long id, String title, String content, String type){
+    private ContentDescription updateContent(Long id, String title, String content, String miniContent, String type){
         try {
             if ((id == null || id < 1) || (title == null || content == null))
                 return null;
             ContentDescription page = contentOfPagesService.getPageById(id);
-            page.setDescription(content);
-            page.setTitle(title);
-            page.setType(type);
+            if (!type.isEmpty() && !content.isEmpty()) {
+                page.setDescription(content);
+                page.setMiniContent(miniContent);
+                page.setTitle(title);
+                page.setType(type);
+            }
             contentOfPagesService.updatePage(page);
-            return contentOfPagesService.getPageById(id);
+            return page;
         }
         catch (Exception e){
             LOG.error(e.getMessage());
@@ -61,10 +66,12 @@ public class ContentController {
         return null;
     }
 
-    private ContentDescription createContent(String title, String content, String type){
+    private ContentDescription createContent(String title, String content, String type, String miniContent){
         Long id;
         try {
-            id = contentOfPagesService.saveContentOfPage(title, content, type);
+            if (title == null || content == null || type == null)
+                return null;
+            id = contentOfPagesService.saveContentOfPage(title, content, miniContent, type);
             if (id == null || id < 1)
                 return null;
             return contentOfPagesService.getPageById(id);

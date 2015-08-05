@@ -9,6 +9,7 @@ public class ContentDescription {
     private String creatingTime;
     private String type;
     private String imageLink;
+    private String miniContent;
 
     public ContentDescription() {
     }
@@ -21,18 +22,39 @@ public class ContentDescription {
         this.type = type;
     }
 
-    public ContentDescription(Long id, String title, String description, String type, String imageLink) {
+    public ContentDescription(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink, String miniContent) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.type = type;
+        this.imageLink = imageLink;
+        this.miniContent = miniContent;
+    }
+
+
+
+    public ContentDescription(Long id, String title, String description, String type, String imageLink, String miniContent) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.type = type;
         this.imageLink = imageLink;
+        this.miniContent = miniContent;
     }
 
     public ContentDescription(String title, String description, String type) {
         this.title = title;
         this.description = description;
         this.type = type;
+    }
+
+    public ContentDescription(String title, String description, String type, String miniContent) {
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.miniContent = miniContent;
     }
 
     public ContentDescription(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink) {
@@ -74,6 +96,10 @@ public class ContentDescription {
         this.imageLink = imageLink;
     }
 
+    public void setMiniContent(String miniContent) {
+        this.miniContent = miniContent;
+    }
+
     public Long getId() {
         return id;
     }
@@ -101,4 +127,18 @@ public class ContentDescription {
     public String getImageLink() {
         return imageLink;
     }
+
+    public String getMiniContent() {
+        return miniContent;
+    }
+
+    @Override
+    public String toString() {
+        return "Title: " + getTitle() + "\n"
+                + "Page: \n" + getDescription() + "\n"
+                + "Date: " + getCreatingDate() + "\n"
+                + "Time: " + getCreatingTime() + "\n"
+                + "Type: " + getType() + "\n";
+    }
+
 }

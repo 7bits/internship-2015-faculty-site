@@ -1,0 +1,1 @@
+ALTER TABLE content_of_pages ADD COLUMN mini_content TEXT DEFAULT '';

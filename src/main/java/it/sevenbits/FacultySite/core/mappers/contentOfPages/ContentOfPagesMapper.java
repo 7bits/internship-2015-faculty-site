@@ -13,18 +13,19 @@ public interface ContentOfPagesMapper {
             @Result(column = "title", property = "title"),
             @Result(column = "description", property = "description"),
             @Result(column = "creating_date", property = "creatingDate"),
-            @Result(column = "creating_time", property = "creatingTate"),
+            @Result(column = "creating_time", property = "creatingTime"),
+            @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
             @Result(column = "image_link", property = "imageLink")
     })
     List<ContentDescription> getAllPages();
 
-    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, type, image_link) VALUES (#{title}, #{description}, 'today', 'now', #{type}, #{imageLink})")
+    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, mini_content, type, image_link) VALUES (#{title}, #{description}, 'today', 'now', #{miniContent}, #{type}, #{imageLink})")
     @Options(keyProperty = "id", useGeneratedKeys = true)
     void saveContentOfPage(final ContentDescription description);
 
-    @Update("UPDATE content_of_pages SET title=#{title}, description=#{description}, type=#{type}, image_link=#{imageLink} WHERE id=#{id}")
-    void updatePage(@Param("title")String title, @Param("description")String description, @Param("type")String type, @Param("imageLink")String imageLink, @Param("id")Long id);
+    @Update("UPDATE content_of_pages SET title=#{title}, description=#{description}, type=#{type}, mini_content=#{miniContent}, image_link=#{imageLink} WHERE id=#{id}")
+    void updatePage(@Param("title")String title, @Param("description")String description, @Param("type")String type, @Param("miniContent")String miniContent , @Param("imageLink")String imageLink, @Param("id")Long id);
 
     @Select("SELECT * FROM content_of_pages WHERE type=#{type};")
     @Results({
@@ -33,6 +34,7 @@ public interface ContentOfPagesMapper {
             @Result(column = "description", property = "description"),
             @Result(column = "creating_date", property = "creatingDate"),
             @Result(column = "creating_time", property = "creatingTate"),
+            @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
             @Result(column = "image_link", property = "imageLink")
     })
@@ -45,10 +47,11 @@ public interface ContentOfPagesMapper {
             @Result(column = "description", property = "description"),
             @Result(column = "creating_date", property = "creatingDate"),
             @Result(column = "creating_time", property = "creatingTime"),
+            @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
             @Result(column = "image_link", property = "imageLink")
     })
-    ContentDescription getPagesById(@Param("id")Long id);
+    ContentDescription getPageById(@Param("id")Long id);
 
     @Delete("DELETE FROM content_of_pages WHERE id=#{id};")
     void removePageById(final Long id);
@@ -63,6 +66,7 @@ public interface ContentOfPagesMapper {
             @Result(column = "description", property = "description"),
             @Result(column = "creating_date", property = "creatingDate"),
             @Result(column = "creating_time", property = "creatingTime"),
+            @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
             @Result(column = "image_link", property = "imageLink")
     })

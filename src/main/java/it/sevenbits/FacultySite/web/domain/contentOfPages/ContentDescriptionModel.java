@@ -9,6 +9,7 @@ public class ContentDescriptionModel {
     private final String creatingTime;
     private final String type;
     private final String imageLink;
+    private final String miniContent;
 
     public ContentDescriptionModel(){
         this.id = (long)0;
@@ -18,6 +19,7 @@ public class ContentDescriptionModel {
         this.creatingTime = "";
         this.type = "";
         this.imageLink = "";
+        this.miniContent = "";
     }
 
     public ContentDescriptionModel(String description) {
@@ -28,6 +30,29 @@ public class ContentDescriptionModel {
         this.creatingTime = "";
         this.type = "";
         this.imageLink = "";
+        this.miniContent = "";
+    }
+
+    public ContentDescriptionModel(String description, String miniContent) {
+        this.id = (long)0;
+        this.title = "";
+        this.description = description;
+        this.miniContent = miniContent;
+        this.creatingDate = "";
+        this.creatingTime = "";
+        this.type = "";
+        this.imageLink = "";
+    }
+
+    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink, String miniContent) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.type = type;
+        this.imageLink = imageLink;
+        this.miniContent = miniContent;
     }
 
     public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink) {
@@ -38,6 +63,7 @@ public class ContentDescriptionModel {
         this.creatingTime = creatingTime;
         this.type = type;
         this.imageLink = imageLink;
+        this.miniContent = "";
     }
 
     public Long getId() {

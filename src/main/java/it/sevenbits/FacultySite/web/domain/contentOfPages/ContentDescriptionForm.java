@@ -8,6 +8,8 @@ public class ContentDescriptionForm {
     private String creatingTime;
     private String type;
     private String imageLink;
+    private String miniContent;
+
 
     public void setId(Long id) {
         this.id = id;
@@ -38,6 +40,10 @@ public class ContentDescriptionForm {
         this.imageLink = imageLink;
     }
 
+    public void setMiniContent(String miniContent) {
+        this.miniContent = miniContent;
+    }
+
     public Long getId() {
         return id;
     }
@@ -64,6 +70,10 @@ public class ContentDescriptionForm {
 
     public String getImageLink() {
         return imageLink;
+    }
+
+    public String getMiniContent() {
+        return miniContent;
     }
 
     @Override

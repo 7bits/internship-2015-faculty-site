@@ -33,9 +33,9 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
         }
     }
 
-    public void updatePage(String newTitle, String newDescription, String newType, String newImageLink, Long id) throws RepositoryException{
+    public void updatePage(String newTitle, String newDescription, String newType, String newMiniContent, String newImageLink, Long id) throws RepositoryException{
         try{
-            mapper.updatePage(newTitle, newDescription, newType, newImageLink, id);
+            mapper.updatePage(newTitle, newDescription, newType, newMiniContent, newImageLink, id);
         }
         catch (Exception e){
             throw new RepositoryException("Error with updating page: " + e.getMessage());
@@ -71,7 +71,7 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
 
     public ContentDescription getPageById(Long id) throws RepositoryException{
         try{
-            return mapper.getPagesById(id);
+            return mapper.getPageById(id);
         }
         catch (Exception e){
             throw new RepositoryException("Error with getting page by id: " + e.getMessage());

@@ -67,9 +67,9 @@ public class ContentOfPagesService {
         }
     }
 
-    public Long saveContentOfPage(String title, String description, String type) throws ServiceException{
+    public Long saveContentOfPage(String title, String description, String miniContent, String type) throws ServiceException{
         try{
-            ContentDescription res = new ContentDescription(title, description, type);
+            ContentDescription res = new ContentDescription(title, description, miniContent, type);
             repository.saveContent(res);
             return res.getId();
         }
@@ -89,7 +89,7 @@ public class ContentOfPagesService {
 
     public void updatePage(ContentDescription description) throws ServiceException{
         try{
-            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getImageLink(), description.getId());
+            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getMiniContent(), description.getImageLink(), description.getId());
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);
