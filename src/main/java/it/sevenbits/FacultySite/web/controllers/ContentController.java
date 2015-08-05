@@ -28,21 +28,18 @@ public class ContentController {
                               @RequestParam(value = "type", required = false)String type,
                               @RequestParam(value = "id", required = false)Long id,
                               Model model) {
-        ContentDescription res = new ContentDescription();
+        ContentDescription res;
         if (id == null || id < 1) {
             res = createContent(title, content, type);
         }
         else {
             res = updateContent(id, title, content, type);
         }
-        try {
+        if (res != null) {
             model.addAttribute("content", res.getDescription());
             model.addAttribute("title", res.getTitle());
             model.addAttribute("type", res.getType());
             model.addAttribute("id", res.getId());
-        }
-        catch (NullPointerException e){
-            LOG.info("Null pointer, Content is incorrect: " + e.getMessage());
         }
         return "home/edit_content";
     }
