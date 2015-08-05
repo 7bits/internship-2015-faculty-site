@@ -33,6 +33,13 @@ footer{
 	width: 24%;
 }
 .slider-footer{
+	max-width:100%;
+}
+.one-page-slider{
+	overflow: hidden;
+}
+
+.one-page-slider-img{
 	float: left;
-	width: 50%;
+	width: 22%;
 }

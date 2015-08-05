@@ -83,27 +83,51 @@ body
 				Институт математики и иформационных технологий ранее математический факультет
 				Институт математики и иформационных технологий ранее математический факультет
 				Институт математики и иформационных технологий ранее математический факультет
-	#main-slider.liquid-slider
-		div
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-		div
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-		div
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')		
-		div
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
-			img(src='/img/logo.png')
+	div.slider-footer	
+		#main-slider.liquid-slider
+			div.one-page-slider
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+			div.one-page-slider
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+			div.one-page-slider
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')	
+			div.one-page-slider
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+				.one-page-slider-img
+					img(src='/img/logo.png')
+
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
+	script(src='/js/main-page/jquery.liquid-slider.min.js')
+	script.
+		$('#main-slider').liquidSlider({autoSlide:true});	
 	footer
 		div.social-net
 			p VK
@@ -111,10 +135,3 @@ body
 			p Иное
 		div.copyright
 			p 2013 © ИМИТ ОмГУ им. Ф.М. Достоевского
-		div.slider-footer
-			script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-			script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
-			script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
-			script(src='/js/main-page/jquery.liquid-slider.min.js')
-			script.
-				$('#main-slider').liquidSlider({autoSlide:true});
