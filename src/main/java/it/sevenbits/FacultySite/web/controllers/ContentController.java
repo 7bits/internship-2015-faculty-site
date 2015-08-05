@@ -28,32 +28,54 @@ public class ContentController {
                               @RequestParam(value = "type", required = false)String type,
                               @RequestParam(value = "id", required = false)Long id,
                               Model model) {
-        if (content == null)
-            content = "";
-        if (title == null)
-            title = "";
-        if (type == null)
-            type = "";
-        if (!content.isEmpty() && !title.isEmpty())
-            try {
-                if (id == null)
-                    id = contentOfPagesService.saveContentOfPage(title, content, type);
-                else if (id > 0) {
-                    ContentDescription last = contentOfPagesService.getPageById(id);
-                    last.setDescription(content);
-                    last.setTitle(title);
-                    last.setType(type);
-                }
-            } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
-            }
-        if (id == null)
-            id = (long) -1;
-        model.addAttribute("content", content);
-        model.addAttribute("title", title);
-        model.addAttribute("type", type);
-        model.addAttribute("id", id);
+        ContentDescription res = new ContentDescription();
+        if (id == null || id < 1) {
+            res = createContent(title, content, type);
+        }
+        else {
+            res = updateContent(id, title, content, type);
+        }
+        try {
+            model.addAttribute("content", res.getDescription());
+            model.addAttribute("title", res.getTitle());
+            model.addAttribute("type", res.getType());
+            model.addAttribute("id", res.getId());
+        }
+        catch (NullPointerException e){
+            LOG.info("Null pointer, Content is incorrect: " + e.getMessage());
+        }
         return "home/edit_content";
+    }
+
+    private ContentDescription updateContent(Long id, String title, String content, String type){
+        try {
+            if ((id == null || id < 1) || (title == null || content == null))
+                return null;
+            ContentDescription page = contentOfPagesService.getPageById(id);
+            page.setDescription(content);
+            page.setTitle(title);
+            page.setType(type);
+            contentOfPagesService.updatePage(page);
+            return contentOfPagesService.getPageById(id);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+        return null;
+    }
+
+    private ContentDescription createContent(String title, String content, String type){
+        Long id;
+        try {
+            id = contentOfPagesService.saveContentOfPage(title, content, type);
+            if (id == null || id < 1)
+                return null;
+            return contentOfPagesService.getPageById(id);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+        return null;
     }
 
 }
