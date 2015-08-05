@@ -37,11 +37,11 @@ public class ContentController {
                           Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        if (create) {
+        if (create != null && create) {
             model.addAttribute("type", createType);
             return "home/edit_content";
         }
-        if (redact && redactId>0){
+        if (redact != null && redact && redactId>0){
             try{
                 ContentDescription res = contentOfPagesService.getPageById(redactId);
                 model.addAttribute("content", res.getDescription());
@@ -56,7 +56,7 @@ public class ContentController {
                 LOG.error(e.getMessage());
             }
         }
-        if (delete && deleteId > 0){
+        if (delete != null && delete && deleteId > 0){
             try{
                 ContentDescription res = contentOfPagesService.getPageById(redactId);
                 LOG.info("Record: " + res.toString());

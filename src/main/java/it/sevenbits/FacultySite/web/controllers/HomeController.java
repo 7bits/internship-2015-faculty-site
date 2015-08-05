@@ -28,7 +28,7 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public String index() {
-        return "redirect:/edit_content";
+        return "redirect:/main";
     }
 
 
