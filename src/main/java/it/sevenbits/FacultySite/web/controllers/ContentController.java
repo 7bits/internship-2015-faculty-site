@@ -4,6 +4,9 @@ import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ public class ContentController {
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String upload(@RequestParam(value = "main-content", required = false) String mainContent, Model model) {
         return "home/main";
@@ -29,6 +33,8 @@ public class ContentController {
                               @RequestParam(value = "miniContent", required = false)String miniContent,
                               @RequestParam(value = "id", required = false)Long id,
                               Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "redirect:/main";
         ContentDescription res;
         if (id == null || id < 1) {
             res = createContent(title, content, miniContent, type);
@@ -70,7 +76,7 @@ public class ContentController {
     private ContentDescription createContent(String title, String content, String type, String miniContent){
         Long id;
         try {
-            if (title == null || content == null || type == null)
+            if (title == null || content == null || type == null || miniContent == null)
                 return null;
             id = contentOfPagesService.saveContentOfPage(title, content, miniContent, type);
             if (id == null || id < 1)
