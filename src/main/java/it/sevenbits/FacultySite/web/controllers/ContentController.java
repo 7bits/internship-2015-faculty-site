@@ -1,21 +1,20 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
+import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import it.sevenbits.FacultySite.web.controllers.NewsController;
 
 @Controller
 public class ContentController {
@@ -167,6 +166,16 @@ public class ContentController {
             LOG.error(e.getMessage());
         }
         return null;
+    }
+
+    @RequestMapping(value = "/hidden_content")
+    public String hiddenContent(@RequestParam(value="News", required = false) String newsType,
+                                @RequestParam(value="NewsId", required = false) Long newsId,
+                                @ModelAttribute ImageDescriptionForm form,
+                                Model model) {
+        LOG.info("News type param: " + newsType);
+        LOG.info("News id param: " + newsId);
+        return NewsController.constructNews(newsType, newsId, form, true, model, contentOfPagesService);
     }
 
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){

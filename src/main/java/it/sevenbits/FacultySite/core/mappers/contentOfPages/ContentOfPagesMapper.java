@@ -75,7 +75,7 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getPagesWhichContainType(final @Param("type")String type);
 
-    @Select("SELECT * FROM content_of_pages WHERE type LIKE #{type} && publish=#{publish};")
+    @Select("SELECT * FROM content_of_pages WHERE type LIKE #{type} and publish=#{publish};")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
