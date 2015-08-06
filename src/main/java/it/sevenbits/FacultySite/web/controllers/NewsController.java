@@ -30,15 +30,15 @@ public class NewsController {
                        Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
-        return constructNews(newsType, newsId, form, false, model, contentOfPagesService);
+        return constructNews(newsType, newsId, form, true, model, contentOfPagesService);
     }
 
     public static String constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-        model.addAttribute("root", true);
-        model.addAttribute("canCreate", true);
-        model.addAttribute("createType", "News:");
-    }
+            model.addAttribute("root", true);
+            model.addAttribute("canCreate", true);
+            model.addAttribute("createType", "News:");
+        }
         if (newsId != null){
             if (newsId < 1)
                 return "redirect:/news?News=All";

@@ -72,6 +72,8 @@ public class ContentController {
                 model.addAttribute("title", res.getTitle());
                 model.addAttribute("type", res.getType());
                 model.addAttribute("miniContent", res.getMiniContent());
+                model.addAttribute("imageLink", res.getImageLink());
+                model.addAttribute("publish", res.getPublish());
                 model.addAttribute("id", res.getId());
                 LOG.info("Record: " + res.toString());
                 return "home/edit_content";
@@ -175,7 +177,7 @@ public class ContentController {
                                 Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
-        return NewsController.constructNews(newsType, newsId, form, true, model, contentOfPagesService);
+        return NewsController.constructNews(newsType, newsId, form, false, model, contentOfPagesService);
     }
 
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){
