@@ -7,7 +7,7 @@ mixin editForm(id, title, content, miniContent, type)
 		input.edit-content-text-edit(name="title", required, maxlength="255", placeholder="Заголовок", value="#{title}")
 		input.edit-content-text-edit(name="type", required, maxlength="255", placeholder="Тип записи", value="#{type}")
 		input.edit-content-text-edit(name="mini-content", required, placeholder="Текст для предпросмотра новости", value="#{miniContent}")
-		input.edit-content-text-edit(name="image-link", required, placeholder="Ссылка на заглавную картинку альбома", value="#{imageLink}")
+		input.edit-content-text-edit(name="image-link", required, placeholder="Ссылка на заглавную картинку записи", value="#{imageLink}")
 		p
 			if (publish == true)
 				input(type="checkbox", name="publish", checked) 
