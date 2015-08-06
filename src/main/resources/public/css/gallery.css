@@ -17,7 +17,7 @@
 
 .gallery-album-main-container {
 	width: 220px;
-	height: 250px;
+	height: 300px;
 	margin: 5px;
 	float: left;
 }
@@ -27,7 +27,7 @@
 }
 
 .gallery-album-image-container {
-	height: 60%;
+	height: 50%;
 	width: 100%;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .gallery-album-description-container {
-	max-height: 20%;
+	height: 50%;
 	width: 100%;
 }
 
