@@ -32,7 +32,7 @@
   margin: 0 auto;
   float: left;
   overflow: hidden;
-  position: relative;
+  /*position: relative;*/
 }
 .arrows .liquid-slider {
   /* Margin between slider and arrows */

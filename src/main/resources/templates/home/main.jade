@@ -2,32 +2,12 @@ doctype html
 head
 	meta(charset='UTF-8')
 	title Главная - ИМИТ
-	link(rel='stylesheet', href='/css/main-page/owl.carousel.min.css')
-	link(rel='stylesheet', href='/css/main-page/owl.theme.default.css')
-	link(rel='stylesheet', href='/css/main-page/liCover.css')
 	link(rel='stylesheet', href='/css/main-page/main-page.css')
 	link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.0.0/animate.min.css')
 	link(rel='stylesheet', href='/css/main-page/liquid-slider.css')
-	script(src='/js/main-page/jquery-1.10.2.min.js')
-	script(src='/js/main-page/owl.carousel.min.js')
-	script(src='/js/main-page/jquery.liCover.js')
-	script(src='/js/main-page/script.js')
-	style(type='text/css').
-		body {margin: 0;}
-		#slider, .slide {height: 200px; max-height: 30%; width: 100%;}
 	include general-includes.jade
-body.no-js
+body
 	include forms/header.jade
-	#slider.owl-carousel
-		.slide
-			a(href='/gallery')
-				img(src='/img/main-page-slider-photo/1.jpg', alt='Текст')
-		.slide
-			a(href='/gallery')
-				img(src='/img/main-page-slider-photo/2.jpg', alt='Текст')
-		.slide
-			a(href='/gallery')
-				img(src='/img/main-page-slider-photo/3.jpg', alt='Текст')
 	div.content
 		div.all-news
 			div.news
@@ -104,7 +84,7 @@ body.no-js
 				});
 				var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')	
 	div.slider-footer	
-		#main-slider.liquid-slider
+		#footer-slider.liquid-slider
 			div.one-page-slider
 				.one-page-slider-img
 					img(src='/img/logo.png')
@@ -147,7 +127,7 @@ body.no-js
 	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
 	script(src='/js/main-page/jquery.liquid-slider.min.js')
 	script.
-		$('#main-slider').liquidSlider({
+		$('#footer-slider').liquidSlider({
 			autoSlide:true
 			});	
 	footer

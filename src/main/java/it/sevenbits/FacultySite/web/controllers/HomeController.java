@@ -1,11 +1,9 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
-import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
-import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
+import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
-import it.sevenbits.FacultySite.web.service.ServiceException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,33 +23,18 @@ public class HomeController {
     @Autowired
     ImageDescriptionService imageDescriptionService;
 
+    @Autowired
+    ContentOfPagesService contentOfPagesService;
+
     @RequestMapping(value = "/")
     public String index() {
         return "redirect:/main";
     }
 
-    @RequestMapping(value = "/news")
-    public String news(@RequestParam(value="NewsType", required = false) String newsType, @RequestParam(value="NewsId", required = false) String newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
-        LOG.info("News type param: " + newsType);
-        LOG.info("News id param: " + newsId);
 
-        if (newsType == null)
-            newsType = "All-news";
-        model.addAttribute("newsType", newsType);
-        try {
-            if (newsId == null || Integer.parseInt(newsId) < 1)
-                newsId = "0";
-        }
-        catch (Exception e){
-            LOG.info("NewsId is incorrect: " + newsId);
-            newsId = "0";
-        }
-        model.addAttribute("newsId", newsId);
-        return "home/news";
-    }
 
     @RequestMapping(value = "/main")
-    public String main() {
+    public String main(Model model) {
         return "home/main";
     }
 
@@ -99,7 +82,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/enrollee")
-    public String enrolle() {
+    public String enrollee() {
         return "home/enrollee";
     }
 
@@ -115,7 +98,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/admin")
-    public String admin() {
+    public String admin(@RequestParam(value="logout", required = false) boolean logout, Model model) {
+        model.addAttribute("logout", logout);
         return "home/admin";
     }
 }

@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/admin", "/css/**","/js/**", "/img/**","/fonts/**").permitAll()
+                .antMatchers("/admin", "/css/**","/js/**", "/img/**","/fonts/**", "/**").permitAll()
                 .anyRequest().authenticated();
         http
             .formLogin()
@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .logoutUrl("/logout")
                 // указываем URL при удачном логауте
-                .logoutSuccessUrl("/admin")
+                .logoutSuccessUrl("/admin?logout=true")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
               http.csrf().disable();
@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
-        webSecurity.ignoring().antMatchers("css/**","js/**");
+        webSecurity.ignoring().antMatchers("css/**","js/**", "fonts/**");
     }
 
     @Configuration
@@ -43,8 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
+        auth.inMemoryAuthentication()
                 .withUser("root").password("root").roles("USER");
     }
 
