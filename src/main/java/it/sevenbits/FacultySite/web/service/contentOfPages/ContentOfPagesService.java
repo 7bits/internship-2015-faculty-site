@@ -84,6 +84,23 @@ public class ContentOfPagesService {
         }
     }
 
+    public List<ContentDescriptionModel> getPagesWhichContainTypeIsPublish(String type, Boolean publish) throws ServiceException {
+        try {
+            List<ContentDescription> pages = repository.getPagesWhichContainTypeIsPublish(type, publish);
+            List<ContentDescriptionModel> models = new ArrayList<>();
+            for (ContentDescription tmp : pages)
+                try {
+                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType(), tmp.getImageLink(), tmp.getMiniContent(), tmp.getPublish()));
+                }
+                catch (Exception e){
+                    throw new ServiceException(e.getMessage(), e);
+                }
+            return models;
+        } catch (Exception e) {
+            throw new ServiceException("An error occurred while get content: " + e.getMessage(), e);
+        }
+    }
+
     public Long saveContentOfPage(String title, String description, String miniContent, String type) throws ServiceException{
         try{
             ContentDescription res = new ContentDescription(title, description, miniContent, type);

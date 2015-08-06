@@ -10,6 +10,7 @@ public interface ContentOfPagesRepository {
     public List<ContentDescription> getPagesByType(String type) throws RepositoryException;
     public List<ContentDescription> getPagesWhichContainType(String type) throws RepositoryException;
     public List<ContentDescription> getPagesIsPublish(Boolean publish) throws RepositoryException;
+    public List<ContentDescription> getPagesWhichContainTypeIsPublish(String type, Boolean publish) throws RepositoryException;
     public ContentDescription getPageById(Long id) throws RepositoryException;
 
     public void saveContent(ContentDescription description) throws RepositoryException;
