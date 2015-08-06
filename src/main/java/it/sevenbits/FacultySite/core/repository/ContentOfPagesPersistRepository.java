@@ -34,9 +34,9 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
         }
     }
 
-    public void updatePage(String newTitle, String newDescription, String newType, String newMiniContent, String newImageLink, Long id) throws RepositoryException{
+    public void updatePage(String newTitle, String newDescription, String newType, String newMiniContent, String newImageLink, Boolean isPublish, Long id) throws RepositoryException{
         try{
-            mapper.updatePage(newTitle, newDescription, newType, newMiniContent, newImageLink, id);
+            mapper.updatePage(newTitle, newDescription, newType, newMiniContent, newImageLink, isPublish, id);
         }
         catch (Exception e){
             throw new RepositoryException("Error with updating page: " + e.getMessage());

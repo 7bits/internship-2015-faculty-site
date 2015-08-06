@@ -134,7 +134,7 @@ public class ContentOfPagesService {
 
     public void updatePage(ContentDescription description) throws ServiceException{
         try{
-            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getMiniContent(), description.getImageLink(), description.getId());
+            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getMiniContent(), description.getImageLink(), description.getPublish(), description.getId());
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);

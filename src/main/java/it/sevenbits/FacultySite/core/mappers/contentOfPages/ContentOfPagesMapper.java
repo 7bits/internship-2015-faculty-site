@@ -25,8 +25,8 @@ public interface ContentOfPagesMapper {
     @Options(keyProperty = "id", useGeneratedKeys = true)
     void saveContentOfPage(final ContentDescription description);
 
-    @Update("UPDATE content_of_pages SET title=#{title}, description=#{description}, type=#{type}, mini_content=#{miniContent}, image_link=#{imageLink} WHERE id=#{id}")
-    void updatePage(@Param("title")String title, @Param("description")String description, @Param("type")String type, @Param("miniContent")String miniContent , @Param("imageLink")String imageLink, @Param("id")Long id);
+    @Update("UPDATE content_of_pages SET title=#{title}, description=#{description}, type=#{type}, mini_content=#{miniContent}, image_link=#{imageLink}, publish=#{publish} WHERE id=#{id}")
+    void updatePage(@Param("title")String title, @Param("description")String description, @Param("type")String type, @Param("miniContent")String miniContent , @Param("imageLink")String imageLink, @Param("publish")Boolean publish, @Param("id")Long id);
 
     @Select("SELECT * FROM content_of_pages WHERE type=#{type};")
     @Results({

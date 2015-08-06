@@ -14,7 +14,7 @@ public interface ContentOfPagesRepository {
     public ContentDescription getPageById(Long id) throws RepositoryException;
 
     public void saveContent(ContentDescription description) throws RepositoryException;
-    public void updatePage(String newTitle, String newDescription, String newType, String newMiniContent, String newImageLink, Long id) throws RepositoryException;
+    public void updatePage(String newTitle, String newDescription, String newType, String newMiniContent, String newImageLink, Boolean isPublish, Long id) throws RepositoryException;
     public void removePageById(Long id) throws RepositoryException;
 
     public void removePageByType(String type) throws RepositoryException;
