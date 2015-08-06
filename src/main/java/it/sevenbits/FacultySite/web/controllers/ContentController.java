@@ -104,7 +104,9 @@ public class ContentController {
                               @RequestParam(value = "title", required = false)String title,
                               @RequestParam(value = "type", required = false)String type,
                               @RequestParam(value = "mini-content", required = false)String miniContent,
+                              @RequestParam(value = "image-link", required = false)String imageLink,
                               @RequestParam(value = "id", required = false)Long id,
+                              @RequestParam(value = "publish", required = false)Boolean publish,
                               @RequestParam(value = "create", required = false)Boolean create,
                               @RequestParam(value = "redact", required = false)Boolean redact,
                               @RequestParam(value = "delete", required = false)Boolean delete,
@@ -118,16 +120,18 @@ public class ContentController {
             return editContentAction(create, redact, delete, redactId, deleteId, createType, model);
         ContentDescription res;
         if (id == null || id < 1) {
-            res = createContent(title, content, miniContent, type);
+            res = createContent(title, content, miniContent, imageLink, type, publish);
         }
         else {
-            res = updateContent(id, title, content, miniContent, type);
+            res = updateContent(id, title, content, miniContent, imageLink, type, publish);
         }
         if (res != null) {
             model.addAttribute("content", res.getDescription());
             model.addAttribute("title", res.getTitle());
             model.addAttribute("type", res.getType());
             model.addAttribute("miniContent", res.getMiniContent());
+            model.addAttribute("imageLink", res.getImageLink());
+            model.addAttribute("publish", res.getPublish());
             model.addAttribute("id", res.getId());
             LOG.info("Record: " + res.toString());
         }
@@ -136,12 +140,14 @@ public class ContentController {
             model.addAttribute("title", title);
             model.addAttribute("type", type);
             model.addAttribute("miniContent", miniContent);
+            model.addAttribute("imageLink", imageLink);
+            model.addAttribute("publish", publish);
             model.addAttribute("id", id);
         }
         return "home/edit_content";
     }
 
-    private ContentDescription updateContent(Long id, String title, String content, String miniContent, String type){
+    private ContentDescription updateContent(Long id, String title, String content, String miniContent, String imageLink, String type, Boolean publish){
         try {
             if ((id == null || id < 1) || (title == null || content == null))
                 return null;
@@ -151,6 +157,8 @@ public class ContentController {
                 page.setMiniContent(miniContent);
                 page.setTitle(title);
                 page.setType(type);
+                page.setPublish(publish);
+                page.setImageLink(imageLink);
             }
             contentOfPagesService.updatePage(page);
             return page;
@@ -161,14 +169,14 @@ public class ContentController {
         return null;
     }
 
-    private ContentDescription createContent(String title, String content, String type, String miniContent){
+    private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){
         Long id;
         try {
-            if (title == null || content == null || type == null || miniContent == null) {
+            if (title == null || content == null || type == null || miniContent == null || publish == null) {
                 LOG.error("Some of this is null: title || content || type || miniContent");
                 return null;
             }
-            id = contentOfPagesService.saveContentOfPage(title, content, miniContent, type);
+            id = contentOfPagesService.saveContentOfPage(title, content, imageLink, miniContent, type, publish);
             if (id == null || id < 1)
                 return null;
             return contentOfPagesService.getPageById(id);

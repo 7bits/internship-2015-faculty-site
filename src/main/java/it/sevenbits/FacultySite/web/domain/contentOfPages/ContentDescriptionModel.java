@@ -10,6 +10,7 @@ public class ContentDescriptionModel {
     private final String type;
     private final String imageLink;
     private final String miniContent;
+    private final Boolean publish;
 
     public ContentDescriptionModel(){
         this.id = (long)0;
@@ -20,6 +21,7 @@ public class ContentDescriptionModel {
         this.type = "";
         this.imageLink = "";
         this.miniContent = "";
+        this.publish = false;
     }
 
     public ContentDescriptionModel(String description) {
@@ -31,6 +33,7 @@ public class ContentDescriptionModel {
         this.type = "";
         this.imageLink = "";
         this.miniContent = "";
+        this.publish = false;
     }
 
     public ContentDescriptionModel(String description, String miniContent) {
@@ -42,6 +45,7 @@ public class ContentDescriptionModel {
         this.creatingTime = "";
         this.type = "";
         this.imageLink = "";
+        this.publish = false;
     }
 
     public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink, String miniContent) {
@@ -53,6 +57,31 @@ public class ContentDescriptionModel {
         this.type = type;
         this.imageLink = imageLink;
         this.miniContent = miniContent;
+        this.publish = false;
+    }
+
+    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink, String miniContent, Boolean publish) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.type = type;
+        this.imageLink = imageLink;
+        this.miniContent = miniContent;
+        this.publish = publish;
+    }
+
+    public ContentDescriptionModel(Long id, String title, String description, String type, String imageLink, String miniContent, Boolean publish) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.imageLink = imageLink;
+        this.miniContent = miniContent;
+        this.publish = publish;
+        this.creatingDate = "";
+        this.creatingTime = "";
     }
 
     public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink) {
@@ -64,6 +93,7 @@ public class ContentDescriptionModel {
         this.type = type;
         this.imageLink = imageLink;
         this.miniContent = "";
+        this.publish = false;
     }
 
     public Long getId() {

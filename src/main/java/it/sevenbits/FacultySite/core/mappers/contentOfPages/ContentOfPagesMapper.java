@@ -16,7 +16,8 @@ public interface ContentOfPagesMapper {
             @Result(column = "creating_time", property = "creatingTime"),
             @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
-            @Result(column = "image_link", property = "imageLink")
+            @Result(column = "image_link", property = "imageLink"),
+            @Result(column = "publish", property = "publish")
     })
     List<ContentDescription> getAllPages();
 
@@ -36,7 +37,8 @@ public interface ContentOfPagesMapper {
             @Result(column = "creating_time", property = "creatingTate"),
             @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
-            @Result(column = "image_link", property = "imageLink")
+            @Result(column = "image_link", property = "imageLink"),
+            @Result(column = "publish", property = "publish")
     })
     List<ContentDescription> getPagesByType(@Param("type")String type);
 
@@ -49,7 +51,8 @@ public interface ContentOfPagesMapper {
             @Result(column = "creating_time", property = "creatingTime"),
             @Result(column = "mini_content", property = "miniContent"),
             @Result(column = "type", property = "type"),
-            @Result(column = "image_link", property = "imageLink")
+            @Result(column = "image_link", property = "imageLink"),
+            @Result(column = "publish", property = "publish")
     })
     ContentDescription getPageById(@Param("id")Long id);
 
@@ -71,5 +74,18 @@ public interface ContentOfPagesMapper {
             @Result(column = "image_link", property = "imageLink")
     })
     List<ContentDescription> getPagesWhichContainType(final @Param("type")String type);
+
+    @Select("SELECT * FROM content_of_pages WHERE publish=#{publish};")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "title", property = "title"),
+            @Result(column = "description", property = "description"),
+            @Result(column = "creating_date", property = "creatingDate"),
+            @Result(column = "creating_time", property = "creatingTime"),
+            @Result(column = "mini_content", property = "miniContent"),
+            @Result(column = "type", property = "type"),
+            @Result(column = "image_link", property = "imageLink")
+    })
+    List<ContentDescription> getPagesIsPublish(final @Param("publish")boolean publish);
 
 }

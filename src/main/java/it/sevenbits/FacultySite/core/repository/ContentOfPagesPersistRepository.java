@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -75,6 +76,17 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
         }
         catch (Exception e){
             throw new RepositoryException("Error with getting page by id: " + e.getMessage());
+        }
+    }
+
+    public List<ContentDescription> getPagesIsPublish(Boolean publish) throws RepositoryException{
+        try{
+            if (publish != null)
+                return mapper.getPagesIsPublish(publish);
+            return new ArrayList<>();
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with getting page by publish: " + e.getMessage());
         }
     }
 

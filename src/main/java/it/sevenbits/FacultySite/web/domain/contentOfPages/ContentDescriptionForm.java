@@ -9,7 +9,7 @@ public class ContentDescriptionForm {
     private String type;
     private String imageLink;
     private String miniContent;
-
+    private Boolean publish;
 
     public void setId(Long id) {
         this.id = id;
@@ -44,6 +44,10 @@ public class ContentDescriptionForm {
         this.miniContent = miniContent;
     }
 
+    public void setPublish(Boolean publish) {
+        this.publish = publish;
+    }
+
     public Long getId() {
         return id;
     }
@@ -74,6 +78,10 @@ public class ContentDescriptionForm {
 
     public String getMiniContent() {
         return miniContent;
+    }
+
+    public Boolean getPublish() {
+        return publish;
     }
 
     @Override
