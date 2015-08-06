@@ -4,7 +4,7 @@
 .main-info{
 	padding: 8px;
 	float: left;
-	width: 70%;
+	width: 80%;
 }
 
 .all-news{
@@ -20,18 +20,23 @@
 }
 
 footer{
+	/*padding-top: 5px;*/
 	background: #319bba;
 	overflow: hidden;
 }
 
 .social-net{
+	margin-left: 10px;
+	padding: 3px;
 	float: left;
-	width: 35%;
+	width: 15%;
 }
 
 .copyright{
+	padding-left: 190px;
+	padding-top: 10px;
 	float: left;
-	width: 30%;
+	width: 40%;
 }
 .slider-footer{
 	max-width:100%;
@@ -43,9 +48,14 @@ footer{
 .one-page-slider-img{
 	float: left;
 	width: 22%;
+	padding: 0 5%;
+	padding-bottom: 15px;
 }
 
+
 .info-about-faculty{
+	padding-left: 235px;
+	padding-top: 10px;
 	float: left;
-	width: 34%
+	width: 44%
 }
