@@ -184,7 +184,7 @@ public class ContentController {
     public String visibleContent(Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        model.addAttribute("title", "Видимые записи");
+        model.addAttribute("title", "Все записи");
         return NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
     }
 

@@ -30,6 +30,7 @@ public class NewsController {
                        Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
+        model.addAttribute("title", "Новости ОмГУ");
         return constructNews(newsType, newsId, form, true, model, contentOfPagesService);
     }
 
