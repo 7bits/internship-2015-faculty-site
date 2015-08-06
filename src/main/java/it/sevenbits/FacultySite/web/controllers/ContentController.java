@@ -24,28 +24,33 @@ public class ContentController {
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
+    @RequestMapping(value="/upload", method=RequestMethod.GET)
+    String handleFileUpload(){
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "redirect:/main";
+        return "home/upload";
+    }
 
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody
-    String handleFileUpload(@RequestParam(value = "name", required = false) String name,
-                            @RequestParam(value = "file", required = false) MultipartFile file,
-                            Model model){
-        model.addAttribute("path", false);
+    public @ResponseBody String handleFileUpload(@RequestParam(value = "file", required = false) MultipartFile file){
+        String toOut = "";
         if (file != null && !file.isEmpty()) {
             try {
+                String name = file.getOriginalFilename();
                 byte[] bytes = file.getBytes();
-                String path = "/img/src/main/resources/public/img/bigi/";
+                String path = "src/main/resources/public/img/bigi/";
                 BufferedOutputStream stream =
                         new BufferedOutputStream(new FileOutputStream(new File(path+name)));
                 stream.write(bytes);
                 stream.close();
-                model.addAttribute("path", "/img/bigi/"+name);
+                toOut += "Ссылка на загруженную картинку:<p> /img/bigi/"+name;
             } catch (Exception e) {
-                LOG.error("Вам не удалось загрузить " + name + ": " + e.getMessage());
+                toOut +=  ("Вам не удалось загрузить " + file.getName() + ": " + e.getMessage());
             }
         }
-        return "home/upload";
+        toOut += "<p><a href='/upload'>Загрузить ещё</a>";
+        return toOut;
     }
 
     public String editContentAction(Boolean create,

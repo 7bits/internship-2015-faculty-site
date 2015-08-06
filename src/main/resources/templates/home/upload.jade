@@ -8,7 +8,8 @@ head
 	include general-includes.jade
 body
 	form(method="post", enctype="multipart/form-data")
-			input(type="file", name="file")
-			br Name: 
-			input(type="text", name="nameOfFile")
-			input(type="submit", value="Upload") Press here to upload the file!
+		input(type="file", name="file")
+		input(type="submit", value="Upload") Press here to upload the file!
+	if (path != null && path != false)
+		p Ссылка на последний загруженный файл:
+		input(value="#{path}", readonly)
