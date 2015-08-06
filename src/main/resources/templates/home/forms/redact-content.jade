@@ -16,4 +16,7 @@ mixin redact-content(canCreate, createType, canRedact, canDelete, redactId, dele
 				input(style='display: none;', readonly='readonly', name="deleteId", value="#{deleteId}")
 				input(style='display: none;', readonly='readonly', name="delete", value="true")
 				input(type="submit", value="Удалить")
-		a(href="/hidden_content") Скрытые записи
+		form.admin-instruments-content-redact-forms(action="/hidden_content", method="post")
+			input(type="submit", value="Скрытые записи") 
+		form.admin-instruments-content-redact-forms(action="/visible_content", method="post")
+			input(type="submit", value="Все записи") 

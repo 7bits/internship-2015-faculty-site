@@ -34,6 +34,8 @@ public class ContentController {
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam(value = "file", required = false) MultipartFile file){
         String toOut = "";
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "redirect:/main";
         if (file != null && !file.isEmpty()) {
             try {
                 String name = file.getOriginalFilename();
@@ -171,13 +173,17 @@ public class ContentController {
     }
 
     @RequestMapping(value = "/hidden_content")
-    public String hiddenContent(@RequestParam(value="News", required = false) String newsType,
-                                @RequestParam(value="NewsId", required = false) Long newsId,
-                                @ModelAttribute ImageDescriptionForm form,
-                                Model model) {
-        LOG.info("News type param: " + newsType);
-        LOG.info("News id param: " + newsId);
-        return NewsController.constructNews(newsType, newsId, form, false, model, contentOfPagesService);
+    public String hiddenContent(Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "redirect:/main";
+        return NewsController.constructNews("All", null, null, false, model, contentOfPagesService);
+    }
+
+    @RequestMapping(value = "/visible_content")
+    public String visibleContent(Model model) {
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "redirect:/main";
+        return NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
     }
 
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){

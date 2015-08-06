@@ -89,8 +89,12 @@ public class NewsController {
 
     public static List<ContentDescriptionModel> getContentByType(String type, Boolean publish, ContentOfPagesService contentOfPagesService){
         try{
-            if (type == null || type.equals("All"))
+            if (type == null || type.equals("All")) {
+                if (publish == null) {
+                    return contentOfPagesService.getPagesWhichContainType("News:%");
+                }
                 return contentOfPagesService.getPagesWhichContainTypeIsPublish("News:%", publish);
+            }
             return contentOfPagesService.getPagesWhichContainTypeIsPublish("News:" + type, publish);
         }
         catch (Exception e){
