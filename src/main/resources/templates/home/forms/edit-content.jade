@@ -4,9 +4,9 @@ mixin editForm(id, title, content, miniContent, type)
 		link(rel='stylesheet', href='/css/edit_content.css', type='text/css', media='screen')
 		if (id>0)
 			input.edit-content-text-edit(name="id", readonly="readonly",  value="#{id}")
-		input.edit-content-text-edit(name="title", maxlength="255", placeholder="Заголовок", value="#{title}")
-		input.edit-content-text-edit(name="type", maxlength="255", placeholder="Тип записи", value="#{type}")
+		input.edit-content-text-edit(name="title", required, maxlength="255", placeholder="Заголовок", value="#{title}")
+		input.edit-content-text-edit(name="type", required, maxlength="255", placeholder="Тип записи", value="#{type}")
 		textarea#content-editor(name="content", rows="10", cols="80")!= content
-		input.edit-content-text-edit(name="mini-content", placeholder="Текст для предпросмотра новости", value="#{miniContent}")
+		input.edit-content-text-edit(name="mini-content", required, placeholder="Текст для предпросмотра новости", value="#{miniContent}")
 		script.
 			CKEDITOR.replace('content');

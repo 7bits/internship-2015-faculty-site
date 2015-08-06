@@ -18,6 +18,8 @@ public class ContentController {
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
+    
+
     public String editContentAction(Boolean create,
                                     Boolean redact,
                                     Boolean delete,
@@ -68,7 +70,7 @@ public class ContentController {
     public String editContent(@RequestParam(value = "content", required = false)String content,
                               @RequestParam(value = "title", required = false)String title,
                               @RequestParam(value = "type", required = false)String type,
-                              @RequestParam(value = "miniContent", required = false)String miniContent,
+                              @RequestParam(value = "mini-content", required = false)String miniContent,
                               @RequestParam(value = "id", required = false)Long id,
                               @RequestParam(value = "create", required = false)Boolean create,
                               @RequestParam(value = "redact", required = false)Boolean redact,
@@ -96,6 +98,13 @@ public class ContentController {
             model.addAttribute("id", res.getId());
             LOG.info("Record: " + res.toString());
         }
+        else{
+            model.addAttribute("content", content);
+            model.addAttribute("title", title);
+            model.addAttribute("type", type);
+            model.addAttribute("miniContent", miniContent);
+            model.addAttribute("id", id);
+        }
         return "home/edit_content";
     }
 
@@ -122,8 +131,10 @@ public class ContentController {
     private ContentDescription createContent(String title, String content, String type, String miniContent){
         Long id;
         try {
-            if (title == null || content == null || type == null || miniContent == null)
+            if (title == null || content == null || type == null || miniContent == null) {
+                LOG.error("Some of this is null: title || content || type || miniContent");
                 return null;
+            }
             id = contentOfPagesService.saveContentOfPage(title, content, miniContent, type);
             if (id == null || id < 1)
                 return null;
