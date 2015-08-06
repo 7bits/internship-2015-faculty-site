@@ -10,6 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 @Controller
 public class ContentController {
@@ -18,7 +24,29 @@ public class ContentController {
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
-    
+
+
+    @RequestMapping(value="/upload", method=RequestMethod.POST)
+    public @ResponseBody
+    String handleFileUpload(@RequestParam(value = "name", required = false) String name,
+                            @RequestParam(value = "file", required = false) MultipartFile file,
+                            Model model){
+        model.addAttribute("path", false);
+        if (file != null && !file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                String path = "/img/src/main/resources/public/img/bigi/";
+                BufferedOutputStream stream =
+                        new BufferedOutputStream(new FileOutputStream(new File(path+name)));
+                stream.write(bytes);
+                stream.close();
+                model.addAttribute("path", "/img/bigi/"+name);
+            } catch (Exception e) {
+                LOG.error("Вам не удалось загрузить " + name + ": " + e.getMessage());
+            }
+        }
+        return "home/upload";
+    }
 
     public String editContentAction(Boolean create,
                                     Boolean redact,

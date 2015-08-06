@@ -10,3 +10,4 @@ mixin editForm(id, title, content, miniContent, type)
 		input.edit-content-text-edit(name="mini-content", required, placeholder="Текст для предпросмотра новости", value="#{miniContent}")
 		script.
 			CKEDITOR.replace('content');
+	a(href="/upload", target="_blank") Окно загрузки файлов
