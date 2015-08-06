@@ -176,6 +176,7 @@ public class ContentController {
     public String hiddenContent(Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
+        model.addAttribute("title", "Скрытые записи");
         return NewsController.constructNews("All", null, null, false, model, contentOfPagesService);
     }
 
@@ -183,6 +184,7 @@ public class ContentController {
     public String visibleContent(Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
+        model.addAttribute("title", "Видимые записи");
         return NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
     }
 
