@@ -14,7 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.UUID;
+
 import it.sevenbits.FacultySite.web.controllers.NewsController;
+import sun.security.x509.UniqueIdentity;
 
 @Controller
 public class ContentController {
@@ -35,11 +38,12 @@ public class ContentController {
     public @ResponseBody String handleFileUpload(@RequestParam(value = "file", required = false) MultipartFile file){
         String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "redirect:/main";
+            return "<? header '/main';?>";
         if (file != null && !file.isEmpty()) {
             try {
-                String name = file.getOriginalFilename();
+                String name = generateName(file.getOriginalFilename());
                 byte[] bytes = file.getBytes();
+                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/bigi/";//for server
                 String path = "src/main/resources/public/img/bigi/";
                 BufferedOutputStream stream =
                         new BufferedOutputStream(new FileOutputStream(new File(path+name)));
@@ -52,6 +56,15 @@ public class ContentController {
         }
         toOut += "<p><a href='/upload'>Загрузить ещё</a>";
         return toOut;
+    }
+
+    private String generateName(String input){
+        String name = input;
+        String partsOfName[] = name.split("\\.");
+        name = "." + partsOfName[partsOfName.length-1];
+        String oldName = input.replace(name, "");
+        name = UUID.fromString(oldName).toString() + name;
+        return name;
     }
 
     public String editContentAction(Boolean create,
