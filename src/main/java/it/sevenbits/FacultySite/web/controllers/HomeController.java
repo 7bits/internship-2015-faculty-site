@@ -38,6 +38,7 @@ public class HomeController {
         return "home/main";
     }
 
+
     @RequestMapping(value = "/applicants")
     public String applicants() {
         return "home/applicants";

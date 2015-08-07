@@ -56,7 +56,8 @@ public class ContentOfPagesService {
             List<ContentDescriptionModel> models = new ArrayList<>();
             for (ContentDescription tmp : pages)
                 try {
-                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType(), tmp.getImageLink()));
+                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType(), tmp.getImageLink(), tmp.getMiniContent(), tmp.getPublish()));
+
                 }
                 catch (Exception e){
                     throw new ServiceException(e.getMessage(), e);
@@ -67,10 +68,56 @@ public class ContentOfPagesService {
         }
     }
 
-    public void saveContentOfPage(String title, String description, String type) throws ServiceException{
+    public List<ContentDescriptionModel> getPagesIsPublish(Boolean publish) throws ServiceException {
+        try {
+            List<ContentDescription> pages = repository.getPagesIsPublish(publish);
+            List<ContentDescriptionModel> models = new ArrayList<>();
+            for (ContentDescription tmp : pages)
+                try {
+                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType(), tmp.getImageLink(), tmp.getMiniContent(), tmp.getPublish()));
+                }
+                catch (Exception e){
+                    throw new ServiceException(e.getMessage(), e);
+                }
+            return models;
+        } catch (Exception e) {
+            throw new ServiceException("An error occurred while get content: " + e.getMessage(), e);
+        }
+    }
+
+    public List<ContentDescriptionModel> getPagesWhichContainTypeIsPublish(String type, Boolean publish) throws ServiceException {
+        try {
+            List<ContentDescription> pages = repository.getPagesWhichContainTypeIsPublish(type, publish);
+            List<ContentDescriptionModel> models = new ArrayList<>();
+            for (ContentDescription tmp : pages)
+                try {
+                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType(), tmp.getImageLink(), tmp.getMiniContent(), tmp.getPublish()));
+                }
+                catch (Exception e){
+                    throw new ServiceException(e.getMessage(), e);
+                }
+            return models;
+        } catch (Exception e) {
+            throw new ServiceException("An error occurred while get content: " + e.getMessage(), e);
+        }
+    }
+
+    public Long saveContentOfPage(String title, String description, String miniContent, Boolean publish, String type) throws ServiceException{
         try{
-            ContentDescription res = new ContentDescription(title, description, type);
+            ContentDescription res = new ContentDescription(title, description, miniContent, type);
             repository.saveContent(res);
+            return res.getId();
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);
+        }
+    }
+
+    public Long saveContentOfPage(String title, String description, String imageLink, String miniContent, String type, Boolean publish) throws ServiceException{
+        try{
+            ContentDescription res = new ContentDescription(title, description, miniContent, imageLink, type, publish);
+            repository.saveContent(res);
+            return res.getId();
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);
@@ -88,7 +135,8 @@ public class ContentOfPagesService {
 
     public void updatePage(ContentDescription description) throws ServiceException{
         try{
-            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getImageLink(), description.getId());
+            repository.updatePage(description.getTitle(), description.getDescription(), description.getType(), description.getMiniContent(), description.getImageLink(), description.getPublish(), description.getId());
+
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while save content: " + e.getMessage(), e);

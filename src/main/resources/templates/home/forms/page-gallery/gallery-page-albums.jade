@@ -1,10 +1,12 @@
 mixin gallery-page-albums(album)
 	div.gallery-album-main-container
 		a.gallery-album-container(href='/photo-from-albums?albumId=#{album.id}')
-			if (album.link != null)
-				img.gallery-album-image(src= "/img/gallery-page-gallery-photo/mini/#{album.link}")
-			else
-				img.gallery-album-image(src= "/img/lost-page.png")
-			div.gallery-album-title.gallery-album-description-container#title_post= album.title
-			if album.creatingDate != null
-				div.gallery-album-date.gallery-album-description-container#post_date= album.creatingDate
+			div.gallery-album-image-container.center
+				if (album.link != null)
+					img.gallery-album-image(src= "/img/gallery-page-gallery-photo/mini/#{album.link}")
+				else
+					img.gallery-album-image(src= "/img/lost-page.png")
+			div.gallery-album-description-container
+				div.gallery-album-title.center#title_post(maxlength=65)= album.title
+				if album.creatingDate != null
+					div.gallery-album-date#post_date= album.creatingDate

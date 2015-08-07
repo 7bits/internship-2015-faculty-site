@@ -5,19 +5,22 @@
 
 .gallery-album-container {
 	height: 100%;
+<<<<<<< HEAD
 	max-width: 100%;
+=======
+	width: 100%;
+>>>>>>> develop
 	text-align: center;
 	text-decoration: none;
-	background-color: #efefef;
 	display: block;
 	border-radius: 5px;
 	vertical-align: middle;
-	border: 2px solid #898989;
+	border: 1px solid #bdbdbd;
 }
 
 .gallery-album-main-container {
 	width: 220px;
-	height: 250px;
+	height: 300px;
 	margin: 5px;
 	float: left;
 }
@@ -38,19 +41,25 @@
 }
 
 .gallery-album-description-container {
-	max-height: 20%;
+	height: 40%;
 	width: 100%;
+	background-color: #efefef;
+	border-top: 1px solid #898989;
+	border-radius: 5px;
 }
 
 .gallery-album-title {
 	color: #292929;
 	font-size: 18px;
 	line-height: 1em;
-	border-top: 1px solid #898989;
-	border-radius: 5px;
+	height: 80%;
+	margin: 1px;
+	overflow: hidden;
 }
 
 .gallery-album-date {
 	color: #292929;
 	font-size: 12px;
+	max-height: 20%;
+	overflow: hidden;
 }
