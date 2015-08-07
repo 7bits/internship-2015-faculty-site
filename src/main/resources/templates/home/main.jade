@@ -8,6 +8,22 @@ head
 	include general-includes.jade
 body
 	include forms/header.jade
+
+	div.header-slider-global
+		#header-slider.liquid-slider
+			div.one-page-slider-header
+				img(src='/img/main-page-slider-photo/1.jpg')
+
+			div.one-page-slider-header
+				img(src='/img/main-page-slider-photo/2.jpg')	
+			//- div.one-page-slider-header
+			//- 		img(src='/img/main-page-slider-photo/4m.jpg')
+
+
+
+
+
+
 	div.content
 		div.all-news
 			div.news
@@ -56,8 +72,8 @@ body
 						Хороший факультет, не пожалеешь
 				div
 					h2 Заголовок 2й новости
-					p
-					| Proin nec turpis eget dolor dictum lacinia. Nullam nunc magna, tincidunt eu porta in, faucibus sed magna. Suspendisse laoreet ornare ullamcorper. Nulla in tortor nibh. Pellentesque sed est vitae odio vestibulum aliquet in nec leo.
+					p Pellentesque habitant morbi tristique senectus 
+					
 				div
 					h2 Заголовок 3й новости
 					p
@@ -73,16 +89,12 @@ body
 
 
 
-			script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-			script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
-			script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
-			script(src='/js/main-page/jquery.liquid-slider.min.js')
-			script.
-				$('#main-info-slider').liquidSlider({
-				//	autoHeight:false,
-				//	minHeight:300
-				});
-				var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')	
+			//- script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+			//- script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+			//- script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
+			//- script(src='/js/main-page/jquery.liquid-slider.min.js')
+
+					
 	div.slider-footer	
 		#footer-slider.liquid-slider
 			div.one-page-slider
@@ -122,14 +134,7 @@ body
 				.one-page-slider-img
 					img(src='/img/logo.png')
 
-	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
-	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
-	script(src='/js/main-page/jquery.liquid-slider.min.js')
-	script.
-		$('#footer-slider').liquidSlider({
-			autoSlide:true
-			});	
+	
 	footer
 		div.social-net
 			a(href='http://vk.com/imit_omsu')
@@ -142,3 +147,23 @@ body
 			p(style='color:#ffffff') 2013 © ИМИТ ОмГУ им. Ф.М. Достоевского
 		div.info-about-faculty
 			p(style='color:#ffffff') Деканат:  64-42-38. Приемная комиссия:  22-97-72
+
+
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
+	script(src='/js/main-page/jquery.liquid-slider.min.js')
+	script.
+		$('#header-slider').liquidSlider({
+			minHeight:30,
+			autoSlide:true,
+			autoHeight: false
+		});	
+		$('#main-info-slider').liquidSlider({
+		//	autoHeight:false,
+		//	minHeight:300
+		});
+		$('#footer-slider').liquidSlider({
+			autoSlide:true
+		});	
+		var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')

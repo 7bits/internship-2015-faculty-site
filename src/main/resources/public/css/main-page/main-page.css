@@ -1,5 +1,11 @@
+.one-page-slider-header img{
+	/*height: 340px;*/
+	width: 100%;
+}
+
 .content{
 	overflow: hidden;
+	padding-bottom: 10px;
 }
 .main-info{
 	padding: 8px;
@@ -26,6 +32,7 @@ footer{
 }
 
 .social-net{
+	/*padding-top: 20px;*/
 	margin-left: 10px;
 	padding: 3px;
 	float: left;
