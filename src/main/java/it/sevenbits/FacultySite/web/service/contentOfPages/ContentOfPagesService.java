@@ -102,6 +102,23 @@ public class ContentOfPagesService {
         }
     }
 
+    public List<ContentDescriptionModel> getPagesWhichContainTypeWithCountWithPublish(String type, Long count, Boolean publish) throws ServiceException{
+        try {
+            List<ContentDescriptionModel> all = getPagesWhichContainTypeIsPublish(type, publish);
+            if (all.size() < count)
+                return all;
+            List<ContentDescriptionModel> res = new ArrayList<>();
+            for (int i = all.size()-1, j = 0; j<count && i >= 0; i--){
+                res.add(all.get(i));
+            }
+            return res;
+        }
+        catch (Exception e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+
     public Long saveContentOfPage(String title, String description, String miniContent, Boolean publish, String type) throws ServiceException{
         try{
             ContentDescription res = new ContentDescription(title, description, miniContent, type);

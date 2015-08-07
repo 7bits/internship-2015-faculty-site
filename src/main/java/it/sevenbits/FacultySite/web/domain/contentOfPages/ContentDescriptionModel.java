@@ -128,6 +128,10 @@ public class ContentDescriptionModel {
         return miniContent;
     }
 
+    public Boolean getPublish() {
+        return publish;
+    }
+
     @Override
     public String toString() {
         return "Title: " + getTitle() + "\n"

@@ -1,6 +1,7 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
+import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
@@ -31,10 +32,16 @@ public class HomeController {
         return "redirect:/main";
     }
 
-
-
     @RequestMapping(value = "/main")
     public String main(Model model) {
+        List<ContentDescriptionModel> news = new ArrayList<>();
+        try {
+            news = contentOfPagesService.getPagesWhichContainTypeWithCountWithPublish("News:%", (long) 5, true);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+        model.addAttribute("news", news);
         return "home/main";
     }
 

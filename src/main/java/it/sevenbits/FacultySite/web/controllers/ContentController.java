@@ -43,8 +43,8 @@ public class ContentController {
             try {
                 String name = generateName(file.getOriginalFilename());
                 byte[] bytes = file.getBytes();
-                String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/bigi/";//for server
-                //String path = "src/main/resources/public/img/bigi/";
+                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/bigi/";//for server
+                String path = "src/main/resources/public/img/bigi/";
                 BufferedOutputStream stream =
                         new BufferedOutputStream(new FileOutputStream(new File(path+name)));
                 stream.write(bytes);
