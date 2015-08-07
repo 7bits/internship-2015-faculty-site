@@ -7,7 +7,9 @@
 .news-preview-general-form {
     max-height: 400px;
     width: 200px;
-    vertical-align: center;
+    vertical-align: middle;
+    overflow: hidden;
+
 }
 .news-preview-general-form img{
     width: 200px;
@@ -34,8 +36,9 @@
 }
 
 .main-page-info-block{
-    height: 70px;
+    max-height: 100px;
     margin: 10px;
+    overflow: hidden;
 }
 .main-page-info-container{
     float: left;
