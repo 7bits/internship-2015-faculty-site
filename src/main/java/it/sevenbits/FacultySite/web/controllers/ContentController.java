@@ -109,7 +109,7 @@ public class ContentController {
                               @RequestParam(value = "mini-content", required = false)String miniContent,
                               @RequestParam(value = "image-link", required = false)String imageLink,
                               @RequestParam(value = "id", required = false)Long id,
-                              @RequestParam(value = "publish", required = false)Boolean publish,
+                              @RequestParam(value = "publish", required = false, defaultValue = "false")Boolean publish,
                               @RequestParam(value = "create", required = false)Boolean create,
                               @RequestParam(value = "redact", required = false)Boolean redact,
                               @RequestParam(value = "delete", required = false)Boolean delete,
@@ -119,6 +119,8 @@ public class ContentController {
                               Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
+        if (imageLink != null && imageLink.isEmpty())
+            imageLink = "/img/lost-page.png";
         if ((create != null && create) || (redact != null && redact) || (delete != null && delete))
             return editContentAction(create, redact, delete, redactId, deleteId, createType, model);
         ContentDescription res;
@@ -191,7 +193,7 @@ public class ContentController {
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){
         Long id;
         try {
-            if (title == null || content == null || type == null || miniContent == null || publish == null) {
+            if (title == null || content == null || type == null || miniContent == null) {
                 LOG.error("Some of this is null: title || content || type || miniContent");
                 return null;
             }
