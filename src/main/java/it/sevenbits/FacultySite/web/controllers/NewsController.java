@@ -5,6 +5,7 @@ import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionMode
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
@@ -17,26 +18,48 @@ import java.util.List;
 
 @Controller
 public class NewsController {
-    private static Logger LOG = Logger.getLogger(HomeController.class);
+    private static Logger LOG = Logger.getLogger(NewsController.class);
 
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
     @RequestMapping(value = "/news")
-    public String news(@RequestParam(value="News", required = false) String newsType, @RequestParam(value="NewsId", required = false) Long newsId, @ModelAttribute ImageDescriptionForm form, Model model) {
+    public String news(@RequestParam(value="News", required = false) String newsType,
+                       @RequestParam(value="NewsId", required = false) Long newsId,
+                       @ModelAttribute ImageDescriptionForm form,
+                       Model model) {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
+        model.addAttribute("title", "Новости ОмГУ");
+        return constructNews(newsType, newsId, form, true, model, contentOfPagesService);
+    }
 
+    public static String constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("root", true);
+            model.addAttribute("canCreate", true);
+            model.addAttribute("createType", "News:");
+        }
         if (newsId != null){
-            ContentDescription news = getContentById(newsId);
+            if (newsId < 1)
+                return "redirect:/news?News=All";
+            ContentDescription news = getContentById(newsId, contentOfPagesService);
+
             if (news == null)
                 return "redirect:/news?News=All";
             model.addAttribute("title", news.getTitle());
             model.addAttribute("description", news.getDescription());
             model.addAttribute("do", "id");
+            if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+                model.addAttribute("createType", news.getType());
+                model.addAttribute("canRedact", true);
+                model.addAttribute("canDelete", true);
+                model.addAttribute("redactId", news.getId());
+                model.addAttribute("deleteId", news.getId());
+            }
         }
         else{
-            List<ContentDescriptionModel> news = getContentByType(newsType);
+            List<ContentDescriptionModel> news = getContentByType(newsType, publish, contentOfPagesService);
             List<Long> ids = new ArrayList<>();
             List<String> titles = new ArrayList<>();
             List<String> img_links = new ArrayList<>();
@@ -56,7 +79,7 @@ public class NewsController {
         return "home/news";
     }
 
-    public ContentDescription getContentById(Long id){
+    public static ContentDescription getContentById(Long id, ContentOfPagesService contentOfPagesService){
         try{
             return contentOfPagesService.getPageById(id);
         }
@@ -66,11 +89,15 @@ public class NewsController {
         return new ContentDescription();
     }
 
-    public List<ContentDescriptionModel> getContentByType(String type){
+    public static List<ContentDescriptionModel> getContentByType(String type, Boolean publish, ContentOfPagesService contentOfPagesService){
         try{
-            if (type == null || type.equals("All"))
-                return contentOfPagesService.getPagesWhichContainType("News:%");
-            return contentOfPagesService.getPagesByType("News:"+type);
+            if (type == null || type.equals("All")) {
+                if (publish == null) {
+                    return contentOfPagesService.getPagesWhichContainType("News:%");
+                }
+                return contentOfPagesService.getPagesWhichContainTypeIsPublish("News:%", publish);
+            }
+            return contentOfPagesService.getPagesWhichContainTypeIsPublish("News:" + type, publish);
         }
         catch (Exception e){
             LOG.error(e.getMessage());

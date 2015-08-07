@@ -4,15 +4,18 @@ html
 		meta(charset="utf-8")
 		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		meta(name="viewport", content="width=device-width, initial-scale=1")
-		title Новости - ОмГУ - Общие
+		title= title
 		include general-includes.jade
 		link(rel='stylesheet', href='/css/gallery.css')
 	body
 		include forms/header.jade
-		div.container.center
+		div.container
+			if (root)
+				include forms/redact-content.jade
+				+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 			if (do == "id")
 				include forms/news/news-full-form.jade
-				+news-full-form(title, description)
+				+news-full-form(description)
 			else
 				include forms/news/news-preview.jade
 				each id, i in ids

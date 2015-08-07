@@ -1,0 +1,1 @@
+ALTER TABLE content_of_pages ALTER COLUMN image_link SET DEFAULT '/img/lost-page.png';
