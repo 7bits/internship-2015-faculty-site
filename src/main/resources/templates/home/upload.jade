@@ -8,7 +8,7 @@ head
 	include general-includes.jade
 body
 	form(method="post", enctype="multipart/form-data")
-		input(type="file", name="file")
+		input(type="file", name="file", accept="image/jpeg,image/png,image/gif")
 		input(type="submit", value="Upload") Press here to upload the file!
 	if (path != null && path != false)
 		p Ссылка на последний загруженный файл:
