@@ -1,12 +1,12 @@
 mixin news-preview-form(link, id, title, date)
 	div.gallery-album-main-container
 		a.gallery-album-container(href='/news?NewsId=#{id}')
-			div.gallery-album-image-container
+			div.gallery-album-image-container.center
 				if link != null
 					img.gallery-album-image(src= link)
 				else
 					img.gallery-album-image(src= "/img/lost-page.png")
 			div.gallery-album-description-container
-				div.gallery-album-title#title_post(maxlength=65)= title
+				div.gallery-album-title.center#title_post(maxlength=65)= title
 				if date != null
 					div.gallery-album-date#post_date= date
