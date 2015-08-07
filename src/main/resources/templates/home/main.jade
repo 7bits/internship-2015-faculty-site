@@ -27,7 +27,7 @@ body
 		div.all-news
 			div.news
 				a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
-					h4 Институт математики и иформационных технологий
+					+main-page-info-block("Институт математики и иформационных технологий", "")
 			each newer, i in news
 				div.news
 					a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')

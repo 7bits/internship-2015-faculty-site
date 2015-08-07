@@ -45,7 +45,8 @@
 .news{
 	/*float: left;*/
 	padding: 5px;
-	min-height: 20%;
+	overflow: hidden;
+	border: 1px solid #bababa;
 }
 
 footer{
