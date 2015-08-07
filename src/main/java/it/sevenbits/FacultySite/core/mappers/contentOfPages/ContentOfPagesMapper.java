@@ -21,7 +21,7 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getAllPages();
 
-    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, mini_content, type, image_link) VALUES (#{title}, #{description}, 'today', 'now', #{miniContent}, #{type}, #{imageLink})")
+    @Insert("INSERT INTO content_of_pages (title, description, creating_date, creating_time, mini_content, type, image_link, publish) VALUES (#{title}, #{description}, 'today', 'now', #{miniContent}, #{type}, #{imageLink}, #{publish})")
     @Options(keyProperty = "id", useGeneratedKeys = true)
     void saveContentOfPage(final ContentDescription description);
 

@@ -114,7 +114,7 @@ public class ContentController {
         return "home/edit_content";
     }
 
-    @RequestMapping(value = "/edit_content", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit_content")
     public String editContent(@RequestParam(value = "content", required = false)String content,
                               @RequestParam(value = "title", required = false)String title,
                               @RequestParam(value = "type", required = false)String type,
