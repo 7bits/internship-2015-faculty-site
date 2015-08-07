@@ -62,8 +62,7 @@ public class ContentController {
         String name = input;
         String partsOfName[] = name.split("\\.");
         name = "." + partsOfName[partsOfName.length-1];
-        String oldName = input.replace(name, "");
-        name = UUID.fromString(oldName).toString() + name;
+        name = UUID.randomUUID().toString() + name;
         return name;
     }
 
