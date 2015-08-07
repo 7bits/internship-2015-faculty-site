@@ -1,3 +1,26 @@
+.example2 {
+    /*display:inline-block;   */
+    position:relative;
+ 
+}
+.example2 span {
+    display:inline-block;
+    position:absolute;
+    top:240px;   
+    left:0px;
+     
+    /* Оформление текста */
+    color:#FFF;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:20px; 
+     
+    /* Фон */
+    background-color:rgba(0,0,0,.4);
+    padding:10px 30px;
+}
+
+
+
 .one-page-slider-header img{
 	/*height: 340px;*/
 	width: 100%;
@@ -22,9 +45,7 @@
 .news{
 	/*float: left;*/
 	padding: 5px;
-	height: 20%;
-	overflow: hidden;
-	border: 1px solid #bababa;
+	min-height: 20%;
 }
 
 footer{
