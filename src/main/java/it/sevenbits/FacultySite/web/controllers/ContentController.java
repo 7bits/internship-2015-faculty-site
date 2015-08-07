@@ -166,7 +166,7 @@ public class ContentController {
 
     private ContentDescription updateContent(Long id, String title, String content, String miniContent, String imageLink, String type, Boolean publish){
         try {
-            if ((id == null || id < 1) || (title == null || content == null))
+            if ((id == null || id < 1) || (title == null || content == null || content.isEmpty() ))
                 return null;
             ContentDescription page = contentOfPagesService.getPageById(id);
             if (!type.isEmpty() && !content.isEmpty()) {
@@ -205,7 +205,7 @@ public class ContentController {
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){
         Long id;
         try {
-            if (title == null || content == null || type == null || miniContent == null) {
+            if (title == null || content == null || content.isEmpty() || type == null || miniContent == null) {
                 LOG.error("Some of this is null: title || content || type || miniContent");
                 return null;
             }
