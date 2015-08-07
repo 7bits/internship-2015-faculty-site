@@ -49,6 +49,7 @@ footer{
 	max-width:100%;
 }
 .one-page-slider{
+	padding-left: 130px;
 	overflow: hidden;
 }
 
@@ -65,4 +66,43 @@ footer{
 	padding-top: 10px;
 	float: left;
 	width: 44%
+}
+/****ТЕКСТ НА ФОТО****/
+.imgteaser { /* общий блок */
+  position: relative;
+  display: table;
+  /*?margin: 0 auto;*/
+  /*border: 10px solid #456;*/
+  line-height: 0;
+  /*color: rgb(223,223,223);*/
+  cursor: pointer;
+}
+
+/*.imgteaser:after { 
+  content: "подробнее \bb";
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 5px 10px;
+  background: rgba(17,34,51,.6);
+  line-height: 1.6em;}
+.imgteaser:hover:after {content: none;}
+
+.imgteaser figcaption {display: none;}*/
+.imgteaser:hover figcaption { /* прозрачная область */
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  /*right: 10px;*/
+  /*padding: 5px 10px;*/
+  background: rgba(68,85,102,.7);
+  font-size: 80%;
+  line-height: 1.3em;
+}
+
+.imgteaser:hover figcaption strong { /* заголовок */
+  display: block;
+  line-height: 2em;
+  font-size: 110%;
 }

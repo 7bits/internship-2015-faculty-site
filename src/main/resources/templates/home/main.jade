@@ -16,8 +16,8 @@ body
 
 			div.one-page-slider-header
 				img(src='/img/main-page-slider-photo/2.jpg')	
-			//- div.one-page-slider-header
-			//- 		img(src='/img/main-page-slider-photo/4m.jpg')
+			div.one-page-slider-header
+				img(src='/img/main-page-slider-photo/4m.jpg')
 
 
 
@@ -155,15 +155,23 @@ body
 	script(src='/js/main-page/jquery.liquid-slider.min.js')
 	script.
 		$('#header-slider').liquidSlider({
+			dynamicArrows:false,
 			minHeight:30,
 			autoSlide:true,
 			autoHeight: false
 		});	
 		$('#main-info-slider').liquidSlider({
+			//- slideEaseDuration: 9999,
+			continuous: false,
+			minHeight:300,
+			dynamicArrows:false,
+			slideEaseFunction: false
 		//	autoHeight:false,
 		//	minHeight:300
 		});
 		$('#footer-slider').liquidSlider({
-			autoSlide:true
+			dynamicArrowsGraphical: false,
+			hoverArrows: false,
+			autoSlide:false
 		});	
 		var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')
