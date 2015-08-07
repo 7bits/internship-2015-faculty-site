@@ -2,10 +2,13 @@
     overflow:hidden;
     right:0px;
     top:50px;
-    width: 20%;
+    width: 10%;
     position: fixed;
+    text-align: right;
+    opacity: 0.65;
 }
 
 .admin-instruments-content-redact-forms {
-    float:left;
+    width:100%;
+    height:30px;
 }
