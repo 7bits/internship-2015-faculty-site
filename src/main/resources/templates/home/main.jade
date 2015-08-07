@@ -8,22 +8,15 @@ head
 	include general-includes.jade
 body
 	include forms/header.jade
-
+	include forms/main/main-page-info-block.jade
 	div.header-slider-global
 		#header-slider.liquid-slider
 			div.one-page-slider-header
 				img(src='/img/main-page-slider-photo/1.jpg')
-
 			div.one-page-slider-header
 				img(src='/img/main-page-slider-photo/2.jpg')	
 			div.one-page-slider-header
 				img(src='/img/main-page-slider-photo/4m.jpg')
-
-
-
-
-
-
 	div.content
 		div.all-news
 			div.news
@@ -31,38 +24,10 @@ body
 					h4 Институт математики и иформационных технологий
 					p.
 						Хороший факультет, не пожалеешь
-			div.news
-				a(href='#slide-2', onclick='api2.setNextPanel(1);api2.updateClass($(this))')
-					h4 Заголовок новости2
-					p.
-						Текст новости
-						Текст новости
-						Текст новости
-						Текст новости
-			div.news
-				a(href='#slide-3', onclick='api2.setNextPanel(2);api2.updateClass($(this))')
-					h4 Заголовок новости3
-					p.
-						Текст новости
-						Текст новости
-						Текст новости
-						Текст новости
-			div.news
-				a(href='#slide-4', onclick='api2.setNextPanel(3);api2.updateClass($(this))')
-					h4 Заголовок новости4
-					p.
-						Текст новости
-						Текст новости
-						Текст новости
-						Текст новости
-			div.news
-				a(href='#slide-5', onclick='api2.setNextPanel(4);api2.updateClass($(this))')
-					h4 Заголовок новости5
-					p.
-						Текст новости
-						Текст новости
-						Текст новости
-						Текст новости
+			each newer, i in news
+				div.news
+					a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')
+						+main-page-info-block(newer.title, newer.miniContent)
 		div.main-info
 			#main-info-slider.liquid-slider
 				div
@@ -70,24 +35,10 @@ body
 					h1 Институт математики и иформационных технологий
 					p.
 						Хороший факультет, не пожалеешь
-				div
-					h2 Заголовок 2й новости
-					p Pellentesque habitant morbi tristique senectus 
-					
-				div
-					h2 Заголовок 3й новости
-					p
-					| Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
-				div
-					h2 Заголовок 4й новости
-					p
-					| Proin nec dolor dictum lacinia. Nullam nunc magna, tincidunt eu porta in, faucibus sed magna. Suspendisse laoreet ornare ullamcorper. Nulla in tortor nibh. Pellentesque sed est vitae odio vestibulum aliquet in nec leo.
-				div
-					h2 Заголовок 5й новости
-					p 111111111111111111111111111111111111111111111111
-					p 22222222222222222222222222
-					p 333333333333333333333333333333333
-					p 444444444444444444444444444444444444444
+				each newer in news
+					div
+						p!= newer.description
+
 					
 			div.slider-footer	
 				#footer-slider.liquid-slider
