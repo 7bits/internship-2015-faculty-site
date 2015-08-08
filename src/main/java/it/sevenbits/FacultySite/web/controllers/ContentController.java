@@ -11,13 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.UUID;
 
-import it.sevenbits.FacultySite.web.controllers.NewsController;
-import sun.security.x509.UniqueIdentity;
+import javax.imageio.ImageIO;
 
 @Controller
 public class ContentController {
@@ -26,6 +29,11 @@ public class ContentController {
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
+
+    static public final double relationSide = 1/1;
+    static public final double miniImgWidth = 240;
+    static public final double miniImgHeight = miniImgWidth/relationSide;
+
     @RequestMapping(value="/upload", method=RequestMethod.GET)
     String handleFileUpload(){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
@@ -33,6 +41,35 @@ public class ContentController {
         return "home/upload";
     }
 
+    public static BufferedImage resizeImage(BufferedImage src, double destWidth, double destHeight){
+        src = cutToSquare(src);
+        src = scaleToSize(src, (int)destWidth, (int)destHeight);
+        return src;
+    }
+
+    public static BufferedImage cutToSquare(BufferedImage src){
+        double w = src.getWidth();
+        double h = src.getHeight();
+        double cutW = w;
+        double cutH = h;
+        if (cutW>cutH)
+            cutW = cutH;
+        else
+            cutH = cutW;
+        double startX = (w-cutW)/2;
+        double startY = (h-cutH)/2;
+        src = src.getSubimage((int) startX, (int) startY, (int) cutW, (int) cutH);
+        return src;
+    }
+
+    public static BufferedImage scaleToSize(BufferedImage src, int w, int h){
+        BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        AffineTransform scales = new AffineTransform();
+        AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
+        scales.scale(src.getWidth()/w, src.getHeight()/h);
+        res = resScale.filter(src, res);
+        return res;
+    }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam(value = "file", required = false) MultipartFile file){
@@ -42,14 +79,29 @@ public class ContentController {
         if (file != null && !file.isEmpty()) {
             try {
                 String name = generateName(file.getOriginalFilename());
+                String parts[] = name.split("\\.");
+                String type = parts[parts.length-1];
+
                 byte[] bytes = file.getBytes();
-                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/bigi/";//for server
-                String path = "src/main/resources/public/img/bigi/";
+                String bigi = "bigi/";
+                String mini = "mini/";
+                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+                String path = "src/main/resources/public/img/";
+                File src = new File(path+bigi+name);
+                File miniFile = new File(path+mini+name);
                 BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(path+name)));
+                        new BufferedOutputStream(new FileOutputStream(src));
                 stream.write(bytes);
                 stream.close();
-                toOut += "Ссылка на загруженную картинку:<p> /img/bigi/"+name;
+                BufferedImage srcImg = ImageIO.read(src);
+                BufferedImage miniImg = resizeImage(srcImg, miniImgWidth, miniImgHeight);
+                if (miniFile.createNewFile()) {
+                    ImageIO.write(miniImg, type, miniFile);
+                }
+                toOut += "Ссылка на загруженную картинку в большом размере:<p> /img/"+bigi+name + "<p>";
+                toOut += "Ссылка на миниатюру:<p> /img/"+mini+name + "<p>";
+                toOut += "<img src='/img/"+bigi+name + "'></img>";
+                toOut += "<img src='/img/"+mini+name + "'></img>";
             } catch (Exception e) {
                 toOut +=  ("Вам не удалось загрузить " + file.getName() + ": " + e.getMessage());
             }
