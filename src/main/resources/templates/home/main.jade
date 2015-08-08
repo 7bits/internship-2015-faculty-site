@@ -12,16 +12,16 @@ body
 	div.header-slider-global
 		#header-slider.liquid-slider
 			div.one-page-slider-header
-				.example2
-					img.example_beauty(src='/img/main-page-slider-photo/1.jpg')
+				.text-on-img
+					img(src='/img/main-page-slider-photo/1.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 1й слайд!
 			div.one-page-slider-header
-				.example2
-					img.example_beauty(src='/img/main-page-slider-photo/2.jpg')
+				.text-on-img
+					img(src='/img/main-page-slider-photo/2.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 2й слайд!	
 			div.one-page-slider-header
-				.example2
-					img.example_beauty(src='/img/main-page-slider-photo/4.jpg')
+				.text-on-img
+					img(src='/img/main-page-slider-photo/4.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 3й слайд!
 	div.content
 		div.all-news
@@ -118,7 +118,7 @@ body
 	script(src='/js/main-page/jquery.liquid-slider.min.js')
 	script.
 		$('#header-slider').liquidSlider({
-			dynamicArrows:false,
+			//- dynamicArrows:false,
 			minHeight:30,
 			autoSlide:true,
 			autoHeight: false

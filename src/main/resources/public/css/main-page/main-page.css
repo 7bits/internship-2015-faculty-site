@@ -1,12 +1,12 @@
-.example2 {
+.text-on-img {
     /*display:inline-block;   */
     position:relative;
  
 }
-.example2 span {
+.text-on-img span {
     display:inline-block;
     position:absolute;
-    top:240px;   
+    top:252px;   
     left:0px;
      
     /* Оформление текста */
