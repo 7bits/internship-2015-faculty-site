@@ -41,33 +41,42 @@ public class ContentController {
         return "home/upload";
     }
 
-    public static BufferedImage resizeImage(BufferedImage src, double destWidth, double destHeight){
-        src = cutToSquare(src);
-        src = scaleToSize(src, (int)destWidth, (int)destHeight);
+    public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight){
+        src = cutImageToSquare(src, null, null, null, null);
+        src = scaleToSize(src, destWidth, destHeight);
         return src;
     }
 
-    public static BufferedImage cutToSquare(BufferedImage src){
+    public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH){
         double w = src.getWidth();
         double h = src.getHeight();
-        double cutW = w;
-        double cutH = h;
+        if (cutW == null) {
+            cutW = w;
+        }
+        if (cutH == null){
+            cutH = h;
+        }
         if (cutW>cutH)
             cutW = cutH;
         else
             cutH = cutW;
-        double startX = (w-cutW)/2;
-        double startY = (h-cutH)/2;
-        src = src.getSubimage((int) startX, (int) startY, (int) cutW, (int) cutH);
+        if (startX == null) {
+            startX = (w - cutW) / 2;
+        }
+        if (startY == null){
+            startY = (h-cutH)/2;
+        }
+        src = src.getSubimage(startX.intValue(), startY.intValue(), cutW.intValue(), cutH.intValue());
         return src;
     }
 
-    public static BufferedImage scaleToSize(BufferedImage src, int w, int h){
+    public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h){
         BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
         AffineTransform scales = new AffineTransform();
+        scales.scale(w/src.getWidth(), h/src.getHeight());
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
-        scales.scale(src.getWidth()/w, src.getHeight()/h);
         res = resScale.filter(src, res);
+        res = cutImageToSquare(res, 0.0, 0.0, w, h);
         return res;
     }
 
@@ -99,8 +108,8 @@ public class ContentController {
                     ImageIO.write(miniImg, type, miniFile);
                 }
                 toOut += "Ссылка на загруженную картинку в большом размере:<p> /img/"+bigi+name + "<p>";
-                toOut += "Ссылка на миниатюру:<p> /img/"+mini+name + "<p>";
                 toOut += "<img src='/img/"+bigi+name + "'></img>";
+                toOut += "Ссылка на миниатюру:<p> /img/"+mini+name + "<p>";
                 toOut += "<img src='/img/"+mini+name + "'></img>";
             } catch (Exception e) {
                 toOut +=  ("Вам не удалось загрузить " + file.getName() + ": " + e.getMessage());
