@@ -3,6 +3,7 @@ package it.sevenbits.FacultySite.web.controllers;
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
+import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,59 +31,11 @@ public class ContentController {
     ContentOfPagesService contentOfPagesService;
 
 
-    static public final double relationSide = 1/1;
-    static public final double miniImgWidth = 240;
-    static public final double miniImgHeight = miniImgWidth/relationSide;
-
     @RequestMapping(value="/upload", method=RequestMethod.GET)
     String handleFileUpload(){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         return "home/upload";
-    }
-
-    public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight){
-        src = cutImageToSquare(src, null, null, null, null);
-        src = scaleToSize(src, destWidth, destHeight, null, null);
-        return src;
-    }
-
-    public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH){
-        double w = src.getWidth();
-        double h = src.getHeight();
-        if (cutW == null || cutW <= 0) {
-            cutW = w;
-        }
-        if (cutH == null || cutH <= 0){
-            cutH = h;
-        }
-        if (cutW>cutH)
-            cutW = cutH;
-        else
-            cutH = cutW;
-        if (startX == null || startX < 0) {
-            startX = (w - cutW) / 2;
-        }
-        if (startY == null || startY < 0){
-            startY = (h-cutH)/2;
-        }
-        src = src.getSubimage(startX.intValue(), startY.intValue(), cutW.intValue(), cutH.intValue());
-        return src;
-    }
-
-    public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
-        BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        AffineTransform scales = new AffineTransform();
-        if (scaleX != null && scaleY != null && (scaleX > 0 && scaleY > 0)) {
-            scales.scale(scaleX, scaleY);
-        }
-        else {
-            scales.scale(w / src.getWidth(), h / src.getHeight());
-        }
-        AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
-        res = resScale.filter(src, res);
-        res = cutImageToSquare(res, 0.0, 0.0, w, h);
-        return res;
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
@@ -108,7 +61,7 @@ public class ContentController {
                 stream.write(bytes);
                 stream.close();
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = resizeImage(srcImg, miniImgWidth, miniImgHeight);
+                BufferedImage miniImg = ImageDescriptionService.resizeImage(srcImg, null, null);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }
