@@ -50,20 +50,20 @@ public class ContentController {
     public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH){
         double w = src.getWidth();
         double h = src.getHeight();
-        if (cutW == null) {
+        if (cutW == null || cutW <= 0) {
             cutW = w;
         }
-        if (cutH == null){
+        if (cutH == null || cutH <= 0){
             cutH = h;
         }
         if (cutW>cutH)
             cutW = cutH;
         else
             cutH = cutW;
-        if (startX == null) {
+        if (startX == null || startX < 0) {
             startX = (w - cutW) / 2;
         }
-        if (startY == null){
+        if (startY == null || startY < 0){
             startY = (h-cutH)/2;
         }
         src = src.getSubimage(startX.intValue(), startY.intValue(), cutW.intValue(), cutH.intValue());
