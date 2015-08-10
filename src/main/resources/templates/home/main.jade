@@ -29,7 +29,7 @@ body
 			div.news
 				.my-hover-link
 					a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
-						+main-page-info-block("Институт математики и иформационных технологий", "")
+						+main-page-info-block("Институт математики и иформационных технологий", "Институт математики и иформационных технологий")
 
 			each newer, i in news
 				div.news
@@ -60,7 +60,49 @@ body
 					div
 						p!= newer.description
 
-					
+			p Наши выпускники о факультете
+			div.slider-footer	
+				#reviews-slider.liquid-slider
+					div.one-page-slider
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+					div.one-page-slider
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+					div.one-page-slider
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')	
+					div.one-page-slider
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+						.one-page-slider-img
+							img(src='/img/logo.png')
+
+
+
+			p Наши партнеры и работадатели
 			div.slider-footer	
 				#footer-slider.liquid-slider
 					div.one-page-slider
@@ -135,6 +177,11 @@ body
 			dynamicArrowsGraphical:false
 		//	autoHeight:false,
 		//	minHeight:300
+		});
+			$('#reviews-slider').liquidSlider({
+			dynamicArrowsGraphical: false,
+			hoverArrows: false,
+			autoSlide:false
 		});
 		$('#footer-slider').liquidSlider({
 			dynamicArrowsGraphical: false,
