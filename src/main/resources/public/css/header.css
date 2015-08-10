@@ -6,20 +6,19 @@
 .header {
 	position: fixed;
 	width: 100%;
-	/*overflow: hidden;*/
     height: contain;
-    background-color: #319bba;
+    background-color: #ffffff;
     margin-bottom: 10px;
-    font-size: 18px;
-    font-family: "Open Sans Light";
-    color: #ffffff;
+    font-size: 15px;
+    font-family: sans-serif;
+    color: #000000;
     top: 0px;
     line-height: 1;
     z-index: 9999;
 }
 
 .header-element {
-    margin: 0px 10px;
+    padding: 0px 40px;
     float: left;
     height: 100%;
 	outline: none;
@@ -28,40 +27,43 @@
 }
 
 .header-element-text {
-	padding-top: 13px;
-	padding-bottom: 14px;
-	color: #ffffff;
+	padding-top: 23px;
+	padding-bottom: 22px;
+	color: #000000;
 	outline: none;
 	display: inherit;
+	font-weight: 400;
+	cursor: pointer;
 }
 
 .header-element-text:hover{
 	text-decoration: none;
 	color: #ffffff;
-	padding-bottom: 10px;
-	border-bottom: 4px solid #52c5de;
+	background-color: #319bba;
 	outline: none;
 }
 
-.header-element-logo{
-	margin-left: 25px;
-}
 
 .header-dropdown-container {
 	position: fixed;
 	display: none;
-	background-color: #319bba;
+	background-color: #ffffff;
 	list-style: none;
 	overflow: inherit;
 	padding: 0px;
 	height: contain;
+	margin-top: 21px;
 }
 
 
 .header-dropdown-element {
 	float: none;
-	font-size: -4px;
-	width: 150px;
+	font-size: 14px;
+	width: 200px;
+	text-align: center;
+	margin: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .header-element:hover .header-dropdown-container{
