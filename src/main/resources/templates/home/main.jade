@@ -9,6 +9,7 @@ head
 body
 	include forms/header.jade
 	include forms/main/main-page-info-block.jade
+
 	div.header-slider-global
 		#header-slider.liquid-slider
 			div.one-page-slider-header
@@ -26,8 +27,10 @@ body
 	div.content
 		div.all-news
 			div.news
-				a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
-					+main-page-info-block("Институт математики и иформационных технологий", "")
+				.my-hover-link
+					a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
+						+main-page-info-block("Институт математики и иформационных технологий", "")
+
 			each newer, i in news
 				div.news
 					a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')

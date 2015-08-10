@@ -91,3 +91,8 @@ footer{
 	float: left;
 	width: 44%
 }
+
+
+.my-hover-link a:active{
+	color:white; background-color: blue;
+}
