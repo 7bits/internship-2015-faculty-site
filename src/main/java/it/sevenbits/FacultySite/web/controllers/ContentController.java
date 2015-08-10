@@ -43,7 +43,7 @@ public class ContentController {
 
     public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight){
         src = cutImageToSquare(src, null, null, null, null);
-        src = scaleToSize(src, destWidth, destHeight);
+        src = scaleToSize(src, destWidth, destHeight, null, null);
         return src;
     }
 
@@ -70,10 +70,15 @@ public class ContentController {
         return src;
     }
 
-    public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h){
+    public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
         BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
         AffineTransform scales = new AffineTransform();
-        scales.scale(w/src.getWidth(), h/src.getHeight());
+        if (scaleX != null && scaleY != null && (scaleX > 0 && scaleY > 0)) {
+            scales.scale(scaleX, scaleY);
+        }
+        else {
+            scales.scale(w / src.getWidth(), h / src.getHeight());
+        }
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
         res = resScale.filter(src, res);
         res = cutImageToSquare(res, 0.0, 0.0, w, h);
