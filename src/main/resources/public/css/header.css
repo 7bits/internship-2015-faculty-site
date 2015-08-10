@@ -18,11 +18,11 @@
 }
 
 .header-element {
+	position: relative;
     float: left;
     height: 100%;
 	outline: none;
 	display: inherit;
-	overflow: hidden;
 }
 
 .header-logo {
@@ -49,7 +49,7 @@
 
 
 .header-dropdown-container {
-	position: fixed;
+	position: absolute;
 	display: none;
 	background-color: #ffffff;
 	list-style: none;
@@ -57,12 +57,14 @@
 	padding: 0px;
 	height: contain;
 	margin-top: 21px;
+	left: 0;
+	right: 0;
 }
 
 
 .header-dropdown-element {
 	float: none;
-	font-size: 14px;
+	font-size: inherit;
 	width: 100%;
 	text-align: center;
 	margin: 0px;
