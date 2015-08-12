@@ -4,17 +4,15 @@
 }
 
 .header {
-	position: fixed;
+	position: absolute;
 	width: 100%;
-    height: contain;
     background-color: #ffffff;
     margin-bottom: 10px;
     font-size: 15px;
     font-family: sans-serif;
     color: #000000;
-    top: 0px;
     line-height: 1;
-    z-index: 9999;
+    z-index: 2;
 }
 
 .header-element {
@@ -23,6 +21,7 @@
     height: 100%;
 	outline: none;
 	display: inherit;
+	z-index: 3;
 }
 
 .header-logo {
@@ -69,6 +68,7 @@
 	text-align: center;
 	margin: 0px;
 	padding: 10px 20px;
+	border-top: 1px solid #adadad;
 }
 
 .header-element:hover .header-dropdown-container{
