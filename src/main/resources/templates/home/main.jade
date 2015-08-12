@@ -16,6 +16,8 @@ body
 				.text-on-img
 					img(src='/img/main-page-slider-photo/1.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 1й слайд!
+					.nav-on-slider
+						p 1 2 3
 			div.one-page-slider-header
 				.text-on-img
 					img(src='/img/main-page-slider-photo/2.jpg')
@@ -23,138 +25,109 @@ body
 			div.one-page-slider-header
 				.text-on-img
 					img(src='/img/main-page-slider-photo/4.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 3й слайд!
-	div.content
-		div.all-news
-			div.news
-				.my-hover-link
-					a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
-						+main-page-info-block("Институт математики и иформационных технологий", "Институт математики и иформационных технологий")
-
-			each newer, i in news
+					span На диплом котируется не только в России, но и за рубежом 3й слайд!
+		div.content
+			div.all-news
 				div.news
-					a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')
-						+main-page-info-block(newer.title, newer.miniContent)
-		div.main-info
-			#main-info-slider.liquid-slider
-				div
-					h4 ОмГУ им. Ф. М. Достоевского
-					h1 Институт математики и иформационных технологий
-					p.
-						ИМИТ (ранее – математический факультет) для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.
-					p.
-						На нашем факультете прием абитуриентов и обучение студентов ведётся по направлению: «Прикладная математика и информатика».На младших курсах даётся фундаментальная подготовка, а на старших обучение ведётся по широкому спектру специализаций: системное программирование; математические методы защиты информации;  информационное обеспечение экономической деятельности и т.д..
-					p.
-						Выпускники факультета легко найдут себе работу по специальности не только в нашем регионе, но и за его пределами, в том числе в США, Великобритании, Канаде или Германии. Спасибо за это нужно сказать нашим бывшим сотрудникам, преподавателям, выпускникам, в свое время перебравшимися за рубеж, но поддерживающим связь с факультетом. Проблем с конвертацией диплома выпускники факультета не испытывают.
-					p.
-						Что немаловажно, у нас целых 90 бюджетных, то есть  совершенно бесплатных (для абитуриентов!) мест и целых 20 бюджетных мест в магистратуре.
-					p.
-						Поступай и учись бесплатно на лучшем факультете города!
-					p.
-						Деканат находится по адресу: Проспект Мира 55/а (первый корпус ОмГУ), каб. 217
-					p.
-						Телефоны:  (3812) 64-42-38, (3812) 22-56-96
-					p.
-						Часы работы: пн-пт с 9:00 до 17:00
-				each newer in news
+						a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
+							+main-page-info-block("Институт математики и иформационных технологий", "Институт математики и иформационных технологий")
+				div.text-news
+				p Новости
+				p Дата
+				each newer, i in news
+					div.news
+						.vertical-line
+							a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')
+								+main-page-info-block(newer.title, "Заголовок")//-newer.miniContent
+			div.main-info
+				#main-info-slider.liquid-slider
 					div
-						p!= newer.description
+						h4 ОмГУ им. Ф. М. Достоевского
+						h1 Институт математики и иформационных технологий
+						p.
+							ИМИТ (ранее – математический факультет) для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.
+						p.
+							На нашем факультете прием абитуриентов и обучение студентов ведётся по направлению: «Прикладная математика и информатика».На младших курсах даётся фундаментальная подготовка, а на старших обучение ведётся по широкому спектру специализаций: системное программирование; математические методы защиты информации;  информационное обеспечение экономической деятельности и т.д..
+						p.
+							Выпускники факультета легко найдут себе работу по специальности не только в нашем регионе, но и за его пределами, в том числе в США, Великобритании, Канаде или Германии. Спасибо за это нужно сказать нашим бывшим сотрудникам, преподавателям, выпускникам, в свое время перебравшимися за рубеж, но поддерживающим связь с факультетом. Проблем с конвертацией диплома выпускники факультета не испытывают.
+						p.
+							Что немаловажно, у нас целых 90 бюджетных, то есть  совершенно бесплатных (для абитуриентов!) мест и целых 20 бюджетных мест в магистратуре.
+						p.
+							Поступай и учись бесплатно на лучшем факультете города!
+						p.
+							Деканат находится по адресу: Проспект Мира 55/а (первый корпус ОмГУ), каб. 217
+						p.
+							Телефоны:  (3812) 64-42-38, (3812) 22-56-96
+						p.
+							Часы работы: пн-пт с 9:00 до 17:00
+					each newer in news
+						div
+							p!= newer.description
+				div.info-about-slider
+					p Наши выпускники о факультете  
+					a(href='#') Читать все истории
+				div.slider-footer	
+					#reviews-slider.liquid-slider
+						div.one-page-reviews-slider
+							div.one-page-reviews-slider-img
+								img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
+							div.one-page-reviews-slider-text
+								h3 Сергей Корcаков
+								h4 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+								h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+						div.one-page-reviews-slider
+							.one-page-slider-footer
+								img(src='/img/logo.png')
+							.one-page-slider-footer
+								img(src='/img/logo.png')
+							.one-page-slider-footer
+								img(src='/img/logo.png')
+							.one-page-slider-footer
+								img(src='/img/logo.png')
 
-			p Наши выпускники о факультете
-			div.slider-footer	
-				#reviews-slider.liquid-slider
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')	
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
 
-
-
-			p Наши партнеры и работадатели
-			div.slider-footer	
-				#footer-slider.liquid-slider
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')	
-					div.one-page-slider
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-						.one-page-slider-img
-							img(src='/img/logo.png')
-		
-	footer
-		div.copyright
-			p(style='color:#ffffff') 2013 © ИМИТ ОмГУ им. Ф.М. Достоевского
-		div.social-net
-			a(href='http://vk.com/imit_omsu')
-				img(src='/img/logo/vk.png')
-			a(href='https://www.youtube.com/user/IMITOmsk')
-				img(src='/img/logo/yt.png')
-			a(href='http://imit_omsu.livejournal.com/')
-				img(src='/img/logo/lj.png')
-
-		div.info-about-faculty
-			p(style='color:#ffffff') Деканат:  64-42-38. Приемная комиссия:  22-97-72
+				div.info-about-slider
+					p Наши партнеры и работадатели
+					a(href='#') Все партнеры
+				div.slider-footer	
+					#footer-slider.liquid-slider
+						div.one-page-slider-footer
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/logo.png',width='139', height='60')
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/Luxoft.png',width='139', height='60')
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/onpz.jpg',width='139', height='60')
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/Un.png',width='139', height='60')
+						div.one-page-slider
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/logo.png',width='139', height='60')
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/Luxoft.png',width='139', height='60')
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/onpz.jpg',width='139', height='60')
+							.one-page-slider-footer-img
+								img(src='/img/main-page-slider-photo/Un.png',width='139', height='60')
+			
+		div.footer
+			div.copyright
+				p(style='color:#ffffff') 2015 © ИМИТ ОмГУ им. Ф.М. Достоевского
+			div.social-net
+				a(href='https://www.youtube.com/user/IMITOmsk')
+					img(src='/img/logo/yt.png')
+				a(href='http://imit_omsu.livejournal.com/')
+					img(src='/img/logo/lj.png')
+				a(href='http://vk.com/imit_omsu')
+					img(src='/img/logo/vk.png')
+			div.info-about-faculty
+				.info-about-faculty-line
+					img(src='/img/logo/yt.png') 
+				p(style='color:#ffffff')   Пр.Мира 55/а
+				.info-about-faculty-line
+					img(src='/img/logo/yt.png') 
+				p(style='color:#ffffff')   Пр.Мира 55/а	
+						
 
 
 	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
@@ -166,19 +139,23 @@ body
 			//- dynamicArrows:false,
 			minHeight:30,
 			autoSlide:true,
-			autoHeight: false
+			autoHeight: false,
+			swipe: true
 		});	
 		$('#main-info-slider').liquidSlider({
 			//- slideEaseDuration: 9999,
 			//continuous: false,
+			heightEaseDuration: 0,
 			minHeight:400,
+			swipe: false,
+			autoHeight: true,
 			dynamicArrows:false,
 			slideEaseFunction: false,
 			dynamicArrowsGraphical:false
 		//	autoHeight:false,
 		//	minHeight:300
 		});
-			$('#reviews-slider').liquidSlider({
+		$('#reviews-slider').liquidSlider({
 			dynamicArrowsGraphical: false,
 			hoverArrows: false,
 			autoSlide:false
@@ -188,4 +165,5 @@ body
 			hoverArrows: false,
 			autoSlide:false
 		});	
+		var api1 = $.data( $('#header-slider')[0], 'liquidSlider')
 		var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')
