@@ -46,6 +46,13 @@
 	outline: none;
 }
 
+.header-element-text:active{
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #4d60bd;
+	outline: none;
+}
+
 
 .header-dropdown-container {
 	position: absolute;
@@ -54,7 +61,6 @@
 	list-style: none;
 	overflow: inherit;
 	padding: 0px;
-	height: contain;
 	margin-top: 21px;
 	left: 0;
 	right: 0;
@@ -72,5 +78,8 @@
 }
 
 .header-element:hover .header-dropdown-container{
+	display: block;
+}
+.header-element:active .header-dropdown-container{
 	display: block;
 }
