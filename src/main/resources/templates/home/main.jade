@@ -9,25 +9,28 @@ head
 body
 	include forms/header.jade
 	include forms/main/main-page-info-block.jade
+
 	div.header-slider-global
 		#header-slider.liquid-slider
 			div.one-page-slider-header
-				.example2
-					img.example_beauty(src='/img/main-page-slider-photo/1.jpg')
+				.text-on-img
+					img(src='/img/main-page-slider-photo/1.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 1й слайд!
 			div.one-page-slider-header
-				.example2
-					img.example_beauty(src='/img/main-page-slider-photo/2.jpg')
+				.text-on-img
+					img(src='/img/main-page-slider-photo/2.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 2й слайд!	
 			div.one-page-slider-header
-				.example2
-					img.example_beauty(src='/img/main-page-slider-photo/4.jpg')
+				.text-on-img
+					img(src='/img/main-page-slider-photo/4.jpg')
 					span Наш диплом котируется не только в России, но и за рубежом 3й слайд!
 	div.content
 		div.all-news
 			div.news
-				a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
-					+main-page-info-block("Институт математики и иформационных технологий", "")
+				.my-hover-link
+					a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
+						+main-page-info-block("Институт математики и иформационных технологий", "")
+
 			each newer, i in news
 				div.news
 					a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')
@@ -98,6 +101,8 @@ body
 							img(src='/img/logo.png')
 		
 	footer
+		div.copyright
+			p(style='color:#ffffff') 2013 © ИМИТ ОмГУ им. Ф.М. Достоевского
 		div.social-net
 			a(href='http://vk.com/imit_omsu')
 				img(src='/img/logo/vk.png')
@@ -105,8 +110,7 @@ body
 				img(src='/img/logo/yt.png')
 			a(href='http://imit_omsu.livejournal.com/')
 				img(src='/img/logo/lj.png')
-		div.copyright
-			p(style='color:#ffffff') 2013 © ИМИТ ОмГУ им. Ф.М. Достоевского
+
 		div.info-about-faculty
 			p(style='color:#ffffff') Деканат:  64-42-38. Приемная комиссия:  22-97-72
 
@@ -117,7 +121,7 @@ body
 	script(src='/js/main-page/jquery.liquid-slider.min.js')
 	script.
 		$('#header-slider').liquidSlider({
-			dynamicArrows:false,
+			//- dynamicArrows:false,
 			minHeight:30,
 			autoSlide:true,
 			autoHeight: false
