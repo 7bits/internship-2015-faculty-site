@@ -2,6 +2,12 @@ div.header
 	div
 		a.header-element(href="/main")
 			img.header-logo(src="img/logo-imit.png")
+		div.header-element.header-element-text= 'О факультете'
+			ul.header-dropdown-container
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/structure-imit") Структура
+				li
+					a.header-element.header-element-text.header-dropdown-element(href="/partners") Партнеры
 		div.header-element.header-element-text= 'Поступающим'
 			ul.header-dropdown-container
 				li
@@ -17,11 +23,5 @@ div.header
 				li
 					a.header-element.header-element-text.header-dropdown-element(href="/news") Новости
 
-		div.header-element.header-element-text= 'Факультет'
-			ul.header-dropdown-container
-				li
-					a.header-element.header-element-text.header-dropdown-element(href="/structure-imit") Структура
-				li
-					a.header-element.header-element-text.header-dropdown-element(href="/partners") Партнеры
 		a.header-element.header-element-text(href="/#") Расписание
 		a.header-element.header-element-text(href="/contacts") Контакты
