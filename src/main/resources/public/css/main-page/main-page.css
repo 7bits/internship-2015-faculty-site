@@ -33,19 +33,6 @@
     position:absolute;
     top:26%;   
     left:50%;
-     
-    /* Оформление текста */
-    /*color:#FFF;*/
-/*    font-family:Arial, Helvetica, sans-serif;
-    font-size:20px; */
-     
-    /* Фон */
-/*    background-color:rgba(0,0,0,.4);
-    padding:10px 30px;*/
-}
-/*Управляющие кнопки*/
-
-
 }
 
 /*Блок контента*/
@@ -155,6 +142,52 @@
 .one-page-reviews-slider-text{
 	float: left;
 	padding-left: 3%;
+}
+
+.nav-on-slider-reviews{
+	width: 30px;
+	height: 81px;
+	background-image: url('/img/main-page-slider-nav/my_arrow.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+.nav-on-slider-reviews:hover{
+	width: 30px;
+	height: 81px;
+    background-image: url('/img/main-page-slider-nav/arrow-hoverRight.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+/*Управляющие элементы слайдера отзывы выпускников они ТАКИЕ ЖЕ как у слайдера с партнерами*/
+.nav-padding-reviews{
+	padding-left: 95%;
+}
+
+.nav-on-slider-reviews-R{
+	width: 30px;
+	height: 81px;
+	background-image: url('/img/main-page-slider-nav/arrowRight.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+.nav-on-slider-reviews-R:hover{
+	width: 30px;
+	height: 81px;
+    background-image: url('/img/main-page-slider-nav/arrow-hover.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
 }
 
 

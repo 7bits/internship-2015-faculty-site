@@ -9,8 +9,8 @@ head
 body
 	include forms/header.jade
 	include forms/main/main-page-info-block.jade
-
-	include forms/slider-under-header.jade
+	//- Подключение слайдера с фотографиями
+	include forms/sliders/slider-under-header.jade
 	div.content
 		div.all-news
 			div.news
@@ -52,6 +52,12 @@ body
 				p Наши выпускники о факультете  
 				a(href='#') Читать все истории
 			div.slider-footer	
+				.nav-padding-reviews1
+					a(href='#slide', onclick="navSliderReviews.setNextPanel('left');navSliderReviews.updateClass($(this))")
+						.nav-on-slider-reviews
+				.nav-padding-reviews
+					a(href='#slide', onclick="navSliderReviews.setNextPanel('right');navSliderReviews.updateClass($(this))")
+						.nav-on-slider-reviews-R
 				#reviews-slider.liquid-slider
 					div.one-page-reviews-slider
 						div.one-page-reviews-slider-img
@@ -74,7 +80,12 @@ body
 			div.info-about-slider
 				p Наши партнеры и работадатели
 				a(href='#') Все партнеры
-			div.slider-footer	
+			div.slider-footer
+				a(href='#slide', onclick="navSliderFooter.setNextPanel('left');navSliderFooter.updateClass($(this))")
+						.nav-on-slider-reviews
+				.nav-padding-reviews
+					a(href='#slide', onclick="navSliderFooter.setNextPanel('right');navSliderFooter.updateClass($(this))")
+						.nav-on-slider-reviews-R
 				#footer-slider.liquid-slider
 					div.one-page-slider-footer
 						.one-page-slider-footer-img
@@ -121,7 +132,7 @@ body
 	script(src='/js/main-page/jquery.liquid-slider.min.js')
 	script.
 		$('#header-slider').liquidSlider({
-			//- dynamicArrows:false,
+			dynamicArrows:false,
 			minHeight:30,
 			autoSlide:true,
 			autoHeight: false,
@@ -141,14 +152,19 @@ body
 		//	minHeight:300
 		});
 		$('#reviews-slider').liquidSlider({
+			dynamicArrows:false,
 			dynamicArrowsGraphical: false,
 			hoverArrows: false,
-			autoSlide:false
+			autoSlide:false,
+			autoHeight:false
 		});
 		$('#footer-slider').liquidSlider({
+			dynamicArrows:false,
 			dynamicArrowsGraphical: false,
 			hoverArrows: false,
 			autoSlide:false
 		});	
 		var api1 = $.data( $('#header-slider')[0], 'liquidSlider')
 		var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')
+		var navSliderReviews = $.data( $('#reviews-slider')[0], 'liquidSlider')
+		var navSliderFooter = $.data( $('#footer-slider')[0], 'liquidSlider')

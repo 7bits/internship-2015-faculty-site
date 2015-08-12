@@ -40,7 +40,7 @@
 .ls-responsive .liquid-slider {
   width: 100%;
   /*Возможна не ожиданная работа*/
-  height: 300px; 
+  /*height: 300px;*/
   margin: 0;
 }
 .panel-container {
