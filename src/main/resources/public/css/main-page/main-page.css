@@ -45,6 +45,8 @@
     z-index: 1;
 }
 
+
+
 .nav-button{
 	width: 11px;
 	height: 11px;
@@ -67,7 +69,6 @@
 /*Блок контента*/
 .content{
 	overflow: hidden;
-	/*padding-bottom: 10px;*/
 }
 
 /*Основная информация*/
@@ -79,9 +80,8 @@
 /*превью новостей*/
 .all-news{
 	float: left;
-	width: 20%;
+	width: 18%;
 	background: #e6e7ea;
-	/*height: 20%;*/
 }
 
 /*

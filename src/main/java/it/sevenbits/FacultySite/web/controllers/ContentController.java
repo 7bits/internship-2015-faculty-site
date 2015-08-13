@@ -210,7 +210,8 @@ public class ContentController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Скрытые записи");
-        return NewsController.constructNews("All", null, null, false, model, contentOfPagesService);
+        model = NewsController.constructNews("All", null, null, false, model, contentOfPagesService);
+        return "home/news";
     }
 
     @RequestMapping(value = "/visible_content")
@@ -218,7 +219,8 @@ public class ContentController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Все записи");
-        return NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
+        model = NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
+        return "home/news";
     }
 
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){

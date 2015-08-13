@@ -31,10 +31,11 @@ public class NewsController {
         LOG.info("News type param: " + newsType);
         LOG.info("News id param: " + newsId);
         model.addAttribute("title", "Новости ОмГУ");
-        return constructNews(newsType, newsId, form, true, model, contentOfPagesService);
+        model = constructNews(newsType, newsId, form, true, model, contentOfPagesService);
+        return "home/news";
     }
 
-    public static String constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
+    public static Model constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
             model.addAttribute("root", true);
             model.addAttribute("canCreate", true);
@@ -42,11 +43,11 @@ public class NewsController {
         }
         if (newsId != null){
             if (newsId < 1)
-                return "redirect:/news?News=All";
+                return model;
             ContentDescription news = getContentById(newsId, contentOfPagesService);
 
             if (news == null)
-                return "redirect:/news?News=All";
+                return model;
             model.addAttribute("title", news.getTitle());
             model.addAttribute("description", news.getDescription());
             model.addAttribute("do", "id");
@@ -76,7 +77,7 @@ public class NewsController {
             model.addAttribute("dates", dates);
             model.addAttribute("do", "type");
         }
-        return "home/news";
+        return model;
     }
 
     public static ContentDescription getContentById(Long id, ContentOfPagesService contentOfPagesService){

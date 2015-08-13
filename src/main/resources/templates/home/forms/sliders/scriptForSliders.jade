@@ -1,0 +1,46 @@
+link(rel='stylesheet', href='/css/main-page/main-page.css')
+link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.0.0/animate.min.css')
+link(rel='stylesheet', href='/css/main-page/liquid-slider.css')
+
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
+script(src='/js/main-page/jquery.liquid-slider.min.js')
+script.
+    $('#header-slider').liquidSlider({
+        dynamicArrows:false,
+        minHeight:30,
+        autoSlide:true,
+        autoHeight: false,
+        swipe: true
+    });
+    $('#main-info-slider').liquidSlider({
+        //- slideEaseDuration: 9999,
+        //continuous: false,
+        heightEaseDuration: 0,
+        minHeight:400,
+        swipe: false,
+        autoHeight: true,
+        dynamicArrows:false,
+        slideEaseFunction: false,
+        dynamicArrowsGraphical:false
+    //	autoHeight:false,
+    //	minHeight:300
+    });
+    $('#reviews-slider').liquidSlider({
+        dynamicArrows:false,
+        dynamicArrowsGraphical: false,
+        hoverArrows: false,
+        autoSlide:false,
+        autoHeight:false
+    });
+    $('#footer-slider').liquidSlider({
+        dynamicArrows:false,
+        dynamicArrowsGraphical: false,
+        hoverArrows: false,
+        autoSlide:false
+    });
+    var api1 = $.data( $('#header-slider')[0], 'liquidSlider')
+    var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')
+    var navSliderReviews = $.data( $('#reviews-slider')[0], 'liquidSlider')
+    var navSliderFooter = $.data( $('#footer-slider')[0], 'liquidSlider')

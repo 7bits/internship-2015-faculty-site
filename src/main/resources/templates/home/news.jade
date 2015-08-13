@@ -9,10 +9,10 @@ html
 	body
 		include forms/header.jade
 		include forms/sharing.jade
+		if (root)
+			include forms/redact-content.jade
+			+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 		div.container
-			if (root)
-				include forms/redact-content.jade
-				+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 			if (do == "id")
 				include forms/news/news-full-form.jade
 				+news-full-form(description)
