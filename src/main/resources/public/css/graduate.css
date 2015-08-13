@@ -1,0 +1,67 @@
+.graduate-main-container{
+    overflow: hidden;
+}
+
+@media(min-width:1190px) and (max-width:1366px){
+    .graduate-container {
+        border: 1px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        float: left;
+        width: 30%;
+        height: 350px;
+        margin: 15px;
+    }
+
+    .graduate-header {
+        height: 50px;
+        overflow: hidden;
+        width: 90%;
+        margin: 3px auto;
+    }
+
+    .graduate-image {
+        max-height: 175px;
+        max-width: 90%;
+    }
+
+    .graduate-citate {
+        max-height: 175px;
+        max-width: 90%;
+        margin: auto;
+        overflow: hidden;
+    }
+
+}
+@media (max-width: 1190px), (min-width: 1366px){
+    .graduate-container {
+        border: 1px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        float: left;
+        width: 310px;
+        height: 350px;
+        margin: 15px;
+    }
+
+
+
+    .graduate-header {
+        height: 50px;
+        overflow: hidden;
+        width: 300px;
+        margin: 3px auto;
+    }
+
+    .graduate-image {
+        max-height: 175px;
+        max-width: 300px;
+    }
+
+    .graduate-citate {
+        max-height: 175px;
+        max-width: 300px;
+        margin: auto;
+        overflow: hidden;
+    }
+}

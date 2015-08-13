@@ -45,12 +45,6 @@ public class HomeController {
         return "home/main";
     }
 
-
-    @RequestMapping(value = "/applicants")
-    public String applicants() {
-        return "home/applicants";
-    }
-
     @RequestMapping(value = "/gallery")
     public String gallery(Model model) {
         try {
@@ -68,10 +62,6 @@ public class HomeController {
         return "home/contacts";
     }
 
-    @RequestMapping(value = "/undergraduate")
-    public String undergraduate() {
-        return "home/undergraduate";
-    }
 
     @RequestMapping(value = "/photo-from-albums")
     public String photo_from_albums(@RequestParam(value="albumId", required = false) Long albumId, Model model) {
@@ -89,11 +79,18 @@ public class HomeController {
         return "home/photo-from-albums";
     }
 
-    @RequestMapping(value = "/enrollee")
-    public String enrollee() {
-        return "home/enrollee";
-    }
 
+    @RequestMapping(value = "/graduates")
+    public String graduates(Model model){
+        try {
+            model.addAttribute("content", contentOfPagesService.getPagesWhichContainTypeIsPublish("Graduates", true));
+            model = ContentController.adminModelAttributes(model, "Graduates", null, null);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+        return "home/graduates";
+    }
 
     @RequestMapping(value = "/partners")
     public String partners() {

@@ -1,0 +1,14 @@
+doctype html
+head
+	meta(charset="utf-8")
+	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	title Истории выпускников
+	include general-includes.jade
+	link(rel='stylesheet', href='/css/graduate.css', type='text/css', media='screen')
+body
+	include forms/header.jade
+	include forms/lost.jade
+	include forms/enrollee-mixin.jade
+	div.container.graduate-main-container
+		each tmp in content
+			+enrollee-page-add-reviews(tmp);
