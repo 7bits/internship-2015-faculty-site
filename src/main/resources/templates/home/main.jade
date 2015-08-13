@@ -9,20 +9,7 @@ body
 	include forms/main/main-page-info-block.jade
 	include forms/content-slider.jade
 	
-	div.header-slider-global
-		#header-slider.liquid-slider
-			div.one-page-slider-header
-				.text-on-img
-					img(src='/img/main-page-slider-photo/1.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 1й слайд!
-			div.one-page-slider-header
-				.text-on-img
-					img(src='/img/main-page-slider-photo/2.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 2й слайд!	
-			div.one-page-slider-header
-				.text-on-img
-					img(src='/img/main-page-slider-photo/4.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 3й слайд!
+	include forms/sliders/slider-under-header.jade
 	
 	+add-content-slider(mainInfo, content, title)
 				
@@ -53,6 +40,37 @@ body
 					img(src='/img/logo.png')
 				.one-page-slider-footer
 					img(src='/img/logo.png')
+
+
+	div.info-about-slider
+		p Наши партнеры и работадатели
+		a(href='#') Все партнеры
+	div.slider-footer
+		a(href='#slide', onclick="navSliderFooter.setNextPanel('left');navSliderFooter.updateClass($(this))")
+				.nav-on-slider-reviews
+		.nav-padding-reviews
+			a(href='#slide', onclick="navSliderFooter.setNextPanel('right');navSliderFooter.updateClass($(this))")
+				.nav-on-slider-reviews-R
+		#footer-slider.liquid-slider
+			div.one-page-slider-footer
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/logo.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Luxoft.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/onpz.jpg',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Un.png',width='139', height='60')
+			div.one-page-slider
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/logo.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Luxoft.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/onpz.jpg',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Un.png',width='139', height='60')
+
 		
 	div.footer
 		div.copyright
@@ -66,9 +84,13 @@ body
 				img(src='/img/logo/vk.png')
 		div.info-about-faculty
 			.info-about-faculty-line
-				img(src='/img/logo/yt.png') 
-			p(style='color:#ffffff')   Пр.Мира 55/а
+				img(src='/img/logo/map.png')
 			.info-about-faculty-line
-				img(src='/img/logo/yt.png') 
-			p(style='color:#ffffff')   Пр.Мира 55/а	
+				p(style='color:#ffffff')   Пр.Мира 55/а
+			br
+			.info-img-and-text
+				.info-about-faculty-line
+					img(src='/img/logo/phone.png')
+				.info-about-faculty-line
+					p(style='color:#ffffff')   66-66-66, 55-55-55
 	include forms/sliders/scriptForSliders.jade
