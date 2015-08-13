@@ -19,15 +19,3 @@ mixin add-content-slider(mainInfo, content, title)
 				each tmp in news
 					div
 						p!= tmp.description
-	script.
-		$('#main-info-slider').liquidSlider({
-			//- slideEaseDuration: 9999,
-			//continuous: false,
-			minHeight:400,
-			dynamicArrows:false,
-			slideEaseFunction: false,
-			dynamicArrowsGraphical:false
-		//	autoHeight:false,
-		//	minHeight:300
-		});
-		var api2 = $.data( $('#main-info-slider')[0], 'liquidSlider')
