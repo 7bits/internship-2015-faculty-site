@@ -19,7 +19,7 @@ public class ApplicantsController {
     }
 
     @RequestMapping(value = "/enrollee")
-    public String enrollee(Model model) {
+    public String enrollee() {
         return "home/enrollee";
     }
 
