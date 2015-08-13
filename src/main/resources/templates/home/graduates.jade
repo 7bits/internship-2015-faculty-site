@@ -9,6 +9,9 @@ body
 	include forms/header.jade
 	include forms/lost.jade
 	include forms/enrollee-mixin.jade
+	if (root)
+		include forms/redact-content.jade
+		+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
 	div.container.graduate-main-container
 		each tmp in content
 			+enrollee-page-add-reviews(tmp);

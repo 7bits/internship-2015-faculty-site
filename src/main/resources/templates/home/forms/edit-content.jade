@@ -1,5 +1,5 @@
 mixin editForm(id, title, content, miniContent, type)
-	form(method="post")
+	form.container(method="post")
 		script(src="/ckeditor/ckeditor.js")
 		link(rel='stylesheet', href='/css/edit_content.css', type='text/css', media='screen')
 		if (id>0)
