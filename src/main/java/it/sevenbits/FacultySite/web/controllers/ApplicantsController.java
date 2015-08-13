@@ -20,9 +20,9 @@ public class ApplicantsController {
 
     @RequestMapping(value = "/enrollee")
     public String enrollee(Model model) {
-        model = adminModelAttributes(model, "Graduates:", (long)0, (long)0);
         return "home/enrollee";
     }
+
 
     private Model adminModelAttributes(Model model, String type, Long redactId, Long deleteId){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {

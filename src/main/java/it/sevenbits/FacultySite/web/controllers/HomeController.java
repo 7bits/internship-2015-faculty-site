@@ -80,6 +80,11 @@ public class HomeController {
     }
 
 
+    @RequestMapping(value = "/graduates")
+    public String graduates(Model model){
+        return "home/graduates";
+    }
+
     @RequestMapping(value = "/partners")
     public String partners() {
         return "home/partners";

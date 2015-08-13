@@ -17,7 +17,6 @@
 .header-element {
 	position: relative;
     float: left;
-    height: 100%;
 	outline: none;
 	display: inherit;
 	z-index: 3;
