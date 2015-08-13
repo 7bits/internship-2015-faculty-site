@@ -3,7 +3,6 @@
 .text-on-img {
     /*display:inline-block;   */
     position:relative;
- 
 }
 
 .text {
@@ -82,6 +81,7 @@
 	float: left;
 	width: 18%;
 	background: #e6e7ea;
+	list-style: circle;
 }
 
 /*
@@ -91,16 +91,18 @@
 	height: 100%
 }*/
 
-.news{
-	/*float: left;*/
+.news {
+	float: left;
 	height: 155px;
 	padding-left: 6%;
 	overflow: hidden;
-	border-bottom: 1px solid #bababa;
+	border-bottom: 2px solid #bababa;
+	text-decoration: none;
 }
 
-.news:hover{
-	background: #4d60bd;
+
+.news:active{
+	background-color: #4d60bd;
 	color: white;
 	text-decoration: none;
 	/*height: 20%;*/
@@ -121,9 +123,7 @@
 .circle {
     width: 6px;
     height: 6px;
-    background: red;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    background: gray;
     border-radius: 3px;
 }
 
