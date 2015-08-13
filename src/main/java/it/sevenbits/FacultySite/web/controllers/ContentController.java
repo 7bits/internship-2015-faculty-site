@@ -239,4 +239,15 @@ public class ContentController {
         return null;
     }
 
+    public static Model adminModelAttributes(Model model, String type, Long redactId, Long deleteId){
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("createType", type);
+            model.addAttribute("canRedact", true);
+            model.addAttribute("canDelete", true);
+            model.addAttribute("redactId", redactId);
+            model.addAttribute("deleteId", deleteId);
+        }
+        return model;
+    }
+
 }

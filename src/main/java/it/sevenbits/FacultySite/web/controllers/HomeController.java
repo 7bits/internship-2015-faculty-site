@@ -82,6 +82,13 @@ public class HomeController {
 
     @RequestMapping(value = "/graduates")
     public String graduates(Model model){
+        try {
+            model.addAttribute("content", contentOfPagesService.getPagesWhichContainTypeIsPublish("Graduates", true));
+            model = ContentController.adminModelAttributes(model, "Graduates", null, null);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
         return "home/graduates";
     }
 

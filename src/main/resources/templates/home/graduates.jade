@@ -4,9 +4,11 @@ head
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
 	title Истории выпускников
 	include general-includes.jade
-	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
-	link(rel='stylesheet', href='/css/enrollee-reviews.css', type='text/css', media='screen')
-	link(rel='stylesheet', href='/css/enrollee.css', type='text/css', media='screen')
+	link(rel='stylesheet', href='/css/graduate.css', type='text/css', media='screen')
 body
 	include forms/header.jade
 	include forms/lost.jade
+	include forms/enrollee-mixin.jade
+	div.container.graduate-main-container
+		each tmp in content
+			+enrollee-page-add-reviews(tmp);
