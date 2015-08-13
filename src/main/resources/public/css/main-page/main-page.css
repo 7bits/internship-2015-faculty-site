@@ -9,7 +9,7 @@
 .text {
     display:inline-block;
     position:absolute;
-    top:18%;   
+    padding-top:18%;   
     left:0px;
      
     /* Оформление текста */
@@ -17,22 +17,51 @@
     font-family:Arial, Helvetica, sans-serif;
     font-size:20px; 
      
-    /* Фон */
-    background-color:rgba(0,0,0,.4);
-    padding:10px 30px;
+/* Фон */
+    /*background-color:rgba(0,0,0,.4);*/
+    /*padding:10px 30px;*/
 }
 
 .one-page-slider-header img{
 	/*height: 340px;*/
+	background-color:rgba(0,0,0,.4);
 	width: 100%;
 	}
 /*Управляющие кнопки cлайдера под хэддером*/
 
+.nav-padding-slider-head{
+	padding-left:25px;
+}
+
+.nav-padding-slider-head2{
+	padding-left:50px;
+}
+
 .nav-on-slider{
     display:inline-block;
     position:absolute;
-    top:26%;   
-    left:50%;
+    padding-top:22%;   
+    padding-left:50%;
+    z-index: 1;
+}
+
+.nav-button{
+	width: 11px;
+	height: 11px;
+	background-image: url('/img/main-page-slider-nav/circle1.png');
+    display:inline-block;
+    position:absolute;  
+    z-index: 1;
+}
+
+.nav-button:hover{
+	padding-bottom: 3px;
+	width: 18px;
+	height: 18px;
+	background-image: url('/img/main-page-slider-nav/circle2.png');
+    display:inline-block;
+    position:absolute;  
+    z-index: 1;
 }
 
 /*Блок контента*/
@@ -51,15 +80,35 @@
 .all-news{
 	float: left;
 	width: 20%;
-	background: #DBDBDB;
+	background: #e6e7ea;
 	/*height: 20%;*/
 }
 
+/*
+.all-news-back{
+	background: #e6e7ea;
+	width: 20%;
+	height: 100%
+}*/
+
 .news{
 	/*float: left;*/
+	height: 155px;
 	padding-left: 6%;
 	overflow: hidden;
-	/*border: 1px solid #bababa;*/
+	border-bottom: 1px solid #bababa;
+}
+
+.news:hover{
+	background: #4d60bd;
+	color: white;
+	text-decoration: none;
+	/*height: 20%;*/
+}
+
+.news:hover a{
+	text-decoration: none;
+	/*height: 20%;*/
 }
 
 .vertical-line{
@@ -67,6 +116,15 @@
 	border-left:1px solid red;
 	 /*padding:5px; */
 	 padding-left:3px;
+}
+/*Круг может пригодиться для header*/
+.circle {
+    width: 6px;
+    height: 6px;
+    background: red;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
 
 /*Футер*/
@@ -117,8 +175,8 @@
 .one-page-slider-footer-img{
 	float: left;
 	width: 22%;
-	padding: 0 5%;
-	padding-bottom: 15px;
+	padding: 10px 5%;
+	/*padding-bottom: 15px;*/
 }
 
 .one-page-slider-footer{
@@ -131,7 +189,7 @@
 
 /*Стили слайдера отзывы выпускников*/
 .one-page-reviews-slider{
-	padding-left: 130px;
+	padding-left: 1%;
 	overflow: hidden;
 }
 
@@ -141,7 +199,12 @@
 
 .one-page-reviews-slider-text{
 	float: left;
-	padding-left: 3%;
+	padding-left: 1%;
+}
+
+.one-page-reviews-slider-text h3{
+	margin-top: 0px;
+	padding-top: 0px;
 }
 
 .nav-on-slider-reviews{

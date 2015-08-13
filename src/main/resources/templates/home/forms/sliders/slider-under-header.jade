@@ -1,11 +1,13 @@
 div.header-slider-global
-	//- .nav-on-slider
-	//- 	a(href='#slide-1', onclick='api1.setNextPanel(0);api1.updateClass($(this))') 
-	//- 		1
-	//- 	a(href='#slide-2', onclick='api1.setNextPanel(1);api1.updateClass($(this))')
-	//- 		2
-	//- 	a(href='#slide-3', onclick='api1.setNextPanel(2);api1.updateClass($(this))')
-			3
+	.nav-on-slider
+		a(href='#slide-1', onclick='api1.setNextPanel(0);api1.updateClass($(this))')
+			.nav-button
+		a(href='#slide-2', onclick='api1.setNextPanel(1);api1.updateClass($(this))')
+			.nav-padding-slider-head
+				.nav-button
+		a(href='#slide-3', onclick='api1.setNextPanel(2);api1.updateClass($(this))')
+			.nav-padding-slider-head2
+				.nav-button
 	#header-slider.liquid-slider
 		div.one-page-slider-header
 			.text-on-img

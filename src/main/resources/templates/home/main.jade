@@ -12,18 +12,19 @@ body
 	//- Подключение слайдера с фотографиями
 	include forms/sliders/slider-under-header.jade
 	div.content
-		div.all-news
-			div.news
-					a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
-						+main-page-info-block("Институт математики и иформационных технологий", "Институт математики и иформационных технологий")
-			div.text-news
-			p Новости
-			p Дата
-			each newer, i in news
-				div.news
+		div.all-news-back
+			div.all-news
+				a(href='#slide-1', onclick='api2.setNextPanel(0);api2.updateClass($(this))')
+					div.news
+							+main-page-info-block("Институт математики и иформационных технологий", "Институт математики и иформационных технологий")
+				div.text-news
+				p Новости
+				p Дата
+				each newer, i in news
 					.vertical-line
 						a(href='#slide-#{i+2}', onclick='api2.setNextPanel(#{i+1});api2.updateClass($(this))')
-							+main-page-info-block(newer.title, "Заголовок")//-newer.miniContent
+							div.news
+									+main-page-info-block(newer.title, "Заголовок")//-newer.miniContent
 		div.main-info
 			#main-info-slider.liquid-slider
 				div
