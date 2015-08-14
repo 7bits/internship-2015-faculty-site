@@ -96,6 +96,7 @@
 .news {
 	float: left;
 	height: 155px;
+	width:94%;
 	padding-left: 6%;
 	overflow: hidden;
 	border-bottom: 2px solid #bababa;
