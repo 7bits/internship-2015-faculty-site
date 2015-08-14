@@ -181,7 +181,7 @@
 
 .one-page-slider-footer-img{
 	float: left;
-	width: 22%;
+	width: 8%;
 	padding: 10px 5%;
 	/*padding-bottom: 15px;*/
 }
@@ -216,7 +216,7 @@
 
 .nav-on-slider-reviews{
 	width: 30px;
-	height: 81px;
+	height: 71px;
 	background-image: url('/img/main-page-slider-nav/my_arrow.png');
     display:inline-block;
     position:absolute;
@@ -226,7 +226,7 @@
 }
 .nav-on-slider-reviews:hover{
 	width: 30px;
-	height: 81px;
+	height: 71px;
     background-image: url('/img/main-page-slider-nav/arrow-hoverRight.png');
     display:inline-block;
     position:absolute;
@@ -241,7 +241,7 @@
 
 .nav-on-slider-reviews-R{
 	width: 30px;
-	height: 81px;
+	height: 71px;
 	background-image: url('/img/main-page-slider-nav/arrowRight.png');
     display:inline-block;
     position:absolute;
@@ -251,7 +251,7 @@
 }
 .nav-on-slider-reviews-R:hover{
 	width: 30px;
-	height: 81px;
+	height: 71px;
     background-image: url('/img/main-page-slider-nav/arrow-hover.png');
     display:inline-block;
     position:absolute;
