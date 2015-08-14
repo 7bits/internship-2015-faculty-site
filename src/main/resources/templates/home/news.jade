@@ -2,21 +2,21 @@ doctype html
 html
 	head
 		meta(charset="utf-8")
-		meta(http-equiv="X-UA-Compatible", content="IE=edge")
 		title= title
 		include general-includes.jade
-		link(rel='stylesheet', href='/css/gallery.css')
+		link(rel='stylesheet', href='/css/main-page/main-page.css')
 	body
 		include forms/header.jade
-		include forms/sharing.jade
-		if (root)
+		//- include form,s/sharing.jade
+		include forms/main/main-page-info-block.jade
+		include forms/content-slider.jade
+		include forms/sliders/slider-under-header.jade
+
+		+add-content-slider(mainInfo, content, title)
+		
+		if (root == true)
 			include forms/redact-content.jade
 			+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
-		div.container
-			if (do == "id")
-				include forms/news/news-full-form.jade
-				+news-full-form(description)
-			else
-				include forms/news/news-preview.jade
-				each id, i in ids
-					+news-preview-form(img_links[i], id, titles[i], dates[i])
+						
+		
+		include forms/sliders/scriptForSliders.jade

@@ -28,10 +28,9 @@ public class NewsController {
                        @RequestParam(value="NewsId", required = false) Long newsId,
                        @ModelAttribute ImageDescriptionForm form,
                        Model model) {
-        LOG.info("News type param: " + newsType);
-        LOG.info("News id param: " + newsId);
         model.addAttribute("title", "Новости ОмГУ");
         model = constructNews(newsType, newsId, form, true, model, contentOfPagesService);
+        model.addAttribute("mainInfo", new ArrayList<>());
         return "home/news";
     }
 
@@ -48,34 +47,11 @@ public class NewsController {
 
             if (news == null)
                 return model;
-            model.addAttribute("title", news.getTitle());
             model.addAttribute("description", news.getDescription());
-            model.addAttribute("do", "id");
-            if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-                model.addAttribute("createType", news.getType());
-                model.addAttribute("canRedact", true);
-                model.addAttribute("canDelete", true);
-                model.addAttribute("redactId", news.getId());
-                model.addAttribute("deleteId", news.getId());
-            }
         }
         else{
-            List<ContentDescriptionModel> news = getContentByType(newsType, publish, contentOfPagesService);
-            List<Long> ids = new ArrayList<>();
-            List<String> titles = new ArrayList<>();
-            List<String> img_links = new ArrayList<>();
-            List<String> dates = new ArrayList<>();
-            for (ContentDescriptionModel tmp : news){
-                ids.add(tmp.getId());
-                titles.add(tmp.getTitle());
-                img_links.add(tmp.getImageLink());
-                dates.add(tmp.getCreatingDate());
-            }
-            model.addAttribute("ids", ids);
-            model.addAttribute("titles", titles);
-            model.addAttribute("img_links", img_links);
-            model.addAttribute("dates", dates);
-            model.addAttribute("do", "type");
+            List<ContentDescriptionModel> content = getContentByType(newsType, publish, contentOfPagesService);
+            model.addAttribute("content", content);
         }
         return model;
     }

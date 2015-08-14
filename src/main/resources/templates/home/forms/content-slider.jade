@@ -6,7 +6,7 @@ mixin add-content-slider(mainInfo, content, title)
 					div.news.main-news
 						+main-page-info-block(tmp.title, tmp.miniContent)
 			p!= title
-			each tmp, i in news
+			each tmp, i in content
 				a(href='#slide-#{i+mainInfo.size()+1}', onclick='api2.setNextPanel(#{i+mainInfo.size()});api2.updateClass($(this))')
 					div.news
 						+main-page-info-block(tmp.title, tmp.miniContent)
@@ -16,6 +16,6 @@ mixin add-content-slider(mainInfo, content, title)
 					div
 						p!= tmp.description
 
-				each tmp in news
+				each tmp in content
 					div
 						p!= tmp.description
