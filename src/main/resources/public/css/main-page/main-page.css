@@ -189,7 +189,7 @@
 
 .one-page-slider-footer-img{
 	float: left;
-	width: 8%;
+	width: 11%;
 	padding: 10px 5%;
 	/*padding-bottom: 15px;*/
 }
@@ -215,6 +215,7 @@
 .one-page-reviews-slider-text{
 	float: left;
 	padding-left: 1%;
+	padding-top: 0.4%;
 }
 
 .one-page-reviews-slider-text h3{
@@ -281,4 +282,5 @@
 .info-about-slider a{
 	float: left;
 	padding-left: 5%;
+	color: #6dc2a3;
 }
