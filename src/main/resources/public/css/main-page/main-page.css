@@ -58,7 +58,7 @@
 .nav-button:hover{
 	padding-bottom: 3px;
 	width: 18px;
-	height: 18px;
+	height: 16px;
 	background-image: url('/img/main-page-slider-nav/circle2.png');
     display:inline-block;
     position:absolute;  
@@ -177,6 +177,7 @@
 /*Стили слайдера в футере*/
 .slider-footer{
 	max-width:100%;
+	height: 110px; 
 }
 
 .one-page-slider-footer-img{
@@ -216,7 +217,7 @@
 
 .nav-on-slider-reviews{
 	width: 30px;
-	height: 71px;
+	height: 69px;
 	background-image: url('/img/main-page-slider-nav/my_arrow.png');
     display:inline-block;
     position:absolute;
@@ -226,7 +227,7 @@
 }
 .nav-on-slider-reviews:hover{
 	width: 30px;
-	height: 71px;
+	height: 69px;
     background-image: url('/img/main-page-slider-nav/arrow-hoverRight.png');
     display:inline-block;
     position:absolute;
@@ -241,7 +242,7 @@
 
 .nav-on-slider-reviews-R{
 	width: 30px;
-	height: 71px;
+	height: 69px;
 	background-image: url('/img/main-page-slider-nav/arrowRight.png');
     display:inline-block;
     position:absolute;
@@ -251,7 +252,7 @@
 }
 .nav-on-slider-reviews-R:hover{
 	width: 30px;
-	height: 71px;
+	height: 69px;
     background-image: url('/img/main-page-slider-nav/arrow-hover.png');
     display:inline-block;
     position:absolute;
