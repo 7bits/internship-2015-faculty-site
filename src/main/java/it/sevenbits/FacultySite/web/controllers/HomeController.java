@@ -112,4 +112,9 @@ public class HomeController {
         model.addAttribute("logout", logout);
         return "home/admin";
     }
+    @RequestMapping(value= "/schedule")
+    public String schedule(){
+        return "home/schedule";
+    }
+
 }
