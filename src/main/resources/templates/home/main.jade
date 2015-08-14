@@ -13,10 +13,17 @@ body
 	
 
 	+add-content-slider(mainInfo, content, title)
-				
-	include forms/sliders/slider-reviews.jade
 
-	include forms/sliders/slider-partners.jade
+	div.content
+		div.all-news
+			a.news(href="/photo-from-albums?albumId=1")
+				+main-page-info-block("Imit movie awards", "")
+				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/1.jpg")
+				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/4.jpg")
+
+		div.main-info
+			include forms/sliders/slider-reviews.jade
+			include forms/sliders/slider-partners.jade
 						
 	div.footer
 		div.copyright
