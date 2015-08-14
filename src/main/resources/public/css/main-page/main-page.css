@@ -73,14 +73,16 @@
 
 /*Основная информация*/
 .main-info{
-	padding: 8px;
+    font-family: sans-serif;
+	padding: 15px 25px;
 	float: left;
-	width: 80%;
+	width: 75%;
+
 }
 /*превью новостей*/
 .all-news{
 	float: left;
-	width: 18%;
+	width: 20%;
 	height:100%;
 	background: #e6e7ea;
 	list-style: circle;
@@ -94,6 +96,7 @@
 }*/
 
 .news {
+    font-family: sans-serif;
 	float: left;
 	height: 155px;
 	width:94%;

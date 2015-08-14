@@ -53,8 +53,8 @@ public class ContentController {
                 String bigi = "bigi/";
                 String mini = "mini/";
 
-                String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-                //String path = "src/main/resources/public/img/";
+                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+                String path = "src/main/resources/public/img/";
                 File src = new File(path+bigi+name);
                 File miniFile = new File(path+mini+name);
                 BufferedOutputStream stream =

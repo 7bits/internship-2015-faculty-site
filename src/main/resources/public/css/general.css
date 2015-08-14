@@ -53,6 +53,7 @@
 .main-page-info-block{
     margin: 10px;
     overflow: hidden;
+    font-family: sans-serif;
 }
 .main-page-info-container{
     float: left;
