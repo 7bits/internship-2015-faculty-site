@@ -10,6 +10,8 @@ mixin add-content-slider(mainInfo, content, title)
 				a(href='#slide-#{i+mainInfo.size()+1}', onclick='api2.setNextPanel(#{i+mainInfo.size()});api2.updateClass($(this))')
 					div.news
 						+main-page-info-block(tmp.title, tmp.miniContent)
+			div.news
+			div.news
 		div.main-info
 			div#main-info-slider.liquid-slider
 				each tmp in mainInfo
