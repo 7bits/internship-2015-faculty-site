@@ -9,63 +9,69 @@ body
 	include forms/main/main-page-info-block.jade
 	include forms/content-slider.jade
 	
-	div.header-slider-global
-		#header-slider.liquid-slider
-			div.one-page-slider-header
-				.text-on-img
-					img(src='/img/main-page-slider-photo/1.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 1й слайд!
-			div.one-page-slider-header
-				.text-on-img
-					img(src='/img/main-page-slider-photo/2.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 2й слайд!	
-			div.one-page-slider-header
-				.text-on-img
-					img(src='/img/main-page-slider-photo/4.jpg')
-					span Наш диплом котируется не только в России, но и за рубежом 3й слайд!
+	include forms/sliders/slider-under-header.jade
 	
-	+add-content-slider(mainInfo, news, title)
 
-					
+	+add-content-slider(mainInfo, content, title)
+				
+	div.info-about-slider
+		p Наши выпускники о факультете  
+		a(href='#') Читать все истории
 	div.slider-footer	
+		.nav-padding-reviews1
+			a(href='#slide', onclick="navSliderReviews.setNextPanel('left');navSliderReviews.updateClass($(this))")
+				.nav-on-slider-reviews
+		.nav-padding-reviews
+			a(href='#slide', onclick="navSliderReviews.setNextPanel('right');navSliderReviews.updateClass($(this))")
+				.nav-on-slider-reviews-R
+		#reviews-slider.liquid-slider
+			div.one-page-reviews-slider
+				div.one-page-reviews-slider-img
+					img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
+				div.one-page-reviews-slider-text
+					h3 Сергей Корcаков
+					h4 "Яндекс", Москва, менеджер проектов в отделе контент-системы
+					h4 «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+			div.one-page-reviews-slider
+				.one-page-slider-footer
+					img(src='/img/logo.png')
+				.one-page-slider-footer
+					img(src='/img/logo.png')
+				.one-page-slider-footer
+					img(src='/img/logo.png')
+				.one-page-slider-footer
+					img(src='/img/logo.png')
+
+
+	div.info-about-slider
+		p Наши партнеры и работадатели
+		a(href='#') Все партнеры
+	div.slider-footer
+		a(href='#slide', onclick="navSliderFooter.setNextPanel('left');navSliderFooter.updateClass($(this))")
+				.nav-on-slider-reviews
+		.nav-padding-reviews
+			a(href='#slide', onclick="navSliderFooter.setNextPanel('right');navSliderFooter.updateClass($(this))")
+				.nav-on-slider-reviews-R
 		#footer-slider.liquid-slider
+			div.one-page-slider-footer
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/logo.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Luxoft.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/onpz.jpg',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Un.png',width='139', height='60')
 			div.one-page-slider
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-			div.one-page-slider
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-			div.one-page-slider
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')	
-			div.one-page-slider
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-				.one-page-slider-img
-					img(src='/img/logo.png')
-		
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/logo.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Luxoft.png',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/onpz.jpg',width='139', height='60')
+				.one-page-slider-footer-img
+					img(src='/img/main-page-slider-photo/Un.png',width='139', height='60')
+							
 	div.footer
 		div.copyright
 			p(style='color:#ffffff') 2015 © ИМИТ ОмГУ им. Ф.М. Достоевского
@@ -78,10 +84,13 @@ body
 				img(src='/img/logo/vk.png')
 		div.info-about-faculty
 			.info-about-faculty-line
-				img(src='/img/logo/yt.png') 
-			p(style='color:#ffffff')   Пр.Мира 55/а
+				img(src='/img/logo/map.png')
 			.info-about-faculty-line
-				img(src='/img/logo/yt.png') 
-			p(style='color:#ffffff')   Пр.Мира 55/а	
-
+				p(style='color:#ffffff')   Пр.Мира 55
+			br
+			.info-img-and-text
+				.info-about-faculty-line
+					img(src='/img/logo/phone.png')
+				.info-about-faculty-line
+					p(style='color:#ffffff')   64-42-38, 22-56-96
 	include forms/sliders/scriptForSliders.jade

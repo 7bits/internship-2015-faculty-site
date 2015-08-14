@@ -8,7 +8,7 @@
 .text {
     display:inline-block;
     position:absolute;
-    padding-top:18%;   
+    padding-top:17%;   
     left:0px;
      
     /* Оформление текста */
@@ -39,7 +39,7 @@
 .nav-on-slider{
     display:inline-block;
     position:absolute;
-    padding-top:22%;   
+    padding-top:21%;   
     padding-left:50%;
     z-index: 1;
 }
@@ -139,7 +139,7 @@
 .social-net{
 	/*padding-top: 20px;*/
 	/*margin-left: 10px;*/
-	padding-top: 5px;
+	padding-top: 1%;
 	float: left;
 	width: 15%;
 }
@@ -151,7 +151,7 @@
 
 .copyright{
 	padding-left: 5%;
-	padding-top: 1%;
+	padding-top: 1.5%;
 	float: left;
 	width: 40%;
 }
@@ -160,12 +160,19 @@
 	padding-left: 13%;
 	padding-top: 1%;
 	float: left;
-	width: 44%
+	overflow: hidden;
+	width: 27%
 }
+
 
 .info-about-faculty-line{
 	float: left;
 }		
+
+.info-img-and-text{
+	padding-top: 2%;
+}
+	
 
 
 /*Стили слайдера в футере*/
@@ -175,7 +182,7 @@
 
 .one-page-slider-footer-img{
 	float: left;
-	width: 22%;
+	width: 8%;
 	padding: 10px 5%;
 	/*padding-bottom: 15px;*/
 }
@@ -210,7 +217,7 @@
 
 .nav-on-slider-reviews{
 	width: 30px;
-	height: 81px;
+	height: 71px;
 	background-image: url('/img/main-page-slider-nav/my_arrow.png');
     display:inline-block;
     position:absolute;
@@ -220,7 +227,7 @@
 }
 .nav-on-slider-reviews:hover{
 	width: 30px;
-	height: 81px;
+	height: 71px;
     background-image: url('/img/main-page-slider-nav/arrow-hoverRight.png');
     display:inline-block;
     position:absolute;
@@ -235,7 +242,7 @@
 
 .nav-on-slider-reviews-R{
 	width: 30px;
-	height: 81px;
+	height: 71px;
 	background-image: url('/img/main-page-slider-nav/arrowRight.png');
     display:inline-block;
     position:absolute;
@@ -245,7 +252,7 @@
 }
 .nav-on-slider-reviews-R:hover{
 	width: 30px;
-	height: 81px;
+	height: 71px;
     background-image: url('/img/main-page-slider-nav/arrow-hover.png');
     display:inline-block;
     position:absolute;
@@ -268,7 +275,3 @@
 	float: left;
 	padding-left: 5%;
 }
-
-
-
-
