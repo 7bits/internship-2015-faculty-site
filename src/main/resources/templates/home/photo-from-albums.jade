@@ -2,10 +2,19 @@ doctype html
 head
 	meta(charset="utf-8")
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	meta(property='og:title', content='ImitMovieAwards')
+	meta(property='og:description', content='Альбом посвещенный событию ImitMovieAwards')
+	meta(property='og:url', content='/photo-from-albums?albumId=1')
+	meta(property='og:image', content='http://cs622925.vk.me/v622925397/25860/W10Ww7WimJw.jpg')
+	meta(name='title', content='ImitMovieAwards')
+	meta(name='description', content='Альбом посвещенный событию ImitMovieAwards')
+	link(rel='image_src', href='http://cs622925.vk.me/v622925397/25860/W10Ww7WimJw.jpg')
+
 	title Галерея - ОмГУ
 	include general-includes.jade
 body(body onload="L.create()")
 	include forms/header.jade
+	include forms/sharing.jade
 	div.container.center
 		include forms/page-gallery/gallery-page-fill.jade
 		//- h2 Альбом посвещенный событию ImitMovieAwards
