@@ -1,25 +1,18 @@
-mixin add-content-slider(mainInfo, content, title)
-	div.content
-		div.all-news
-			each tmp, i in mainInfo
-				a(href='#slide-#{i+1}', onclick='api2.setNextPanel(#{i});api2.updateClass($(this))')
-					div.news.main-news
-						+main-page-info-block(tmp.title, tmp.miniContent)
-			p!= title
-			each tmp, i in content
-				a(href='#slide-#{i+mainInfo.size()+1}', onclick='api2.setNextPanel(#{i+mainInfo.size()});api2.updateClass($(this))')
-					div.news
-						+main-page-info-block(tmp.title, tmp.miniContent)
-			div.news
-			div.news
-		div.main-info
-			div#main-info-slider.liquid-slider
-				each tmp in mainInfo
-					div
-						p!= tmp.description
-
-				each tmp in content
-					div
-						p!= tmp.description
-
-	
+link(href="/css/tabs.css")
+script(src='http://code.jquery.com/jquery-2.1.4.min.js')
+script(src='/js/tabs.js')
+script.
+	$(document).ready(function(){
+	$("#tabs").lightTabs();
+	});
+mixin add-tabs(content)
+	div.tabs
+		ul.tab-container.tab-container-titles
+			each tmp in content
+				li.tab-title
+					p.tab-title-date.tab-title-text= tmp.creatingDate
+					p.tab-title-title.tab-title-text= tmp.title
+					p.tab-title-content.tab-title-text= tmp.miniContent
+		div.tab-container.tab-container-content
+			each tmp in content
+				div.tab-content!= tmp.description
