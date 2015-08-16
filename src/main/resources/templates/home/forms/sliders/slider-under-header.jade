@@ -1,47 +1,5 @@
-div.header-slider-global
-	.nav-on-slider
-		a(href='#slide-1', onclick='api1.setNextPanel(0);api1.updateClass($(this))')
-			.nav-button
-		a(href='#slide-2', onclick='api1.setNextPanel(1);api1.updateClass($(this))')
-			.nav-padding-slider-head
-				.nav-button
-		a(href='#slide-3', onclick='api1.setNextPanel(2);api1.updateClass($(this))')
-			.nav-padding-slider-head2
-				.nav-button
-	#header-slider.liquid-slider
-		div.one-page-slider-header
-			.text-on-img
-				img(src='/img/main-page-slider-photo/1m.jpg')
-				.text
-					p Наш диплом котируется не только в России, но и за рубежом 1й слайд!
-			//- .nav-on-slider
-			//- 	a(href='#slide-1', onclick='api1.setNextPanel(0);api1.updateClass($(this))') 
-			//- 		1
-			//- 	a(href='#slide-2', onclick='api1.setNextPanel(1);api1.updateClass($(this))')
-			//- 		2
-			//- 	a(href='#slide-3', onclick='api1.setNextPanel(2);api1.updateClass($(this))')
-			//- 		3
-		div.one-page-slider-header
-			.text-on-img
-				img(src='/img/main-page-slider-photo/2m.jpg')
-				.text
-					p Наш диплом котируется не только в России, но и за рубежом 2й слайд!
-			//- .nav-on-slider
-			//- 	a(href='#slide-1', onclick='api1.setNextPanel(0);api1.updateClass($(this))') 
-			//- 		1
-			//- 	a(href='#slide-2', onclick='api1.setNextPanel(1);api1.updateClass($(this))')
-			//- 		2
-			//- 	a(href='#slide-3', onclick='api1.setNextPanel(2);api1.updateClass($(this))')
-			//- 		3
-		div.one-page-slider-header
-			.text-on-img
-				img(src='/img/main-page-slider-photo/4m.jpg')
-				.text
-					p На диплом котируется не только в России, но и за рубежом 3й слайд!
-			//- .nav-on-slider
-			//- 	a(href='#slide-1', onclick='api1.setNextPanel(0);api1.updateClass($(this))') 
-			//- 		1
-			//- 	a(href='#slide-2', onclick='api1.setNextPanel(1);api1.updateClass($(this))')
-			//- 		2
-			//- 	a(href='#slide-3', onclick='api1.setNextPanel(2);api1.updateClass($(this))')
-			//- 		3
+.fotorama(data-width='100%', data-height='340px', data-fit='cover', data-loop='true', data-autoplay='true',
+	data-arrows='false', data-click='false')
+	img(src='/img/main-page-slider-photo/1.jpg', data-caption='One')
+	img(src='/img/main-page-slider-photo/2.jpg', data-caption='Two')
+	img(src='/img/main-page-slider-photo/3.jpg', data-caption='Three')
