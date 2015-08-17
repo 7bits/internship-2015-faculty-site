@@ -17,10 +17,10 @@
 .header-element {
 	position: relative;
     float: left;
-    height: 100%;
 	outline: none;
 	display: inherit;
 	z-index: 3;
+	max-height: 60px;
 }
 
 .header-logo {
@@ -28,6 +28,7 @@
 }
 
 .header-element-text {
+	text-decoration: none;
     padding: 0px 40px;
 	padding-top: 23px;
 	padding-bottom: 22px;
@@ -69,7 +70,6 @@
 .header-dropdown-element {
 	float: none;
 	font-size: inherit;
-	width: 100%;
 	text-align: center;
 	margin: 0px;
 	padding: 10px 20px;

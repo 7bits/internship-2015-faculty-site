@@ -1,0 +1,101 @@
+.tabs{
+    display:table;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+.tab-content{
+    padding-top:10px;
+}
+.tab-container{
+    margin:0px;
+    padding:0px;
+    /*float:left;*/
+    height:100%;
+    display: table-cell;
+}
+
+.tab-title-container{
+    border-bottom: 1px solid gray;
+    height: 150px;
+    display:block;
+    padding:10px 15px;
+    padding-left: 0px;
+    margin-left: 20px;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.tab-title-text{
+    float: none;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.tab-title-delimiter{
+    height: 25px;
+}
+
+.tab-title-clarification{
+    font-size: 12px;
+    color: gray;
+    height: 25px;
+    margin-left: 25px;
+}
+
+.tab-title-date{
+    color: gray;
+    font-size: 12px;
+    height: 15px;
+}
+
+.tab-title-title{
+    color: black;
+    font-size: 16px;
+    max-height: 60px;
+}
+
+.tab-title-title-simple-part{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    padding: auto 0px;
+}
+
+.tab-title-content{
+    color: black;
+    font-size: 12px;
+}
+
+.tab-container-titles{
+    width: 20%;
+    background:#e9eaeb;
+    height: 100%;
+}
+
+.tab-container-content{
+    width: 70%;
+    padding: 10px 5%;
+}
+
+.tab-title{
+}
+
+.tab-title-style{
+    margin:0px;
+    padding:0px;
+    cursor:pointer;
+    color:#707070;
+}
+
+.tab-title-style.active-tab, .tab-title-style.active-tab:hover{
+    background:#4d60bd;
+    color:#fff;
+}
+
+.tab-title-style.active-tab .tab-title-text{
+    color: white;
+}
+
+.tab-title-style:hover, .tab-title-container:active{
+    background:#d6d6d7;
+}

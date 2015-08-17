@@ -1,0 +1,40 @@
+link(rel='stylesheet', href="/css/tabs.css", type='text/css', media='screen')
+script(src='/js/tabs.js')
+script.
+	$(document).ready(function(){
+		$(".tabs").lightTabs();
+	});
+
+mixin add-title-part(date, title, content)
+	div.tab-title.tab-title-style
+		div.tab-title-container
+			p.tab-title-date.tab-title-text= date
+			p.tab-title-title.tab-title-text= title
+			p.tab-title-content.tab-title-text= content
+
+mixin add-title-simple-part(title)
+	div.tab-title.tab-title-style
+		div.tab-title-container
+			p.tab-title-title-simple-part.tab-title-text= title
+
+
+mixin add-gallery-link(id, title, imgLinks)
+	a.tab-title-container(href="/photo-from-albums?albumId=#{id}", target="_blank")
+		p.tab-title-date.tab-title-text
+		p.tab-title-title.tab-title-text= title
+		div.tab-title-content.tab-title-text
+			each tmp in imgLinks
+				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="#{tmp}")
+
+mixin add-content-part(content)
+	div.tab-content!= content
+
+mixin add-tabs(content)
+	div.tabs
+		ul.tab-container.tab-container-titles
+			each tmp in content
+				li.tab-title.tab-title-style
+					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+		div.tab-container.tab-container-content
+			each tmp in content
+				+add-content-part(tmp.description)

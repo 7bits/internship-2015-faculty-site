@@ -1,12 +1,15 @@
+
+/*Стили слайдера под header ом*/
 .text-on-img {
     /*display:inline-block;   */
     position:relative;
- 
 }
-.text-on-img span {
+
+.text {
     display:inline-block;
     position:absolute;
-    top:252px;   
+    padding-left: 1%;
+    padding-top:20%;   
     left:0px;
      
     /* Оформление текста */
@@ -14,85 +17,270 @@
     font-family:Arial, Helvetica, sans-serif;
     font-size:20px; 
      
-    /* Фон */
-    background-color:rgba(0,0,0,.4);
-    padding:10px 30px;
+/* Фон */
+    /*background-color:rgba(0,0,0,.4);*/
+    /*padding:10px 30px;*/
 }
-
-
 
 .one-page-slider-header img{
 	/*height: 340px;*/
+	background-color:rgba(0,0,0,.4);
 	width: 100%;
+	}
+/*Управляющие кнопки cлайдера под хэддером*/
+
+.nav-padding-slider-head{
+	padding-left:25px;
 }
 
+.nav-padding-slider-head2{
+	padding-left:50px;
+}
+
+.nav-on-slider{
+    display:inline-block;
+    position:absolute;
+    padding-top:23%;   
+    padding-left:50%;
+    z-index: 1;
+}
+
+
+
+.nav-button{
+	width: 11px;
+	height: 11px;
+	background-image: url('/img/main-page-slider-nav/circle1.png');
+    display:inline-block;
+    position:absolute;  
+    z-index: 1;
+}
+
+.nav-button:hover{
+	padding-bottom: 3px;
+	width: 18px;
+	height: 16px;
+	background-image: url('/img/main-page-slider-nav/circle2.png');
+    display:inline-block;
+    position:absolute;  
+    z-index: 1;
+}
+
+/*Блок контента*/
 .content{
 	overflow: hidden;
-	/*padding-bottom: 10px;*/
-}
-.main-info{
-	padding: 8px;
-	float: left;
-	width: 80%;
 }
 
+/*Основная информация*/
+.main-info{
+    font-family: sans-serif;
+	padding: 15px 25px;
+	float: left;
+	width: 75%;
+
+}
+/*превью новостей*/
 .all-news{
 	float: left;
 	width: 20%;
-	background: #DBDBDB;
-	/*height: 20%;*/
-}
-.news{
-	/*float: left;*/
-	padding: 5px;
-	overflow: hidden;
-	border: 1px solid #bababa;
+	background: #e6e7ea;
 }
 
-footer{
-	/*padding-top: 5px;*/
-	background: #319bba;
+/*
+.all-news-back{
+	background: #e6e7ea;
+	width: 20%;
+	height: 100%
+}*/
+
+.news {
+    font-family: sans-serif;
+	float: left;
+	height: 165px;
+	width:94%;
+	padding-left: 6%;
 	overflow: hidden;
+	border-bottom: 2px solid #bababa;
+	text-decoration: none;
+}
+
+
+.news:hover{
+	background-color: #4d60bd;
+	color: white;
+	text-decoration: none;
+	/*height: 20%;*/
+}
+
+.news:hover a{
+	text-decoration: none;
+	/*height: 20%;*/
+}
+
+.vertical-line{
+	float: left;
+	border-left:1px solid red;
+	 /*padding:5px; */
+	 padding-left:3px;
+}
+/*Круг может пригодиться для header*/
+.circle {
+    width: 6px;
+    height: 6px;
+    background: gray;
+    border-radius: 3px;
+}
+
+/*Футер*/
+.footer{
+	/*padding-top: 5px;*/
+	width: 100%;
+	background: #454545;
+	overflow: hidden;
+	z-index: 2;
 }
 
 .social-net{
 	/*padding-top: 20px;*/
 	/*margin-left: 10px;*/
-	padding-top: 5px;
+	padding-top: 1%;
 	float: left;
 	width: 15%;
 }
 
+.social-net img{
+	padding-left: 8%;
+
+}
+
 .copyright{
 	padding-left: 5%;
-	padding-top: 1%;
+	padding-top: 1.5%;
 	float: left;
 	width: 40%;
 }
-.slider-footer{
-	max-width:100%;
-}
-.one-page-slider{
-	padding-left: 130px;
-	overflow: hidden;
-}
-
-.one-page-slider-img{
-	float: left;
-	width: 22%;
-	padding: 0 5%;
-	padding-bottom: 15px;
-}
-
 
 .info-about-faculty{
 	padding-left: 13%;
 	padding-top: 1%;
 	float: left;
-	width: 44%
+	overflow: hidden;
+	width: 27%
 }
 
 
-.my-hover-link a:active{
-	color:white; background-color: blue;
+.info-about-faculty-line{
+	float: left;
+	padding-left: 1%;
+}		
+
+.info-img-and-text{
+	padding-top: 2%;
+}
+	
+
+/*Стили слайдера в футере*/
+.slider-footer{
+	/*max-width:100%;*/
+	/*height: 110px;*/
+}
+
+.one-page-slider-footer-img{
+	float: left;
+	width: 15%;
+	padding: 10px 5%;
+	/*padding-bottom: 15px;*/
+}
+
+.one-page-slider-footer{
+	/*padding-left: 2%;*/
+	width: 100%;
+}
+
+.one-page-slider-footer img{
+	float: left;
+}
+
+/*Стили слайдера отзывы выпускников*/
+.one-page-reviews-slider{
+	/*padding-left: 1%;*/
+	overflow: hidden;
+}
+
+.one-page-reviews-slider-img{
+	float: left;
+}
+
+.one-page-reviews-slider-text{
+	float: left;
+	width: 73%;
+	/*padding-left: 1%;*/
+	padding-top: 0.4%;
+}
+
+.one-page-reviews-slider-text h3{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+.nav-on-slider-reviews{
+	width: 30px;
+	height: 69px;
+	background-image: url('/img/main-page-slider-nav/my_arrow.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+.nav-on-slider-reviews:hover{
+	width: 30px;
+	height: 69px;
+    background-image: url('/img/main-page-slider-nav/arrow-hoverRight.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+/*Управляющие элементы слайдера отзывы выпускников они ТАКИЕ ЖЕ как у слайдера с партнерами*/
+.nav-padding-reviews{
+	padding-left: 95%;
+}
+
+.nav-on-slider-reviews-R{
+	width: 30px;
+	height: 69px;
+	background-image: url('/img/main-page-slider-nav/arrowRight.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+.nav-on-slider-reviews-R:hover{
+	width: 30px;
+	height: 69px;
+    background-image: url('/img/main-page-slider-nav/arrow-hover.png');
+    display:inline-block;
+    position:absolute;
+    padding-top:1%;   
+    padding-left:0%;
+    z-index: 1;
+}
+
+
+/*Стили для информации перед слайдерами*/
+.info-about-slider{
+	overflow: hidden;
+}
+
+.info-about-slider p{
+	float: left;
+}
+
+.info-about-slider a{
+	float: left;
+	padding-left: 5%;
+	color: #6dc2a3;
 }

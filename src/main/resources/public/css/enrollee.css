@@ -1,7 +1,11 @@
 .enrollee-tab-container{
-	width: 100%;
-	margin: 10px 15px;
-	border: 1px groove #aaaaaa;
+    width: 90%;
+    margin: 10px 5%;
+    border: 1px groove #aaaaaa;
+}
+
+.enrollee-element {
+    margin: 10px;
 }
 
 .enrollee-tab-element{
