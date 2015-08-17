@@ -52,8 +52,8 @@ public class ContentController {
                 byte[] bytes = file.getBytes();
                 String bigi = "bigi/";
                 String mini = "mini/";
-                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-                String path = "src/main/resources/public/img/";
+                String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+                //String path = "src/main/resources/public/img/";
                 File src = new File(path+bigi+name);
                 File miniFile = new File(path+mini+name);
                 BufferedOutputStream stream =
@@ -210,7 +210,8 @@ public class ContentController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Скрытые записи");
-        return NewsController.constructNews("All", null, null, false, model, contentOfPagesService);
+        model = NewsController.constructNews("All", null, null, false, model, contentOfPagesService);
+        return "home/news";
     }
 
     @RequestMapping(value = "/visible_content")
@@ -218,7 +219,8 @@ public class ContentController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Все записи");
-        return NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
+        model = NewsController.constructNews("All", null, null, null, model, contentOfPagesService);
+        return "home/news";
     }
 
     private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){
@@ -237,6 +239,23 @@ public class ContentController {
             LOG.error(e.getMessage());
         }
         return null;
+    }
+
+    public static Model adminModelAttributes(Model model, String type, Long redactId, Long deleteId){
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("root", true);
+            model.addAttribute("createType", type);
+            model.addAttribute("canCreate", true);
+            if (redactId != null && redactId > 0) {
+                model.addAttribute("redactId", redactId);
+                model.addAttribute("canRedact", true);
+            }
+            if (redactId != null && redactId > 0) {
+                model.addAttribute("deleteId", deleteId);
+                model.addAttribute("canDelete", true);
+            }
+        }
+        return model;
     }
 
 }

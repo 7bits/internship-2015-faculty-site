@@ -1,0 +1,23 @@
+link(rel='stylesheet', href='/css/main-page/main-page.css')
+link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.0.0/animate.min.css')
+link(rel='stylesheet', href='/css/main-page/liquid-slider.css')
+ 
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js')
+script(src='/js/main-page/jquery.liquid-slider.min.js')
+script.
+    $('#reviews-slider').liquidSlider({
+        dynamicArrows:false,
+        dynamicArrowsGraphical: false,
+        hoverArrows: false,
+        autoSlide:false,
+        autoHeight:false,
+        autoHeight:false
+    });
+    $('#footer-slider').liquidSlider({
+        dynamicArrows:false,
+        dynamicArrowsGraphical: false,
+        hoverArrows: false,
+        autoSlide:false
+    });
+    var navSliderReviews = $.data( $('#reviews-slider')[0], 'liquidSlider')
+    var navSliderFooter = $.data( $('#footer-slider')[0], 'liquidSlider')
