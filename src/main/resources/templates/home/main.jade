@@ -21,10 +21,12 @@ body
 			//-Разделитель 
 			p.tab-title-delimiter
 			//-Надпись 
-			p.tab-title-clarification.tab-title-text Новости
+			p.tab-title-clarification.tab-title-text НОВОСТИ
 			//- Наполнение контентом новостей
 			each tmp in content
 				+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+			p.tab-title-delimiter
+			p.tab-title-clarification.tab-title-text ГАЛЕРЕЯ
 			//-Создание ссылки на альбом, первый параметр - id альбома
 			div.tab-title-style
 				- imgLinks = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/4.jpg"];
