@@ -9,18 +9,23 @@ body
 	include forms/content-slider.jade
 
 	div.tabs
-		ul.tab-container.tab-container-titles
+		div.tab-container.tab-container-titles
+			+add-title-simple-part("Информация об ИМИТ")
+			//-Разделитель 
+			p.tab-title-delimiter
+			//-Надпись 
+			p.tab-title-clarification.tab-title-text Новости
+			//- Наполнение контентом новостей
 			each tmp in content
-				li.tab-title.tab-title-style
-					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+				+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+			//-Создание ссылки на альбом, первый параметр - id альбома
 			div.tab-title-style
-				a.tab-title-container(href="/photo-from-albums?albumId=1", target="_blank")
-					p.tab-title-date.tab-title-text
-					p.tab-title-title.tab-title-text Imit movie awards
-					div.tab-title-content.tab-title-text
-						img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/1.jpg")
-						img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/4.jpg")
+				- imgLinks = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/4.jpg"];
+				+add-gallery-link(1, "Imit movie awards", imgLinks)
+
 		div.tab-container.tab-container-content
+			//- Наполнение правой части вкладок
+			+add-content-part("Это<p>Какая-то<p>Инфа<p>О факультете^^")
 			each tmp in content
 				+add-content-part(tmp.description)
 						
