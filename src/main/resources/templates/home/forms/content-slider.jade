@@ -1,18 +1,21 @@
-link(href="/css/tabs.css")
-script(src='http://code.jquery.com/jquery-2.1.4.min.js')
+link(rel='stylesheet', href="/css/tabs.css", type='text/css', media='screen')
 script(src='/js/tabs.js')
 script.
 	$(document).ready(function(){
-	$("#tabs").lightTabs();
+		$(".tabs").lightTabs();
 	});
 mixin add-tabs(content)
 	div.tabs
 		ul.tab-container.tab-container-titles
 			each tmp in content
 				li.tab-title
-					p.tab-title-date.tab-title-text= tmp.creatingDate
-					p.tab-title-title.tab-title-text= tmp.title
-					p.tab-title-content.tab-title-text= tmp.miniContent
+					+add-title-part(content.creatingDate, content.title, content.miniContent)
 		div.tab-container.tab-container-content
 			each tmp in content
 				div.tab-content!= tmp.description
+
+mixin add-title-part(date, title, content)
+	div.tab-title-text-container
+		p.tab-title-date.tab-title-text= date
+		p.tab-title-title.tab-title-text= title
+		p.tab-title-content.tab-title-text= content

@@ -2,6 +2,7 @@
     display:block;
     overflow: hidden;
     font-family: sans-serif;
+    height: 750px;
 }
 .tab-content{
     padding-top:10px;
@@ -10,47 +11,59 @@
     margin:0px;
     padding:0px;
     float:left;
+    height:100%;
+}
+
+.tab-title-text-container{
+    border-bottom: 1px solid gray;
+    height: 150px;
+    display:block;
+    padding:10px 15px;
+    margin-left: 20px;
 }
 
 .tab-title-text{
     float: none;
+    overflow: hidden;
+    margin-top: 5px;
 }
 
 .tab-title-date{
     color: gray;
     font-size: 12px;
+    height: 15px;
 }
 
 .tab-title-title{
     color: black;
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    height: 60px;
 }
 
 .tab-title-content{
     color: black;
-    font-size: 14px;
+    font-size: 12px;
+    height: 60px;
 }
 
 .tab-container-titles{
     width: 20%;
-    list-style: circle inside;
+    list-style: circle outside;
+    background:#e9eaeb;
 }
 
 .tab-container-content{
     width: 70%;
     padding: 10px 5%;
+    overflow:scroll;
 }
 
 .tab-title{
     margin:0px;
     padding:0px;
     cursor:pointer;
-    display:block;
-    padding:10px 15px;
-    background:#e9eaeb;
     color:#707070;
-    padding-left: 10px;
-    border-left: 1px solid gray;
 }
 .tab-title.active-tab, .tab-title.active-tab:hover{
     background:#4d60bd;

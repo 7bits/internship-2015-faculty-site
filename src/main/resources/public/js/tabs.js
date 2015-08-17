@@ -1,10 +1,8 @@
-(function($){				
-    jQuery.fn.lightTabs = function(options){
-        
+(function($){
+    $.fn.lightTabs = function(options){
         var createTabs = function(){
             tabs = this;
             i = 0;
-            
             showPage = function(i){
                 $(".tab-content").hide();
                 $(".tab-content").eq(i).show();
@@ -12,7 +10,7 @@
                 $(".tab-title").eq(i).addClass("active-tab");
             }
             
-            showPage(0);				
+            showPage(0);
             
             $(".tab-title").each(function(index, element){
                 $(element).attr("data-page", i);
