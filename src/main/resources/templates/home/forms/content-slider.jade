@@ -1,25 +1,40 @@
-mixin add-content-slider(mainInfo, content, title)
-	div.content
-		div.all-news
-			each tmp, i in mainInfo
-				a(href='#slide-#{i+1}', onclick='api2.setNextPanel(#{i});api2.updateClass($(this))')
-					div.news.main-news
-						+main-page-info-block(tmp.title, tmp.miniContent)
-			p!= title
-			each tmp, i in content
-				a(href='#slide-#{i+mainInfo.size()+1}', onclick='api2.setNextPanel(#{i+mainInfo.size()});api2.updateClass($(this))')
-					div.news
-						+main-page-info-block(tmp.title, tmp.miniContent)
-			div.news
-			div.news
-		div.main-info
-			div#main-info-slider.liquid-slider
-				each tmp in mainInfo
-					div
-						p!= tmp.description
+link(rel='stylesheet', href="/css/tabs.css", type='text/css', media='screen')
+script(src='/js/tabs.js')
+script.
+	$(document).ready(function(){
+		$(".tabs").lightTabs();
+	});
 
-				each tmp in content
-					div
-						p!= tmp.description
+mixin add-title-part(date, title, content)
+	div.tab-title.tab-title-style
+		div.tab-title-container
+			p.tab-title-date.tab-title-text= date
+			p.tab-title-title.tab-title-text= title
+			p.tab-title-content.tab-title-text= content
 
-	
+mixin add-title-simple-part(title)
+	div.tab-title.tab-title-style
+		div.tab-title-container
+			p.tab-title-title-simple-part.tab-title-text= title
+
+
+mixin add-gallery-link(id, title, imgLinks)
+	a.tab-title-container(href="/photo-from-albums?albumId=#{id}", target="_blank")
+		p.tab-title-date.tab-title-text
+		p.tab-title-title.tab-title-text= title
+		div.tab-title-content.tab-title-text
+			each tmp in imgLinks
+				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="#{tmp}")
+
+mixin add-content-part(content)
+	div.tab-content!= content
+
+mixin add-tabs(content)
+	div.tabs
+		ul.tab-container.tab-container-titles
+			each tmp in content
+				li.tab-title.tab-title-style
+					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+		div.tab-container.tab-container-content
+			each tmp in content
+				+add-content-part(tmp.description)

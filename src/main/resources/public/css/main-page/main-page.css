@@ -83,9 +83,7 @@
 .all-news{
 	float: left;
 	width: 20%;
-	height:100%;
 	background: #e6e7ea;
-	list-style: circle;
 }
 
 /*
@@ -98,7 +96,7 @@
 .news {
     font-family: sans-serif;
 	float: left;
-	height: 155px;
+	height: 165px;
 	width:94%;
 	padding-left: 6%;
 	overflow: hidden;
@@ -107,7 +105,7 @@
 }
 
 
-.news:active{
+.news:hover{
 	background-color: #4d60bd;
 	color: white;
 	text-decoration: none;
@@ -139,6 +137,7 @@
 	width: 100%;
 	background: #454545;
 	overflow: hidden;
+	z-index: 2;
 }
 
 .social-net{

@@ -13,10 +13,32 @@ body
 
 	include forms/sliders/slider-under-header.jade
 
-	//- include forms/main/main-page-info-block.jade
+	include forms/content-slider.jade
 
-	include forms/sliders/slider-reviews.jade
-	include forms/sliders/slider-partners.jade
+	div.tabs
+		div.tab-container.tab-container-titles
+			+add-title-simple-part("Информация об ИМИТ")
+			//-Разделитель 
+			p.tab-title-delimiter
+			//-Надпись 
+			p.tab-title-clarification.tab-title-text Новости
+			//- Наполнение контентом новостей
+			each tmp in content
+				+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+			//-Создание ссылки на альбом, первый параметр - id альбома
+			div.tab-title-style
+				- imgLinks = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/4.jpg"];
+				+add-gallery-link(1, "Imit movie awards", imgLinks)
+
+		div.tab-container.tab-container-content
+			//- Наполнение правой части вкладок
+			+add-content-part("Это<p>Какая-то<p>Инфа<p>О факультете^^")
+			each tmp in content
+				+add-content-part(tmp.description)
+			//- include forms/main/main-page-info-block.jade
+
+			include forms/sliders/slider-reviews.jade
+			include forms/sliders/slider-partners.jade
 						
 	div.footer
 		div.copyright
@@ -39,5 +61,4 @@ body
 					img(src='/img/logo/phone.png')
 				.info-about-faculty-line
 					p(style='color:#ffffff')   64-42-38, 22-56-96
-
 	include forms/sliders/scriptForSliders.jade
