@@ -4,18 +4,22 @@ script.
 	$(document).ready(function(){
 		$(".tabs").lightTabs();
 	});
+
+mixin add-title-part(date, title, content)
+	div.tab-title-container
+		p.tab-title-date.tab-title-text= date
+		p.tab-title-title.tab-title-text= title
+		p.tab-title-content.tab-title-text= content
+
+mixin add-content-part(content)
+	div.tab-content!= content
+
 mixin add-tabs(content)
 	div.tabs
 		ul.tab-container.tab-container-titles
 			each tmp in content
-				li.tab-title
-					+add-title-part(content.creatingDate, content.title, content.miniContent)
+				li.tab-title.tab-title-style
+					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
 		div.tab-container.tab-container-content
 			each tmp in content
-				div.tab-content!= tmp.description
-
-mixin add-title-part(date, title, content)
-	div.tab-title-text-container
-		p.tab-title-date.tab-title-text= date
-		p.tab-title-title.tab-title-text= title
-		p.tab-title-content.tab-title-text= content
+				+add-content-part(tmp.description)

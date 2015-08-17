@@ -6,22 +6,23 @@ head
 	link(rel='stylesheet', href='/css/main-page/main-page.css')
 body
 	include forms/header.jade
-	include forms/main/main-page-info-block.jade
 	include forms/content-slider.jade
-	
 
-	+add-tabs(content, mainInfo, title)
-
-	div.content
-		div.all-news
-			a.news(href="/photo-from-albums?albumId=1")
-				+main-page-info-block("Imit movie awards", "")
-				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/1.jpg")
-				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/4.jpg")
-			div.news
-		div.main-info
-			include forms/sliders/slider-reviews.jade
-			include forms/sliders/slider-partners.jade
+	div.tabs
+		ul.tab-container.tab-container-titles
+			each tmp in content
+				li.tab-title.tab-title-style
+					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+			div.tab-title-style
+				a.tab-title-container(href="/photo-from-albums?albumId=1", target="_blank")
+					p.tab-title-date.tab-title-text
+					p.tab-title-title.tab-title-text Imit movie awards
+					div.tab-title-content.tab-title-text
+						img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/1.jpg")
+						img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="/img/gallery-page-gallery-photo/bigi/4.jpg")
+		div.tab-container.tab-container-content
+			each tmp in content
+				+add-content-part(tmp.description)
 						
 	div.footer
 		div.copyright
@@ -44,4 +45,3 @@ body
 					img(src='/img/logo/phone.png')
 				.info-about-faculty-line
 					p(style='color:#ffffff')   64-42-38, 22-56-96
-	//-include forms/sliders/scriptForSliders.jade

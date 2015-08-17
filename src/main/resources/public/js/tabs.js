@@ -14,13 +14,13 @@
             
             $(".tab-title").each(function(index, element){
                 $(element).attr("data-page", i);
-                i++;                        
+                i++;
             });
             
             $(".tab-title").click(function(){
                 showPage(parseInt($(this).attr("data-page")));
-            });				
-        };		
+            });
+        };
         return this.each(createTabs);
     };	
 })(jQuery);
