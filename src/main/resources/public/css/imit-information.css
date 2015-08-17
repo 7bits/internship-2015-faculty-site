@@ -1,0 +1,17 @@
+@font-face {
+    src: url(/fonts/OpenSans-Light.ttf);
+ }
+
+.imit-info {
+	width: 100%;
+	height: 100%;
+	color: black;
+	margin: 20px;
+	font-style: OpenSans-Light;
+	
+}
+.contacts{
+	margin: 0px 5px 0px 0px;
+	float: left;
+	font-weight: bold;
+}
