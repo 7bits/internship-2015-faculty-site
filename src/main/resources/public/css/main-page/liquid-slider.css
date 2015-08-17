@@ -59,7 +59,7 @@
 
 /*** Panels ***/
 .liquid-slider .ls-panel {  
-  width: 600px;
+  /*width: 600px; исправленно*/
   display: block;
   float: left;
 }
