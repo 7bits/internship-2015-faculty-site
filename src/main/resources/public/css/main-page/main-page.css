@@ -1,3 +1,7 @@
+.sliders-global{
+	position: absolute;
+	bottom: 0;
+}
 
 /*Стили слайдера под header ом*/
 .text-on-img {
@@ -125,11 +129,7 @@
 }
 /*Круг может пригодиться для header*/
 .circle {
-    width: 6px;
-    height: 6px;
-    background: gray;
-    border-radius: 3px;
-}
+
 
 /*Футер*/
 .footer{
@@ -188,12 +188,13 @@
 .one-page-slider-footer-img{
 	float: left;
 	width: 15%;
-	padding: 10px 5%;
+	/*padding: 10px 5%;*/
 	/*padding-bottom: 15px;*/
 }
 
 .one-page-slider-footer{
 	/*padding-left: 2%;*/
+	overflow: hidden;
 	width: 100%;
 }
 
@@ -207,12 +208,13 @@
 	overflow: hidden;
 }
 
-.one-page-reviews-slider-img{
+.fotorama__html .one-page-reviews-slider-img{
+	width: 100px;
 	float: left;
 }
 
 .one-page-reviews-slider-text{
-	float: left;
+	display: inline-block;
 	width: 73%;
 	/*padding-left: 1%;*/
 	padding-top: 0.4%;
