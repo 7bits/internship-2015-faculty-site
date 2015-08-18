@@ -1,4 +1,5 @@
 *.class
+*~
 
 src/main/resources/public/img/bigi
 src/main/resources/public/img/mini
