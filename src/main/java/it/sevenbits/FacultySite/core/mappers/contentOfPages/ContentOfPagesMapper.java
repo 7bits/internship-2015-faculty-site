@@ -89,6 +89,21 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getPagesWhichContainTypeAndPublish(final @Param("type")String type, final @Param("publish")boolean publish);
 
+    @Select("SELECT * FROM content_of_pages LIMIT #{end} OFFSET #{start-1};")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "title", property = "title"),
+            @Result(column = "description", property = "description"),
+            @Result(column = "creating_date", property = "creatingDate"),
+            @Result(column = "creating_time", property = "creatingTime"),
+            @Result(column = "mini_content", property = "miniContent"),
+            @Result(column = "type", property = "type"),
+            @Result(column = "image_link", property = "imageLink")
+    })
+    List<ContentDescription> getPagesWhichContainTypeAndPublishWithBoundaries(final @Param("type")String type, final @Param("publish")boolean publish, @Param("start")Long startPosition, @Param("end")Long lastPosition);
+
+    
+
     @Select("SELECT * FROM content_of_pages WHERE publish=#{publish};")
     @Results({
             @Result(column = "id", property = "id"),
