@@ -10,17 +10,6 @@ html
 		link(href="/css/navigation.css", rel='stylesheet')
 		script(src='http://code.jquery.com/jquery-2.1.4.min.js')
 		script(src="/js/navigation.js")
-		script.
-			$.ajax({
-				type: "GET",
-				url: '/load_news',
-				data: {
-					'checked': 2
-				},
-				success: function (response) {
-					$('body').click();
-				}
-			});
 	body
 		include forms/header.jade
 		include forms/sliders/slider-under-header.jade

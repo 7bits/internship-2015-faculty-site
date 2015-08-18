@@ -1,5 +1,8 @@
 $(document).ready(function() {
     //создаём регулярное выражение для поиска точного соответствия содержимого
+    var count = 1;
+    var current = 1;
+//Разобравться
 	$.expr[':'].findContent = function(obj, index, meta) {
 		  var matchParams = meta[3].split(','),
 		      regexFlags = 'ig',
@@ -12,26 +15,34 @@ $(document).ready(function() {
         $(parentId).append("<div class='left-content navigation-simple-element' parentId='" + parentId + "'>&lt;</div>");
         $(parentId).append("<div class='navigation-content-pages' parentId='" + parentId + "'>" + "</div>");
         $(parentId).append("<div class='right-content navigation-simple-element' parentId='" + parentId + "'>&gt;</div>");
-        var currentPage = 25;
-        constructPanel(currentPage, getPages(), parentId);
+        constructPanel(current, getSumOfPages(), parentId);
     }
 
 
     $('.left-content').click(function() {
-        var pages = getPages();
-        var currentPage = $(".navigation-current").html();
-        if (currentPage > 0) currentPage--;
-        	constructPanel(currentPage, getPages(), $(this).attr('parentid'));
+        getNewContent();
+        var pages = getSumOfPages();
+        current = $(".navigation-current").html();
+        if (currentPage > 0) {
+            current--;
+        	constructPanel(current, pages, $(this).attr('parentid'));
+        }
     });
     $('.right-content').click(function() {
-        var pages = getPages();
+        getNewContent();
+        var pages = getSumOfPages();
         var currentPage = $(".navigation-current").html();
-        if (currentPage < pages ) currentPage++;
-        	constructPanel(currentPage, getPages(), $(this).attr('parentid'));
+        if (currentPage < pages ){ 
+            current++;
+        	constructPanel(current, pages, $(this).attr('parentid'));
+        }
     });
     $('.navigation-content-pages').on('click', '.navigation-num', (function(){
-    	if ($(this).html() != '...')
-        	constructPanel($(this).html(), getPages(), $(this).attr('parentid'));
+    	if ($(this).html() != '...'){
+            current = $(this).html();
+            getNewContent();
+        	constructPanel($(this).html(), getSumOfPages(), $(this).attr('parentid'));
+        }
     }));
 
     function constructPanel(current, count, parentId){
@@ -62,8 +73,16 @@ $(document).ready(function() {
     	setActive(current, parentId);
     }
 
-    function getPages() {
-        return 85;
+    function getSumOfPages() {
+        $.ajax({
+            type: "GET",
+            url: '/count_news',
+            data: {},
+            success: function (response) {
+                count = response.countOnPage;
+                return response.countNews/count;
+            }
+        });
     }
 
     function setActive(currentPage, parentId) {
@@ -84,6 +103,18 @@ $(document).ready(function() {
 		$('.navigation-content-pages ').append("<div class='" + classes + "' parentId='" + parentId + "''>" + num + "</div>");
     }
 
-    
+    function getNewContent(){
+        $.ajax({
+            type: "GET",
+            url: '/load_news',
+            data: {
+                'checked': 1,
+                'count': 1
+            },
+            success: function (response) {
+                alert(response.content);
+            }
+        });
+    }
 
 });
