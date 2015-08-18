@@ -50,7 +50,8 @@ public class NewsController {
             model.addAttribute("description", news.getDescription());
         }
         else{
-            List<ContentDescriptionModel> content = getContentByType(newsType, publish, contentOfPagesService);
+            newsType = (newsType == null ? "" : newsType);
+            List<ContentDescriptionModel> content = getContentByType("News:"+newsType, publish, (long)1, (long)1, contentOfPagesService);
             model.addAttribute("content", content);
         }
         return model;
@@ -66,15 +67,21 @@ public class NewsController {
         return new ContentDescription();
     }
 
-    public static List<ContentDescriptionModel> getContentByType(String type, Boolean publish, ContentOfPagesService contentOfPagesService){
+    public static List<ContentDescriptionModel> getContentByType(String type, Boolean publish, Long start, Long count, ContentOfPagesService contentOfPagesService){
         try{
-            if (type == null || type.equals("All")) {
-                if (publish == null) {
-                    return contentOfPagesService.getPagesWhichContainType("News:%");
-                }
-                return contentOfPagesService.getPagesWhichContainTypeIsPublish("News:%", publish);
+            if (type == null){
+                type = "";
             }
-            return contentOfPagesService.getPagesWhichContainTypeIsPublish("News:" + type, publish);
+            Long sum = contentOfPagesService.getSumOfPages(type, publish);
+            if (start>sum){
+                return new ArrayList<>();
+            }
+            if (sum-start < count) {
+                count = sum-start;
+            }
+            start = sum-start-count+1;//Рассчитываем с конца - получается, если start = 2, sum = 10, count = 15,
+                                    // то взяты будут записи с 14 до 4 (10 записей, начиная со второй с конца)
+            return contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
         }
         catch (Exception e){
             LOG.error(e.getMessage());
