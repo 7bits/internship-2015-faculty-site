@@ -72,6 +72,7 @@ public class NewsController {
             if (type == null){
                 type = "";
             }
+            type = "%" + type + "%";
             Long sum = contentOfPagesService.getSumOfPages(type, publish);
             if (start>sum){
                 return new ArrayList<>();
