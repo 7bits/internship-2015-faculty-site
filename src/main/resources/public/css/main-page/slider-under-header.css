@@ -7,8 +7,8 @@
 
 }
 .text-on-slider{
-	font-size: 30px;
-	padding-top: 270px;
+	font-size: 20px;
+	padding-top: 280px;
 	padding-left: 15px;
 	color: white;
 	height: 92px;
@@ -24,4 +24,15 @@
   z-index: 5;
   position: absolute;
   bottom: 7px;
+}
+
+.fotorama__dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  position: relative;
+  top: 12px;
+  left: 6px;
+  border-radius: 6px;
+  border: 1px solid white;
 }

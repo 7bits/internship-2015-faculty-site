@@ -275,6 +275,8 @@
 /*Стили для информации перед слайдерами*/
 .info-about-slider{
 	overflow: hidden;
+	padding-top: 4%;
+	padding-bottom:3%;
 }
 
 .info-about-slider p{
