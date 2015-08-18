@@ -1,26 +1,28 @@
+link(rel='stylesheet', href='/css/main-page/slider-under-header.css')
 link(rel='stylesheet', href='/css/main-page/main-page.css')
 div.info-about-slider
 	p Наши выпускники о факультете  
 	a(href='/graduates') Читать все истории
-div.slider-footer	
-	.nav-padding-reviews1
-		a(href='#slide', onclick="navSliderReviews.setNextPanel('left');navSliderReviews.updateClass($(this))")
-			.nav-on-slider-reviews
-	.nav-padding-reviews
-		a(href='#slide', onclick="navSliderReviews.setNextPanel('right');navSliderReviews.updateClass($(this))")
-			.nav-on-slider-reviews-R
-	#reviews-slider.liquid-slider(style='height:100px;')
-		div.one-page-reviews-slider
-			.one-page-reviews-slider-img
-				img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
-			.one-page-reviews-slider-text
-				h3 Сергей Корcаков
-				p "Яндекс", Москва, менеджер проектов в отделе контент-системы
-				p «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
-		div.one-page-reviews-slider
-			.one-page-reviews-slider-img
-				img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
-			.one-page-reviews-slider-text
-				h3 Сергей Корcаков
-				p "Яндекс", Москва, менеджер проектов в отделе контент-системы
-				p «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+.fotorama(data-width='100%', data-height='100px', data-loop='true',
+	data-arrows='true', data-click='false', data-nav='false')
+	div.one-page-reviews-slider(style='overflow:hidden;')
+		.one-page-reviews-slider-img(style='float:left; padding-left:8%;')
+			img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
+		.one-page-reviews-slider-text(style='float:left; width:73%;  padding-left: 1%;')
+			h3 Сергей Корcаков
+			p "Яндекс", Москва, менеджер проектов в отделе контент-системы
+			p «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+	div.one-page-reviews-slider(style='overflow:hidden;')
+		.one-page-reviews-slider-img(style='float:left; padding-left:8%;')
+			img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
+		.one-page-reviews-slider-text(style='float:left; width:73%;  padding-left: 1%;')
+			h3 Сергей Корcаков
+			p "Яндекс", Москва, менеджер проектов в отделе контент-системы
+			p «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»
+	div.one-page-reviews-slider(style='overflow:hidden;')
+		.one-page-reviews-slider-img(style='float:left; padding-left:8%;')
+			img(src='/img/reviwes-page-photo/SergKorsakov.jpg',width='100px', alt='Сергей Корсаков')
+		.one-page-reviews-slider-text(style='float:left; width:73%;  padding-left: 1%;')
+			h3 Сергей Корcаков
+			p "Яндекс", Москва, менеджер проектов в отделе контент-системы
+			p «Матфак научил меня быть "антишестерёнкой" и уметь браться за любые задачи и проекты»

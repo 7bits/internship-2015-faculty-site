@@ -4,8 +4,6 @@ head
 	title Главная - ИМИТ
 	link(rel='stylesheet', href='/css/imit-information.css')
 	include general-includes.jade
-	link(rel='stylesheet', href='/css/main-page/main-page.css')
-
 	link(href='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css', rel='stylesheet')
 	script(src='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js')
 
@@ -38,11 +36,10 @@ body
 			+add-content-part(info)
 			each tmp in content
 				+add-content-part(tmp.description)
-			//- include forms/main/main-page-info-block.jade
-
+			include forms/main/main-page-info-block.jade
+			//- div.sliders-global
 			include forms/sliders/slider-reviews.jade
-			include forms/sliders/slider-partners.jade
-						
+			include forms/sliders/slider-partners.jade			
 	div.footer
 		div.copyright
 			p(style='color:#ffffff') 2015 © ИМИТ ОмГУ им. Ф.М. Достоевского

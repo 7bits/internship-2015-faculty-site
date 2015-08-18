@@ -7,10 +7,32 @@
 
 }
 .text-on-slider{
-	font-size: 30px;
-	padding-top: 250px;
+	font-size: 20px;
+	padding-top: 280px;
 	padding-left: 15px;
 	color: white;
 	height: 92px;
 	background-color:rgba(0,0,0,.2);
+}
+/*ПЕРЕОПРЕДЕЛЕННЫЙ(Дополненный класс) КЛАСС. Выравнивание кнопок на header i.godyaev*/
+.fotorama__nav{
+  font-size: 0;
+  line-height: 0;
+  text-align: center;
+  /*display: none;*/
+  white-space: nowrap;
+  z-index: 5;
+  position: absolute;
+  bottom: 7px;
+}
+
+.fotorama__dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  position: relative;
+  top: 12px;
+  left: 6px;
+  border-radius: 6px;
+  border: 1px solid white;
 }
