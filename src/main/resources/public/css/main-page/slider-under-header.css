@@ -8,9 +8,14 @@
 }
 .text-on-slider{
 	font-size: 30px;
-	padding-top: 250px;
+	padding-top: 270px;
 	padding-left: 15px;
 	color: white;
 	height: 92px;
 	background-color:rgba(0,0,0,.2);
+}
+/*ПЕРЕОПРЕДЕЛЕННЫЙ(Дополненный класс) КЛАСС. Выравнивание кнопок на header i.godyaev*/
+.fotorama__nav{
+	position: absolute;
+	padding-top: 300px;
 }
