@@ -6,9 +6,12 @@ html(lang="en")
 		link(rel='stylesheet', href='/css/contacts-page.css')
 		link(rel='stylesheet', href='/css/main-page/main-page.css')
 		include general-includes.jade
+		link(href='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css', rel='stylesheet')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js')
+
 	body
 		include forms/header.jade
-	
+		include forms/sliders/slider-under-header.jade
 		include forms/content-slider.jade
 		div.tabs
 			div.tab-container.tab-container-titles
