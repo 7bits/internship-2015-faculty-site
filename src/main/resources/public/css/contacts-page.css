@@ -1,0 +1,25 @@
+@font-face {
+    src: url(/fonts/OpenSans-Light.ttf);
+ }
+
+.imit_contacts{
+  font-size: 16px;
+  line-height: 2em;
+  font-family: OpenSans-Light;
+
+}
+.imit{
+  font-size: 34px;
+}
+.staff{
+  font-size: 20px;
+  color: blue;
+}
+.bold{
+  font-weight:bold;
+  float:left;
+  padding-right: 7px;
+}
+.name{
+  padding-left: 10px;
+}
