@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.web.controllers;
 
+import com.google.gson.JsonObject;
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionModel;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
@@ -9,12 +10,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class NewsController {
@@ -33,6 +34,14 @@ public class NewsController {
         model.addAttribute("mainInfo", new ArrayList<>());
         return "home/news";
     }
+
+    @RequestMapping(value = "/load_news", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> loadNews(@RequestParam(value="checked", required=false, defaultValue="1") Integer checked) {
+        Map<String, Object> result = new HashMap<>();
+        return result;
+    }
+
 
     public static Model constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
