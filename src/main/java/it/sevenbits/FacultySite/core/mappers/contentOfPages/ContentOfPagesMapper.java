@@ -89,7 +89,7 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getPagesWhichContainTypeAndPublish(final @Param("type")String type, final @Param("publish")boolean publish);
 
-    @Select("SELECT * FROM content_of_pages LIMIT #{end} OFFSET #{start} where type LIKE #{type} and publish=#{publish};")
+    @Select("SELECT * FROM content_of_pages where type LIKE #{type} and publish=#{publish} LIMIT #{end} OFFSET #{start} ;")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
