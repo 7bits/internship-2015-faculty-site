@@ -4,6 +4,7 @@
     font-family: sans-serif;
 }
 .tab-content{
+    padding: 9px 20px;
 }
 .tab-container{
     margin:0px;
@@ -69,11 +70,13 @@
     width: 20%;
     background:#e9eaeb;
     height: 100%;
+    /*IG убираю отступ*/
+    padding: 0;
 }
 
 .tab-container-content{
     width: 70%;
-    padding: 10px 5%;
+    /*padding: 10px 5%;*/
     /*IG for sliders(bottom:0)*/
     position: relative;
 }
