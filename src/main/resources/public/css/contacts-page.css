@@ -2,13 +2,13 @@
     src: url(/fonts/OpenSans-Light.ttf);
  }
 
-.imit_contacts{
+.contacts_tabs{
   font-size: 16px;
   line-height: 2em;
   font-family: OpenSans-Light;
 
 }
-.imit{
+.head{
   font-size: 34px;
 }
 .staff{
