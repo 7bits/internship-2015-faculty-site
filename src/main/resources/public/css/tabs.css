@@ -74,6 +74,8 @@
 .tab-container-content{
     width: 70%;
     padding: 10px 5%;
+    /*IG for sliders(bottom:0)*/
+    position: relative;
 }
 
 .tab-title{
