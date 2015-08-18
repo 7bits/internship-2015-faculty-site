@@ -2,6 +2,7 @@ doctype html
 head
 	meta(charset='UTF-8')
 	title Главная - ИМИТ
+	link(rel='stylesheet', href='/css/imit-information.css')
 	include general-includes.jade
 	link(rel='stylesheet', href='/css/main-page/main-page.css')
 
@@ -12,7 +13,6 @@ body
 	include forms/header.jade
 
 	include forms/sliders/slider-under-header.jade
-
 	include forms/content-slider.jade
 
 	div.tabs
@@ -34,7 +34,8 @@ body
 
 		div.tab-container.tab-container-content
 			//- Наполнение правой части вкладок
-			+add-content-part("Это<p>Какая-то<p>Инфа<p>О факультете^^")
+			- info = "<div class='imit-info'><p class='omsu'>Омский государственный университет им. Ф. М. Достоевского</p><p class='imit'>Институт Математики и Иформационных Технологий</p><p class='paragraph'>ИМИТ, ранее – математический факультет, для тех, кто отличает аксиому от теоремы, для тех, кто любит решать трудные задачи и не боится их.</p> <p class='paragraph'>На нашем факультете прием абитуриентов и обучение студентов ведётся по направлению: «Прикладная математика и информатика».На младших курсах даётся фундаментальная подготовка, а на старших обучение ведётся по широкому спектру специализаций: системное программирование; математические методы защиты информации;  информационное обеспечение экономической деятельности и т.д..</p><div class='r'><iframe width='560' height='315' src='https://www.youtube.com/embed/_8huafh9qFA' frameborder='0' allowfullscreen></iframe></div><p class='paragraph'>Выпускники факультета легко найдут себе работу по специальности не только в нашем регионе, но и за его пределами, в том числе в США, Великобритании, Канаде или Германии. Спасибо за это нужно сказать нашим бывшим сотрудникам, преподавателям, выпускникам, в свое время перебравшимися за рубеж, но поддерживающим связь с факультетом. Проблем с конвертацией диплома выпускники факультета не испытывают.</p><p class='paragraph'>Что немаловажно, у нас целых 90 бюджетных, то есть  совершенно бесплатных (для абитуриентов!) мест и целых 20 бюджетных мест в магистратуре.</p><p class='behave'>Поступай и учись бесплатно на лучшем факультете города!</p><div class='contacts-behave'><p class='contacts'>Деканат находится по адресу:</p><p>Проспект Мира 55а (первый корпус ОмГУ), каб. 217</p></div><div class='contacts-behave'><p class='contacts'>	Телефоны:</p><p>(3812) 64-42-38, (3812) 22-56-96</p></div><div class='contacts-behave'><p class='contacts'>Часы работы:</p><p>пн-пт с 9:00 до 17:00</p></div></div>";
+			+add-content-part(info)
 			each tmp in content
 				+add-content-part(tmp.description)
 			//- include forms/main/main-page-info-block.jade
