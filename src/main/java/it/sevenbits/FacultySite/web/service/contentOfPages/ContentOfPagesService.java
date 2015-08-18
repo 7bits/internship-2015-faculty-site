@@ -119,6 +119,18 @@ public class ContentOfPagesService {
         }
     }
 
+    public Long getSumOfPages(String type, Boolean publish) throws ServiceException{
+        try{
+            if (type != null) {
+                type = "%" + type + "%";
+            }
+            return repository.getSumOfRecords(type, publish);
+        }
+        catch (Exception e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     public List<ContentDescriptionModel> getPagesWhichContainTypeWithCountWithPublish(String type, Long count, Boolean publish) throws ServiceException{
         try {
             List<ContentDescriptionModel> all = getPagesWhichContainTypeIsPublish(type, publish);

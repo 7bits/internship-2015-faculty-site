@@ -102,7 +102,17 @@ public interface ContentOfPagesMapper {
     })
     List<ContentDescription> getPagesWhichContainTypeAndPublishWithBoundaries(final @Param("type")String type, final @Param("publish")boolean publish, @Param("start")Long startPosition, @Param("end")Long lastPosition);
 
-    
+    @Select("select count(*) from content_of_pages;")
+    @Result(column = "count")
+    Long getSumOfAllContent();
+
+    @Select("select count(*) from content_of_pages WHERE type LIKE #{type};")
+    @Result(column = "count")
+    Long getSumOfContentWhichContainType(String type);
+
+    @Select("select count(*) from content_of_pages WHERE type LIKE #{type} and publish=#{publish};")
+    @Result(column = "count")
+    Long getSumOfContentWhichContainTypeAndPublish(String type, Boolean publish);
 
     @Select("SELECT * FROM content_of_pages WHERE publish=#{publish};")
     @Results({

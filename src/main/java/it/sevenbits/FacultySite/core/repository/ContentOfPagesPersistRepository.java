@@ -104,11 +104,26 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
     public List<ContentDescription> getPagesWhichContainTypeIsPublishWithBoundaries(String type, Boolean publish, Long start, Long count) throws RepositoryException{
         try{
             if (publish != null && type != null && start != null && count != null && start>=0 && count>=0)
-                return mapper.getPagesWhichContainTypeAndPublishWithBoundaries(type, publish, start, start+count);
+                return mapper.getPagesWhichContainTypeAndPublishWithBoundaries(type, publish, start, start + count);
             return new ArrayList<>();
         }
         catch (Exception e){
             throw new RepositoryException("Error with getting page by publish: " + e.getMessage());
+        }
+    }
+
+    public Long getSumOfRecords(String type, Boolean publish) throws RepositoryException{
+        try{
+            if ((type == null || type.isEmpty()) && publish == null){
+                return mapper.getSumOfAllContent();
+            }
+            if (publish == null) {
+                return mapper.getSumOfContentWhichContainType(type);
+            }
+            return mapper.getSumOfContentWhichContainTypeAndPublish(type, publish);
+        }
+        catch (Exception e){
+            throw new RepositoryException("Error with getting count of pages: "+e.getMessage());
         }
     }
 
