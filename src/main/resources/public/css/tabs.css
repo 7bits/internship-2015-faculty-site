@@ -103,3 +103,8 @@
 .tab-title-style:hover{
     background:#d6d6d7;
 }
+/*style IG*/
+.inline-block{
+    display: inline-block;
+    vertical-align: top;
+}
