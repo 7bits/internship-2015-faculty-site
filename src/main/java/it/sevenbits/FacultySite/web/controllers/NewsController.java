@@ -97,13 +97,8 @@ public class NewsController {
             sumOfPages = 1;
         current = sumOfPages;
         pagination = generatePagination(current, sumOfPages);
-        Long start = sumOfNews - (current) * countOnPage;
-        if (start < 1){
-            start = (long)0;
-        }
-        Long end = countOnPage + start;
-        if (end>sumOfNews)
-            end = sumOfNews;
+        Long start = calculateStartFromTheEnd(sumOfNews.intValue(), current, countOnPage);
+        Long end = calculateEndFromTheEnd(start, sumOfNews.intValue(), countOnPage);
         List<ContentDescriptionModel> content = getContentByType("News:", publish, start, end, contentOfPagesService);
         model.addAttribute("content", content);
         model.addAttribute("pagination", pagination);
@@ -112,6 +107,20 @@ public class NewsController {
         return model;
     }
 
+    public static Long calculateStartFromTheEnd(Integer sumOfNews, Integer current, Integer countOnPage){
+        Long start = (long)sumOfNews - (current) * countOnPage;
+        if (start < 1) {
+            start = (long) 0;
+        }
+        return start;
+    }
+
+    public static Long calculateEndFromTheEnd(Long start, Integer sumOfNews, Integer countOnPage){
+        Long end = countOnPage + start;
+        if (end > sumOfNews)
+            end = (long)sumOfNews;
+        return end;
+    }
     public static List<String> generatePagination(Integer current, Integer sum){
         List<String> pagination = new ArrayList<>();
         pagination.add("<");
