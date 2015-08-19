@@ -7,6 +7,7 @@ html
 		link(rel='stylesheet', href='/css/main-page/main-page.css')
 		link(href='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css', rel='stylesheet')
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js')
+		link(href="/css/navigation.css", rel='stylesheet')
 		script(src='http://code.jquery.com/jquery-2.1.4.min.js')
 	body
 		include forms/header.jade
@@ -23,11 +24,15 @@ html
 				//- Наполнение контентом новостей
 				each tmp in content
 					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+				each tmp in pagination
+					if (tmp != '...')
+						a.navigation-simple-element(href="/news?page=#{tmp}")
+					else
+						div.navigation-simple-text= tmp
 
 			div.tab-container.tab-container-content
 				each tmp in content
 					+add-content-part(tmp.description)
-							
 		div.footer
 			div.copyright
 				p(style='color:#ffffff') 2015 © ИМИТ ОмГУ им. Ф.М. Достоевского

@@ -62,11 +62,39 @@ public class NewsController {
         if (page == null){
             page = 1;
         }
+        List<String> pagination = new ArrayList<>();
+        try{
+            pagination = generatePagination(page, contentOfPagesService.getSumOfPages("News:%", true));
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
         Long start = (long)(page-1) * countOnPage;
         newsType = (newsType == null ? "" : newsType);
         List<ContentDescriptionModel> content = getContentByType("News:"+newsType, publish, start, (long)countOnPage, contentOfPagesService);
         model.addAttribute("content", content);
+        model.addAttribute("pagination", pagination);
         return model;
+    }
+
+    public static List<String> generatePagination(Integer current, Long sum){
+        List<String> pagination = new ArrayList<>();
+        pagination.add("<");
+        pagination.add("1");
+        if (current-1 > 2){
+            pagination.add("...");
+        }
+        for (int i = current-2; i<current+3 && i <= sum; i++)
+            if (i > 1) {
+                pagination.add("" + i);
+            }
+        if (sum-current > 2){
+            pagination.add("...");
+        }
+        if (!pagination.get(pagination.size()-1).equals(""+sum))
+            pagination.add(""+sum);
+        pagination.add(">");
+        return pagination;
     }
 
     public static ContentDescription getContentById(Long id, ContentOfPagesService contentOfPagesService){
