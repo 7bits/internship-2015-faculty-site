@@ -22,13 +22,14 @@ html
 				//-Надпись 
 				p.tab-title-clarification.tab-title-text НОВОСТИ
 				//- Наполнение контентом новостей
-				each tmp in content
+				each tmp, i in content
 					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
-				each tmp in pagination
-					if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfPages))
-						div.navigation-simple-text= tmp
-					else
-						a.navigation-simple-element(href="/news?page=#{tmp}&current=#{current}")= tmp
+				div.navigation-content-pages
+					each tmp in pagination
+						if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfPages))
+							div.navigation-simple-text= tmp
+						else
+							a.navigation-simple-element(href="/news?page=#{tmp}&current=#{current}")= tmp
 
 			div.tab-container.tab-container-content
 				each tmp in content

@@ -9,9 +9,7 @@
                 $(".tab-title").removeClass("active-tab");
                 $(".tab-title").eq(i).addClass("active-tab");
             }
-            
             showPage(0);
-            
             $(".tab-title").each(function(index, element){
                 $(element).attr("data-page", i);
                 i++;

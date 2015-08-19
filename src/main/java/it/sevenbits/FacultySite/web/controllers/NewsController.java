@@ -66,6 +66,7 @@ public class NewsController {
         Long sumOfNews = (long)0;
         try{
             sumOfNews = contentOfPagesService.getSumOfPages("News:%", true);
+
         }
         catch (Exception e){
             LOG.error(e.getMessage());
@@ -91,12 +92,19 @@ public class NewsController {
             }
         }
         List<String> pagination = new ArrayList<>();
-        Long sumOfPages = sumOfNews/countOnPage;
+        Integer sumOfPages = sumOfNews.intValue()/countOnPage;
         if (sumOfPages < 1)
-            sumOfPages = (long)1;
+            sumOfPages = 1;
+        current = sumOfPages;
         pagination = generatePagination(current, sumOfPages);
-        Long start = (long)(current-1) * countOnPage;
-        List<ContentDescriptionModel> content = getContentByType("News:", publish, start, (long)countOnPage, contentOfPagesService);
+        Long start = sumOfNews - (current) * countOnPage;
+        if (start < 1){
+            start = (long)0;
+        }
+        Long end = countOnPage + start;
+        if (end>sumOfNews)
+            end = sumOfNews;
+        List<ContentDescriptionModel> content = getContentByType("News:", publish, start, end, contentOfPagesService);
         model.addAttribute("content", content);
         model.addAttribute("pagination", pagination);
         model.addAttribute("current", current+"");
@@ -104,7 +112,7 @@ public class NewsController {
         return model;
     }
 
-    public static List<String> generatePagination(Integer current, Long sum){
+    public static List<String> generatePagination(Integer current, Integer sum){
         List<String> pagination = new ArrayList<>();
         pagination.add("<");
         pagination.add("1");
@@ -149,7 +157,13 @@ public class NewsController {
             }
             start = sum-start-count;//Рассчитываем с конца - получается, если start = 2, sum = 10, count = 15,
                                     // то взяты будут записи с 14 до 4 (10 записей, начиная со второй с конца)
-            return contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
+            //Переворачиваем последовательность
+            List<ContentDescriptionModel> tmp = contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
+            List<ContentDescriptionModel> result = new ArrayList<>();
+            for (int i = tmp.size()-1; i>=0; i--){
+                result.add(tmp.get(i));
+            }
+            return result;
         }
         catch (Exception e){
             LOG.error(e.getMessage());

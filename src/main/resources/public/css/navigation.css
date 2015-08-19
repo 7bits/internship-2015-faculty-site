@@ -1,5 +1,5 @@
 .navigation-simple-element{
-	float: left;
+	display: inline;
 	padding: 2px;
 	font-size: 16px;
 	text-decoration: none;
@@ -9,10 +9,10 @@
 }
 
 .navigation-simple-text{
-	float: left;
 	font-size: 16px;
 	padding: 2px;
 	text-decoration: none;
+	display: inline;
 }
 
 .navigation-num{
@@ -34,5 +34,6 @@
 }
 
 .navigation-content-pages{
-	width:contain;
+	width:100%;
+	text-align: center;
 }
