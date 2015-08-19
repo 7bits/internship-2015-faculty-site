@@ -25,13 +25,10 @@ html
 				each tmp in content
 					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
 				each tmp in pagination
-					if (tmp != '...')
-						if (tmp == current || (tmp == "<" && current != 1) || (tmp == ">" && current != sumOfNews))
-							div.navigation-current= tmp
-						else
-							a.navigation-simple-element(href="/news?page=#{tmp}&current=#{current}")= tmp
-					else
+					if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfNews))
 						div.navigation-simple-text= tmp
+					else
+						a.navigation-simple-element(href="/news?page=#{tmp}&current=#{current}")= tmp
 
 			div.tab-container.tab-container-content
 				each tmp in content

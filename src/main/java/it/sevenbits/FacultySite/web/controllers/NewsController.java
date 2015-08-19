@@ -59,6 +59,10 @@ public class NewsController {
             model.addAttribute("canCreate", true);
             model.addAttribute("createType", "News:");
         }
+        if (page == null)
+            page = "1";
+        if (current == null)
+            current = 1;
         Long sumOfNews = (long)0;
         try{
             sumOfNews = contentOfPagesService.getSumOfPages("News:%", true);
@@ -66,26 +70,34 @@ public class NewsController {
         catch (Exception e){
             LOG.error(e.getMessage());
         }
-        if (page != null){
-            if (page.equals("<")){
-                if (current > 1){
-                    current--;
-                }
+        if (page.equals("<")){
+            if (current > 1){
+                current--;
             }
-            if (page.equals(">")){
+        }
+        else {
+            if (page.equals(">")) {
                 if (current < sumOfNews) {
                     current++;
+                }
+            } else{
+                try {
+                    current = Integer.parseInt(page);
+                }
+                catch (Exception e){
+                    current = 1;
+                    LOG.error(e.getMessage());
                 }
             }
         }
         List<String> pagination = new ArrayList<>();
-            pagination = generatePagination(current, sumOfNews);
+        pagination = generatePagination(current, sumOfNews);
         Long start = (long)(current-1) * countOnPage;
         List<ContentDescriptionModel> content = getContentByType("News:", publish, start, (long)countOnPage, contentOfPagesService);
         model.addAttribute("content", content);
         model.addAttribute("pagination", pagination);
-        model.addAttribute("current", current);
-        model.addAttribute("sumOfNews", sumOfNews);
+        model.addAttribute("current", current+"");
+        model.addAttribute("sumOfNews", sumOfNews+"");
         return model;
     }
 
