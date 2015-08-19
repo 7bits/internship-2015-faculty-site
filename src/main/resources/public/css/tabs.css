@@ -100,6 +100,6 @@
     color: white;
 }
 
-.tab-title-style:hover, .tab-title-container:active{
+.tab-title-style:hover{
     background:#d6d6d7;
 }

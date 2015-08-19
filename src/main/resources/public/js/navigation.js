@@ -103,9 +103,38 @@ $(document).ready(function() {
                 if (checked <= count ){ 
                     constructPanel(checked, count, parentId);
                 }
-
+                $(".tab-container-titles").remove(".tab-title");
+                $(".tab-container-content").remove(".tab-container");
+                var content = response.content;
+                for (i = 0; i<content.length; i++){
+                    $(".tab-container-titles").append(addTitlePart(content[i].creatingDate, content[i].title, content[i].miniContent));
+                    $(".tab-container-content").append(addContentPart(content[i].description));
+                }
             }
         });
     }
+
+
+    function addTitlePart(date, title, content){
+        return "<div class='tab-title tab-title-style'><div class='tab-title-container'><p class='tab-title-date tab-title-text'>"+ date +"<p class='tab-title-title tab-title-text'>"+ title +"<p class='tab-title-content tab-title-text'>"+ content +"</div></div>";
+    }
+
+    function addTitleSimplePart(title){
+        return "<div class='tab-title tab-title-style'><div class='tab-title-container'><p class='tab-title-title-simple-part tab-title-text'>"+ title +"</div></div>";
+    }
+
+
+    // mixin add-gallery-link(id, title, imgLinks)
+    //     a.tab-title-container(href="/photo-from-albums?albumId=#{id}", target="_blank")
+    //         p.tab-title-date.tab-title-text
+    //         p.tab-title-title.tab-title-text= title
+    //         div.tab-title-content.tab-title-text
+    //             each tmp in imgLinks
+    //                 img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="#{tmp}")
+
+    function addContentPart(content){
+        return "<div class='tab-content'>"+content+"</div>";
+    }
+
 
 });
