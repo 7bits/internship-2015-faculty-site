@@ -1,7 +1,6 @@
 .tabs{
     display:table;
     overflow: hidden;
-    font-family: sans-serif;
 }
 .tab-content{
     padding: 5px 20px;
@@ -100,7 +99,7 @@
     color: white;
 }
 
-.tab-title-style:hover, .tab-title-container:active{
+.tab-title-style:hover{
     background:#d6d6d7;
 }
 /*style IG*/

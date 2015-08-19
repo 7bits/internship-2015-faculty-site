@@ -1,16 +1,26 @@
 link(rel='stylesheet', href="/css/tabs.css", type='text/css', media='screen')
-script(src='/js/tabs.js')
+if (root == true)
+	script(src='/js/tabs-admin.js')
+else
+	script(src='/js/tabs.js')
 script.
 	$(document).ready(function(){
 		$(".tabs").lightTabs();
 	});
 
-mixin add-title-part(date, title, content)
-	div.tab-title.tab-title-style
-		div.tab-title-container
-			p.tab-title-date.tab-title-text= date
-			p.tab-title-title.tab-title-text= title
-			p.tab-title-content.tab-title-text= content
+mixin add-title-part(date, title, content, id)
+	if (id != null)
+		div.tab-title.tab-title-style(idDB="#{id}")
+			+add-title-container(date, title, content)
+	else
+		div.tab-title.tab-title-style
+			+add-title-container(date, title, content)
+
+mixin add-title-container(date, title, content)
+	div.tab-title-container
+		p.tab-title-date.tab-title-text= date
+		p.tab-title-title.tab-title-text= title
+		p.tab-title-content.tab-title-text= content
 
 mixin add-title-simple-part(title)
 	div.tab-title.tab-title-style

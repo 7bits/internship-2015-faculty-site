@@ -6,19 +6,58 @@ html
 		link(rel='stylesheet', href='/css/main-page/main-page.css')
 		link(href='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css', rel='stylesheet')
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js')
+		link(href="/css/navigation.css", rel='stylesheet')
 		include general-includes.jade
 	body
+		if (root == true)
+			include forms/redact-content.jade
 		include forms/header.jade
 		include forms/sliders/slider-under-header.jade
 		//- include form,s/sharing.jade
 		include forms/main/main-page-info-block.jade
 		include forms/content-slider.jade
+		div.tabs
+			div.tab-container.tab-container-titles
+				//-Разделитель 
+				p.tab-title-delimiter
+				//-Надпись 
+				p.tab-title-clarification.tab-title-text НОВОСТИ
+				//- Наполнение контентом новостей
+				if (root == true)
+					each tmp, i in content
+						+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent, tmp.id)
+				else
+					each tmp, i in content
+						+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+				div.navigation-content-pages
+					each tmp in pagination
+						if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfPages))
+							div.navigation-simple-text= tmp
+						else
+							a.navigation-simple-element(href="/news?page=#{tmp}&current=#{current}")= tmp
 
-		+add-content-slider(mainInfo, content, title)
-		
-		if (root == true)
-			include forms/redact-content.jade
-			+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
-						
-		
+			div.tab-container.tab-container-content
+				each tmp in content
+					+add-content-part(tmp.description)
+		div.footer
+			div.copyright
+				p(style='color:#ffffff') 2015 © ИМИТ ОмГУ им. Ф.М. Достоевского
+			div.social-net
+				a(href='https://www.youtube.com/user/IMITOmsk')
+					img(src='/img/logo/yt.png')
+				a(href='http://imit_omsu.livejournal.com/')
+					img(src='/img/logo/lj.png')
+				a(href='http://vk.com/imit_omsu')
+					img(src='/img/logo/vk.png')
+			div.info-about-faculty
+				.info-about-faculty-line
+					img(src='/img/logo/map.png')
+				.info-about-faculty-line
+					p(style='color:#ffffff')   Пр.Мира 55
+				br
+				.info-img-and-text
+					.info-about-faculty-line
+						img(src='/img/logo/phone.png')
+					.info-about-faculty-line
+						p(style='color:#ffffff')   64-42-38, 22-56-96
 		include forms/sliders/scriptForSliders.jade

@@ -38,7 +38,10 @@ public class HomeController {
         List<ContentDescriptionModel> news = new ArrayList<>();
         List<ContentDescription> mainInfo = new ArrayList<>();
         try {
-            news = contentOfPagesService.getPagesWhichContainTypeWithCountWithPublish("News:%", (long) 5, true);
+            Integer sumOfNews = contentOfPagesService.getSumOfPages("News:%", true).intValue();
+            Long start = NewsController.calculateStartFromTheEnd(sumOfNews, 1, 3);
+            Long end = NewsController.calculateEndFromTheEnd(start, sumOfNews, 3);
+            news = NewsController.getContentByType("News:%", true, start, end, contentOfPagesService);
         }
         catch (Exception e){
             LOG.error(e.getMessage());
