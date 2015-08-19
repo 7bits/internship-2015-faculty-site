@@ -91,7 +91,10 @@ public class NewsController {
             }
         }
         List<String> pagination = new ArrayList<>();
-        pagination = generatePagination(current, sumOfNews);
+        Long sumOfPages = sumOfNews/countOnPage;
+        if (sumOfPages < 1)
+            sumOfPages = (long)1;
+        pagination = generatePagination(current, sumOfPages);
         Long start = (long)(current-1) * countOnPage;
         List<ContentDescriptionModel> content = getContentByType("News:", publish, start, (long)countOnPage, contentOfPagesService);
         model.addAttribute("content", content);
