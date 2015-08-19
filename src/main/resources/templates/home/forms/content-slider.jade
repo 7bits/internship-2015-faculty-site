@@ -35,15 +35,21 @@ mixin add-gallery-link(id, title, imgLinks)
 		div.tab-title-content.tab-title-text
 			each tmp in imgLinks
 				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="#{tmp}")
-
+//- IG
 mixin add-reviews-link(title, miniTitle, imgLinks, text)
 	a.tab-title-container(href="/graduates", target="_blank")
 		p.tab-title-title.tab-title-text= title
 		p.tab-title-date.tab-title-text= miniTitle
 		div.img-reviews
-			img(style="max-width:100%;", src="#{imgLinks}")
+			img(style="width:100px; max-width:100%;", src="#{imgLinks}")
 		div.text-reviews
-			div.tab-title-content.tab-title-text= text
+			div.IG-tab-title-content= text
+//- IG
+mixin add-partner-link(imgLinks)
+	a.tab-title-container(href="/partners", target="_blank")
+		img(style="max-width:100%;", src="#{imgLinks}")
+	
+
 
 mixin add-content-part(content)
 	div.tab-content!= content
