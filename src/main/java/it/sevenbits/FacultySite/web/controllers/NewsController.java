@@ -92,7 +92,7 @@ public class NewsController {
             }
         }
         List<String> pagination = new ArrayList<>();
-        Integer sumOfPages = sumOfNews.intValue()/countOnPage;
+        Integer sumOfPages = (int)Math.ceil(sumOfNews/((float)countOnPage));
         if (sumOfPages < 1)
             sumOfPages = 1;
         current = sumOfPages;
@@ -109,6 +109,8 @@ public class NewsController {
 
     public static Long calculateStartFromTheEnd(Integer sumOfNews, Integer current, Integer countOnPage){
         Long start = (long)sumOfNews - (current) * countOnPage;
+        //Рассчитываем с конца - получается, если start = 2, sum = 10, count = 15,
+        // то взяты будут записи с 14 до 4 (10 записей, начиная со второй с конца)
         if (start < 1) {
             start = (long) 0;
         }
@@ -164,8 +166,7 @@ public class NewsController {
             if (sum-start < count) {
                 count = sum-start;
             }
-            start = sum-start-count;//Рассчитываем с конца - получается, если start = 2, sum = 10, count = 15,
-                                    // то взяты будут записи с 14 до 4 (10 записей, начиная со второй с конца)
+
             //Переворачиваем последовательность
             List<ContentDescriptionModel> tmp = contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
             List<ContentDescriptionModel> result = new ArrayList<>();
