@@ -113,7 +113,12 @@
     width: 67%;
     padding-left: 2%;
 }
+
 .IG-tab-title-content{
     color: black;
     font-size: 15px;
+}
+
+.partner{
+    text-align: center;
 }
