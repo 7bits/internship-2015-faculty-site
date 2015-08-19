@@ -100,7 +100,7 @@ public class NewsController {
         model.addAttribute("content", content);
         model.addAttribute("pagination", pagination);
         model.addAttribute("current", current+"");
-        model.addAttribute("sumOfNews", sumOfNews+"");
+        model.addAttribute("sumOfPages", sumOfPages+"");
         return model;
     }
 
