@@ -7,9 +7,7 @@ html
 		link(rel='stylesheet', href='/css/main-page/main-page.css')
 		link(href='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css', rel='stylesheet')
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js')
-		link(href="/css/navigation.css", rel='stylesheet')
 		script(src='http://code.jquery.com/jquery-2.1.4.min.js')
-		script(src="/js/navigation.js")
 	body
 		include forms/header.jade
 		include forms/sliders/slider-under-header.jade
@@ -25,7 +23,6 @@ html
 				//- Наполнение контентом новостей
 				each tmp in content
 					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
-				div#panelParent
 
 			div.tab-container.tab-container-content
 				each tmp in content

@@ -21,56 +21,48 @@ import java.util.Map;
 public class NewsController {
     private static Logger LOG = Logger.getLogger(NewsController.class);
 
+    public final static Integer countOnPage = 1;
+
     @Autowired
     ContentOfPagesService contentOfPagesService;
 
     @RequestMapping(value = "/news")
     public String news(@RequestParam(value="News", required = false) String newsType,
-                       @RequestParam(value="NewsId", required = false) Long newsId,
-                       @ModelAttribute ImageDescriptionForm form,
+                       @RequestParam(value="Page", required = false) Integer page,
                        Model model) {
         model.addAttribute("title", "Новости ОмГУ");
-        model = constructNews(newsType, newsId, form, true, model, contentOfPagesService);
+        model = constructNews(newsType, page, true, model, contentOfPagesService);
         model.addAttribute("mainInfo", new ArrayList<>());
         return "home/news";
     }
 
-    @RequestMapping(value = "/load_news", method = RequestMethod.GET)
-    public @ResponseBody
-    Map<String, Object> loadNews(@RequestParam(value="checked", required=false, defaultValue="1") Integer checked, @RequestParam(value="sum", required=false, defaultValue="1") Long count) {
-        Map<String, Object> result = new HashMap<>();
-        try {
-            result.put("content", contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries("News:%", true, (checked - 1) * count, checked * count));
-            result.put("countOnPage", 1);
-            result.put("countNews", contentOfPagesService.getSumOfPages("News:%", true));
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
-        return result;
-    }
+//    @RequestMapping(value = "/load_news", method = RequestMethod.GET)
+//    public @ResponseBody
+//    Map<String, Object> loadNews(@RequestParam(value="checked", required=false, defaultValue="1") Integer checked, @RequestParam(value="sum", required=false, defaultValue="1") Long count) {
+//        Map<String, Object> result = new HashMap<>();
+//        try {
+//            result.put("content", contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries("News:%", true, (checked - 1) * count, checked * count));
+//            result.put("countOnPage", 1);
+//            result.put("countNews", contentOfPagesService.getSumOfPages("News:%", true));
+//        }
+//        catch (Exception e){
+//            LOG.error(e.getMessage());
+//        }
+//        return result;
+//    }
+    //Was for Ajax
 
 
-    public static Model constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
+    public static Model constructNews(String newsType, Integer page, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
             model.addAttribute("root", true);
             model.addAttribute("canCreate", true);
             model.addAttribute("createType", "News:");
         }
-        if (newsId != null){
-            if (newsId < 1)
-                return model;
-            ContentDescription news = getContentById(newsId, contentOfPagesService);
-
-            if (news == null)
-                return model;
-            model.addAttribute("description", news.getDescription());
-        }
-        else{
-            newsType = (newsType == null ? "" : newsType);
-            List<ContentDescriptionModel> content = getContentByType("News:"+newsType, publish, (long)1, (long)1, contentOfPagesService);
-            model.addAttribute("content", content);
-        }
+        Long start = (long)(page-1) * countOnPage;
+        newsType = (newsType == null ? "" : newsType);
+        List<ContentDescriptionModel> content = getContentByType("News:"+newsType, publish, start, (long)countOnPage, contentOfPagesService);
+        model.addAttribute("content", content);
         return model;
     }
 

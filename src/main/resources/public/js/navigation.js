@@ -104,7 +104,7 @@ $(document).ready(function() {
                     constructPanel(checked, count, parentId);
                 }
                 $(".tab-container-titles").remove(".tab-title");
-                $(".tab-container-content").remove(".tab-container");
+                $(".tab-container-content").remove(".tab-content");
                 var content = response.content;
                 for (i = 0; i<content.length; i++){
                     $(".tab-container-titles").append(addTitlePart(content[i].creatingDate, content[i].title, content[i].miniContent));
