@@ -27,11 +27,11 @@ public class NewsController {
     ContentOfPagesService contentOfPagesService;
 
     @RequestMapping(value = "/news")
-    public String news(@RequestParam(value="News", required = false) String newsType,
-                       @RequestParam(value="Page", required = false) Integer page,
+    public String news(@RequestParam(value="current", required = false) Integer current,
+                       @RequestParam(value="page", required = false) String page,
                        Model model) {
         model.addAttribute("title", "Новости ОмГУ");
-        model = constructNews(newsType, page, true, model, contentOfPagesService);
+        model = constructNews(current, page, true, model, contentOfPagesService);
         model.addAttribute("mainInfo", new ArrayList<>());
         return "home/news";
     }
@@ -53,27 +53,39 @@ public class NewsController {
     //Was for Ajax
 
 
-    public static Model constructNews(String newsType, Integer page, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
+    public static Model constructNews(Integer current, String page, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
             model.addAttribute("root", true);
             model.addAttribute("canCreate", true);
             model.addAttribute("createType", "News:");
         }
-        if (page == null){
-            page = 1;
-        }
-        List<String> pagination = new ArrayList<>();
+        Long sumOfNews = (long)0;
         try{
-            pagination = generatePagination(page, contentOfPagesService.getSumOfPages("News:%", true));
+            sumOfNews = contentOfPagesService.getSumOfPages("News:%", true);
         }
         catch (Exception e){
             LOG.error(e.getMessage());
         }
-        Long start = (long)(page-1) * countOnPage;
-        newsType = (newsType == null ? "" : newsType);
-        List<ContentDescriptionModel> content = getContentByType("News:"+newsType, publish, start, (long)countOnPage, contentOfPagesService);
+        if (page != null){
+            if (page.equals("<")){
+                if (current > 1){
+                    current--;
+                }
+            }
+            if (page.equals(">")){
+                if (current < sumOfNews) {
+                    current++;
+                }
+            }
+        }
+        List<String> pagination = new ArrayList<>();
+            pagination = generatePagination(current, sumOfNews);
+        Long start = (long)(current-1) * countOnPage;
+        List<ContentDescriptionModel> content = getContentByType("News:", publish, start, (long)countOnPage, contentOfPagesService);
         model.addAttribute("content", content);
         model.addAttribute("pagination", pagination);
+        model.addAttribute("current", current);
+        model.addAttribute("sumOfNews", sumOfNews);
         return model;
     }
 
