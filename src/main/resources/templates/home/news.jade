@@ -10,6 +10,8 @@ html
 		link(href="/css/navigation.css", rel='stylesheet')
 		script(src='http://code.jquery.com/jquery-2.1.4.min.js')
 	body
+		if (root == true)
+			include forms/redact-content.jade
 		include forms/header.jade
 		include forms/sliders/slider-under-header.jade
 		//- include form,s/sharing.jade
@@ -22,8 +24,12 @@ html
 				//-Надпись 
 				p.tab-title-clarification.tab-title-text НОВОСТИ
 				//- Наполнение контентом новостей
-				each tmp, i in content
-					+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
+				if (root == true)
+					each tmp, i in content
+						+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent, tmp.id)
+				else
+					each tmp, i in content
+						+add-title-part(tmp.creatingDate, tmp.title, tmp.miniContent)
 				div.navigation-content-pages
 					each tmp in pagination
 						if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfPages))
