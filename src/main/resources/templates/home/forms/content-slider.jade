@@ -40,9 +40,9 @@ mixin add-reviews-link(title, miniTitle, imgLinks, text)
 	a.tab-title-container(href="/graduates", target="_blank")
 		p.tab-title-title.tab-title-text= title
 		p.tab-title-date.tab-title-text= miniTitle
-		div.inline-block
-			img(style="max-width:40%; max-height:70px;", src="#{imgLinks}")
-		div.inline-block
+		div.img-reviews
+			img(style="max-width:100%;", src="#{imgLinks}")
+		div.text-reviews
 			div.tab-title-content.tab-title-text= text
 
 mixin add-content-part(content)

@@ -103,7 +103,13 @@
     background:#d6d6d7;
 }
 /*style IG*/
-.inline-block{
-    display: inline-block;
-    vertical-align: top;
+.img-reviews{
+    float: left;
+    width: 30%;
+}
+
+.text-reviews{
+    float: left;
+    width: 67%;
+    padding-left: 2%;
 }
