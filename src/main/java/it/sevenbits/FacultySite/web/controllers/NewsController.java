@@ -40,21 +40,8 @@ public class NewsController {
     Map<String, Object> loadNews(@RequestParam(value="checked", required=false, defaultValue="1") Integer checked, @RequestParam(value="sum", required=false, defaultValue="1") Long count) {
         Map<String, Object> result = new HashMap<>();
         try {
-            result.put("content", contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries("News:%", true, (checked - 1) * count + 1, count));
+            result.put("content", contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries("News:%", true, (checked - 1) * count, checked * count));
             result.put("countOnPage", 1);
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
-        return result;
-    }
-
-    @RequestMapping(value = "/count_news", method = RequestMethod.GET)
-    public @ResponseBody
-    Map<String, Long> countNews(){
-        Map<String, Long> result = new HashMap<>();
-        try {
-            result.put("countOnPage", (long)1);
             result.put("countNews", contentOfPagesService.getSumOfPages("News:%", true));
         }
         catch (Exception e){
@@ -62,6 +49,7 @@ public class NewsController {
         }
         return result;
     }
+
 
     public static Model constructNews(String newsType, Long newsId, ImageDescriptionForm form, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
