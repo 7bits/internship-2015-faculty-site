@@ -59,6 +59,9 @@ public class NewsController {
             model.addAttribute("canCreate", true);
             model.addAttribute("createType", "News:");
         }
+        if (page == null){
+            page = 1;
+        }
         Long start = (long)(page-1) * countOnPage;
         newsType = (newsType == null ? "" : newsType);
         List<ContentDescriptionModel> content = getContentByType("News:"+newsType, publish, start, (long)countOnPage, contentOfPagesService);
