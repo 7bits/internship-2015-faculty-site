@@ -1,6 +1,5 @@
 .sliders-global{
-	position: absolute;
-	bottom: 0;
+
 }
 
 /*Стили слайдера под header ом*/
@@ -279,6 +278,7 @@
 	overflow: hidden;
 	padding-top: 4%;
 	padding-bottom:3%;
+	padding-left: 2%;
 }
 
 .info-about-slider p{
