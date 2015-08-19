@@ -92,7 +92,7 @@ public class NewsController {
             }
         }
         List<String> pagination = new ArrayList<>();
-        Integer sumOfPages = (int)Math.ceil(sumOfNews/countOnPage);
+        Integer sumOfPages = (int)Math.ceil(sumOfNews/((float)countOnPage));
         if (sumOfPages < 1)
             sumOfPages = 1;
         current = sumOfPages;
