@@ -104,6 +104,7 @@ public class ContentOfPagesService {
 
     public List<ContentDescriptionModel> getPagesWhichContainTypeIsPublishWithBoundaries(String type, Boolean publish, Long start, Long count) throws ServiceException {
         try {
+
             List<ContentDescription> pages = repository.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
             List<ContentDescriptionModel> models = new ArrayList<>();
             for (ContentDescription tmp : pages)

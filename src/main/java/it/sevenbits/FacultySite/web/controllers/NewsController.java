@@ -21,7 +21,7 @@ import java.util.Map;
 public class NewsController {
     private static Logger LOG = Logger.getLogger(NewsController.class);
 
-    public final static Integer countOnPage = 1;
+    public final static Integer countOnPage = 4;
 
     @Autowired
     ContentOfPagesService contentOfPagesService;
@@ -144,7 +144,7 @@ public class NewsController {
             if (sum-start < count) {
                 count = sum-start;
             }
-            start = sum-start-count+1;//Рассчитываем с конца - получается, если start = 2, sum = 10, count = 15,
+            start = sum-start-count;//Рассчитываем с конца - получается, если start = 2, sum = 10, count = 15,
                                     // то взяты будут записи с 14 до 4 (10 записей, начиная со второй с конца)
             return contentOfPagesService.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
         }
