@@ -1,15 +1,12 @@
-@font-face {
-    src: url(/fonts/OpenSans-Light.ttf);
- }
 
 .contacts_tabs{
-  font-size: 16px;
+  font-size: 14px;
   line-height: 2em;
-  font-family: OpenSans-Light;
 
+  
 }
 .head{
-  font-size: 34px;
+  font-size: 35px;
 }
 .staff{
   font-size: 20px;
