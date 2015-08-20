@@ -5,8 +5,8 @@ public class ImageDescription {
     private Long album;
     private String title;
     private String description;
-    private String creating_date;
-    private String creating_time;
+    private String creatingDate;
+    private String creatingTime;
     private String link;
     private Boolean isHead;
 
@@ -32,13 +32,13 @@ public class ImageDescription {
         this.link = link;
     }
 
-    public ImageDescription(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, Boolean isHead) {
+    public ImageDescription(Long id, Long album, String title, String description, String creatingDate, String creatingTime, String link, Boolean isHead) {
         this.id = id;
         this.album = album;
         this.title = title;
         this.description = description;
-        this.creating_date = creating_date;
-        this.creating_time = creating_time;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
         this.link = link;
         this.isHead = isHead;
     }
@@ -59,12 +59,12 @@ public class ImageDescription {
         return description;
     }
 
-    public String getCreating_date() {
-        return creating_date;
+    public String getCreatingDate() {
+        return creatingDate;
     }
 
-    public String getCreating_time() {
-        return creating_time;
+    public String getCreatingTime() {
+        return creatingTime;
     }
 
     public String getLink() {
@@ -92,12 +92,12 @@ public class ImageDescription {
         this.description = description;
     }
 
-    public void setCreating_date(String creating_date) {
-        this.creating_date = creating_date;
+    public void setCreatingDate(String creatingDate) {
+        this.creatingDate = creatingDate;
     }
 
-    public void setCreating_time(String creating_time) {
-        this.creating_time = creating_time;
+    public void setCreatingTime(String creatingTime) {
+        this.creatingTime = creatingTime;
     }
 
     public void setLink(String link) {

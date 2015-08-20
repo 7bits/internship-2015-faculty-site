@@ -148,6 +148,15 @@ public class ImageDescriptionService {
         }
     }
 
+    public ImageDescription getImageById(Long id) throws ServiceException {
+        try{
+            return repository.getImageById(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while get image by id: " + e.getMessage(), e);
+        }
+    }
+
     public List<AlbumDescription> getAllAlbumsWithUniqueLink() throws ServiceException {
         try{
             List<AlbumDescription> albums = repository.getAllAlbums();
@@ -184,13 +193,16 @@ public class ImageDescriptionService {
                 return new ArrayList<>();
             List<ImageFromAlbumDescription> descriptions = repository.getImagesFromAlbum(id);
             List<ImageFromAlbumDescriptionModel> models = new ArrayList<>(descriptions.size());
-            for (ImageFromAlbumDescription s: descriptions) {
-                models.add(new ImageFromAlbumDescriptionModel(
-                        (long)s.getId(),
+            for (int i = descriptions.size()-1; i >= 0 ; i--) {
+                ImageFromAlbumDescription s = descriptions.get(i);
+                models.add(new ImageFromAlbumDescriptionModel(s.getId(),
+                        s.getAlbum_title(),
                         s.getTitle(),
                         s.getDescription(),
+                        s.getCreatingDate(),
+                        s.getCreatingTime(),
                         s.getLink(),
-                        s.getAlbum_title()
+                        s.isHead()
                 ));
             }
             return models;

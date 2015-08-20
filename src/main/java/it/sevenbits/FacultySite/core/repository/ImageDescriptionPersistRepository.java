@@ -82,6 +82,16 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
     }
 
     @Override
+    public ImageDescription getImageById(Long id) throws RepositoryException {
+        try{
+            return mapper.getImageById(id);
+        }
+        catch (Exception e){
+            throw new RepositoryException("An error occurred while getting album by id: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
     public List<ImageDescription> getAllImages() throws RepositoryException {
         try {
             return mapper.getAllImages();

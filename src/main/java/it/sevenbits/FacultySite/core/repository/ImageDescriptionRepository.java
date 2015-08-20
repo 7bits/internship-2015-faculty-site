@@ -13,6 +13,7 @@ public interface ImageDescriptionRepository {
     void addAlbum(final AlbumDescription album) throws RepositoryException;
     List<AlbumDescription> getAllAlbums() throws RepositoryException;
     AlbumDescription getAlbumById(Long id) throws RepositoryException;
+    ImageDescription getImageById(Long id) throws RepositoryException;
     List<ImageDescription> getAllImages() throws RepositoryException;
     List<ImageFromAlbumDescription> getImagesFromAlbum(long id) throws RepositoryException;
 }

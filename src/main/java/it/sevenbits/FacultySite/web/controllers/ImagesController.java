@@ -32,6 +32,12 @@ public class ImagesController {
 
     private static Logger LOG = Logger.getLogger(ImagesController.class);
 
+
+    final static String bigi = "gallery-page-gallery-photo/bigi/";
+    final static String mini = "gallery-page-gallery-photo/mini/";
+    //final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+    final static String path = "src/main/resources/public/img/";
+
     @RequestMapping(value = "/gallery")
     public String gallery(Model model) {
         try {
@@ -77,23 +83,33 @@ public class ImagesController {
                 LOG.error(e.getMessage());
             }
         }
-        for (Long deleteId : toDeleteIDs){
-            try {
-                imageDescriptionService.removeImage(deleteId);
-            }
-            catch (Exception e){
-                LOG.error(e.getMessage());
+        if (toDeleteIDs != null) {
+            for (Long deleteId : toDeleteIDs) {
+                try {
+                    ImageDescription image = imageDescriptionService.getImageById(deleteId);
+                    if (!image.getAlbum().equals(album.getId()))
+                        continue;
+                    deleteFile(path+bigi+image.getLink());
+                    deleteFile(path+mini+image.getLink());
+                    imageDescriptionService.removeImage(deleteId);
+                } catch (Exception e) {
+                    LOG.error(e.getMessage());
+                }
             }
         }
         try {
             List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(album.getId());
-            for (int i = 0; i < images.size(); i++){
+            for (ImageFromAlbumDescriptionModel currentImage : images){
                 try{
-                    ImageFromAlbumDescriptionModel currentImage = images.get(i);
                     Boolean isHead = false;
-                    for (Long isHeadTmpId: isHeadIDs)
-                        if (isHeadTmpId.equals(currentImage.getId()))
-                            isHead = true;//если присутствует в списке - значит, должен быть заглавной
+                    if (isHeadIDs != null) {
+                        for (Long isHeadTmpId : isHeadIDs) {
+                            if (isHeadTmpId.equals(currentImage.getId())) {
+                                isHead = true;//если присутствует в списке - значит, должен быть заглавной
+                                break;
+                            }
+                        }
+                    }
                     ImageDescription image = new ImageDescription(currentImage.getId(),
                             album.getId(),
                             currentImage.getTitle(),
@@ -103,7 +119,6 @@ public class ImagesController {
                             currentImage.getLink(),
                             isHead);
                     imageDescriptionService.changeImage(image);
-
                 }
                 catch (Exception e){
                     LOG.getAppender(e.getMessage());
@@ -120,6 +135,14 @@ public class ImagesController {
             downloadImage(file, album.getId());
         }
         return "redirect:/updateAlbum?id="+album.getId();
+    }
+
+    public static Boolean deleteFile(String path){
+        File src = new File(path);
+        Boolean res = src.delete();
+        if (!res)
+            LOG.error("Can't delete file: "+path);
+        return res;
     }
 
     @RequestMapping(value="/updateAlbum", method= RequestMethod.GET)
@@ -153,10 +176,6 @@ public class ImagesController {
                 String type = parts[parts.length-1];
 
                 byte[] bytes = file.getBytes();
-                String bigi = "gallery-page-gallery-photo/bigi/";
-                String mini = "gallery-page-gallery-photo/mini/";
-                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-                String path = "src/main/resources/public/img/";
                 File src = new File(path+bigi+name);
                 File miniFile = new File(path+mini+name);
                 BufferedOutputStream stream =

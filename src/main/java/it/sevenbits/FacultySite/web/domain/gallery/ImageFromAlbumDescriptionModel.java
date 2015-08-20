@@ -8,7 +8,7 @@ public class ImageFromAlbumDescriptionModel {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean isHead;
+    private Boolean isHead;
 
     public ImageFromAlbumDescriptionModel(Long id, String title, String description, String link, String album_title) {
         this.id = id;
@@ -16,6 +16,17 @@ public class ImageFromAlbumDescriptionModel {
         this.description = description;
         this.link = link;
         this.album_title = album_title;
+    }
+
+    public ImageFromAlbumDescriptionModel(Long id, String album_title, String title, String description, String creating_date, String creating_time, String link, Boolean isHead) {
+        this.id = id;
+        this.album_title = album_title;
+        this.title = title;
+        this.description = description;
+        this.creating_date = creating_date;
+        this.creating_time = creating_time;
+        this.link = link;
+        this.isHead = isHead;
     }
 
     public void setId(Long id) {
@@ -46,7 +57,7 @@ public class ImageFromAlbumDescriptionModel {
         this.link = link;
     }
 
-    public void setIsHead(boolean isHead) {
+    public void setIsHead(Boolean isHead) {
         this.isHead = isHead;
     }
 
@@ -78,7 +89,7 @@ public class ImageFromAlbumDescriptionModel {
         return link;
     }
 
-    public boolean isHead() {
+    public Boolean isHead() {
         return isHead;
     }
 

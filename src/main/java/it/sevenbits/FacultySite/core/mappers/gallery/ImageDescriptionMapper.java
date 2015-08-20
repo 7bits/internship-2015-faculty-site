@@ -26,9 +26,24 @@ public interface ImageDescriptionMapper {
             @Result(column = "description", property = "description"),
             @Result(column = "title", property = "title"),
             @Result(column = "album_title", property = "album_title"),
-            @Result(column = "is_head", property = "isHead")
+            @Result(column = "is_head", property = "isHead"),
+            @Result(column = "creating_date", property = "creatingDate"),
+            @Result(column = "creating_time", property = "creatingTime")
     })
     List<ImageFromAlbumDescription> getImagesFromAlbum(@Param("album_id") Long album_id);
+
+    @Select("SELECT * FROM image WHERE id=#{id}")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "link", property = "link"),
+            @Result(column = "description", property = "description"),
+            @Result(column = "title", property = "title"),
+            @Result(column = "album", property = "album"),
+            @Result(column = "is_head", property = "isHead"),
+            @Result(column = "creating_date", property = "creatingDate"),
+            @Result(column = "creating_time", property = "creatingTime")
+    })
+    ImageDescription getImageById(@Param("id") Long id);
 
     @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album, is_head) VALUES (#{title}, #{description}, #{link}, 'today', 'now', #{album}, #{isHead})")
     void saveImage(final ImageDescription description);
