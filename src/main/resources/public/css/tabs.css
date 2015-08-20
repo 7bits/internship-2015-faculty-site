@@ -1,6 +1,7 @@
 .tabs{
     display:table;
     overflow: hidden;
+    width: 100%;
 }
 .tab-content{
     padding: 5px 20px;
@@ -68,7 +69,7 @@
 }
 
 .tab-container-titles{
-    width: 20%;
+    width: 270px;
     background:#e9eaeb;
     height: 100%;
     /*IG убираю отступ*/
@@ -76,10 +77,26 @@
 }
 
 .tab-container-content{
-    width: 70%;
     /*padding: 10px 5%;*/
     /*IG for sliders(bottom:0)*/
     position: relative;
+}
+
+.tab-container-content-gallery{
+    vertical-align: top;
+}
+
+.tab-title-gallery-img{
+    max-width:40%; 
+    max-height:70px; 
+    margin: 0px 5%;
+}
+
+.tab-content-photo-img{
+    max-height: 150px;
+    max-width: 150px;
+    /*display: inline-block;*/
+    margin: 10px 15px;
 }
 
 .tab-title{

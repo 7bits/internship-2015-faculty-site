@@ -74,6 +74,20 @@ public class ImageDescriptionService {
         return res;
     }
 
+    public void saveAlbum(final AlbumDescription album) throws ServiceException{
+        try{
+            if (album.getId() == null && album.getTitle() != null && album.getDescription() != null && !album.getTitle().isEmpty()){
+                repository.addAlbum(album);
+            }
+            else{
+
+            }
+        }
+        catch (Exception e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     public void saveImage(final ImageDescriptionForm form) throws ServiceException {
         final ImageDescription ImageDescription = new ImageDescription();
         ImageDescription.setTitle(form.getTitle());
@@ -164,8 +178,10 @@ public class ImageDescriptionService {
         return true;
     }
 
-    public List<ImageFromAlbumDescriptionModel>getImagesFromAlbum(long id) throws ServiceException {
+    public List<ImageFromAlbumDescriptionModel>getImagesFromAlbum(Long id) throws ServiceException {
         try {
+            if (id == null || id < 1)
+                return new ArrayList<>();
             List<ImageFromAlbumDescription> descriptions = repository.getImagesFromAlbum(id);
             List<ImageFromAlbumDescriptionModel> models = new ArrayList<>(descriptions.size());
             for (ImageFromAlbumDescription s: descriptions) {

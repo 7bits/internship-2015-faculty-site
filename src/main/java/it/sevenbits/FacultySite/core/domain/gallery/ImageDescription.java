@@ -2,7 +2,7 @@ package it.sevenbits.FacultySite.core.domain.gallery;
 
 public class ImageDescription {
     private Long id;
-    private int album;
+    private Long album;
     private String title;
     private String description;
     private String creating_date;
@@ -21,7 +21,7 @@ public class ImageDescription {
         this.is_head = is_head;
     }
 
-    public ImageDescription(Long id, String title, String description, int album, boolean is_head, String link) {
+    public ImageDescription(Long id, String title, String description, Long album, boolean is_head, String link) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -30,7 +30,7 @@ public class ImageDescription {
         this.link = link;
     }
 
-    public ImageDescription(Long id, int album, String title, String description, String creating_date, String creating_time, String link, boolean is_head) {
+    public ImageDescription(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean is_head) {
         this.id = id;
         this.album = album;
         this.title = title;
@@ -45,7 +45,7 @@ public class ImageDescription {
         return id;
     }
 
-    public int getAlbum() {
+    public Long getAlbum() {
         return album;
     }
 
@@ -78,7 +78,7 @@ public class ImageDescription {
         this.id = id;
     }
 
-    public void setAlbum(int album) {
+    public void setAlbum(Long album) {
         this.album = album;
     }
 

@@ -34,7 +34,7 @@ mixin add-gallery-link(id, title, imgLinks)
 		p.tab-title-title.tab-title-text= title
 		div.tab-title-content.tab-title-text
 			each tmp in imgLinks
-				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="#{tmp}")
+				img.tab-title-gallery-img(src="#{tmp}")
 //- IG
 mixin add-reviews-link(title, miniTitle, imgLinks, text)
 	a.tab-title-container(href="/graduates", target="_blank")
@@ -50,7 +50,22 @@ mixin add-partner-link(imgLinks)
 		.partner
 			img(style="max-width:100%; width:190px;", src="#{imgLinks}")
 	
+mixin add-title-gallery-tab(album)
+	div.tab-title.tab-title-style
+		+add-title-gallery-container(album.title, album.link)
 
+mixin add-title-gallery-container(title, imgLink)
+	div.tab-title-container
+		p.tab-title-title.tab-title-text= title
+		img.tab-title-gallery-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{imgLink}", src="/img/gallery-page-gallery-photo/bigi/#{imgLink}")
+
+mixin add-content-gallery(photos)
+	div.tab-content
+		each photo in photos
+			+add-content-photo-gallery(photo.link)
+
+mixin add-content-photo-gallery(imgLink)
+	img.tab-content-photo-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{imgLink}", src="/img/gallery-page-gallery-photo/bigi/#{imgLink}")
 
 mixin add-content-part(content)
 	div.tab-content!= content

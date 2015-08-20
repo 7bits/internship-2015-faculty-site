@@ -122,6 +122,9 @@ public class ContentOfPagesService {
 
     public Long getSumOfPages(String type, Boolean publish) throws ServiceException{
         try{
+            if (type == null)
+                type = "";
+            type = "%" + type + "%";
             return repository.getSumOfRecords(type, publish);
         }
         catch (Exception e){

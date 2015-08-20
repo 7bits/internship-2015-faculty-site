@@ -1,0 +1,19 @@
+mixin editForm(id, title, description, photos)
+	form.container(method="post", enctype="multipart/form-data")
+		if (id != null && id>0)
+			input.edit-content-text-edit(name="id", value="#{id}", style="display:none;")
+		input.edit-content-text-edit(name="title", required, maxlength="255", placeholder="Заголовок", value="#{title}")
+		input.edit-content-text-edit(name="description", required, placeholder="Описание альбома", value="#{description}")
+		each photo in photos
+			if (photo.is_head)
+				+add-photo(photo)
+		each photo in photos
+			if (photo.is_head == false)
+				+add-photo(photo)
+		input(type="file", name="files", multiple='multiple', accept="image/jpeg,image/png,image/gif")
+		input(type="submit") Сохранить
+
+mixin add-photo(photo)
+	img.img(src="/img/gallery-page-gallery-photo/bigi/#{photo.link}", lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}")
+	input(type="checkbox", name="isHead", checked="#{photo.isHead}", value="#{photo.id}")= Одна из главных
+	input(type="checkbox", name="toDelete", checked="false", value="#{photo.id}")= Удалить

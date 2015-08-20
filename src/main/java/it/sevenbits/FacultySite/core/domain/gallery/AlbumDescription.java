@@ -10,6 +10,44 @@ public class AlbumDescription {
     private String link;
     private Long length;
 
+    public AlbumDescription() {}
+
+    public AlbumDescription(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
+    public AlbumDescription(Long id, String title, String description, String link) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.link = link;
+    }
+
+    public AlbumDescription(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
+    public AlbumDescription(Long id, String title, String description, String creatingDate, String creatingTime, String link, Long length) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.link = link;
+        this.length = length;
+    }
+
+    public AlbumDescription(Long id, String title, String description, String creatingDate, String creatingTime) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+    }
+
     public Long getId() {
         return id;
     }
@@ -66,4 +104,6 @@ public class AlbumDescription {
     public void setLength(Long length) {
         this.length = length;
     }
+
+
 }

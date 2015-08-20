@@ -1,19 +1,38 @@
 doctype html
-head
-	meta(charset="utf-8")
-	meta(http-equiv="X-UA-Compatible", content="IE=edge")
-	title Галерея - ОмГУ
-	include general-includes.jade
-	link(rel='stylesheet', href='/css/gallery.css', type='text/css', media='screen')
-body
-	include forms/header.jade
-	div.container.gallery-container
-		include forms/page-gallery/gallery-page-albums.jade
-		each album in albums
-			+gallery-page-albums(album)
-	include forms/sharing.jade
-		//- h2 Фотоальбомы Института Математики и Информационных Технологий
-		//- include forms/page-gallery/gallery-page-albums.jade
-		//- each album in albums
-		//- 	+gallery-page-albums(album)
+html
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		title Галерея - ОмГУ
+		link(rel='stylesheet', href='/css/main-page/main-page.css')
+		link(href='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css', rel='stylesheet')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js')
+		link(href="/css/navigation.css", rel='stylesheet')
+		link(rel='stylesheet', href='/css/gallery.css', type='text/css', media='screen')
+		include general-includes.jade
+	body
+		include forms/header.jade
+		include forms/sliders/slider-under-header.jade
+		include forms/content-slider.jade
+		div.tabs
+			div.tab-container.tab-container-titles.tab-container-content-gallery
+				//-Разделитель 
+				p.tab-title-delimiter
+				//-Надпись 
+				p.tab-title-clarification.tab-title-text ГАЛЕРЕЯ
+				each album in albums
+					+add-title-gallery-tab(album)
+				div.navigation-content-pages
+					each tmp in pagination
+						if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfPages))
+							div.navigation-simple-text= tmp
+						else
+							a.navigation-simple-element(href="/gallery?page=#{tmp}&current=#{current}")= tmp
 
+			div.tab-container.tab-container-content
+				each imageCollection in images
+					+add-content-gallery(imageCollection)
+				//- each tmp in content
+				//- 	+add-content-part(tmp.description)
+		include forms/footer.jade
+		include forms/sliders/scriptForSliders.jade
