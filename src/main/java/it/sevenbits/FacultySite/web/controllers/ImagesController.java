@@ -33,7 +33,7 @@ public class ImagesController {
     @RequestMapping(value = "/gallery")
     public String gallery(Model model) {
         try {
-            List<AlbumDescription> albums = imageDescriptionService.getAllAlbumsWithUniqueLink();
+            List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
             List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
             for (AlbumDescription album : albums) {
                 images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
@@ -78,9 +78,12 @@ public class ImagesController {
             }
         }
         for (MultipartFile file : files){
+            if (file.getOriginalFilename().isEmpty()) {
+                continue;
+            }
             toOut += downloadImage(file, album.getId()) + "<p>";
         }
-        toOut += "<? header '/updateAlbum?id="+album.getId()+"';?>";
+        toOut += "<? header ('/updateAlbum?id="+album.getId()+"');?>";
         return toOut;
     }
 

@@ -39,12 +39,13 @@ public interface ImageDescriptionMapper {
     @Update("UPDATE image SET title=#{title}, description=#{description}, album=#{album}, is_head=#{is_head} WHERE id=#{id}")
     void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Long album, @Param("is_head")boolean is_head, @Param("id")Long id);
 
-    @Select("SELECT a.id, a.title, a.creating_date, i.link FROM album a LEFT OUTER JOIN image i ON (i.album = a.id and i.is_head);")
+    @Select("SELECT * FROM album")
     @Results({
             @Result(column = "id", property = "id"),
             @Result(column = "title", property = "title"),
+            @Result(column = "description", property = "description"),
             @Result(column = "creating_date", property = "creatingDate"),
-            @Result(column = "link", property = "link")
+            @Result(column = "creating_time", property = "creatingTime")
     })
     List<AlbumDescription> getAllAlbums();
 
