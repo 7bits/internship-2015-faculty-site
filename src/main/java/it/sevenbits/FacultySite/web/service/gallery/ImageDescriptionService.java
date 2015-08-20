@@ -22,7 +22,7 @@ public class ImageDescriptionService {
     @Autowired
     private ImageDescriptionRepository repository;
 
-    static public final double relationSide = ((long)16)/9;
+    static public final double relationSide = ((float)16)/9;
     static public final double miniImgWidth = 240;
     static public final double miniImgHeight = miniImgWidth/relationSide;
 
