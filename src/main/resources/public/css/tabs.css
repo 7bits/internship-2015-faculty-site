@@ -74,6 +74,7 @@
     height: 100%;
     /*IG убираю отступ*/
     padding: 0;
+    vertical-align: top;
 }
 
 .tab-container-content{
