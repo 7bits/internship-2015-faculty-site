@@ -6,6 +6,6 @@ div.admin-instruments-content-redact-forms-container
 	form.admin-instruments-content-redact-forms(action="/updateAlbum", method="get")
 		input.admin-redact(style='display: none;', readonly='readonly', name="id", value="")
 		input.admin-instruments-content-redact-forms(type="submit", value="Редактировать")
-	form.admin-instruments-content-redact-forms(action="/updateAlbum", method="post")
+	form.admin-instruments-content-redact-forms(action="/gallery", method="post")
 		input.admin-delete(style='display: none;', readonly='readonly', name="deleteId", value="")
 		input.admin-instruments-content-redact-forms(type="submit", value="Удалить", onclick="return confirm('Вы точно хотите удалить этот альбом?')")

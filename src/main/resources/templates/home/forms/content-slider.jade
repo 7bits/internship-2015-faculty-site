@@ -50,14 +50,19 @@ mixin add-partner-link(imgLinks)
 		.partner
 			img(style="max-width:100%; width:190px;", src="#{imgLinks}")
 	
-mixin add-title-gallery-tab(album)
+mixin add-title-gallery-tab(album, photos, maxOfMainPhotos)
 	div.tab-title.tab-title-style(idDB="#{album.id}")
-		+add-title-gallery-container(album.title, album.link)
+		+add-title-gallery-container(album.title, photos, maxOfMainPhotos)
 
-mixin add-title-gallery-container(title, imgLink)
+mixin add-title-gallery-container(title, photos, maxOfMainPhotos)
 	div.tab-title-container
 		p.tab-title-title.tab-title-text= title
-		img.tab-title-gallery-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{imgLink}", src="/img/gallery-page-gallery-photo/bigi/#{imgLink}")
+		if (maxOfMainPhotos != null && maxOfMainPhotos > 0)
+			- wasMain = 0;
+			each photo in photos
+				if (photo.isHead() && wasMain < maxOfMainPhotos)
+					- wasMain = wasMain + 1;
+					img.tab-title-gallery-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}", src="/img/gallery-page-gallery-photo/mini/#{photo.link}")
 
 mixin add-content-gallery(photos)
 	div.tab-content

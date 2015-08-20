@@ -39,9 +39,26 @@ public class ImagesController {
     final static String path = "src/main/resources/public/img/";
 
     @RequestMapping(value = "/gallery")
-    public String gallery(Model model) {
+    public String gallery(Model model,
+                          @RequestParam(value = "deleteId", required = false) Long deleteId) {
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
             model.addAttribute("root", true);
+            if (deleteId != null && deleteId >0){
+                try {
+                    List<ImageFromAlbumDescriptionModel> imagesFromDeletingAlbum = imageDescriptionService.getImagesFromAlbum(deleteId);
+                    for (ImageFromAlbumDescriptionModel tmpImg : imagesFromDeletingAlbum)
+                        try{
+                            imageDescriptionService.removeImage(tmpImg.getId());
+                        }
+                        catch (Exception e){
+                            LOG.error(e.getMessage());
+                        }
+                    imageDescriptionService.removeAlbum(deleteId);
+                }
+                catch (Exception e){
+                    LOG.error(e.getMessage());
+                }
+            }
         }
         try {
             List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
@@ -74,18 +91,9 @@ public class ImagesController {
                        @RequestParam(value = "isHead", required = false)List<Long> isHeadIDs,
                        @RequestParam(value = "toDelete", required = false)List<Long> toDeleteIDs,
                        @RequestParam(value = "title", required = false)String title,
-                       @RequestParam(value = "description", required = false)String description,
-                       @RequestParam(value = "deleteId", required = false) Long deleteId){
+                       @RequestParam(value = "description", required = false)String description){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        if (deleteId != null && deleteId >0){
-            try {
-                imageDescriptionService.removeAlbum(deleteId);
-            }
-            catch (Exception e){
-                LOG.error(e.getMessage());
-            }
-        }
         AlbumDescription album = new AlbumDescription(id, title, description);
         if (album.getId() == null){
             try {
