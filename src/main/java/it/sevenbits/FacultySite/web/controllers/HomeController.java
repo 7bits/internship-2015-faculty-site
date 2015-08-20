@@ -54,25 +54,6 @@ public class HomeController {
         return "home/main";
     }
 
-    @RequestMapping(value = "/gallery")
-    public String gallery(Model model) {
-        try {
-            List<AlbumDescription> albums = imageDescriptionService.getAllAlbumsWithUniqueLink();
-            List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
-            for (AlbumDescription album : albums) {
-                images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
-            }
-            List<String> pagination = new ArrayList<>();
-            model.addAttribute("albums", albums);
-            model.addAttribute("images", images);
-            model.addAttribute("pagination", pagination);
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
-        return "home/gallery";
-    }
-
     @RequestMapping(value = "/contacts")
     public String contacts() {
         return "home/contacts";

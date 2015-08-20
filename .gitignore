@@ -3,7 +3,9 @@
 *~
 
 src/main/resources/public/img/bigi
+src/main/resources/public/img/gallery-page-gallery-photo/bigi
 src/main/resources/public/img/mini
+src/main/resources/public/img/gallery-page-gallery-photo/mini
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

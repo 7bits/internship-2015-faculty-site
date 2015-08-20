@@ -77,7 +77,7 @@ public class ContentController {
         return toOut;
     }
 
-    private String generateName(String input){
+    public static String generateName(String input){
         String name = input;
         String partsOfName[] = name.split("\\.");
         name = "." + partsOfName[partsOfName.length-1];
