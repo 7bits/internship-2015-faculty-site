@@ -9,6 +9,7 @@ import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 public interface ImageDescriptionRepository {
     void saveImage(final ImageDescription subscription) throws RepositoryException;
     void removeImage(final Long id) throws RepositoryException;
+    void removeAlbum(final Long id) throws RepositoryException;
     void changeImage(final ImageDescription container) throws RepositoryException;
     void addAlbum(final AlbumDescription album) throws RepositoryException;
     List<AlbumDescription> getAllAlbums() throws RepositoryException;

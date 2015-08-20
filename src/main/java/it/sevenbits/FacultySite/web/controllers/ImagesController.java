@@ -5,7 +5,7 @@ import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
-import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
+import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,7 +28,7 @@ import java.util.List;
 @Controller
 public class ImagesController {
     @Autowired
-    ImageDescriptionService imageDescriptionService;
+    ImageService imageDescriptionService;
 
     private static Logger LOG = Logger.getLogger(ImagesController.class);
 
@@ -71,9 +71,18 @@ public class ImagesController {
                        @RequestParam(value = "isHead", required = false)List<Long> isHeadIDs,
                        @RequestParam(value = "toDelete", required = false)List<Long> toDeleteIDs,
                        @RequestParam(value = "title", required = false)String title,
-                       @RequestParam(value = "description", required = false)String description){
+                       @RequestParam(value = "description", required = false)String description,
+                       @RequestParam(value = "deleteId", required = false) Long deleteId){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
+        if (deleteId != null && deleteId >0){
+            try {
+                imageDescriptionService.removeAlbum(deleteId);
+            }
+            catch (Exception e){
+                LOG.error(e.getMessage());
+            }
+        }
         AlbumDescription album = new AlbumDescription(id, title, description);
         if (album.getId() == null){
             try {
@@ -84,14 +93,14 @@ public class ImagesController {
             }
         }
         if (toDeleteIDs != null) {
-            for (Long deleteId : toDeleteIDs) {
+            for (Long toDeleteId : toDeleteIDs) {
                 try {
-                    ImageDescription image = imageDescriptionService.getImageById(deleteId);
+                    ImageDescription image = imageDescriptionService.getImageById(toDeleteId);
                     if (!image.getAlbum().equals(album.getId()))
                         continue;
                     deleteFile(path+bigi+image.getLink());
                     deleteFile(path+mini+image.getLink());
-                    imageDescriptionService.removeImage(deleteId);
+                    imageDescriptionService.removeImage(toDeleteId);
                 } catch (Exception e) {
                     LOG.error(e.getMessage());
                 }
@@ -187,7 +196,7 @@ public class ImagesController {
                 image.setAlbum(albumId);
                 imageDescriptionService.saveImage(image);
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageDescriptionService.resizeImage(srcImg, null, null);
+                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }

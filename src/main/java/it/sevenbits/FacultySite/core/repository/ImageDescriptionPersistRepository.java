@@ -52,6 +52,18 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
     }
 
     @Override
+    public void removeAlbum(final Long id) throws RepositoryException {
+        if (id == null) {
+            throw new RepositoryException("Description is null");
+        }
+        try {
+            mapper.removeAlbum(id);
+        } catch (Exception e) {
+            throw new RepositoryException("An error occurred while saving Description: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
     public void changeImage(final ImageDescription container) throws  RepositoryException{
         try{
             mapper.changeImage(container.getTitle(), container.getDescription(), container.getAlbum(), container.isHead(), container.getId());

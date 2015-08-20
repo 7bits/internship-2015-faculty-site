@@ -51,7 +51,7 @@ mixin add-partner-link(imgLinks)
 			img(style="max-width:100%; width:190px;", src="#{imgLinks}")
 	
 mixin add-title-gallery-tab(album)
-	div.tab-title.tab-title-style
+	div.tab-title.tab-title-style(idDB="#{album.id}")
 		+add-title-gallery-container(album.title, album.link)
 
 mixin add-title-gallery-container(title, imgLink)

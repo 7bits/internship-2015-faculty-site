@@ -1,0 +1,11 @@
+link(rel='stylesheet', href='/css/admin-instruments.css', type='text/css', media='screen')
+div.admin-instruments-content-redact-forms-container
+	form.admin-instruments-content-redact-forms(action="/updateAlbum", method="get")
+		input(style='display: none;', readonly='readonly', name="create", value="true")
+		input.admin-instruments-content-redact-forms(type="submit", value="Создать")
+	form.admin-instruments-content-redact-forms(action="/updateAlbum", method="get")
+		input.admin-redact(style='display: none;', readonly='readonly', name="id", value="")
+		input.admin-instruments-content-redact-forms(type="submit", value="Редактировать")
+	form.admin-instruments-content-redact-forms(action="/updateAlbum", method="post")
+		input.admin-delete(style='display: none;', readonly='readonly', name="deleteId", value="")
+		input.admin-instruments-content-redact-forms(type="submit", value="Удалить", onclick="return confirm('Вы точно хотите удалить этот альбом?')")

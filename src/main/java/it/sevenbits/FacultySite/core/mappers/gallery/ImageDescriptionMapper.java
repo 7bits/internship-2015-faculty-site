@@ -51,6 +51,9 @@ public interface ImageDescriptionMapper {
     @Delete("DELETE FROM image WHERE id=#{id}")
     void removeImage(final Long id);
 
+    @Delete("DELETE FROM album WHERE id=#{id}")
+    void removeAlbum(final Long id);
+
     @Update("UPDATE image SET title=#{title}, description=#{description}, album=#{album}, is_head=#{isHead} WHERE id=#{id}")
     void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Long album, @Param("isHead")boolean isHead, @Param("id")Long id);
 

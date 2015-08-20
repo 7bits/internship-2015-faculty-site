@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ImageDescriptionService {
+public class ImageService {
     @Autowired
     private ImageDescriptionRepository repository;
 
@@ -117,6 +117,16 @@ public class ImageDescriptionService {
     public boolean removeImage(Long id) throws ServiceException{
         try{
             repository.removeImage(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while saving ImageDescriptions: " + e.getMessage(), e);
+        }
+        return true;
+    }
+
+    public boolean removeAlbum(Long id) throws ServiceException{
+        try{
+            repository.removeAlbum(id);
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while saving ImageDescriptions: " + e.getMessage(), e);

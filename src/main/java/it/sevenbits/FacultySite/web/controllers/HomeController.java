@@ -6,7 +6,6 @@ import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
-import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +21,6 @@ import java.util.List;
 @Controller
 public class HomeController {
     private static Logger LOG = Logger.getLogger(HomeController.class);
-
-    @Autowired
-    ImageDescriptionService imageDescriptionService;
 
     @Autowired
     ContentOfPagesService contentOfPagesService;
