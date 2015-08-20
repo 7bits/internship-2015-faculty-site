@@ -23,7 +23,7 @@ public class ImageDescriptionService {
     private ImageDescriptionRepository repository;
 
     static public final double relationSide = ((float)16)/9;
-    static public final double miniImgWidth = 240;
+    static public final double miniImgWidth = 480.0;
     static public final double miniImgHeight = miniImgWidth/relationSide;
 
     public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight){
