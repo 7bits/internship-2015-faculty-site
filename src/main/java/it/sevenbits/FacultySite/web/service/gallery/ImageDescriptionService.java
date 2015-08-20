@@ -74,6 +74,20 @@ public class ImageDescriptionService {
         return res;
     }
 
+    public void saveAlbum(final AlbumDescription album) throws ServiceException{
+        try{
+            if (album.getId() == null && album.getTitle() != null && album.getDescription() != null && !album.getTitle().isEmpty()){
+                repository.addAlbum(album);
+            }
+            else{
+
+            }
+        }
+        catch (Exception e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     public void saveImage(final ImageDescriptionForm form) throws ServiceException {
         final ImageDescription ImageDescription = new ImageDescription();
         ImageDescription.setTitle(form.getTitle());

@@ -1,6 +1,7 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
+import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
 import org.apache.log4j.Logger;
@@ -67,10 +68,19 @@ public class ImagesController {
         String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "<? header '/main';?>";
-        for (MultipartFile file : files){
-            toOut += downloadImage(file) + "<p>";
+        AlbumDescription album = new AlbumDescription(id, title, description);
+        if (album.getId() == null){
+            try {
+                imageDescriptionService.saveAlbum(album);
+            }
+            catch (Exception e){
+                LOG.error(e.getMessage());
+            }
         }
-        toOut += "<? header '/updateAlbum?id="+id+"';?>";
+        for (MultipartFile file : files){
+            toOut += downloadImage(file, album.getId()) + "<p>";
+        }
+        toOut += "<? header '/updateAlbum?id="+album.getId()+"';?>";
         return toOut;
     }
 
@@ -80,8 +90,8 @@ public class ImagesController {
             return "<? header '/main';?>";
         try{
             if (id == null || id < 1) {
-                model.addAttribute("album", new AlbumDescription());
-                model.addAttribute("photos", new ArrayList<>());
+                model.addAttribute("album", imageDescriptionService.getAlbumById(id));
+                model.addAttribute("photos", imageDescriptionService.getImagesFromAlbum(id));
                 return "home/edit-album";
             }
             AlbumDescription album = imageDescriptionService.getAlbumById(id);
@@ -96,7 +106,7 @@ public class ImagesController {
         return "home/edit-album";
     }
 
-    public String downloadImage(MultipartFile file){
+    public String downloadImage(MultipartFile file, Long albumId){
         String toOut = "";
         if (file != null && !file.isEmpty()) {
             try {
@@ -115,6 +125,10 @@ public class ImagesController {
                         new BufferedOutputStream(new FileOutputStream(src));
                 stream.write(bytes);
                 stream.close();
+                ImageDescriptionForm image = new ImageDescriptionForm();
+                image.setLink(name);
+                image.setAlbum(albumId);
+                imageDescriptionService.saveImage(image);
                 BufferedImage srcImg = ImageIO.read(src);
                 BufferedImage miniImg = ImageDescriptionService.resizeImage(srcImg, null, null);
                 if (miniFile.createNewFile()) {

@@ -57,4 +57,9 @@ public interface ImageDescriptionMapper {
             @Result(column = "creating_time", property = "creatingTime")
     })
     AlbumDescription getAlbumById(@Param("albumId")Long id);
+
+    @Insert("INSERT INTO album (title, description, creatingDate, creatingTime) VALUES (#{title}, #{description}, today, now)")
+    @Options(keyProperty = "id", useGeneratedKeys = true)
+    void addAlbum(final AlbumDescription album);
+
 }
