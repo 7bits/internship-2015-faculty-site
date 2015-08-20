@@ -1,6 +1,8 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
@@ -74,6 +76,42 @@ public class ImagesController {
             catch (Exception e){
                 LOG.error(e.getMessage());
             }
+        }
+        for (Long deleteId : toDeleteIDs){
+            try {
+                imageDescriptionService.removeImage(deleteId);
+            }
+            catch (Exception e){
+                LOG.error(e.getMessage());
+            }
+        }
+        try {
+            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(album.getId());
+            for (int i = 0; i < images.size(); i++){
+                try{
+                    ImageFromAlbumDescriptionModel currentImage = images.get(i);
+                    Boolean isHead = false;
+                    for (Long isHeadTmpId: isHeadIDs)
+                        if (isHeadTmpId.equals(currentImage.getId()))
+                            isHead = true;//если присутствует в списке - значит, должен быть заглавной
+                    ImageDescription image = new ImageDescription(currentImage.getId(),
+                            album.getId(),
+                            currentImage.getTitle(),
+                            currentImage.getDescription(),
+                            currentImage.getCreating_date(),
+                            currentImage.getCreating_time(),
+                            currentImage.getLink(),
+                            isHead);
+                    imageDescriptionService.changeImage(image);
+
+                }
+                catch (Exception e){
+                    LOG.getAppender(e.getMessage());
+                }
+            }
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
         }
         for (MultipartFile file : files){
             if (file.getOriginalFilename().isEmpty()) {

@@ -8,12 +8,12 @@ public class ImageDescription {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean isHead;
+    private Boolean isHead;
 
     public ImageDescription() {
     }
 
-    public ImageDescription(Long id, String title, String description, String link, boolean isHead) {
+    public ImageDescription(Long id, String title, String description, String link, Boolean isHead) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -21,7 +21,9 @@ public class ImageDescription {
         this.isHead = isHead;
     }
 
-    public ImageDescription(Long id, String title, String description, Long album, boolean isHead, String link) {
+
+
+    public ImageDescription(Long id, String title, String description, Long album, Boolean isHead, String link) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -30,7 +32,7 @@ public class ImageDescription {
         this.link = link;
     }
 
-    public ImageDescription(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
+    public ImageDescription(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, Boolean isHead) {
         this.id = id;
         this.album = album;
         this.title = title;
@@ -69,7 +71,7 @@ public class ImageDescription {
         return link;
     }
 
-    public boolean isHead() {
+    public Boolean isHead() {
         return isHead;
     }
 
@@ -102,7 +104,7 @@ public class ImageDescription {
         this.link = link;
     }
 
-    public void setIsHead(boolean isHead) {
+    public void setIsHead(Boolean isHead) {
         this.isHead = isHead;
     }
 

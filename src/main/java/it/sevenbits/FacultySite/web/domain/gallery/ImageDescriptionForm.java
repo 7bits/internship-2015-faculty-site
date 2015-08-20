@@ -29,6 +29,17 @@ public class ImageDescriptionForm {
         this.link = null;
     }
 
+    public ImageDescriptionForm(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
+        this.id = id;
+        this.album = album;
+        this.title = title;
+        this.description = description;
+        this.creating_date = creating_date;
+        this.creating_time = creating_time;
+        this.link = link;
+        this.isHead = isHead;
+    }
+
     public Long getAlbum() {
         return album;
     }
