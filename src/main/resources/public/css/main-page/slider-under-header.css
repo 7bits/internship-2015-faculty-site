@@ -33,6 +33,6 @@
   position: relative;
   top: 12px;
   left: 6px;
-  border-radius: 6px;
+  border-radius: 50%;
   border: 1px solid white;
 }
