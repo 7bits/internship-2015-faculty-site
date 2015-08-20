@@ -48,24 +48,52 @@ public class ImagesController {
         return "home/gallery";
     }
 
-    @RequestMapping(value="/uploadImage", method=RequestMethod.GET)
-    String handleFileUpload(){
+
+    @RequestMapping(value="/edit_album")
+    String editAlbum(){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        return "home/uploadImage";
+        return "redirect:/updateAlbum";
     }
 
-    @RequestMapping(value="/uploadImage", method= RequestMethod.POST)
+    @RequestMapping(value="/updateAlbum", method= RequestMethod.POST)
     public @ResponseBody
-    String handleFileUpload(@RequestParam(value = "files", required = false) List<MultipartFile> files){
+    String updateAlbum(@RequestParam(value = "files", required = false) List<MultipartFile> files,
+                       @RequestParam(value = "id", required = false) Long id,
+                       @RequestParam(value = "isHead", required = false)List<Long> isHeadIDs,
+                       @RequestParam(value = "toDelete", required = false)List<Long> toDeleteIDs,
+                       @RequestParam(value = "title", required = false)String title,
+                       @RequestParam(value = "description", required = false)String description){
         String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "<? header '/main';?>";
         for (MultipartFile file : files){
             toOut += downloadImage(file) + "<p>";
         }
-        toOut += "<p><a href='/upload'>Загрузить ещё</a>";
+        toOut += "<? header '/updateAlbum?id="+id+"';?>";
         return toOut;
+    }
+
+    @RequestMapping(value="/updateAlbum", method= RequestMethod.GET)
+    public String handleFileUpload(@RequestParam(value = "id", required = false) Long id, Model model){
+        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+            return "<? header '/main';?>";
+        try{
+            if (id == null || id < 1) {
+                model.addAttribute("album", new AlbumDescription());
+                model.addAttribute("photos", new ArrayList<>());
+                return "home/edit-album";
+            }
+            AlbumDescription album = imageDescriptionService.getAlbumById(id);
+            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(id);
+            model.addAttribute("album", album);
+            model.addAttribute("photos", images);
+            return "home/edit-album";
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+        return "home/edit-album";
     }
 
     public String downloadImage(MultipartFile file){

@@ -8,8 +8,9 @@ head
 body
 	include forms/header.jade
 	form(method="post", enctype="multipart/form-data")
+		
 		input(type="file", name="files", multiple='multiple', accept="image/jpeg,image/png,image/gif")
-		input(type="submit", value="Upload") Press here to upload the files!
+		input(type="submit", value="Сохранить") Press here to upload the files!
 	//- if (path != null && path != false)
 	//- 	p Ссылка на последний загруженный файл:
 	//- 	input(value="#{path}", readonly)
