@@ -83,6 +83,23 @@
     position: relative;
 }
 
+.tab-container-content-gallery{
+    vertical-align: top;
+}
+
+.tab-title-gallery-img{
+    max-width:40%; 
+    max-height:70px; 
+    margin: 0px 5%;
+}
+
+.tab-content-photo-img{
+    max-height: 150px;
+    max-width: 150px;
+    /*display: inline-block;*/
+    margin: 10px 15px;
+}
+
 .tab-title{
 }
 
