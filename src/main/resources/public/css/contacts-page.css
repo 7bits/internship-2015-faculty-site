@@ -1,12 +1,12 @@
 
 .contacts_tabs{
   font-size: 16px;
-  
+  line-height: 1.5em;
   font-family: OpenSans-Light;
   
 }
 .head{
-
+  line-height: 1.1em;
   font-size: 35px;
   margin-bottom: 20px;
 }
@@ -25,6 +25,9 @@
 .2bold{
   margin-bottom: 5px;
 }
+.bold_text{
+  font-weight:bold;
+}
 .name{
   padding-left: 10px;
 
@@ -34,7 +37,7 @@
 }
 
 .article_text{
-  line-height: 1.5em;
+  
   width: 69%;
   float:left;
   padding-left: 2%;
@@ -46,11 +49,18 @@
   
   float:left;
   margin-top: 31px;
-
+}
+.article_img{
+  
+  float:left;
+  margin-top: 20px;
 }
 .article{
   height: 345px;
 }
 .paragraph{
   
+}
+.link{
+  color: #4d60bd;
 }
