@@ -32,7 +32,6 @@ public class NewsController {
                        Model model) {
         model.addAttribute("title", "Новости ОмГУ");
         model = constructNews(current, page, true, model, contentOfPagesService);
-        model.addAttribute("mainInfo", new ArrayList<>());
         return "home/news";
     }
 
@@ -65,7 +64,7 @@ public class NewsController {
             current = 1;
         Long sumOfNews = (long)0;
         try{
-            sumOfNews = contentOfPagesService.getSumOfPages("News:%", true);
+            sumOfNews = contentOfPagesService.getSumOfPages("News:%", publish);
 
         }
         catch (Exception e){
@@ -95,7 +94,6 @@ public class NewsController {
         Integer sumOfPages = (int)Math.ceil(sumOfNews/((float)countOnPage));
         if (sumOfPages < 1)
             sumOfPages = 1;
-        current = sumOfPages;
         pagination = generatePagination(current, sumOfPages);
         Long start = calculateStartFromTheEnd(sumOfNews.intValue(), current, countOnPage);
         Long end = calculateEndFromTheEnd(start, sumOfNews.intValue(), countOnPage);

@@ -206,20 +206,24 @@ public class ContentController {
     }
 
     @RequestMapping(value = "/hidden_content")
-    public String hiddenContent(Model model) {
+    public String hiddenContent(@RequestParam(value="current", required = false) Integer current,
+                                @RequestParam(value="page", required = false) String page,
+                                Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Скрытые записи");
-        model = NewsController.constructNews(1, null, false, model, contentOfPagesService);
+        model = NewsController.constructNews(current, page, false, model, contentOfPagesService);
         return "home/news";
     }
 
     @RequestMapping(value = "/visible_content")
-    public String visibleContent(Model model) {
+    public String visibleContent(@RequestParam(value="current", required = false) Integer current,
+                                 @RequestParam(value="page", required = false) String page,
+                                 Model model) {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Все записи");
-        model = NewsController.constructNews(1, null, null, model, contentOfPagesService);
+        model = NewsController.constructNews(current, page, null, model, contentOfPagesService);
         return "home/news";
     }
 

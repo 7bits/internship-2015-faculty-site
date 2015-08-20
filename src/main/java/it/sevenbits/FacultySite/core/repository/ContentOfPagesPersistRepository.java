@@ -103,8 +103,11 @@ public class ContentOfPagesPersistRepository implements ContentOfPagesRepository
 
     public List<ContentDescription> getPagesWhichContainTypeIsPublishWithBoundaries(String type, Boolean publish, Long start, Long end) throws RepositoryException{
         try{
-            if (publish != null && type != null && start != null && end != null && start>=0 && end>0) {
-                return mapper.getPagesWhichContainTypeAndPublishWithBoundaries(type, publish, start, end);
+            if (type != null && start != null && end != null && start>=0 && end>0) {
+                if (publish != null) {
+                    return mapper.getPagesWhichContainTypeAndPublishWithBoundaries(type, publish, start, end);
+                }
+                return mapper.getPagesWhichContainTypeWithBoundaries(type, start, end);
             }
             return new ArrayList<>();
         }
