@@ -40,6 +40,9 @@ public class ImagesController {
 
     @RequestMapping(value = "/gallery")
     public String gallery(Model model) {
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("root", true);
+        }
         try {
             List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
             List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
