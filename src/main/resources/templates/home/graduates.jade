@@ -4,14 +4,42 @@ head
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
 	title Истории выпускников
 	link(rel='stylesheet', href='/css/graduate.css', type='text/css', media='screen')
+	link(rel='stylesheet', href='/css/GRADUATES.css', type='text/css', media='screen')
 	include general-includes.jade
 body
 	include forms/header.jade
 	include forms/lost.jade
 	include forms/enrollee-mixin.jade
-	if (root)
-		include forms/redact-content.jade
-		+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
-	div.container.graduate-main-container
-		each tmp in content
-			+enrollee-page-add-reviews(tmp);
+	
+	include forms/sliders/slider-under-header.jade
+	include forms/content-slider.jade
+	div.tabs
+		div.tab-container.tab-container-titles
+			+add-title-simple-part("Институт Математики и Информационных Технологий")
+			+add-title-simple-part("Институт Математики и Информационных Технологий")
+			+add-title-simple-part("Институт Математики и Информационных Технологий")
+			+add-title-simple-part("Институт Математики и Информационных Технологий")
+			+add-title-simple-part("Институт Математики и Информационных Технологий")
+		div.tab-container.tab-container-content	
+			- content1 = "<div class='contacts_tabs'></p><div class='article'><div class='article_img2'><img class='circle' width='256' height='256' src='/img/Nik_Kosarev.jpg'></div><p class='article_head'><p class = 'name'>Николай Косарев</p></p><p class='.place_of_work'>Quintiq, Голландия, специалист отдела разработки оптимизационных алгоритмов, выпуск 2002 года, прикладная и вычислительная математика.</p></div><div><p class='quote'>«Математика идеальна для обучения критическому мышлению и анализу»</p><br><p class='paragraph'> Я работаю в отделе разработки оптимизационных алгоритмов голландской компании Quintiq, создающей решения в сфере управления поставками, планировании производства и персонала, логистики для таких крупных клиентов, как DHL, Walmart, ОАО «Северсталь» и многих других. В мои обязанности входит консультация и поддержка сотрудников бизнес-подразделений, занимающихся работой с прикладными задачами реальной жизни, а также непосредственно программирование алгоритмов и их интеграция в существующую систему.<br><p class='paragraph'>Оглядываясь назад, понимаю, что на матфаке недостаточно внимания уделял учёбе: мои преподаватели могли дать гораздо больше, чем я впитывал в себя. Конечно, в студенческие годы хочется погулять и весело провести время, но все же мой призыв — учиться, учиться и еще раз учиться! Вдумчиво и осознанно.</p></p><br><p class = 'quote'>“Но самое главное качество я всё-таки, кажется, приобрел: способность обучаться самостоятельно, разбираться практически с любой предметной областью, понимать ее закономерности и природу функционирования.”</p><br><p class='paragraph'>Считаю, что в этом смысле математика как наука, наш факультет и методы обучения преподавателей просто идеально позволяли научиться критическому мышлению и анализу. Воспоминания о студенческих годах исключительно приятные, и не только потому, что было весело, беззаботно и интересно в учебе и в отдыхе. Матфак всё-таки для меня был первой настоящей школой жизни, куда более серьезной и ответственной, чем весь мой предыдущий опыт, несмотря на то, что я учился в ФМШЛ № 64. Местом, где уважение к студентам, интеллигентность и любовь к знаниям наших преподавателей позволяли почувствовать себя взрослым, причастным к этому большому миру серьезных людей, занимающихся математикой, самой красивой из наук, по моему глубоко субъективному мнению.</p></p></div></div>"
+			+add-content-part(content1)
+			- content2 = "2"
+			+add-content-part(content2)
+			- content3 = "3"
+			+add-content-part(content3)
+			- content4 = "4"
+			+add-content-part(content4)
+			- content5 = "5"
+			+add-content-part(content5)
+
+
+	//- 		- miniTitle = "Яндекс, Москва, менеджер проектов";
+	//- 		- text = "Матфак научил меня быть антишестерёнкой и уметь браться за любые задачи и проекты."
+	//- 		+add-reviews-link("Сергей Корсаков", miniTitle, "/img/reviwes-page-photo/SergKorsakov.jpg", text)
+	//- //- if (root)
+	//- 	include forms/redact-content.jade
+	//- 	+redact-content(canCreate, createType, canRedact, canDelete, redactId, deleteId)
+	//- div.container.graduate-main-container
+	//- 	each tmp in content
+	//- 		+enrollee-page-add-reviews(tmp);
+	include forms/footer.jade
