@@ -1,3 +1,4 @@
+link(rel='stylesheet', href='/css/edit_content.css', type='text/css', media='screen')
 mixin editForm(id, title, description, photos)
 	form.container(method="post", enctype="multipart/form-data")
 		if (id != null && id>0)
@@ -21,11 +22,13 @@ mixin add-photo(photo)
 		if (photo.isHead())
 			img.gallery-album-image(src="/img/gallery-page-gallery-photo/bigi/#{photo.link}", lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}")
 			p
-			input(type="checkbox", name="isHead", checked, value="#{photo.id}")= isHeadText
+			input(type="checkbox", name="isHead", checked, value="#{photo.id}")
+			Одна из главных
 		else
 			img.gallery-album-image(src="/img/gallery-page-gallery-photo/mini/#{photo.link}", lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}")
 			p
-			input(type="checkbox", name="isHead", value="#{photo.id}", text="bla")= isHeadText
+			input(type="checkbox", name="isHead", value="#{photo.id}")
+			Одна из главных
 		p
 		input(type="checkbox", name="toDelete", value="#{photo.id}")
-		div= deleteText
+		Удалить
