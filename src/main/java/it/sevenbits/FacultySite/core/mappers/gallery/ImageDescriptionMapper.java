@@ -37,7 +37,7 @@ public interface ImageDescriptionMapper {
     void removeImage(final Long id);
 
     @Update("UPDATE image SET title=#{title}, description=#{description}, album=#{album}, is_head=#{is_head} WHERE id=#{id}")
-    void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Integer album, @Param("is_head")boolean is_head, @Param("id")Long id);
+    void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Long album, @Param("is_head")boolean is_head, @Param("id")Long id);
 
     @Select("SELECT a.id, a.title, a.creating_date, i.link FROM album a LEFT OUTER JOIN image i ON (i.album = a.id and i.is_head);")
     @Results({
@@ -58,7 +58,7 @@ public interface ImageDescriptionMapper {
     })
     AlbumDescription getAlbumById(@Param("albumId")Long id);
 
-    @Insert("INSERT INTO album (title, description, creatingDate, creatingTime) VALUES (#{title}, #{description}, today, now)")
+    @Insert("INSERT INTO album (title, description, creating_date, creating_time) VALUES (#{title}, #{description}, 'today', 'now')")
     @Options(keyProperty = "id", useGeneratedKeys = true)
     void addAlbum(final AlbumDescription album);
 

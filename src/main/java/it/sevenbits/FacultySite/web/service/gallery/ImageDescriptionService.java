@@ -178,8 +178,10 @@ public class ImageDescriptionService {
         return true;
     }
 
-    public List<ImageFromAlbumDescriptionModel>getImagesFromAlbum(long id) throws ServiceException {
+    public List<ImageFromAlbumDescriptionModel>getImagesFromAlbum(Long id) throws ServiceException {
         try {
+            if (id == null || id < 1)
+                return new ArrayList<>();
             List<ImageFromAlbumDescription> descriptions = repository.getImagesFromAlbum(id);
             List<ImageFromAlbumDescriptionModel> models = new ArrayList<>(descriptions.size());
             for (ImageFromAlbumDescription s: descriptions) {
