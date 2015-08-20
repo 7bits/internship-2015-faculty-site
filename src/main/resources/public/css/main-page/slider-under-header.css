@@ -13,6 +13,7 @@
 	color: white;
 	height: 92px;
 	background-color:rgba(0,0,0,.2);
+  font-weight: bolder;
 }
 /*ПЕРЕОПРЕДЕЛЕННЫе(Дополненный классы) КЛАССы. Выравнивание кнопок на header i.godyaev*/
 .fotorama__nav{
