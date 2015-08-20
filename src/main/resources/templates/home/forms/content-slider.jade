@@ -1,16 +1,26 @@
 link(rel='stylesheet', href="/css/tabs.css", type='text/css', media='screen')
-script(src='/js/tabs.js')
+if (root == true)
+	script(src='/js/tabs-admin.js')
+else
+	script(src='/js/tabs.js')
 script.
 	$(document).ready(function(){
 		$(".tabs").lightTabs();
 	});
 
-mixin add-title-part(date, title, content)
-	div.tab-title.tab-title-style
-		div.tab-title-container
-			p.tab-title-date.tab-title-text= date
-			p.tab-title-title.tab-title-text= title
-			p.tab-title-content.tab-title-text= content
+mixin add-title-part(date, title, content, id)
+	if (id != null)
+		div.tab-title.tab-title-style(idDB="#{id}")
+			+add-title-container(date, title, content)
+	else
+		div.tab-title.tab-title-style
+			+add-title-container(date, title, content)
+
+mixin add-title-container(date, title, content)
+	div.tab-title-container
+		p.tab-title-date.tab-title-text= date
+		p.tab-title-title.tab-title-text= title
+		p.tab-title-content.tab-title-text= content
 
 mixin add-title-simple-part(title)
 	div.tab-title.tab-title-style
@@ -25,6 +35,22 @@ mixin add-gallery-link(id, title, imgLinks)
 		div.tab-title-content.tab-title-text
 			each tmp in imgLinks
 				img(style="max-width:40%; max-height:70px; margin: 0px 5%;", src="#{tmp}")
+//- IG
+mixin add-reviews-link(title, miniTitle, imgLinks, text)
+	a.tab-title-container(href="/graduates", target="_blank")
+		p.tab-title-title.tab-title-text= title
+		p.tab-title-date.tab-title-text= miniTitle
+		div.img-reviews
+			img(style="width:100px; max-width:100%;", src="#{imgLinks}")
+		div.text-reviews
+			div.IG-tab-title-content= text
+//- IG
+mixin add-partner-link(imgLinks)
+	a.tab-title-container(href="/partners", target="_blank")
+		.partner
+			img(style="max-width:100%; width:190px;", src="#{imgLinks}")
+	
+
 
 mixin add-content-part(content)
 	div.tab-content!= content

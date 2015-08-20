@@ -1,0 +1,39 @@
+.navigation-simple-element{
+	display: inline;
+	padding: 2px;
+	font-size: 16px;
+	text-decoration: none;
+	color: green;
+	outline: none;
+
+}
+
+.navigation-simple-text{
+	font-size: 16px;
+	padding: 2px;
+	text-decoration: none;
+	display: inline;
+}
+
+.navigation-num{
+}
+.navigation-current{
+	color: black;
+	text-decoration: underline;
+}
+
+.navigation-simple-element:hover{
+	text-decoration: underline;
+	color: green;
+	cursor: pointer;
+}
+
+.navigation-current:hover{
+	color:black;
+	cursor: default;
+}
+
+.navigation-content-pages{
+	width:100%;
+	text-align: center;
+}

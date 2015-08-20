@@ -8,6 +8,8 @@
                 $(".tab-content").eq(i).show();
                 $(".tab-title").removeClass("active-tab");
                 $(".tab-title").eq(i).addClass("active-tab");
+                $(".admin-redact").attr('value', $(".tab-title.active-tab").attr("idDB"));
+                $(".admin-delete").attr('value', $(".tab-title.active-tab").attr("idDB"));
             }
 
             showPage(0);
@@ -16,13 +18,13 @@
                 $(element).attr("data-page", i);
                 i++;
             });
-            
+
             $(".tab-title").click(function(){
                 showPage(parseInt($(this).attr("data-page")));
             });
         };
         return this.each(createTabs);
-    };	
+    };
 })(jQuery);
 $(document).ready(function(){
     $(".tabs").lightTabs();

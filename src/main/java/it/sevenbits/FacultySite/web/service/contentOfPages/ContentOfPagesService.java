@@ -102,6 +102,33 @@ public class ContentOfPagesService {
         }
     }
 
+    public List<ContentDescriptionModel> getPagesWhichContainTypeIsPublishWithBoundaries(String type, Boolean publish, Long start, Long count) throws ServiceException {
+        try {
+
+            List<ContentDescription> pages = repository.getPagesWhichContainTypeIsPublishWithBoundaries(type, publish, start, count);
+            List<ContentDescriptionModel> models = new ArrayList<>();
+            for (ContentDescription tmp : pages)
+                try {
+                    models.add(new ContentDescriptionModel(tmp.getId(), tmp.getTitle(), tmp.getDescription(), tmp.getCreatingDate(), tmp.getCreatingTime(), tmp.getType(), tmp.getImageLink(), tmp.getMiniContent(), tmp.getPublish()));
+                }
+                catch (Exception e){
+                    throw new ServiceException(e.getMessage(), e);
+                }
+            return models;
+        } catch (Exception e) {
+            throw new ServiceException("An error occurred while get content: " + e.getMessage(), e);
+        }
+    }
+
+    public Long getSumOfPages(String type, Boolean publish) throws ServiceException{
+        try{
+            return repository.getSumOfRecords(type, publish);
+        }
+        catch (Exception e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
     public List<ContentDescriptionModel> getPagesWhichContainTypeWithCountWithPublish(String type, Long count, Boolean publish) throws ServiceException{
         try {
             List<ContentDescriptionModel> all = getPagesWhichContainTypeIsPublish(type, publish);

@@ -1,7 +1,6 @@
 .tabs{
     display:table;
     overflow: hidden;
-    font-family: sans-serif;
 }
 .tab-content{
     padding: 5px 20px;
@@ -52,6 +51,7 @@
     color: black;
     font-size: 16px;
     max-height: 60px;
+    font-weight: 600;
 }
 
 .tab-title-title-simple-part{
@@ -59,6 +59,7 @@
     font-size: 20px;
     text-align: center;
     padding: auto 0px;
+    font-weight: 600;
 }
 
 .tab-title-content{
@@ -100,6 +101,26 @@
     color: white;
 }
 
-.tab-title-style:hover, .tab-title-container:active{
+.tab-title-style:hover{
     background:#d6d6d7;
+}
+/*style IG*/
+.img-reviews{
+    float: left;
+    width: 30%;
+}
+
+.text-reviews{
+    float: left;
+    width: 67%;
+    padding-left: 2%;
+}
+
+.IG-tab-title-content{
+    color: black;
+    font-size: 15px;
+}
+
+.partner{
+    text-align: center;
 }

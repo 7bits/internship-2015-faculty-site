@@ -1,6 +1,5 @@
 .sliders-global{
-	position: absolute;
-	bottom: 0;
+
 }
 
 /*Стили слайдера под header ом*/
@@ -138,12 +137,13 @@
 	background: #454545;
 	overflow: hidden;
 	z-index: 2;
+	font-size: 15px;
 }
 
 .social-net{
 	/*padding-top: 20px;*/
 	/*margin-left: 10px;*/
-	padding-top: 1%;
+	padding-top: 0.8%;
 	float: left;
 	width: 15%;
 }
@@ -155,14 +155,14 @@
 
 .copyright{
 	padding-left: 5%;
-	padding-top: 1.5%;
+	padding-top: 1.2%;
 	float: left;
 	width: 40%;
 }
 
 .info-about-faculty{
 	padding-left: 13%;
-	padding-top: 1%;
+	padding-top: 0.4%;
 	float: left;
 	overflow: hidden;
 	width: 27%
@@ -172,6 +172,7 @@
 .info-about-faculty-line{
 	float: left;
 	padding-left: 1%;
+	color: #ffffff;
 }		
 
 .info-img-and-text{
@@ -277,6 +278,7 @@
 	overflow: hidden;
 	padding-top: 4%;
 	padding-bottom:3%;
+	padding-left: 2%;
 }
 
 .info-about-slider p{
