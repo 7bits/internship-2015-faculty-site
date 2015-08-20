@@ -31,12 +31,12 @@ public class ImageDescriptionService {
             destWidth = miniImgWidth;
         if (destHeight == null || destHeight < 1)
             destHeight = miniImgHeight;
-        src = cutImageToSquare(src, null, null, null, null);
+        src = cutImageToSquare(src, null, null, null, null, relationSide);
         src = scaleToSize(src, destWidth, destHeight, null, null);
         return src;
     }
 
-    public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH){
+    public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH, Double relationSide){
         double w = src.getWidth();
         double h = src.getHeight();
         if (cutW == null || cutW <= 0) {
@@ -45,10 +45,22 @@ public class ImageDescriptionService {
         if (cutH == null || cutH <= 0){
             cutH = h;
         }
-        if (cutW>cutH)
-            cutW = cutH;
-        else
-            cutH = cutW;
+        if (relationSide == null || relationSide < 0)
+            relationSide = 1.0;
+        if (relationSide > 1) {
+            cutH = cutW/relationSide;
+            if (cutH > h){
+                cutW = cutW*(h/cutH);
+                cutH = h;
+            }
+        }
+        else{
+            cutW = cutH*relationSide;
+            if (cutW > w){
+                cutH = cutH*(w/cutW);
+                cutW = w;
+            }
+        }
         if (startX == null || startX < 0) {
             startX = (w - cutW) / 2;
         }
@@ -70,7 +82,7 @@ public class ImageDescriptionService {
         }
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
         res = resScale.filter(src, res);
-        res = cutImageToSquare(res, 0.0, 0.0, w, h);
+        res = cutImageToSquare(res, 0.0, 0.0, w, h, relationSide);
         return res;
     }
 
