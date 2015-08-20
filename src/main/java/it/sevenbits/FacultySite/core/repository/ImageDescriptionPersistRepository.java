@@ -52,9 +52,21 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
     }
 
     @Override
+    public void removeAlbum(final Long id) throws RepositoryException {
+        if (id == null) {
+            throw new RepositoryException("Description is null");
+        }
+        try {
+            mapper.removeAlbum(id);
+        } catch (Exception e) {
+            throw new RepositoryException("An error occurred while saving Description: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
     public void changeImage(final ImageDescription container) throws  RepositoryException{
         try{
-            mapper.changeImage(container.getTitle(), container.getDescription(), container.getAlbum(), container.is_head(), container.getId());
+            mapper.changeImage(container.getTitle(), container.getDescription(), container.getAlbum(), container.isHead(), container.getId());
         }
         catch (Exception e){
             throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);
@@ -75,6 +87,16 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
     public AlbumDescription getAlbumById(Long id) throws RepositoryException {
         try{
             return mapper.getAlbumById(id);
+        }
+        catch (Exception e){
+            throw new RepositoryException("An error occurred while getting album by id: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public ImageDescription getImageById(Long id) throws RepositoryException {
+        try{
+            return mapper.getImageById(id);
         }
         catch (Exception e){
             throw new RepositoryException("An error occurred while getting album by id: " + e.getMessage(), e);

@@ -8,9 +8,9 @@ public class ImageDescriptionForm {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean is_head;
+    private boolean isHead;
 
-    public ImageDescriptionForm(Long album, String title, String description, String creating_date, String creating_time, String link, boolean is_head) {
+    public ImageDescriptionForm(Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
         if (album != null)
             this.album = album;
         this.title = title;
@@ -18,7 +18,7 @@ public class ImageDescriptionForm {
         this.creating_date = creating_date;
         this.creating_time = creating_time;
         this.link = link;
-        this.is_head = is_head;
+        this.isHead = isHead;
     }
 
     public ImageDescriptionForm(){
@@ -27,6 +27,17 @@ public class ImageDescriptionForm {
         this.creating_date = null;
         this.creating_time = null;
         this.link = null;
+    }
+
+    public ImageDescriptionForm(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
+        this.id = id;
+        this.album = album;
+        this.title = title;
+        this.description = description;
+        this.creating_date = creating_date;
+        this.creating_time = creating_time;
+        this.link = link;
+        this.isHead = isHead;
     }
 
     public Long getAlbum() {
@@ -61,8 +72,8 @@ public class ImageDescriptionForm {
         this.link = link;
     }
 
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
+    public void setIsHead(boolean isHead) {
+        this.isHead = isHead;
     }
 
 
@@ -90,8 +101,8 @@ public class ImageDescriptionForm {
         return link;
     }
 
-    public boolean is_head() {
-        return is_head;
+    public boolean isHead() {
+        return isHead;
     }
 
     @Override

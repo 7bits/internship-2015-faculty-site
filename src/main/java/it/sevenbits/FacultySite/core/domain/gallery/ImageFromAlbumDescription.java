@@ -1,17 +1,17 @@
 package it.sevenbits.FacultySite.core.domain.gallery;
 
 public class ImageFromAlbumDescription {
-    private int id;
+    private Long id;
     private String album_title;
     private String title;
     private String description;
-    private String creating_date;
-    private String creating_time;
+    private String creatingDate;
+    private String creatingTime;
     private String link;
-    private boolean is_head;
+    private Boolean isHead;
 
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,23 +27,23 @@ public class ImageFromAlbumDescription {
         this.description = description;
     }
 
-    public void setCreating_date(String creating_date) {
-        this.creating_date = creating_date;
+    public void setCreatingDate(String creatingDate) {
+        this.creatingDate = creatingDate;
     }
 
-    public void setCreating_time(String creating_time) {
-        this.creating_time = creating_time;
+    public void setCreatingTime(String creatingTime) {
+        this.creatingTime = creatingTime;
     }
 
     public void setLink(String link) {
         this.link = link;
     }
 
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
+    public void setIsHead(Boolean isHead) {
+        this.isHead = isHead;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,19 +59,19 @@ public class ImageFromAlbumDescription {
         return description;
     }
 
-    public String getCreating_date() {
-        return creating_date;
+    public String getCreatingDate() {
+        return creatingDate;
     }
 
-    public String getCreating_time() {
-        return creating_time;
+    public String getCreatingTime() {
+        return creatingTime;
     }
 
     public String getLink() {
         return link;
     }
 
-    public boolean is_head() {
-        return is_head;
+    public Boolean isHead() {
+        return isHead;
     }
 }

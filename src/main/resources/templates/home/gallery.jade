@@ -12,6 +12,8 @@ html
 		include general-includes.jade
 	body
 		include forms/header.jade
+		if (root == true)
+			include forms/admin-menu-gallery.jade
 		include forms/sliders/slider-under-header.jade
 		include forms/content-slider.jade
 		div.tabs
@@ -20,8 +22,8 @@ html
 				p.tab-title-delimiter
 				//-Надпись 
 				p.tab-title-clarification.tab-title-text ГАЛЕРЕЯ
-				each album in albums
-					+add-title-gallery-tab(album)
+				each album, i in albums
+					+add-title-gallery-tab(album, images[i], 2)
 				div.navigation-content-pages
 					each tmp in pagination
 						if (tmp == '...' || tmp == current || (tmp == '<' && current == 1) || (tmp == ">" && current == sumOfPages))

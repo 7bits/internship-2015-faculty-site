@@ -1,9 +1,11 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
+import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
-import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
+import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,12 +28,38 @@ import java.util.List;
 @Controller
 public class ImagesController {
     @Autowired
-    ImageDescriptionService imageDescriptionService;
+    ImageService imageDescriptionService;
 
     private static Logger LOG = Logger.getLogger(ImagesController.class);
 
+
+    final static String bigi = "gallery-page-gallery-photo/bigi/";
+    final static String mini = "gallery-page-gallery-photo/mini/";
+    //final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+    final static String path = "src/main/resources/public/img/";
+
     @RequestMapping(value = "/gallery")
-    public String gallery(Model model) {
+    public String gallery(Model model,
+                          @RequestParam(value = "deleteId", required = false) Long deleteId) {
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("root", true);
+            if (deleteId != null && deleteId >0){
+                try {
+                    List<ImageFromAlbumDescriptionModel> imagesFromDeletingAlbum = imageDescriptionService.getImagesFromAlbum(deleteId);
+                    for (ImageFromAlbumDescriptionModel tmpImg : imagesFromDeletingAlbum)
+                        try{
+                            imageDescriptionService.removeImage(tmpImg.getId());
+                        }
+                        catch (Exception e){
+                            LOG.error(e.getMessage());
+                        }
+                    imageDescriptionService.removeAlbum(deleteId);
+                }
+                catch (Exception e){
+                    LOG.error(e.getMessage());
+                }
+            }
+        }
         try {
             List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
             List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
@@ -58,16 +86,14 @@ public class ImagesController {
     }
 
     @RequestMapping(value="/updateAlbum", method= RequestMethod.POST)
-    public @ResponseBody
-    String updateAlbum(@RequestParam(value = "files", required = false) List<MultipartFile> files,
+    public String updateAlbum(@RequestParam(value = "files", required = false) List<MultipartFile> files,
                        @RequestParam(value = "id", required = false) Long id,
                        @RequestParam(value = "isHead", required = false)List<Long> isHeadIDs,
                        @RequestParam(value = "toDelete", required = false)List<Long> toDeleteIDs,
                        @RequestParam(value = "title", required = false)String title,
                        @RequestParam(value = "description", required = false)String description){
-        String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "<? header '/main';?>";
+            return "redirect:/main";
         AlbumDescription album = new AlbumDescription(id, title, description);
         if (album.getId() == null){
             try {
@@ -77,20 +103,72 @@ public class ImagesController {
                 LOG.error(e.getMessage());
             }
         }
+        if (toDeleteIDs != null) {
+            for (Long toDeleteId : toDeleteIDs) {
+                try {
+                    ImageDescription image = imageDescriptionService.getImageById(toDeleteId);
+                    if (!image.getAlbum().equals(album.getId()))
+                        continue;
+                    deleteFile(path+bigi+image.getLink());
+                    deleteFile(path+mini+image.getLink());
+                    imageDescriptionService.removeImage(toDeleteId);
+                } catch (Exception e) {
+                    LOG.error(e.getMessage());
+                }
+            }
+        }
+        try {
+            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(album.getId());
+            for (ImageFromAlbumDescriptionModel currentImage : images){
+                try{
+                    Boolean isHead = false;
+                    if (isHeadIDs != null) {
+                        for (Long isHeadTmpId : isHeadIDs) {
+                            if (isHeadTmpId.equals(currentImage.getId())) {
+                                isHead = true;//если присутствует в списке - значит, должен быть заглавной
+                                break;
+                            }
+                        }
+                    }
+                    ImageDescription image = new ImageDescription(currentImage.getId(),
+                            album.getId(),
+                            currentImage.getTitle(),
+                            currentImage.getDescription(),
+                            currentImage.getCreating_date(),
+                            currentImage.getCreating_time(),
+                            currentImage.getLink(),
+                            isHead);
+                    imageDescriptionService.changeImage(image);
+                }
+                catch (Exception e){
+                    LOG.getAppender(e.getMessage());
+                }
+            }
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
         for (MultipartFile file : files){
             if (file.getOriginalFilename().isEmpty()) {
                 continue;
             }
-            toOut += downloadImage(file, album.getId()) + "<p>";
+            downloadImage(file, album.getId());
         }
-        toOut += "<? header ('/updateAlbum?id="+album.getId()+"');?>";
-        return toOut;
+        return "redirect:/updateAlbum?id="+album.getId();
+    }
+
+    public static Boolean deleteFile(String path){
+        File src = new File(path);
+        Boolean res = src.delete();
+        if (!res)
+            LOG.error("Can't delete file: "+path);
+        return res;
     }
 
     @RequestMapping(value="/updateAlbum", method= RequestMethod.GET)
     public String handleFileUpload(@RequestParam(value = "id", required = false) Long id, Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "<? header '/main';?>";
+            return "redirect:/main";
         try{
             if (id == null || id < 1) {
                 model.addAttribute("album", imageDescriptionService.getAlbumById(id));
@@ -118,10 +196,6 @@ public class ImagesController {
                 String type = parts[parts.length-1];
 
                 byte[] bytes = file.getBytes();
-                String bigi = "gallery-page-gallery-photo/bigi/";
-                String mini = "gallery-page-gallery-photo/mini/";
-                //String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-                String path = "src/main/resources/public/img/";
                 File src = new File(path+bigi+name);
                 File miniFile = new File(path+mini+name);
                 BufferedOutputStream stream =
@@ -133,7 +207,7 @@ public class ImagesController {
                 image.setAlbum(albumId);
                 imageDescriptionService.saveImage(image);
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageDescriptionService.resizeImage(srcImg, null, null);
+                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }

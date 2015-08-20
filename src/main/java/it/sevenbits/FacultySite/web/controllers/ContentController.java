@@ -3,7 +3,7 @@ package it.sevenbits.FacultySite.web.controllers;
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
-import it.sevenbits.FacultySite.web.service.gallery.ImageDescriptionService;
+import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -61,7 +58,7 @@ public class ContentController {
                 stream.write(bytes);
                 stream.close();
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageDescriptionService.resizeImage(srcImg, null, null);
+                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }

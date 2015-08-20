@@ -1,19 +1,34 @@
+link(rel='stylesheet', href='/css/edit_content.css', type='text/css', media='screen')
 mixin editForm(id, title, description, photos)
 	form.container(method="post", enctype="multipart/form-data")
 		if (id != null && id>0)
 			input.edit-content-text-edit(name="id", value="#{id}", style="display:none;")
 		input.edit-content-text-edit(name="title", required, maxlength="255", placeholder="Заголовок", value="#{title}")
-		input.edit-content-text-edit(name="description", required, placeholder="Описание альбома", value="#{description}")
-		each photo in photos
-			if (photo.is_head)
-				+add-photo(photo)
-		each photo in photos
-			if (photo.is_head == false)
-				+add-photo(photo)
+		input.edit-content-text-edit(name="description", placeholder="Описание альбома", value="#{description}")
 		input(type="file", name="files", multiple='multiple', accept="image/jpeg,image/png,image/gif")
+		p
+		each photo in photos
+			if (photo.isHead())
+				+add-photo(photo)
+		each photo in photos
+			if (photo.isHead() == false)
+				+add-photo(photo)
 		input(type="submit") Сохранить
 
 mixin add-photo(photo)
-	img.img(src="/img/gallery-page-gallery-photo/bigi/#{photo.link}", lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}")
-	input(type="checkbox", name="isHead", checked="#{photo.isHead}", value="#{photo.id}")= Одна из главных
-	input(type="checkbox", name="toDelete", checked="false", value="#{photo.id}")= Удалить
+	- isHeadText = "Одна из главных";
+	- deleteText = "Удалить";
+	div.gallery-album-main-container
+		if (photo.isHead())
+			img.gallery-album-image(src="/img/gallery-page-gallery-photo/bigi/#{photo.link}", lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}")
+			p
+			input(type="checkbox", name="isHead", checked, value="#{photo.id}")
+			Одна из главных
+		else
+			img.gallery-album-image(src="/img/gallery-page-gallery-photo/mini/#{photo.link}", lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}")
+			p
+			input(type="checkbox", name="isHead", value="#{photo.id}")
+			Одна из главных
+		p
+		input(type="checkbox", name="toDelete", value="#{photo.id}")
+		Удалить

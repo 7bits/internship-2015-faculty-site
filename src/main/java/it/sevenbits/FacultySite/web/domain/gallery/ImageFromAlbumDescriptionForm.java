@@ -8,7 +8,7 @@ public class ImageFromAlbumDescriptionForm {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean is_head;
+    private boolean isHead;
 
 
     public void setId(int id) {
@@ -39,8 +39,8 @@ public class ImageFromAlbumDescriptionForm {
         this.link = link;
     }
 
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
+    public void setIsHead(boolean isHead) {
+        this.isHead = isHead;
     }
 
     public int getId() {
@@ -71,8 +71,8 @@ public class ImageFromAlbumDescriptionForm {
         return link;
     }
 
-    public boolean is_head() {
-        return is_head;
+    public boolean isHead() {
+        return isHead;
     }
 
     @Override

@@ -6,6 +6,7 @@ public class ImageDescriptionModel {
     private final String description;
     private final String link;
 
+
     public ImageDescriptionModel(Long id, String title, String description, String link) {
         this.id = id;
         this.title = title;

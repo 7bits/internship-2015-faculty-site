@@ -18,12 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ImageDescriptionService {
+public class ImageService {
     @Autowired
     private ImageDescriptionRepository repository;
 
-    static public final double relationSide = 1/1;
-    static public final double miniImgWidth = 240;
+    static public final double relationSide = ((float)16)/9;
+    static public final double miniImgWidth = 480.0;
     static public final double miniImgHeight = miniImgWidth/relationSide;
 
     public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight){
@@ -31,12 +31,12 @@ public class ImageDescriptionService {
             destWidth = miniImgWidth;
         if (destHeight == null || destHeight < 1)
             destHeight = miniImgHeight;
-        src = cutImageToSquare(src, null, null, null, null);
+        src = cutImageToSquare(src, null, null, null, null, relationSide);
         src = scaleToSize(src, destWidth, destHeight, null, null);
         return src;
     }
 
-    public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH){
+    public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH, Double relationSide){
         double w = src.getWidth();
         double h = src.getHeight();
         if (cutW == null || cutW <= 0) {
@@ -45,10 +45,22 @@ public class ImageDescriptionService {
         if (cutH == null || cutH <= 0){
             cutH = h;
         }
-        if (cutW>cutH)
-            cutW = cutH;
-        else
-            cutH = cutW;
+        if (relationSide == null || relationSide < 0)
+            relationSide = 1.0;
+        if (relationSide > 1) {
+            cutH = cutW/relationSide;
+            if (cutH > h){
+                cutW = cutW*(h/cutH);
+                cutH = h;
+            }
+        }
+        else{
+            cutW = cutH*relationSide;
+            if (cutW > w){
+                cutH = cutH*(w/cutW);
+                cutW = w;
+            }
+        }
         if (startX == null || startX < 0) {
             startX = (w - cutW) / 2;
         }
@@ -62,15 +74,16 @@ public class ImageDescriptionService {
     public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
         BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
         AffineTransform scales = new AffineTransform();
-        if (scaleX != null && scaleY != null && (scaleX > 0 && scaleY > 0)) {
-            scales.scale(scaleX, scaleY);
-        }
-        else {
-            scales.scale(w / src.getWidth(), h / src.getHeight());
-        }
+        if ((w > src.getWidth() && h > src.getHeight()) || (w <= src.getWidth() && h <= src.getHeight()))
+            return src;
+        if (scaleX == null || scaleX < 0)
+            scaleX = w / src.getWidth();
+        if (scaleY == null || scaleY < 0)
+            scaleY = h / src.getHeight();
+        scales.scale(scaleX, scaleY);
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
         res = resScale.filter(src, res);
-        res = cutImageToSquare(res, 0.0, 0.0, w, h);
+        res = cutImageToSquare(res, 0.0, 0.0, w, h, relationSide);
         return res;
     }
 
@@ -94,7 +107,7 @@ public class ImageDescriptionService {
         ImageDescription.setDescription(form.getDescription());
         ImageDescription.setAlbum(form.getAlbum());
         ImageDescription.setLink(form.getLink());
-        ImageDescription.setIs_head(form.is_head());
+        ImageDescription.setIsHead(form.isHead());
         try {
             repository.saveImage(ImageDescription);
         } catch (Exception e) {
@@ -105,6 +118,16 @@ public class ImageDescriptionService {
     public boolean removeImage(Long id) throws ServiceException{
         try{
             repository.removeImage(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while saving ImageDescriptions: " + e.getMessage(), e);
+        }
+        return true;
+    }
+
+    public boolean removeAlbum(Long id) throws ServiceException{
+        try{
+            repository.removeAlbum(id);
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while saving ImageDescriptions: " + e.getMessage(), e);
@@ -148,6 +171,15 @@ public class ImageDescriptionService {
         }
     }
 
+    public ImageDescription getImageById(Long id) throws ServiceException {
+        try{
+            return repository.getImageById(id);
+        }
+        catch (Exception e){
+            throw new ServiceException("An error occurred while get image by id: " + e.getMessage(), e);
+        }
+    }
+
     public List<AlbumDescription> getAllAlbumsWithUniqueLink() throws ServiceException {
         try{
             List<AlbumDescription> albums = repository.getAllAlbums();
@@ -184,13 +216,16 @@ public class ImageDescriptionService {
                 return new ArrayList<>();
             List<ImageFromAlbumDescription> descriptions = repository.getImagesFromAlbum(id);
             List<ImageFromAlbumDescriptionModel> models = new ArrayList<>(descriptions.size());
-            for (ImageFromAlbumDescription s: descriptions) {
-                models.add(new ImageFromAlbumDescriptionModel(
-                        (long)s.getId(),
+            for (int i = descriptions.size()-1; i >= 0 ; i--) {
+                ImageFromAlbumDescription s = descriptions.get(i);
+                models.add(new ImageFromAlbumDescriptionModel(s.getId(),
+                        s.getAlbum_title(),
                         s.getTitle(),
                         s.getDescription(),
+                        s.getCreatingDate(),
+                        s.getCreatingTime(),
                         s.getLink(),
-                        s.getAlbum_title()
+                        s.isHead()
                 ));
             }
             return models;
