@@ -74,12 +74,13 @@ public class ImageService {
     public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
         BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
         AffineTransform scales = new AffineTransform();
-        if (scaleX != null && scaleY != null && (scaleX > 0 && scaleY > 0)) {
-            scales.scale(scaleX, scaleY);
-        }
-        else {
-            scales.scale(w / src.getWidth(), h / src.getHeight());
-        }
+        if ((w > src.getWidth() && h > src.getHeight()) || (w <= src.getWidth() && h <= src.getHeight()))
+            return src;
+        if (scaleX == null || scaleX < 0)
+            scaleX = w / src.getWidth();
+        if (scaleY == null || scaleY < 0)
+            scaleY = h / src.getHeight();
+        scales.scale(scaleX, scaleY);
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
         res = resScale.filter(src, res);
         res = cutImageToSquare(res, 0.0, 0.0, w, h, relationSide);

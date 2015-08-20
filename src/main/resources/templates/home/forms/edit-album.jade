@@ -4,7 +4,7 @@ mixin editForm(id, title, description, photos)
 		if (id != null && id>0)
 			input.edit-content-text-edit(name="id", value="#{id}", style="display:none;")
 		input.edit-content-text-edit(name="title", required, maxlength="255", placeholder="Заголовок", value="#{title}")
-		input.edit-content-text-edit(name="description", required, placeholder="Описание альбома", value="#{description}")
+		input.edit-content-text-edit(name="description", placeholder="Описание альбома", value="#{description}")
 		input(type="file", name="files", multiple='multiple', accept="image/jpeg,image/png,image/gif")
 		p
 		each photo in photos
