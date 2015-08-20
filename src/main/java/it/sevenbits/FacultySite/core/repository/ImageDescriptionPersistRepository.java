@@ -54,7 +54,7 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
     @Override
     public void changeImage(final ImageDescription container) throws  RepositoryException{
         try{
-            mapper.changeImage(container.getTitle(), container.getDescription(), container.getAlbum(), container.is_head(), container.getId());
+            mapper.changeImage(container.getTitle(), container.getDescription(), container.getAlbum(), container.isHead(), container.getId());
         }
         catch (Exception e){
             throw new RepositoryException("An error occurred while retrieving Descriptions: " + e.getMessage(), e);

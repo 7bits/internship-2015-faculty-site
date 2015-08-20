@@ -26,18 +26,18 @@ public interface ImageDescriptionMapper {
             @Result(column = "description", property = "description"),
             @Result(column = "title", property = "title"),
             @Result(column = "album_title", property = "album_title"),
-            @Result(column = "is_head", property = "is_head")
+            @Result(column = "is_head", property = "isHead")
     })
     List<ImageFromAlbumDescription> getImagesFromAlbum(@Param("album_id") Long album_id);
 
-    @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album, is_head) VALUES (#{title}, #{description}, #{link}, 'today', 'now', #{album}, #{is_head})")
+    @Insert("INSERT INTO image (title, description, link, creating_date, creating_time, album, is_head) VALUES (#{title}, #{description}, #{link}, 'today', 'now', #{album}, #{isHead})")
     void saveImage(final ImageDescription description);
 
     @Delete("DELETE FROM image WHERE id=#{id}")
     void removeImage(final Long id);
 
-    @Update("UPDATE image SET title=#{title}, description=#{description}, album=#{album}, is_head=#{is_head} WHERE id=#{id}")
-    void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Long album, @Param("is_head")boolean is_head, @Param("id")Long id);
+    @Update("UPDATE image SET title=#{title}, description=#{description}, album=#{album}, is_head=#{isHead} WHERE id=#{id}")
+    void changeImage(@Param("title")String title, @Param("description")String description, @Param("album")Long album, @Param("isHead")boolean isHead, @Param("id")Long id);
 
     @Select("SELECT * FROM album")
     @Results({

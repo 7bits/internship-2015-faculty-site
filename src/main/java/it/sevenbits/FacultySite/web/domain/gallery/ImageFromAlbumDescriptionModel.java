@@ -8,7 +8,7 @@ public class ImageFromAlbumDescriptionModel {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean is_head;
+    private boolean isHead;
 
     public ImageFromAlbumDescriptionModel(Long id, String title, String description, String link, String album_title) {
         this.id = id;
@@ -46,8 +46,8 @@ public class ImageFromAlbumDescriptionModel {
         this.link = link;
     }
 
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
+    public void setIsHead(boolean isHead) {
+        this.isHead = isHead;
     }
 
     public Long getId() {
@@ -78,8 +78,8 @@ public class ImageFromAlbumDescriptionModel {
         return link;
     }
 
-    public boolean is_head() {
-        return is_head;
+    public boolean isHead() {
+        return isHead;
     }
 
     @Override

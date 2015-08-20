@@ -8,7 +8,7 @@ public class ImageFromAlbumDescription {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean is_head;
+    private boolean isHead;
 
 
     public void setId(int id) {
@@ -39,8 +39,8 @@ public class ImageFromAlbumDescription {
         this.link = link;
     }
 
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
+    public void setIsHead(boolean is_head) {
+        this.isHead = is_head;
     }
 
     public int getId() {
@@ -71,7 +71,7 @@ public class ImageFromAlbumDescription {
         return link;
     }
 
-    public boolean is_head() {
-        return is_head;
+    public boolean isHead() {
+        return isHead;
     }
 }

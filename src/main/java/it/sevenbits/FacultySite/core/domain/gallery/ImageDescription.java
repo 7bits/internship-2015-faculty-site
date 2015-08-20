@@ -8,29 +8,29 @@ public class ImageDescription {
     private String creating_date;
     private String creating_time;
     private String link;
-    private boolean is_head;
+    private boolean isHead;
 
     public ImageDescription() {
     }
 
-    public ImageDescription(Long id, String title, String description, String link, boolean is_head) {
+    public ImageDescription(Long id, String title, String description, String link, boolean isHead) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.link = link;
-        this.is_head = is_head;
+        this.isHead = isHead;
     }
 
-    public ImageDescription(Long id, String title, String description, Long album, boolean is_head, String link) {
+    public ImageDescription(Long id, String title, String description, Long album, boolean isHead, String link) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.album = album;
-        this.is_head = is_head;
+        this.isHead = isHead;
         this.link = link;
     }
 
-    public ImageDescription(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean is_head) {
+    public ImageDescription(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
         this.id = id;
         this.album = album;
         this.title = title;
@@ -38,7 +38,7 @@ public class ImageDescription {
         this.creating_date = creating_date;
         this.creating_time = creating_time;
         this.link = link;
-        this.is_head = is_head;
+        this.isHead = isHead;
     }
 
     public Long getId() {
@@ -69,8 +69,8 @@ public class ImageDescription {
         return link;
     }
 
-    public boolean is_head() {
-        return is_head;
+    public boolean isHead() {
+        return isHead;
     }
 
 
@@ -102,8 +102,8 @@ public class ImageDescription {
         this.link = link;
     }
 
-    public void setIs_head(boolean is_head) {
-        this.is_head = is_head;
+    public void setIsHead(boolean isHead) {
+        this.isHead = isHead;
     }
 
 

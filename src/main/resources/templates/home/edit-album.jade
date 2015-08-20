@@ -5,6 +5,7 @@ head
 	title Редактирование альбома
 	include general-includes.jade
 	include forms/edit-album.jade
+	link(rel='stylesheet', href='/css/gallery.css', type='text/css', media='screen')
 body
 	include forms/header.jade
 	+editForm(album.id, album.title, album.description, photos)

@@ -58,16 +58,14 @@ public class ImagesController {
     }
 
     @RequestMapping(value="/updateAlbum", method= RequestMethod.POST)
-    public @ResponseBody
-    String updateAlbum(@RequestParam(value = "files", required = false) List<MultipartFile> files,
+    public String updateAlbum(@RequestParam(value = "files", required = false) List<MultipartFile> files,
                        @RequestParam(value = "id", required = false) Long id,
                        @RequestParam(value = "isHead", required = false)List<Long> isHeadIDs,
                        @RequestParam(value = "toDelete", required = false)List<Long> toDeleteIDs,
                        @RequestParam(value = "title", required = false)String title,
                        @RequestParam(value = "description", required = false)String description){
-        String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "<? header '/main';?>";
+            return "redirect:/main";
         AlbumDescription album = new AlbumDescription(id, title, description);
         if (album.getId() == null){
             try {
@@ -81,16 +79,15 @@ public class ImagesController {
             if (file.getOriginalFilename().isEmpty()) {
                 continue;
             }
-            toOut += downloadImage(file, album.getId()) + "<p>";
+            downloadImage(file, album.getId());
         }
-        toOut += "<? header ('/updateAlbum?id="+album.getId()+"');?>";
-        return toOut;
+        return "redirect:/updateAlbum?id="+album.getId();
     }
 
     @RequestMapping(value="/updateAlbum", method= RequestMethod.GET)
     public String handleFileUpload(@RequestParam(value = "id", required = false) Long id, Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "<? header '/main';?>";
+            return "redirect:/main";
         try{
             if (id == null || id < 1) {
                 model.addAttribute("album", imageDescriptionService.getAlbumById(id));

@@ -94,7 +94,7 @@ public class ImageDescriptionService {
         ImageDescription.setDescription(form.getDescription());
         ImageDescription.setAlbum(form.getAlbum());
         ImageDescription.setLink(form.getLink());
-        ImageDescription.setIs_head(form.is_head());
+        ImageDescription.setIsHead(form.isHead());
         try {
             repository.saveImage(ImageDescription);
         } catch (Exception e) {
