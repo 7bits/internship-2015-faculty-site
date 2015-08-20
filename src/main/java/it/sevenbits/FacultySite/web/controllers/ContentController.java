@@ -212,7 +212,7 @@ public class ContentController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Скрытые записи");
-        model = NewsController.constructNews(current, page, false, model, contentOfPagesService);
+        model = NewsController.constructData(current, page, null, false, model, contentOfPagesService);
         return "home/news";
     }
 
@@ -223,7 +223,7 @@ public class ContentController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         model.addAttribute("title", "Все записи");
-        model = NewsController.constructNews(current, page, null, model, contentOfPagesService);
+        model = NewsController.constructData(current, page, null, null, model, contentOfPagesService);
         return "home/news";
     }
 

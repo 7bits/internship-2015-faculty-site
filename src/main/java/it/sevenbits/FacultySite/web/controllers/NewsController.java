@@ -31,7 +31,7 @@ public class NewsController {
                        @RequestParam(value="page", required = false) String page,
                        Model model) {
         model.addAttribute("title", "Новости ОмГУ");
-        model = constructNews(current, page, true, model, contentOfPagesService);
+        model = constructData(current, page, null, true, model, contentOfPagesService);
         return "home/news";
     }
 
@@ -52,11 +52,14 @@ public class NewsController {
     //Was for Ajax
 
 
-    public static Model constructNews(Integer current, String page, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
+    public static Model constructData(Integer current, String page, String type, Boolean publish, Model model, ContentOfPagesService contentOfPagesService){
+        if (type == null){
+            type = "News:";
+        }
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
             model.addAttribute("root", true);
             model.addAttribute("canCreate", true);
-            model.addAttribute("createType", "News:");
+            model.addAttribute("createType", type);
         }
         if (page == null)
             page = "1";
@@ -64,7 +67,7 @@ public class NewsController {
             current = 1;
         Long sumOfNews = (long)0;
         try{
-            sumOfNews = contentOfPagesService.getSumOfPages("News:%", publish);
+            sumOfNews = contentOfPagesService.getSumOfPages(type, publish);
 
         }
         catch (Exception e){
@@ -97,7 +100,7 @@ public class NewsController {
         pagination = generatePagination(current, sumOfPages);
         Long start = calculateStartFromTheEnd(sumOfNews.intValue(), current, countOnPage);
         Long end = calculateEndFromTheEnd(start, sumOfNews.intValue(), countOnPage);
-        List<ContentDescriptionModel> content = getContentByType("News:", publish, start, end, contentOfPagesService);
+        List<ContentDescriptionModel> content = getContentByType(type, publish, start, end, contentOfPagesService);
         model.addAttribute("content", content);
         model.addAttribute("pagination", pagination);
         model.addAttribute("current", current+"");

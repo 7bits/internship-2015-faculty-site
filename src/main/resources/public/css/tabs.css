@@ -1,6 +1,7 @@
 .tabs{
     display:table;
     overflow: hidden;
+    width: 100%;
 }
 .tab-content{
     padding: 5px 20px;
