@@ -36,7 +36,8 @@
 .article_text{
   line-height: 1.5em;
   width: 69%;
-  float:right;
+  float:left;
+  padding-left: 3%;
 
  
   
