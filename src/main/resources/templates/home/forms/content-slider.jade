@@ -47,12 +47,13 @@ mixin add-reviews-link(title, miniTitle, imgLinks, text)
 //- IG
 mixin add-partner-link(imgLinks)
 	a.tab-title-container(href="/partners", target="_blank")
-		.partner
+		div.partner
 			img(style="max-width:100%; width:190px;", src="#{imgLinks}")
 	
 mixin add-title-gallery-tab(album, photos, maxOfMainPhotos)
 	div.tab-title.tab-title-style(idDB="#{album.id}")
 		+add-title-gallery-container(album.title, photos, maxOfMainPhotos)
+
 
 mixin add-title-gallery-container(title, photos, maxOfMainPhotos)
 	div.tab-title-container
@@ -71,6 +72,16 @@ mixin add-content-gallery(photos)
 
 mixin add-content-photo-gallery(imgLink)
 	img.tab-content-photo-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{imgLink}", src="/img/gallery-page-gallery-photo/mini/#{imgLink}")
+
+mixin add-reviews-tab(title, miniTitle, imgLinks, text)
+	div.tab-title.tab-title-style
+		div.tab-title-container
+			p.tab-title-title.tab-title-text= title
+			p.tab-title-date.tab-title-text= miniTitle
+			div.img-reviews
+				img(style="width:100px; max-width:100%;", src="#{imgLinks}")
+			div.text-reviews
+				div.IG-tab-title-content= text
 
 mixin add-content-part(content)
 	div.tab-content!= content
