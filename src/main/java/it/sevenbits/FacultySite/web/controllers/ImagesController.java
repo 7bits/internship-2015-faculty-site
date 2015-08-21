@@ -219,7 +219,13 @@ public class ImagesController {
                 BufferedImage srcImg = ImageIO.read(src);
                 BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, relationSide);
                 if (miniFile.createNewFile()) {
-                    ImageIO.write(miniImg, type, miniFile);
+                    try {
+                        ImageIO.write(miniImg, type, miniFile);
+                    }
+                    catch (Exception e){
+                        ImageIO.write(srcImg, type, miniFile);
+                        LOG.error(e.getMessage() + "\nWas write old file");
+                    }
                 }
 //                toOut += "Ссылка на загруженную картинку в большом размере:<p> /img/"+bigi+name + "<p>";
 //                toOut += "<img src='/img/"+bigi+name + "'></img>";
