@@ -63,6 +63,11 @@ public class ImagesController {
         try {
             List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
             List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
+            List<AlbumDescription> tmp = albums;
+            albums.clear();
+            for (int i = tmp.size()-1; i >= 0; i++){
+                albums.add(tmp.get(i));
+            }
             for (AlbumDescription album : albums) {
                 images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
             }
