@@ -35,8 +35,8 @@ public class ImagesController {
 
     final static String bigi = "gallery-page-gallery-photo/bigi/";
     final static String mini = "gallery-page-gallery-photo/mini/";
-    //final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-    final static String path = "src/main/resources/public/img/";
+    final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+    //final static String path = "src/main/resources/public/img/";
 
     @RequestMapping(value = "/gallery")
     public String gallery(Model model,
@@ -63,11 +63,6 @@ public class ImagesController {
         try {
             List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
             List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
-            List<AlbumDescription> tmp = albums;
-            albums.clear();
-            for (int i = tmp.size()-1; i >= 0; i++){
-                albums.add(tmp.get(i));
-            }
             for (AlbumDescription album : albums) {
                 images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
             }

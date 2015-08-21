@@ -45,14 +45,6 @@ public class HomeController {
             for (AlbumDescription album : albums) {
                 images.add(imagesService.getImagesFromAlbum(album.getId()));
             }
-            List<AlbumDescription> tmp = albums;
-            List<List<ImageFromAlbumDescriptionModel>> tmpImgs = images;
-            albums.clear();
-            images.clear();
-            for (int i = tmp.size()-1; i >= 0; i++){
-                albums.add(tmp.get(i));
-                images.add(tmpImgs.get(i));
-            }
         }
         catch (Exception e){
             LOG.error(e.getMessage());
