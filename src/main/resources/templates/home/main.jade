@@ -24,9 +24,8 @@ body
 			p.tab-title-delimiter
 			p.tab-title-clarification.tab-title-text ГАЛЕРЕЯ
 			//-Создание ссылки на альбом, первый параметр - id альбома
-			div.tab-title-style
-				- imgLinks = ["/img/gallery-page-gallery-photo/bigi/1.jpg", "/img/gallery-page-gallery-photo/bigi/4.jpg"];
-				+add-gallery-link(1, "Imit movie awards", imgLinks)
+			each album, i in albums
+				+add-title-gallery-link(album.title, photos, 2)
 
 		div.tab-container.tab-container-content
 			//- Наполнение правой части вкладок

@@ -71,6 +71,18 @@ mixin add-title-gallery-container(title, photos, maxOfMainPhotos)
 					- wasMain = wasMain + 1;
 					img.tab-title-gallery-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}", src="/img/gallery-page-gallery-photo/mini/#{photo.link}")
 
+mixin add-title-gallery-link(title, photos, maxOfMainPhotos)
+	div.tab-title-style
+		a.tab-title-container(href="/gallery")
+			p.tab-title-title.tab-title-text= title
+			if (maxOfMainPhotos != null && maxOfMainPhotos > 0)
+				- wasMain = 0;
+				each photo in photos
+					if (photo.isHead() && wasMain < maxOfMainPhotos)
+						- wasMain = wasMain + 1;
+						img.tab-title-gallery-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{photo.link}", src="/img/gallery-page-gallery-photo/mini/#{photo.link}")
+
+
 mixin add-content-gallery(photos)
 	div.tab-content
 		each photo in photos
