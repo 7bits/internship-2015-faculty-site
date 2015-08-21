@@ -25,7 +25,7 @@ body
 			p.tab-title-clarification.tab-title-text ГАЛЕРЕЯ
 			//-Создание ссылки на альбом, первый параметр - id альбома
 			each album, i in albums
-				+add-title-gallery-link(album.title, images, 2)
+				+add-title-gallery-link(album.title, images[i], 2)
 
 		div.tab-container.tab-container-content
 			//- Наполнение правой части вкладок
