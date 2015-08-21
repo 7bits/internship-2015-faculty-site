@@ -119,6 +119,10 @@
     color: white;
 }
 
+.tab-title-style.active-tab .partner{
+    background: white;
+}
+
 .tab-title-style:hover{
     background:#d6d6d7;
 }
@@ -142,4 +146,6 @@
 .partner{
     text-align: center;
     padding-top: 8%;
+    width: 90%;
+    height: 90%;
 }

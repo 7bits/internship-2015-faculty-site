@@ -50,6 +50,12 @@ mixin add-partner-link(imgLinks)
 		div.partner
 			img(style="max-width:100%; width:190px;", src="#{imgLinks}")
 	
+mixin add-partner-tab(imgLinks)
+	div.tab-title.tab-title-style
+		div.tab-title-container
+			div.partner
+				img(style="max-width:90%; max-height:90%;", src="#{imgLinks}")
+
 mixin add-title-gallery-tab(album, photos, maxOfMainPhotos)
 	div.tab-title.tab-title-style(idDB="#{album.id}")
 		+add-title-gallery-container(album.title, photos, maxOfMainPhotos)
