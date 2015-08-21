@@ -85,7 +85,12 @@ public class ImageService {
         scales.scale(scaleX, scaleY);
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
         res = resScale.filter(src, res);
-        res = cutImageToSquare(res, 0.0, 0.0, w, h, relationSide);
+        try {
+            res = cutImageToSquare(res, 0.0, 0.0, w, h, relationSide);
+        }
+        catch (Exception e){
+            return src;
+        }
         return res;
     }
 
