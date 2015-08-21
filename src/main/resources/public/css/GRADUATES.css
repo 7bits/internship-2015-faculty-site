@@ -23,8 +23,10 @@
 .name{
   font-size: 35px;
   float: none;
+  text-align: left;
 }
 .place_of_work{
+  margin-top: 10px;
   font-size: 22px;
 }
 .quote{
