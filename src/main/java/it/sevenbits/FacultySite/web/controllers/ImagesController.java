@@ -96,7 +96,14 @@ public class ImagesController {
                        @RequestParam(value = "relation-side-height", required = false) Integer relationSideHeight){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        Double relationSide = ((double)relationSideWidth)/relationSideHeight;
+
+        Double relationSide = null;
+        try{
+            relationSide = ((double)relationSideWidth)/relationSideHeight;
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
         AlbumDescription album = new AlbumDescription(id, title, description);
         if (album.getId() == null){
             try {
