@@ -115,7 +115,7 @@
     color:#fff;
 }
 
-.tab-title-style.active-tab .tab-title-text{
+.tab-title-style.active-tab .tab-title-text, .tab-title-style.active-tab .IG-tab-title-content{
     color: white;
 }
 
