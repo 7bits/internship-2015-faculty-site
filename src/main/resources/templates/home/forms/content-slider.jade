@@ -77,7 +77,9 @@ mixin add-content-gallery(photos)
 			+add-content-photo-gallery(photo.link)
 
 mixin add-content-photo-gallery(imgLink)
-	img.tab-content-photo-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{imgLink}", src="/img/gallery-page-gallery-photo/mini/#{imgLink}")
+	a(href= "/img/gallery-page-gallery-photo/bigi/#{imgLink}", rel='iLoad|Albom', title='Описание фотографии')
+		img.tab-content-photo-img(lowsrc="/img/gallery-page-gallery-photo/mini/#{imgLink}", src="/img/gallery-page-gallery-photo/mini/#{imgLink}")
+
 
 mixin add-reviews-tab(title, miniTitle, imgLinks, text)
 	div.tab-title.tab-title-style
