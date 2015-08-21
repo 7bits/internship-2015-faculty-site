@@ -58,7 +58,7 @@ public class ContentController {
                 stream.write(bytes);
                 stream.close();
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null);
+                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, null);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }

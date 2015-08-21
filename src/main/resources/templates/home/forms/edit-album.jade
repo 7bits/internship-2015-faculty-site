@@ -1,6 +1,11 @@
 link(rel='stylesheet', href='/css/edit_content.css', type='text/css', media='screen')
 mixin editForm(id, title, description, photos)
 	form.container(method="post", enctype="multipart/form-data")
+		div.edit-content-text-edit
+			- relationSideDescription = "Соотношение сторон мини-картинок";
+			input(type="number", name="relation-side-width", required, maxlength="3", placeholder="", value="4")
+			div= relationSideDescription
+			input(type="number", name="relation-side-height", required, maxlength="3", placeholder="", value="3")
 		if (id != null && id>0)
 			input.edit-content-text-edit(name="id", value="#{id}", style="display:none;")
 		input.edit-content-text-edit(name="title", required, maxlength="255", placeholder="Заголовок", value="#{title}")

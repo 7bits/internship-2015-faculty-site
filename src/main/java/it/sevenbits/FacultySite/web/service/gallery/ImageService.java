@@ -26,11 +26,13 @@ public class ImageService {
     static public final double miniImgWidth = 480.0;
     static public final double miniImgHeight = miniImgWidth/relationSide;
 
-    public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight){
+    public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight, Double relationSide){
         if (destWidth == null || destWidth < 1)
             destWidth = miniImgWidth;
         if (destHeight == null || destHeight < 1)
             destHeight = miniImgHeight;
+        if (relationSide == null || relationSide < 0)
+            relationSide = ImageService.relationSide;
         src = cutImageToSquare(src, null, null, null, null, relationSide);
         src = scaleToSize(src, destWidth, destHeight, null, null);
         return src;

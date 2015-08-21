@@ -35,8 +35,8 @@ public class ImagesController {
 
     final static String bigi = "gallery-page-gallery-photo/bigi/";
     final static String mini = "gallery-page-gallery-photo/mini/";
-    final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-    //final static String path = "src/main/resources/public/img/";
+    //final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+    final static String path = "src/main/resources/public/img/";
 
     @RequestMapping(value = "/gallery")
     public String gallery(Model model,
@@ -91,9 +91,12 @@ public class ImagesController {
                        @RequestParam(value = "isHead", required = false)List<Long> isHeadIDs,
                        @RequestParam(value = "toDelete", required = false)List<Long> toDeleteIDs,
                        @RequestParam(value = "title", required = false)String title,
-                       @RequestParam(value = "description", required = false)String description){
+                       @RequestParam(value = "description", required = false)String description,
+                       @RequestParam(value = "relation-side-width", required = false) Integer relationSideWidth,
+                       @RequestParam(value = "relation-side-height", required = false) Integer relationSideHeight){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
+        Double relationSide = ((double)relationSideWidth)/relationSideHeight;
         AlbumDescription album = new AlbumDescription(id, title, description);
         if (album.getId() == null){
             try {
@@ -152,7 +155,7 @@ public class ImagesController {
             if (file.getOriginalFilename().isEmpty()) {
                 continue;
             }
-            downloadImage(file, album.getId());
+            downloadImage(file, album.getId(), relationSide);
         }
         return "redirect:/updateAlbum?id="+album.getId();
     }
@@ -187,7 +190,7 @@ public class ImagesController {
         return "home/edit-album";
     }
 
-    public String downloadImage(MultipartFile file, Long albumId){
+    public String downloadImage(MultipartFile file, Long albumId, Double relationSide){
         String toOut = "";
         if (file != null && !file.isEmpty()) {
             try {
@@ -207,7 +210,7 @@ public class ImagesController {
                 image.setAlbum(albumId);
                 imageDescriptionService.saveImage(image);
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null);
+                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, relationSide);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }
