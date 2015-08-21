@@ -81,4 +81,7 @@ public interface ImageDescriptionMapper {
     @Options(keyProperty = "id", useGeneratedKeys = true)
     void addAlbum(final AlbumDescription album);
 
+    @Update("UPDATE album SET title=#{title}, description=#{description}) WHERE id=#{id}")
+    void updateAlbum(final AlbumDescription album);
+
 }

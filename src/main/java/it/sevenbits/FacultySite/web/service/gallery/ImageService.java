@@ -89,11 +89,12 @@ public class ImageService {
 
     public void saveAlbum(final AlbumDescription album) throws ServiceException{
         try{
-            if (album.getId() == null && album.getTitle() != null && album.getDescription() != null && !album.getTitle().isEmpty()){
-                repository.addAlbum(album);
-            }
-            else{
-
+            if (album.getTitle() != null && !album.getTitle().isEmpty()) {
+                if (album.getId() == null) {
+                    repository.addAlbum(album);
+                } else {
+                    repository.updateAlbum(album);
+                }
             }
         }
         catch (Exception e){

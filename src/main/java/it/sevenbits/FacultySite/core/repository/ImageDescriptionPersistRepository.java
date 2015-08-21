@@ -27,6 +27,17 @@ public class ImageDescriptionPersistRepository implements ImageDescriptionReposi
             throw new RepositoryException(e.getMessage());
         }
     }
+
+    @Override
+    public void updateAlbum(final AlbumDescription album) throws RepositoryException{
+        try {
+            mapper.updateAlbum(album);
+        }
+        catch (Exception e){
+            throw new RepositoryException(e.getMessage());
+        }
+    }
+
     @Override
     public void saveImage(final ImageDescription Description) throws RepositoryException {
         if (Description == null) {

@@ -12,6 +12,7 @@ public interface ImageDescriptionRepository {
     void removeAlbum(final Long id) throws RepositoryException;
     void changeImage(final ImageDescription container) throws RepositoryException;
     void addAlbum(final AlbumDescription album) throws RepositoryException;
+    void updateAlbum(final AlbumDescription album) throws RepositoryException;
     List<AlbumDescription> getAllAlbums() throws RepositoryException;
     AlbumDescription getAlbumById(Long id) throws RepositoryException;
     ImageDescription getImageById(Long id) throws RepositoryException;
