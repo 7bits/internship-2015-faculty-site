@@ -26,6 +26,8 @@
 }
 
 .tab-title-text{
+    margin-bottom: 15px;
+    font-size:17px;
     float: none;
     overflow: hidden;
     margin-top: 5px;
@@ -49,8 +51,10 @@
 }
 
 .tab-title-title{
+    margin-bottom: 15px;
+    font-size:17px;
     color: black;
-    font-size: 16px;
+    font-size: 17px;
     max-height: 60px;
     font-weight: 600;
 }
@@ -61,6 +65,7 @@
     text-align: center;
     padding: auto 0px;
     font-weight: 600;
+    padding-top: 18%;
 }
 
 .tab-title-content{
@@ -88,7 +93,8 @@
 }
 
 .tab-title-gallery-img{
-    max-width:40%; 
+    width: 85px;
+    height: 76px; 
     max-height:70px; 
     margin: 0px 5%;
 }
