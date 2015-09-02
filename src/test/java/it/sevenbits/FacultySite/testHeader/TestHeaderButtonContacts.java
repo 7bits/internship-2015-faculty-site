@@ -25,7 +25,7 @@ public class TestHeaderButtonContacts {
     @Test
     public void testHeaderButtonContacts() throws Exception {
         driver.get(baseUrl + "/main");
-        driver.findElement(By.linkText("КОНТАКТЫ")).click();
+        driver.findElement(By.linkText("Контакты")).click();
     }
 
     @After
