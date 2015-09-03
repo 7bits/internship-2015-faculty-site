@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.testHeader;
+package it.sevenbits.FacultySite.TestHeader;
 
 import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
