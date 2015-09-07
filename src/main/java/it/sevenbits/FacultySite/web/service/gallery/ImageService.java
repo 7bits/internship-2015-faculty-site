@@ -8,12 +8,18 @@ import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.ServiceException;
+import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +28,15 @@ public class ImageService {
     @Autowired
     private ImageDescriptionRepository repository;
 
-    static public final double relationSide = ((float)16)/9;
-    static public final double miniImgWidth = 480.0;
-    static public final double miniImgHeight = miniImgWidth/relationSide;
+    static public final Double relationSide = (double)((float)16)/9;
+    static public final Double miniImgWidth = 480.0;
+    static public final Double miniImgHeight = miniImgWidth/relationSide;
+
+
+    final static String bigi = "gallery-page-gallery-photo/bigi/";
+    final static String mini = "gallery-page-gallery-photo/mini/";
+    //final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
+    final static String path = "src/main/resources/public/img/";
 
     public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight, Double relationSide){
         if (destWidth == null || destWidth < 1)
@@ -37,6 +49,7 @@ public class ImageService {
         src = scaleToSize(src, destWidth, destHeight, null, null);
         return src;
     }
+
 
     public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH, Double relationSide){
         double w = src.getRaster().getWidth();
@@ -135,12 +148,147 @@ public class ImageService {
 
     public boolean removeAlbum(Long id) throws ServiceException{
         try{
+            List<ImageFromAlbumDescriptionModel> imagesFromDeletingAlbum = getImagesFromAlbum(id);
+            for (ImageFromAlbumDescriptionModel tmpImg : imagesFromDeletingAlbum)
+                removeImage(tmpImg.getId());
             repository.removeAlbum(id);
         }
         catch (Exception e){
             throw new ServiceException("An error occurred while saving ImageDescriptions: " + e.getMessage(), e);
         }
         return true;
+    }
+
+    public Long updateAlbum(Double relationSideWidth,
+                            Double relationSideHeight,
+                            Long id,
+                            String title,
+                            String description,
+                            List<Long> toDeleteIDs,
+                            List<Long> isHeadIDs) throws ServiceException {
+
+        Double relationSide = ImageService.relationSide;
+        if (relationSideHeight != null && relationSideHeight >= 0
+                && relationSideWidth != null && relationSideWidth >= 0) {
+
+            relationSide = relationSideWidth / relationSideHeight;
+        }
+        AlbumDescription album = new AlbumDescription(id, title, description);
+        if (album.getId() == null) {
+            try {
+                saveAlbum(album);
+            } catch (Exception e) {
+                throw new ServiceException(e.getMessage(), e);
+            }
+        }
+        if (toDeleteIDs != null) {
+            for (Long toDeleteId : toDeleteIDs) {
+                ImageDescription image = getImageById(toDeleteId);
+                if (!image.getAlbum().equals(album.getId()))
+                    continue;
+                deleteFile(path + bigi + image.getLink());
+                deleteFile(path + mini + image.getLink());
+                removeImage(toDeleteId);
+            }
+        }
+        try {
+            List<ImageFromAlbumDescriptionModel> images = getImagesFromAlbum(album.getId());
+            for (ImageFromAlbumDescriptionModel currentImage : images) {
+                try {
+                    Boolean isHead = false;
+                    if (isHeadIDs != null) {
+                        for (Long isHeadTmpId : isHeadIDs) {
+                            if (isHeadTmpId.equals(currentImage.getId())) {
+                                isHead = true;//если присутствует в списке - значит, должен быть заглавной
+                                break;
+                            }
+                        }
+                    }
+                    ImageDescription image = new ImageDescription(currentImage.getId(),
+                            album.getId(),
+                            currentImage.getTitle(),
+                            currentImage.getDescription(),
+                            currentImage.getCreating_date(),
+                            currentImage.getCreating_time(),
+                            currentImage.getLink(),
+                            isHead);
+                    changeImage(image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return album.getId();
+    }
+
+
+    public static Boolean deleteFile(String path) throws ServiceException{
+        try {
+            File src = new File(path);
+            Boolean res = src.delete();
+            if (!res)
+                throw new ServiceException("Can't remove file: " + path, null);
+        }
+        catch (ServiceException e){
+            throw new ServiceException(e.getMessage(), e);
+        }
+        return true;
+    }
+
+
+    public void uploadFiles(List<MultipartFile> files, Long albumId){
+        if (albumId == null || albumId < 1){
+            return;
+        }
+        for (MultipartFile file : files){
+            if (file.getOriginalFilename().isEmpty()) {
+                continue;
+            }
+            try {
+                downloadImage(file, albumId, relationSide);
+            }
+            catch (ServiceException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String downloadImage(MultipartFile file, Long albumId, Double relationSide) throws ServiceException{
+        String toOut = "";
+        if (file != null && !file.isEmpty()) {
+            try {
+                String name = ContentOfPagesService.generateName(file.getOriginalFilename());
+                String parts[] = name.split("\\.");
+                String type = parts[parts.length-1];
+
+                byte[] bytes = file.getBytes();
+                File src = new File(path+bigi+name);
+                File miniFile = new File(path+mini+name);
+                BufferedOutputStream stream =
+                        new BufferedOutputStream(new FileOutputStream(src));
+                stream.write(bytes);
+                stream.close();
+                ImageDescriptionForm image = new ImageDescriptionForm();
+                image.setLink(name);
+                image.setAlbum(albumId);
+                saveImage(image);
+                BufferedImage srcImg = ImageIO.read(src);
+                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, relationSide);
+                if (miniFile.createNewFile()) {
+                    try {
+                        ImageIO.write(miniImg, type, miniFile);
+                    }
+                    catch (Exception e){
+                        ImageIO.write(srcImg, type, miniFile);
+                    }
+                }
+            } catch (Exception e) {
+                throw new ServiceException(e.getMessage(), e);
+            }
+        }
+        return toOut;
     }
 
     public List<ImageDescriptionModel>getAllImages() throws ServiceException {
