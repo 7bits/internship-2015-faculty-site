@@ -9,4 +9,5 @@ head
 body
 	include forms/header
 	+upload-photo-form()
-	p!= request
+	for path in paths
+		+add-uploaded-img(path)

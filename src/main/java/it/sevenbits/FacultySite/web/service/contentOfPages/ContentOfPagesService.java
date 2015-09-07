@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.RasterFormatException;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -215,6 +216,35 @@ public class ContentOfPagesService {
         }
         return "";
     }
+
+    public List<String> getImgPath(String name){
+        List<String> paths = new ArrayList<>();
+
+        File bigiFile = new File(imgPath+imgBigiPrefix+name);
+        File miniFile = new File(imgPath+imgMiniPrefix+name);
+        if (bigiFile.exists()){
+            paths.add(bigiFile.getPath());
+        }
+        if (miniFile.exists()){
+            paths.add(miniFile.getPath());
+        }
+        return paths;
+    }
+
+    public List<String> uploadFiles(List<MultipartFile> files) throws ServiceException{
+        List<String> paths = new ArrayList<>();
+        for (MultipartFile file : files) {
+            try {
+                String name = uploadFile(file);
+                List<String> tmpPaths = getImgPath(name);
+                paths.addAll(tmpPaths);
+            } catch (Exception e) {
+                throw new ServiceException(e.getMessage(), e);
+            }
+        }
+        return paths;
+    }
+
 
     public ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish) throws ServiceException{
         Long id;

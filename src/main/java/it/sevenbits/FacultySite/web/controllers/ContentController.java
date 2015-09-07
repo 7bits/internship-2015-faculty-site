@@ -41,19 +41,17 @@ public class ContentController {
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
     public String handleFileUpload(@RequestParam(value = "files", required = false) List<MultipartFile> files, Model model){
-        String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        List<String> fileNames = new ArrayList<>();
-        for (MultipartFile file : files){
-            try {
-                fileNames.add(contentOfPagesService.uploadFile(file));
-            }
-            catch (ServiceException e){
-                LOG.error(e);
-            }
+
+        List<String> toOut = new ArrayList<>();
+        try{
+            toOut = contentOfPagesService.uploadFiles(files);
         }
-        model.addAttribute("request", toOut);
+        catch (ServiceException e){
+            LOG.error(e);
+        }
+        model.addAttribute("paths", toOut);
         return "home/upload";
     }
 

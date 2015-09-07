@@ -69,6 +69,10 @@ public class ImageService {
         if (startY == null || startY < 0){
             startY = (h-cutH)/2;
         }
+        if (cutW + startX > src.getWidth())
+            cutW = src.getWidth() - startX - 1;//for not cross the borders
+        if (cutH + startY > src.getHeight())
+            cutH = src.getHeight() - startY - 1;
         src = src.getSubimage(startX.intValue(), startY.intValue(), cutW.intValue(), cutH.intValue());
         return src;
     }
@@ -76,7 +80,7 @@ public class ImageService {
     public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
         BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
         AffineTransform scales = new AffineTransform();
-        if ((w > src.getWidth() && h > src.getHeight()) || (w <= src.getWidth() && h <= src.getHeight()))
+        if (w >= src.getWidth() && h >= src.getHeight())
             return src;
         if (scaleX == null || scaleX < 0)
             scaleX = w / src.getWidth();

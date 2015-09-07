@@ -5,6 +5,7 @@ import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
+import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -201,7 +202,7 @@ public class ImagesController {
         String toOut = "";
         if (file != null && !file.isEmpty()) {
             try {
-                String name = ContentController.generateName(file.getOriginalFilename());
+                String name = ContentOfPagesService.generateName(file.getOriginalFilename());
                 String parts[] = name.split("\\.");
                 String type = parts[parts.length-1];
 

@@ -3,3 +3,8 @@ mixin upload-photo-form()
 		input(type="file", name="files", multiple='multiple', accept="image/jpeg,image/png,image/gif")
 		p
 		input(type="submit", value="Сохранить")
+
+mixin add-uploaded-img(path)
+	p= path
+	img(src="#{path}")
+	p
