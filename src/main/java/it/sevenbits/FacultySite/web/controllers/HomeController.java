@@ -5,6 +5,7 @@ import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.web.domain.contentOfPages.ContentDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
+import it.sevenbits.FacultySite.web.service.contentOfPages.NewsService;
 import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class HomeController {
     ContentOfPagesService contentOfPagesService;
     @Autowired
     ImageService imagesService;
+    @Autowired
+    NewsService newsService;
 
     @RequestMapping(value = "/")
     public String index() {
@@ -38,9 +41,9 @@ public class HomeController {
         List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
         try {
             Integer sumOfNews = contentOfPagesService.getSumOfPages("News:%", true).intValue();
-            Long start = NewsController.calculateStartFromTheEnd(sumOfNews, 1, 3);
-            Long end = NewsController.calculateEndFromTheEnd(start, sumOfNews, 3);
-            news = NewsController.getContentByType("News:%", true, start, end, contentOfPagesService);
+            Long start = newsService.calculateStartFromTheEnd(sumOfNews, (long)1, 3);
+            Long end = newsService.calculateEndFromTheEnd(start, sumOfNews, 3);
+            news = newsService.getContentByType("News:%", true, start, end);
             albums = imagesService.getAllAlbums();
             for (AlbumDescription album : albums) {
                 images.add(imagesService.getImagesFromAlbum(album.getId()));

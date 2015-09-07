@@ -33,6 +33,7 @@ public class NewsController {
                        @RequestParam(value="page", required = false) String page,
                        Model model) {
         model.addAttribute("title", "Новости ОмГУ");
+        model.addAttribute("type", "News:");
         try {
             model = newsService.constructData(current, page, null, true, countOnPage, model);
         }
@@ -41,10 +42,5 @@ public class NewsController {
         }
         return "home/news";
     }
-
-
-
-
-
 
 }

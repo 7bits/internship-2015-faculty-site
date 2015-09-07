@@ -219,7 +219,76 @@ public class ContentOfPagesService {
         return "";
     }
 
+    public Model createEditContent(String createType,
+                                   Model model) {
+        if (createType != null && !createType.isEmpty()) {
+            model.addAttribute("type", createType);
+        }
+        return model;
+    }
 
+    public Model redactContent(Long redactId, Model model){
+        if (redactId > 0) {
+            try {
+                ContentDescription res = getPageById(redactId);
+                model.addAttribute("content", res.getDescription());
+                model.addAttribute("title", res.getTitle());
+                model.addAttribute("type", res.getType());
+                model.addAttribute("miniContent", res.getMiniContent());
+                model.addAttribute("imageLink", res.getImageLink());
+                model.addAttribute("publish", res.getPublish());
+                model.addAttribute("id", res.getId());
+            } catch (Exception e) {
+            }
+        }
+        return model;
+    }
+
+    public ContentDescription editContentAction(String imageLink,
+                                    Long deleteId,
+                                    String type,
+                                    Long id,
+                                    String title,
+                                    String content,
+                                    String miniContent,
+                                    Boolean publish){
+        ContentDescription res = null;
+        if (imageLink != null && imageLink.isEmpty())
+            imageLink = "/img/lost-page.png";
+        if (deleteId != null && deleteId > 0){
+            removeContent(deleteId);
+            return null;
+        }
+        try {
+            if (id == null || id < 1) {
+                res = createContent(title, content, miniContent, imageLink, type, publish);
+                if (res == null){
+                    res = new ContentDescription(title, content, miniContent, imageLink, type, publish);
+                }
+            } else {
+                res = updateContent(id, title, content, miniContent, imageLink, type, publish);
+                if (res == null)
+                    res = getPageById(id);
+            }
+        }
+        catch (ServiceException e){
+        }
+        return res;
+    }
+
+    public Boolean removeContent(Long deleteId){
+        if (deleteId != null && deleteId > 0){
+            try{
+                ContentDescription res = getPageById(deleteId);
+                String type = res.getType();
+                removePageById(res.getId());
+                return true;
+            }
+            catch (Exception e) {
+            }
+        }
+        return false;
+    }
 
 
 
