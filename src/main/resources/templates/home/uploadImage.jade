@@ -5,6 +5,7 @@ mixin upload-photo-form()
 		input(type="submit", value="Сохранить")
 
 mixin add-uploaded-img(path)
-	p= path
-	img(src="#{path}")
-	p
+	div.images-uploaded-form
+		p= path
+		img.images-uploaded-img(src="#{path}")
+		p

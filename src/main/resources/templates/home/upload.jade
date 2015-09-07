@@ -2,12 +2,12 @@ doctype html
 head
 	meta(charset="utf-8")
 	meta(http-equiv="X-UA-Compatible", content="IE=edge")
-	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
-	script(src='/js/bootstrap.js')
 	include general-includes.jade
 	include uploadImage.jade
+	link(rel='stylesheet', href='/css/images-upload.css', type='text/css', media='screen')
 body
 	include forms/header
 	+upload-photo-form()
-	for path in paths
-		+add-uploaded-img(path)
+	if (paths != null)
+		for path in paths
+			+add-uploaded-img(path)
