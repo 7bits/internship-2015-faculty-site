@@ -39,8 +39,8 @@ public class ImageService {
     }
 
     public static BufferedImage cutImageToSquare(BufferedImage src, Double startX, Double startY, Double cutW, Double cutH, Double relationSide){
-        double w = src.getWidth();
-        double h = src.getHeight();
+        double w = src.getRaster().getWidth();
+        double h = src.getRaster().getHeight();
         if (cutW == null || cutW <= 0) {
             cutW = w;
         }
@@ -69,10 +69,6 @@ public class ImageService {
         if (startY == null || startY < 0){
             startY = (h-cutH)/2;
         }
-        if (cutW + startX > src.getWidth())
-            cutW = src.getWidth() - startX - 1;//for not cross the borders
-        if (cutH + startY > src.getHeight())
-            cutH = src.getHeight() - startY - 1;
         src = src.getSubimage(startX.intValue(), startY.intValue(), cutW.intValue(), cutH.intValue());
         return src;
     }
