@@ -2,6 +2,7 @@ package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
+import it.sevenbits.FacultySite.web.service.ServiceException;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
@@ -16,6 +17,8 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -23,6 +26,7 @@ import javax.imageio.ImageIO;
 @Controller
 public class ContentController {
     private static Logger LOG = Logger.getLogger(ContentController.class);
+
 
     @Autowired
     ContentOfPagesService contentOfPagesService;
@@ -36,51 +40,24 @@ public class ContentController {
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam(value = "file", required = false) MultipartFile file){
+    public String handleFileUpload(@RequestParam(value = "files", required = false) List<MultipartFile> files, Model model){
         String toOut = "";
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "<? header '/main';?>";
-        if (file != null && !file.isEmpty()) {
+            return "redirect:/main";
+        List<String> fileNames = new ArrayList<>();
+        for (MultipartFile file : files){
             try {
-                String name = generateName(file.getOriginalFilename());
-                String parts[] = name.split("\\.");
-                String type = parts[parts.length-1];
-
-                byte[] bytes = file.getBytes();
-                String bigi = "bigi/";
-                String mini = "mini/";
-                String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-                //String path = "src/main/resources/public/img/";
-                File src = new File(path+bigi+name);
-                File miniFile = new File(path+mini+name);
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(src));
-                stream.write(bytes);
-                stream.close();
-                BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, null);
-                if (miniFile.createNewFile()) {
-                    ImageIO.write(miniImg, type, miniFile);
-                }
-                toOut += "Ссылка на загруженную картинку в большом размере:<p> /img/"+bigi+name + "<p>";
-                toOut += "<img src='/img/"+bigi+name + "'></img>";
-                toOut += "Ссылка на миниатюру:<p> /img/"+mini+name + "<p>";
-                toOut += "<img src='/img/"+mini+name + "'></img>";
-            } catch (Exception e) {
-                toOut +=  ("Вам не удалось загрузить " + file.getName() + ": " + e.getMessage());
+                fileNames.add(contentOfPagesService.uploadFile(file));
+            }
+            catch (ServiceException e){
+                LOG.error(e);
             }
         }
-        toOut += "<p><a href='/upload'>Загрузить ещё</a>";
-        return toOut;
+        model.addAttribute("request", toOut);
+        return "home/upload";
     }
 
-    public static String generateName(String input){
-        String name = input;
-        String partsOfName[] = name.split("\\.");
-        name = "." + partsOfName[partsOfName.length-1];
-        name = UUID.randomUUID().toString() + name;
-        return name;
-    }
+
 
     public String editContentAction(Boolean create,
                                     Boolean redact,
@@ -151,56 +128,44 @@ public class ContentController {
             imageLink = "/img/lost-page.png";
         if ((create != null && create) || (redact != null && redact) || (delete != null && delete))
             return editContentAction(create, redact, delete, redactId, deleteId, createType, model);
-        ContentDescription res;
+        ContentDescription res = new ContentDescription();
         if (id == null || id < 1) {
-            res = createContent(title, content, miniContent, imageLink, type, publish);
+            try {
+                res = contentOfPagesService.createContent(title, content, miniContent, imageLink, type, publish);
+            }
+            catch (ServiceException e){
+                LOG.error(e);
+            }
         }
         else {
-            res = updateContent(id, title, content, miniContent, imageLink, type, publish);
+            try {
+                res = contentOfPagesService.updateContent(id, title, content, miniContent, imageLink, type, publish);
+            }
+            catch (ServiceException e){
+                LOG.error(e);
+            }
         }
         if (res != null) {
-            model.addAttribute("content", res.getDescription());
-            model.addAttribute("title", res.getTitle());
-            model.addAttribute("type", res.getType());
-            model.addAttribute("miniContent", res.getMiniContent());
-            model.addAttribute("imageLink", res.getImageLink());
-            model.addAttribute("publish", res.getPublish());
-            model.addAttribute("id", res.getId());
+            content = res.getDescription();
+            title = res.getTitle();
+            type = res.getType();
+            miniContent = res.getMiniContent();
+            imageLink = res.getImageLink();
+            publish = res.getPublish();
+            id = res.getId();
             LOG.info("Record: " + res.toString());
         }
-        else{
-            model.addAttribute("content", content);
-            model.addAttribute("title", title);
-            model.addAttribute("type", type);
-            model.addAttribute("miniContent", miniContent);
-            model.addAttribute("imageLink", imageLink);
-            model.addAttribute("publish", publish);
-            model.addAttribute("id", id);
-        }
+        model.addAttribute("content", content);
+        model.addAttribute("title", title);
+        model.addAttribute("type", type);
+        model.addAttribute("miniContent", miniContent);
+        model.addAttribute("imageLink", imageLink);
+        model.addAttribute("publish", publish);
+        model.addAttribute("id", id);
         return "home/edit_content";
     }
 
-    private ContentDescription updateContent(Long id, String title, String content, String miniContent, String imageLink, String type, Boolean publish){
-        try {
-            if ((id == null || id < 1) || (title == null || content == null || content.isEmpty() ))
-                return null;
-            ContentDescription page = contentOfPagesService.getPageById(id);
-            if (!type.isEmpty() && !content.isEmpty()) {
-                page.setDescription(content);
-                page.setMiniContent(miniContent);
-                page.setTitle(title);
-                page.setType(type);
-                page.setPublish(publish);
-                page.setImageLink(imageLink);
-            }
-            contentOfPagesService.updatePage(page);
-            return page;
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
-        return null;
-    }
+
 
     @RequestMapping(value = "/hidden_content")
     public String hiddenContent(@RequestParam(value="current", required = false) Integer current,
@@ -224,23 +189,6 @@ public class ContentController {
         return "home/news";
     }
 
-    private ContentDescription createContent(String title, String content, String miniContent, String imageLink, String type, Boolean publish){
-        Long id;
-        try {
-            if (title == null || content == null || content.isEmpty() || type == null || miniContent == null) {
-                LOG.error("Some of this is null: title || content || type || miniContent");
-                return null;
-            }
-            id = contentOfPagesService.saveContentOfPage(title, content, imageLink, miniContent, type, publish);
-            if (id == null || id < 1)
-                return null;
-            return contentOfPagesService.getPageById(id);
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
-        return null;
-    }
 
     public static Model adminModelAttributes(Model model, String type, Long redactId, Long deleteId){
         if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {

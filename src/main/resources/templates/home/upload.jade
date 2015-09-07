@@ -5,10 +5,8 @@ head
 	link(rel='stylesheet', href='/css/bootstrap.css', type='text/css', media='screen')
 	script(src='/js/bootstrap.js')
 	include general-includes.jade
+	include uploadImage.jade
 body
-	form(method="post", enctype="multipart/form-data")
-		input(type="file", name="file", accept="image/jpeg,image/png,image/gif")
-		input(type="submit", value="Upload") Press here to upload the file!
-	if (path != null && path != false)
-		p Ссылка на последний загруженный файл:
-		input(value="#{path}", readonly)
+	include forms/header
+	+upload-photo-form()
+	p!= request
