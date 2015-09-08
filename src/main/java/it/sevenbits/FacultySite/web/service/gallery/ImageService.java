@@ -10,6 +10,7 @@ import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionMode
 import it.sevenbits.FacultySite.web.service.ServiceException;
 import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,20 +30,39 @@ public class ImageService {
     private ImageDescriptionRepository repository;
 
     static public final Double relationSide = (double)((float)16)/9;
-    static public final Double miniImgWidth = 480.0;
-    static public final Double miniImgHeight = miniImgWidth/relationSide;
+    static public final Double imgMiniPrefixImgWidth = 480.0;
+    static public final Double imgMiniPrefixImgHeight = imgMiniPrefixImgWidth/relationSide;
 
+    @Value("${spring.imgConfig.imgGalleryFolderPrefix}")
+    private String imgGalleryFolderPrefix;
+    @Value("${spring.imgConfig.imgFolderPath}")
+    private String imgPath;
+    @Value("${spring.imgConfig.imgBigiPrefix}")
+    private String imgBigiPrefix;
+    @Value("${spring.imgConfig.imgMiniPrefix}")
+    private String imgMiniPrefix;
 
-    final static String bigi = "gallery-page-gallery-photo/bigi/";
-    final static String mini = "gallery-page-gallery-photo/mini/";
-    //final static String path = "/home/internship-2015-faculty-site/src/main/resources/public/img/";//for server
-    final static String path = "src/main/resources/public/img/";
+    public String getImgGalleryFolderPrefix() {
+        return imgGalleryFolderPrefix;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public String getImgBigiPrefix() {
+        return imgBigiPrefix;
+    }
+
+    public String getImgMiniPrefix() {
+        return imgMiniPrefix;
+    }
 
     public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight, Double relationSide){
         if (destWidth == null || destWidth < 1)
-            destWidth = miniImgWidth;
+            destWidth = imgMiniPrefixImgWidth;
         if (destHeight == null || destHeight < 1)
-            destHeight = miniImgHeight;
+            destHeight = imgMiniPrefixImgHeight;
         if (relationSide == null || relationSide < 0)
             relationSide = ImageService.relationSide;
         src = cutImageToSquare(src, null, null, null, null, relationSide);
@@ -186,8 +206,8 @@ public class ImageService {
                 ImageDescription image = getImageById(toDeleteId);
                 if (!image.getAlbum().equals(album.getId()))
                     continue;
-                deleteFile(path + bigi + image.getLink());
-                deleteFile(path + mini + image.getLink());
+                deleteFile(imgPath + imgGalleryFolderPrefix + imgBigiPrefix + image.getLink());
+                deleteFile(imgPath + imgGalleryFolderPrefix + imgMiniPrefix + image.getLink());
                 removeImage(toDeleteId);
             }
         }
@@ -264,8 +284,8 @@ public class ImageService {
                 String type = parts[parts.length-1];
 
                 byte[] bytes = file.getBytes();
-                File src = new File(path+bigi+name);
-                File miniFile = new File(path+mini+name);
+                File src = new File(imgPath + imgGalleryFolderPrefix+imgBigiPrefix+name);
+                File imgMiniPrefixFile = new File(imgPath + imgGalleryFolderPrefix+imgMiniPrefix+name);
                 BufferedOutputStream stream =
                         new BufferedOutputStream(new FileOutputStream(src));
                 stream.write(bytes);
@@ -275,13 +295,13 @@ public class ImageService {
                 image.setAlbum(albumId);
                 saveImage(image);
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, relationSide);
-                if (miniFile.createNewFile()) {
+                BufferedImage imgMiniPrefixImg = ImageService.resizeImage(srcImg, null, null, relationSide);
+                if (imgMiniPrefixFile.createNewFile()) {
                     try {
-                        ImageIO.write(miniImg, type, miniFile);
+                        ImageIO.write(imgMiniPrefixImg, type, imgMiniPrefixFile);
                     }
                     catch (Exception e){
-                        ImageIO.write(srcImg, type, miniFile);
+                        ImageIO.write(srcImg, type, imgMiniPrefixFile);
                     }
                 }
             } catch (Exception e) {
