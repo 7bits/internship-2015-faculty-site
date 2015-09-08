@@ -1,0 +1,8 @@
+server:
+  port: #write port for work
+
+spring:
+    datasource:
+        url: #url of db
+        username: #username db on your pc
+        password: #password
