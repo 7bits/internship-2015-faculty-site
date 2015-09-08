@@ -20,4 +20,5 @@ hs_err_pid*
 .idea/
 target/
 *.iml
+*.yml
 workspace.xml
