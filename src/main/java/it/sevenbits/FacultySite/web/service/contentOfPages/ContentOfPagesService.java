@@ -24,14 +24,16 @@ import java.util.UUID;
 public class ContentOfPagesService {
     @Autowired
     private ContentOfPagesRepository repository;
+    @Autowired
+    private ImageService imageService;
 
-    @Value("${spring.imgConfig.imgNewsFolderPrefix}")
+    @Value("${services.imgConfig.imgNewsFolderPrefix}")
     private String imgNewsFolderPrefix;
-    @Value("${spring.imgConfig.imgFolderPath}")
+    @Value("${services.imgConfig.imgFolderPath}")
     private String imgPath;
-    @Value("${spring.imgConfig.imgBigiPrefix}")
+    @Value("${services.imgConfig.imgBigiPrefix}")
     private String imgBigiPrefix;
-    @Value("${spring.imgConfig.imgMiniPrefix}")
+    @Value("${services.imgConfig.imgMiniPrefix}")
     private String imgMiniPrefix;
 
     public String getImgPath() {
@@ -225,7 +227,7 @@ public class ContentOfPagesService {
                 stream.write(bytes);
                 stream.close();
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage miniImg = ImageService.resizeImage(srcImg, null, null, null);
+                BufferedImage miniImg = imageService.resizeImage(srcImg, null, null, null);
                 if (miniFile.createNewFile()) {
                     ImageIO.write(miniImg, type, miniFile);
                 }

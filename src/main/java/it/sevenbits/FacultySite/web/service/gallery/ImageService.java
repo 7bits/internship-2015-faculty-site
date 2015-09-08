@@ -29,17 +29,19 @@ public class ImageService {
     @Autowired
     private ImageDescriptionRepository repository;
 
-    static public final Double relationSide = (double)((float)16)/9;
-    static public final Double imgMiniPrefixImgWidth = 480.0;
-    static public final Double imgMiniPrefixImgHeight = imgMiniPrefixImgWidth/relationSide;
+    @Value("${services.imgUpload.targetMiniWidth}")
+    private Double imgMiniImgWidth;
+    @Value("${services.imgUpload.targetMiniHeight}")
+    private Double imgMiniImgHeight;
+    private Double relationSide = null;
 
-    @Value("${spring.imgConfig.imgGalleryFolderPrefix}")
+    @Value("${services.imgConfig.imgGalleryFolderPrefix}")
     private String imgGalleryFolderPrefix;
-    @Value("${spring.imgConfig.imgFolderPath}")
+    @Value("${services.imgConfig.imgFolderPath}")
     private String imgPath;
-    @Value("${spring.imgConfig.imgBigiPrefix}")
+    @Value("${services.imgConfig.imgBigiPrefix}")
     private String imgBigiPrefix;
-    @Value("${spring.imgConfig.imgMiniPrefix}")
+    @Value("${services.imgConfig.imgMiniPrefix}")
     private String imgMiniPrefix;
 
     public String getImgGalleryFolderPrefix() {
@@ -58,13 +60,31 @@ public class ImageService {
         return imgMiniPrefix;
     }
 
-    public static BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight, Double relationSide){
+    public Double getImgMiniImgWidth() {
+        return imgMiniImgWidth;
+    }
+
+    public Double getImgMiniImgHeight() {
+        return imgMiniImgHeight;
+    }
+
+    public void setImgMiniImgHeight(Double imgMiniPrefixImgHeight) {
+        this.imgMiniImgHeight = imgMiniPrefixImgHeight;
+    }
+
+    public Double getRelationSide(){
+        if (relationSide == null)
+            relationSide = getImgMiniImgWidth()/getImgMiniImgHeight();
+        return relationSide;
+    }
+
+    public BufferedImage resizeImage(BufferedImage src, Double destWidth, Double destHeight, Double relationSide){
         if (destWidth == null || destWidth < 1)
-            destWidth = imgMiniPrefixImgWidth;
+            destWidth = imgMiniImgWidth;
         if (destHeight == null || destHeight < 1)
-            destHeight = imgMiniPrefixImgHeight;
+            destHeight = imgMiniImgHeight;
         if (relationSide == null || relationSide < 0)
-            relationSide = ImageService.relationSide;
+            relationSide = getRelationSide();
         src = cutImageToSquare(src, null, null, null, null, relationSide);
         src = scaleToSize(src, destWidth, destHeight, null, null);
         return src;
@@ -106,7 +126,7 @@ public class ImageService {
         return src;
     }
 
-    public static BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
+    public BufferedImage scaleToSize(BufferedImage src, Double w, Double h, Double scaleX, Double scaleY){
         BufferedImage res = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
         AffineTransform scales = new AffineTransform();
         if (w >= src.getWidth() && h >= src.getHeight())
@@ -119,7 +139,7 @@ public class ImageService {
         AffineTransformOp resScale = new AffineTransformOp(scales, AffineTransformOp.TYPE_BILINEAR);
         res = resScale.filter(src, res);
         try {
-            res = cutImageToSquare(res, 0.0, 0.0, w, h, relationSide);
+            res = cutImageToSquare(res, 0.0, 0.0, w, h, getRelationSide());
         }
         catch (Exception e){
             return src;
@@ -185,12 +205,12 @@ public class ImageService {
                             String title,
                             String description,
                             List<Long> toDeleteIDs,
-                            List<Long> isHeadIDs) throws ServiceException {
+                            List<Long> isHeadIDs,
+                            List<MultipartFile> files) throws ServiceException {
 
-        Double relationSide = ImageService.relationSide;
+        Double relationSide = getRelationSide();
         if (relationSideHeight != null && relationSideHeight >= 0
                 && relationSideWidth != null && relationSideWidth >= 0) {
-
             relationSide = relationSideWidth / relationSideHeight;
         }
         AlbumDescription album = new AlbumDescription(id, title, description);
@@ -240,6 +260,9 @@ public class ImageService {
         } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e);
         }
+        if (album.getId() != null && album.getId() > 0){
+            uploadAndSaveFiles(files, album.getId());
+        }
         return album.getId();
     }
 
@@ -258,7 +281,7 @@ public class ImageService {
     }
 
 
-    public void uploadFiles(List<MultipartFile> files, Long albumId){
+    public void uploadAndSaveFiles(List<MultipartFile> files, Long albumId){
         if (albumId == null || albumId < 1){
             return;
         }
@@ -267,7 +290,7 @@ public class ImageService {
                 continue;
             }
             try {
-                downloadImage(file, albumId, relationSide);
+                downloadImage(file, albumId, getRelationSide());
             }
             catch (ServiceException e){
                 e.printStackTrace();
@@ -295,7 +318,7 @@ public class ImageService {
                 image.setAlbum(albumId);
                 saveImage(image);
                 BufferedImage srcImg = ImageIO.read(src);
-                BufferedImage imgMiniPrefixImg = ImageService.resizeImage(srcImg, null, null, relationSide);
+                BufferedImage imgMiniPrefixImg = resizeImage(srcImg, null, null, relationSide);
                 if (imgMiniPrefixFile.createNewFile()) {
                     try {
                         ImageIO.write(imgMiniPrefixImg, type, imgMiniPrefixFile);

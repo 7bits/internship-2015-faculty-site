@@ -2,17 +2,18 @@ server:
   port: #write port for work
 
 spring:
+    datasource:
+        url: #url of db
+        username: #username db on your pc
+        password: #password
+
+services:
     imgConfig:
         imgFolderPath: #path to img folder on your device
         imgBigiPrefix: #path to img bigi prefix folder on your device
         imgMiniPrefix: #path to img mini prefix folder on your device
         imgGalleryFolderPrefix: #path to gallery prefix prefix folder on your device
         imgNewsFolderPrefix: #path to gallery prefix prefix folder on your device
-
     imgUpload:
-
-
-    datasource:
-        url: #url of db
-        username: #username db on your pc
-        password: #password
+        targetMiniWidth: #default 480, gallery mini width
+        targetMiniHeight: #default 270, gallery mini height

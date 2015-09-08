@@ -87,7 +87,7 @@ public class ImagesController {
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
         try {
-            id = imageDescriptionService.updateAlbum(relationSideWidth, relationSideHeight, id, title, description, toDeleteIDs, isHeadIDs);
+            id = imageDescriptionService.updateAlbum(relationSideWidth, relationSideHeight, id, title, description, toDeleteIDs, isHeadIDs, files);
         }
         catch (ServiceException e){
             LOG.error(e);
