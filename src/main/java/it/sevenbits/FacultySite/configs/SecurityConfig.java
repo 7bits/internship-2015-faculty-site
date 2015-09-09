@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/admin?logout=true")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
-              http.csrf().disable();
+              //http.csrf().disable();
 
     }
     @Override
