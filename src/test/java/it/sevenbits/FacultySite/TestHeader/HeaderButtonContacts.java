@@ -9,7 +9,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class HeaderButtonContactsTest {
+public class HeaderButtonContacts {
     private WebDriver driver;
     private String baseUrl;
     private String newUrl;
