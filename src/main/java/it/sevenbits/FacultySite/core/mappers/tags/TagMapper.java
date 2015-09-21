@@ -4,6 +4,8 @@ package it.sevenbits.FacultySite.core.mappers.tags;
 import it.sevenbits.FacultySite.core.domain.tags.Tag;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 public interface TagMapper {
 
     @Select("SELECT * FROM tags")
@@ -11,7 +13,7 @@ public interface TagMapper {
         @Result(column = "id", property = "id"),
         @Result(column = "title", property = "title")
     })
-    Tag getAllTags();
+    List<Tag> getAllTags();
 
     @Select("SELECT * FROM tags WHERE id=#{id}")
     @Results({
@@ -21,7 +23,7 @@ public interface TagMapper {
     Tag getTagById(@Param("id")Long id);
 
     @Update("UPDATE tags SET title=#{title} WHERE id=#{id}")
-    Tag updateTag(@Param("id")Long id, @Param("title")String title);
+    void updateTag(@Param("id")Long id, @Param("title")String title);
 
     @Delete("DELETE FROM tags WHERE id=#{id} ")
     void deleteTagById(@Param("id")Long id);
