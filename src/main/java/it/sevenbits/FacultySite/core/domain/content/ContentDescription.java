@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.core.domain.contentOfPages;
+package it.sevenbits.FacultySite.core.domain.content;
 
 
 public class ContentDescription {
