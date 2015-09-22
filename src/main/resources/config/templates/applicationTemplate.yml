@@ -2,7 +2,8 @@ server:
   port: #write port for work
 
 spring:
-    profiles: develop
+    profiles:
+        active: develop
     datasource:
         url: #url of db
         username: #username db on your pc

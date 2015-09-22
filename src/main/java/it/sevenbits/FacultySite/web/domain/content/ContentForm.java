@@ -1,12 +1,11 @@
-package it.sevenbits.FacultySite.web.domain.contentOfPages;
+package it.sevenbits.FacultySite.web.domain.content;
 
-public class ContentDescriptionForm {
+public class ContentForm {
     private Long id;
     private String title;
     private String description;
     private String creatingDate;
     private String creatingTime;
-    private String type;
     private String imageLink;
     private String miniContent;
     private Boolean publish;
@@ -30,10 +29,6 @@ public class ContentDescriptionForm {
 
     public void setCreatingTime(String creating_time) {
         this.creatingTime = creating_time;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public void setImageLink(String imageLink) {
@@ -70,10 +65,6 @@ public class ContentDescriptionForm {
         return creatingTime;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public String getImageLink() {
         return imageLink;
     }
@@ -92,7 +83,6 @@ public class ContentDescriptionForm {
                 + "Page:\n" + getDescription() + "\n"
                 + "Mini content:\n" + getMiniContent() + "\n"
                 + "Date: " + getCreatingDate() + "\n"
-                + "Time: " + getCreatingTime() + "\n"
-                + "Type: " + getType() + "\n";
+                + "Time: " + getCreatingTime() + "\n";
     }
 }

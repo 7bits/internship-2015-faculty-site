@@ -1,82 +1,75 @@
-package it.sevenbits.FacultySite.web.domain.contentOfPages;
+package it.sevenbits.FacultySite.web.domain.content;
 
 
-public class ContentDescriptionModel {
+public class ContentModel {
     private final Long id;
     private final String title;
     private final String description;
     private final String creatingDate;
     private final String creatingTime;
-    private final String type;
     private final String imageLink;
     private final String miniContent;
     private final Boolean publish;
 
-    public ContentDescriptionModel(){
+    public ContentModel(){
         this.id = (long)0;
         this.title = "";
         this.description = "";
         this.creatingDate = "";
         this.creatingTime = "";
-        this.type = "";
         this.imageLink = "";
         this.miniContent = "";
         this.publish = false;
     }
 
-    public ContentDescriptionModel(String description) {
+    public ContentModel(String description) {
         this.id = (long)0;
         this.title = "";
         this.description = description;
         this.creatingDate = "";
         this.creatingTime = "";
-        this.type = "";
         this.imageLink = "";
         this.miniContent = "";
         this.publish = false;
     }
 
-    public ContentDescriptionModel(String description, String miniContent) {
+    public ContentModel(String description, String miniContent) {
         this.id = (long)0;
         this.title = "";
         this.description = description;
         this.miniContent = miniContent;
         this.creatingDate = "";
         this.creatingTime = "";
-        this.type = "";
         this.imageLink = "";
         this.publish = false;
     }
 
-    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink, String miniContent) {
+    public ContentModel(Long id, String title, String description, String creatingDate, String creatingTime, String imageLink, String miniContent) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creatingDate = creatingDate;
         this.creatingTime = creatingTime;
-        this.type = type;
         this.imageLink = imageLink;
         this.miniContent = miniContent;
         this.publish = false;
     }
 
-    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink, String miniContent, Boolean publish) {
+    public ContentModel(Long id, String title, String description, String creatingDate, String creatingTime, String imageLink, String miniContent, Boolean publish) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creatingDate = creatingDate;
         this.creatingTime = creatingTime;
-        this.type = type;
         this.imageLink = imageLink;
         this.miniContent = miniContent;
         this.publish = publish;
     }
 
-    public ContentDescriptionModel(Long id, String title, String description, String type, String imageLink, String miniContent, Boolean publish) {
+    public ContentModel(Long id, String title, String description, String imageLink, String miniContent, Boolean publish) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.type = type;
         this.imageLink = imageLink;
         this.miniContent = miniContent;
         this.publish = publish;
@@ -84,13 +77,12 @@ public class ContentDescriptionModel {
         this.creatingTime = "";
     }
 
-    public ContentDescriptionModel(Long id, String title, String description, String creatingDate, String creatingTime, String type, String imageLink) {
+    public ContentModel(Long id, String title, String description, String creatingDate, String creatingTime, String imageLink) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creatingDate = creatingDate;
         this.creatingTime = creatingTime;
-        this.type = type;
         this.imageLink = imageLink;
         this.miniContent = "";
         this.publish = false;
@@ -116,10 +108,6 @@ public class ContentDescriptionModel {
         return creatingTime;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public String getImageLink() {
         return imageLink;
     }
@@ -138,7 +126,6 @@ public class ContentDescriptionModel {
                 + "Page:\n" + getDescription() + "\n"
                 + "Mini content:\n" + getMiniContent() + "\n"
                 + "Date: " + getCreatingDate() + "\n"
-                + "Time: " + getCreatingTime() + "\n"
-                + "Type: " + getType() + "\n";
+                + "Time: " + getCreatingTime() + "\n";
     }
 }
