@@ -22,6 +22,13 @@ public interface TagMapper {
     })
     Tag getTagById(@Param("id")Long id);
 
+    @Select("SELECT * FROM tags WHERE title=#{title}")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "title", property = "title")
+    })
+    Tag getTagByTitle(@Param("title")String title);
+
     @Update("UPDATE tags SET title=#{title} WHERE id=#{id}")
     void updateTag(Tag tag);
 

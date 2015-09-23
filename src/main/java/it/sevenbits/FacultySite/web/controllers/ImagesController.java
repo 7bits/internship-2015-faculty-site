@@ -29,31 +29,31 @@ public class ImagesController {
     @RequestMapping(value = "/gallery")
     public String gallery(Model model,
                           @RequestParam(value = "deleteId", required = false) Long removeAlbumId) {
-        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-            model.addAttribute("root", true);
-            if (removeAlbumId != null && removeAlbumId >0){
-                try {
-                    imageDescriptionService.removeAlbum(removeAlbumId);
-                }
-                catch (Exception e){
-                    LOG.error(e.getMessage());
-                }
-            }
-        }
-        try {
-            List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
-            List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
-            for (AlbumDescription album : albums) {
-                images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
-            }
-            List<String> pagination = new ArrayList<>();
-            model.addAttribute("albums", albums);
-            model.addAttribute("images", images);
-            model.addAttribute("pagination", pagination);
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
+//        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+//            model.addAttribute("root", true);
+//            if (removeAlbumId != null && removeAlbumId >0){
+//                try {
+//                    imageDescriptionService.removeAlbum(removeAlbumId);
+//                }
+//                catch (Exception e){
+//                    LOG.error(e.getMessage());
+//                }
+//            }
+//        }
+//        try {
+//            List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
+//            List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
+//            for (AlbumDescription album : albums) {
+//                images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
+//            }
+//            List<String> pagination = new ArrayList<>();
+//            model.addAttribute("albums", albums);
+//            model.addAttribute("images", images);
+//            model.addAttribute("pagination", pagination);
+//        }
+//        catch (Exception e){
+//            LOG.error(e.getMessage());
+//        }
         return "home/gallery";
     }
 
@@ -76,12 +76,12 @@ public class ImagesController {
                        @RequestParam(value = "relation-side-height", required = false) Double relationSideHeight){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        try {
-            id = imageDescriptionService.updateAlbum(relationSideWidth, relationSideHeight, id, title, description, toDeleteIDs, isHeadIDs, files);
-        }
-        catch (ServiceException e){
-            LOG.error(e);
-        }
+//        try {
+//            id = imageDescriptionService.updateAlbum(relationSideWidth, relationSideHeight, id, title, description, toDeleteIDs, isHeadIDs, files);
+//        }
+//        catch (ServiceException e){
+//            LOG.error(e);
+//        }
         return "redirect:/updateAlbum?id="+id;
     }
 
@@ -90,21 +90,21 @@ public class ImagesController {
     public String handleFileUpload(@RequestParam(value = "id", required = false) Long id, Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        try{
-            if (id == null || id < 1) {
-                model.addAttribute("album", imageDescriptionService.getAlbumById(id));
-                model.addAttribute("photos", imageDescriptionService.getImagesFromAlbum(id));
-                return "home/edit-album";
-            }
-            AlbumDescription album = imageDescriptionService.getAlbumById(id);
-            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(id);
-            model.addAttribute("album", album);
-            model.addAttribute("photos", images);
-            return "home/edit-album";
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
+//        try{
+//            if (id == null || id < 1) {
+//                model.addAttribute("album", imageDescriptionService.getAlbumById(id));
+//                model.addAttribute("photos", imageDescriptionService.getImagesFromAlbum(id));
+//                return "home/edit-album";
+//            }
+//            AlbumDescription album = imageDescriptionService.getAlbumById(id);
+//            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(id);
+//            model.addAttribute("album", album);
+//            model.addAttribute("photos", images);
+//            return "home/edit-album";
+//        }
+//        catch (Exception e){
+//            LOG.error(e.getMessage());
+//        }
         return "home/edit-album";
     }
 

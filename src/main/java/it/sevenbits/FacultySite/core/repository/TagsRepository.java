@@ -26,6 +26,17 @@ public class TagsRepository {
         }
     }
 
+    public TagModel getTagByTitle(String title) throws RepositoryException{
+        try{
+            Tag tag = tagsMapper.getTagByTitle(title);
+            TagModel resModel = convertTagToModel(tag);
+            return resModel;
+        }
+        catch (Exception e){
+            throw new RepositoryException("Can't get tag by title: " + e.getMessage());
+        }
+    }
+
     public List<TagModel> getAllTags() throws RepositoryException{
         try{
             List<Tag> tags = tagsMapper.getAllTags();

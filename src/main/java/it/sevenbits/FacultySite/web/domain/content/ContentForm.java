@@ -1,5 +1,11 @@
 package it.sevenbits.FacultySite.web.domain.content;
 
+import it.sevenbits.FacultySite.core.domain.content.Content;
+import it.sevenbits.FacultySite.core.domain.content.ContentModel;
+import it.sevenbits.FacultySite.core.domain.tags.Tag;
+
+import java.util.List;
+
 public class ContentForm {
     private Long id;
     private String title;
@@ -9,6 +15,32 @@ public class ContentForm {
     private String imageLink;
     private String miniContent;
     private Boolean publish;
+    private List<Tag> tags;
+
+    public ContentForm(Content content, List<Tag> tags) {
+        this.setId(content.getId());
+        this.setTitle(content.getTitle());
+        this.setDescription(content.getDescription());
+        this.setCreatingDate(content.getCreatingDate());
+        this.setCreatingTime(content.getCreatingTime());
+        this.setImageLink(content.getImageLink());
+        this.setMiniContent(content.getMiniContent());
+        this.setPublish(content.getPublish());
+        this.setTags(tags);
+    }
+
+    public ContentForm(ContentModel content, List<Tag> tags){
+        this.setId(content.getId());
+        this.setTitle(content.getTitle());
+        this.setDescription(content.getDescription());
+        this.setCreatingDate(content.getCreatingDate());
+        this.setCreatingTime(content.getCreatingTime());
+        this.setImageLink(content.getImageLink());
+        this.setMiniContent(content.getMiniContent());
+        this.setPublish(content.getPublish());
+        this.setTags(tags);
+    }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -75,6 +107,16 @@ public class ContentForm {
 
     public Boolean getPublish() {
         return publish;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        if (tags != null) {
+            this.tags = tags;
+        }
     }
 
     @Override
