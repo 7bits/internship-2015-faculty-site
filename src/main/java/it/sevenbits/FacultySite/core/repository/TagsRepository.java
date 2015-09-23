@@ -5,10 +5,12 @@ import it.sevenbits.FacultySite.core.domain.tags.Tag;
 import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 import it.sevenbits.FacultySite.core.mappers.tags.TagMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class TagsRepository {
     @Autowired
     TagMapper tagsMapper;

@@ -5,10 +5,12 @@ import it.sevenbits.FacultySite.core.domain.content.Content;
 import it.sevenbits.FacultySite.core.domain.content.ContentModel;
 import it.sevenbits.FacultySite.core.mappers.content.ContentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class ContentRepository{
 
     @Autowired
