@@ -2,7 +2,6 @@ package it.sevenbits.FacultySite.core.mappers.content;
 
 import it.sevenbits.FacultySite.core.domain.content.Content;
 import it.sevenbits.FacultySite.core.domain.content.ContentModel;
-import it.sevenbits.FacultySite.core.domain.tags.Tag;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -39,7 +38,7 @@ public interface ContentMapper {
                 "#{imageLink}, " +
                 "#{publish})")
     @Options(keyProperty = "id", useGeneratedKeys = true)
-    void insertContent(final ContentModel description);
+    void insertContent(final Content description);
 
     @Update("UPDATE content_of_pages SET " +
                 "title=#{title}, " +
@@ -49,7 +48,7 @@ public interface ContentMapper {
                 "publish=#{publish} " +
             "WHERE " +
                 "id=#{id}")
-    void updateContent(final ContentModel description);
+    void updateContent(final Content description);
 
 
     @Select("SELECT * FROM content_of_pages " +

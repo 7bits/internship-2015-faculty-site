@@ -23,10 +23,10 @@ public interface TagMapper {
     Tag getTagById(@Param("id")Long id);
 
     @Update("UPDATE tags SET title=#{title} WHERE id=#{id}")
-    void updateTag(@Param("id")Long id, @Param("title")String title);
+    void updateTag(Tag tag);
 
     @Delete("DELETE FROM tags WHERE id=#{id} ")
-    void deleteTagById(@Param("id")Long id);
+    void removeTagById(@Param("id")Long id);
 
     @Insert("INSERT INTO tags (title) VALUES(#{title}")
     @Options(keyProperty = "id", useGeneratedKeys = true)

@@ -17,14 +17,7 @@ public class ContentRepository{
     public ContentModel getContentById(Long id) throws RepositoryException{
         try{
             Content content = contentMapper.getContentById(id);
-            ContentModel resModel = new ContentModel(content.getId(),
-                    content.getTitle(),
-                    content.getDescription(),
-                    content.getCreatingDate(),
-                    content.getCreatingTime(),
-                    content.getImageLink(),
-                    content.getMiniContent(),
-                    content.getPublish());
+            ContentModel resModel = convertContentToModel(content);
             return resModel;
         }
         catch (Exception e){
@@ -37,14 +30,7 @@ public class ContentRepository{
             List<Content> contents = contentMapper.getAllContent();
             List<ContentModel> contentModels = new ArrayList<>();
             for (Content tmpContent : contents){
-                ContentModel tmpContentModel = new ContentModel(tmpContent.getId(),
-                        tmpContent.getTitle(),
-                        tmpContent.getDescription(),
-                        tmpContent.getCreatingDate(),
-                        tmpContent.getCreatingTime(),
-                        tmpContent.getImageLink(),
-                        tmpContent.getMiniContent(),
-                        tmpContent.getPublish());
+                ContentModel tmpContentModel = convertContentToModel(tmpContent);
                 contentModels.add(tmpContentModel);
             }
             return contentModels;
@@ -54,36 +40,18 @@ public class ContentRepository{
         }
     }
 
-    public ContentModel insertContent(Content content) throws RepositoryException{
+    public void insertContent(Content content) throws RepositoryException{
         try {
-            ContentModel insertingModel = new ContentModel(content.getId(),
-                    content.getTitle(),
-                    content.getDescription(),
-                    content.getCreatingDate(),
-                    content.getCreatingTime(),
-                    content.getImageLink(),
-                    content.getMiniContent(),
-                    content.getPublish());
-            contentMapper.insertContent(insertingModel);
-            return insertingModel;
+            contentMapper.insertContent(content);
         }
         catch (Exception e){
             throw new RepositoryException("Can't insert new content: " + e.getMessage());
         }
     }
 
-    public ContentModel updateContent(Content newContent) throws RepositoryException{
+    public void updateContent(Content newContent) throws RepositoryException{
         try {
-            ContentModel updatingModel = new ContentModel(newContent.getId(),
-                    newContent.getTitle(),
-                    newContent.getDescription(),
-                    newContent.getCreatingDate(),
-                    newContent.getCreatingTime(),
-                    newContent.getImageLink(),
-                    newContent.getMiniContent(),
-                    newContent.getPublish());
-            contentMapper.updateContent(updatingModel);
-            return updatingModel;
+            contentMapper.updateContent(newContent);
         }
         catch (Exception e){
             throw new RepositoryException("Can't update content: " + e.getMessage());
@@ -104,15 +72,7 @@ public class ContentRepository{
             List<Content> contents = contentMapper.getPublishedContent(isPublish);
             List<ContentModel> contentModels = new ArrayList<>();
             for (Content tmpContent : contents){
-                ContentModel tmpContentModel = new ContentModel(tmpContent.getId(),
-                        tmpContent.getTitle(),
-                        tmpContent.getDescription(),
-                        tmpContent.getCreatingDate(),
-                        tmpContent.getCreatingTime(),
-                        tmpContent.getImageLink(),
-                        tmpContent.getMiniContent(),
-                        tmpContent.getPublish());
-                contentModels.add(tmpContentModel);
+                contentModels.add(convertContentToModel(tmpContent));
             }
             return contentModels;
         }
@@ -120,5 +80,33 @@ public class ContentRepository{
             throw new RepositoryException("Can't get publish(or unpublished) content" + e.getMessage());
         }
     }
+
+    public List<ContentModel> getContentByTag(Long tagID) throws RepositoryException{
+        try{
+            List<Content> contents = contentMapper.getContentsByTag(tagID);
+            List<ContentModel> contentModels = new ArrayList<>();
+            for (Content content: contents){
+                ContentModel tmpModel = convertContentToModel(content);
+                contentModels.add(tmpModel);
+            }
+            return contentModels;
+        }
+        catch (Exception e){
+            throw new RepositoryException("Can't get contents byt tag: " + e.getMessage());
+        }
+    }
+
+    private ContentModel convertContentToModel(Content content){
+        ContentModel resModel = new ContentModel(content.getId(),
+                content.getTitle(),
+                content.getDescription(),
+                content.getCreatingDate(),
+                content.getCreatingTime(),
+                content.getImageLink(),
+                content.getMiniContent(),
+                content.getPublish());
+        return resModel;
+    }
+
 
 }
