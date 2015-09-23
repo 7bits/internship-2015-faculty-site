@@ -72,6 +72,7 @@ public class ContentService {
                 }
             }
             ContentForm contentForm = new ContentForm(newContent, resTags);
+            txManager.commit(status);
             return contentForm;
         }
         catch (RepositoryException e){

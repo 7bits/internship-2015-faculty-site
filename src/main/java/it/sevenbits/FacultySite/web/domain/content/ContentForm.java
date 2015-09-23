@@ -55,8 +55,7 @@ public class ContentForm {
     }
 
     public void setCreatingDate(String creatingDate) {
-        String date[] = creatingDate.split("-");
-        this.creatingDate = date[2]+"."+date[1]+"."+date[0];
+        this.creatingDate = creatingDate;
     }
 
     public void setCreatingTime(String creating_time) {
