@@ -1,5 +1,6 @@
 package it.sevenbits.FacultySite.core.mappers.tags;
 
+import it.sevenbits.FacultySite.core.domain.content.Content;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -29,5 +30,6 @@ public interface ContentTagsMapper {
 
     @Delete("DELETE FROM content_tags WHERE content=#{content} and tag=#{tag}")
     void removePair(final @Param("content")Long contentID, final @Param("tag")Long tagID);
+
 
 }

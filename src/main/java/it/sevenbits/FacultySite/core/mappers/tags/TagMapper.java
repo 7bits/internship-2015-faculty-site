@@ -32,5 +32,18 @@ public interface TagMapper {
     @Options(keyProperty = "id", useGeneratedKeys = true)
     void insertTag(Tag tag);
 
+    @Select("SELECT t.* FROM " +
+            "content_tags ct, " +
+            "tags t, " +
+            "content_of_pages cop " +
+            "WHERE " +
+            "ct.content=cop.id AND " +
+            "ct.tag=t.id AND " +
+            "ct.content=#{contentID};")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "title", property = "title")
+    })
+    List<Tag> getTagsOfContent(final @Param("contentID")Long idOfContent);
 
 }

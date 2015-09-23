@@ -1,11 +1,9 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
-import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
-import it.sevenbits.FacultySite.web.service.ServiceException;
-import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
-import it.sevenbits.FacultySite.web.service.contentOfPages.NewsService;
-import it.sevenbits.FacultySite.web.service.gallery.ImageService;
+import it.sevenbits.FacultySite.core.service.ServiceException;
+import it.sevenbits.FacultySite.core.service.contentOfPages.ContentOfPagesService;
+import it.sevenbits.FacultySite.core.service.contentOfPages.NewsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,15 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import javax.imageio.ImageIO;
 
 @Controller
 public class ContentController {
