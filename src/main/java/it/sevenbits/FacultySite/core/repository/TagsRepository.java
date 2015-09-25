@@ -22,7 +22,7 @@ public class TagsRepository {
             return resModel;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get tag by id: " + e.getMessage());
+            throw new RepositoryException("Can't get tag by id: " + e.getMessage(), e);
         }
     }
 
@@ -33,7 +33,7 @@ public class TagsRepository {
             return resModel;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get tag by title: " + e.getMessage());
+            throw new RepositoryException("Can't get tag by title: " + e.getMessage(), e);
         }
     }
 
@@ -48,16 +48,16 @@ public class TagsRepository {
             return tagModels;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get all tags: " + e.getMessage());
+            throw new RepositoryException("Can't get all tags: " + e.getMessage(), e);
         }
     }
 
-    public void insertTag(Tag tag) throws RepositoryException{
+    public void insertTag(TagModel tag) throws RepositoryException{
         try {
             tagsMapper.insertTag(tag);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't tag new tag: " + e.getMessage());
+            throw new RepositoryException("Can't tag new tag: " + e.getMessage(), e);
         }
     }
 
@@ -66,7 +66,7 @@ public class TagsRepository {
             tagsMapper.updateTag(tag);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't update tag: " + e.getMessage());
+            throw new RepositoryException("Can't update tag: " + e.getMessage(), e);
         }
     }
 
@@ -75,7 +75,7 @@ public class TagsRepository {
             tagsMapper.removeTagById(id);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't remove tag: " + e.getMessage());
+            throw new RepositoryException("Can't remove tag: " + e.getMessage(), e);
         }
     }
 
@@ -90,7 +90,7 @@ public class TagsRepository {
             return resModels;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't give contents by tag: " + e.getMessage());
+            throw new RepositoryException("Can't give contents by tag: " + e.getMessage(), e);
         }
     }
 

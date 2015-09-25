@@ -19,11 +19,11 @@ public class ContentRepository{
     public ContentModel getContentById(Long id) throws RepositoryException{
         try{
             Content content = contentMapper.getContentById(id);
-            ContentModel resModel = convertContentToModel(content);
+            ContentModel resModel = new ContentModel(content);
             return resModel;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get content by id: " + e.getMessage());
+            throw new RepositoryException("Can't get content by id: " + e.getMessage(), e);
         }
     }
 
@@ -32,31 +32,31 @@ public class ContentRepository{
             List<Content> contents = contentMapper.getAllContent();
             List<ContentModel> contentModels = new ArrayList<>();
             for (Content tmpContent : contents){
-                ContentModel tmpContentModel = convertContentToModel(tmpContent);
+                ContentModel tmpContentModel = new ContentModel(tmpContent);
                 contentModels.add(tmpContentModel);
             }
             return contentModels;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get all content: " + e.getMessage());
+            throw new RepositoryException("Can't get all content: " + e.getMessage(), e);
         }
     }
 
-    public void insertContent(Content content) throws RepositoryException{
+    public void insertContent(ContentModel content) throws RepositoryException{
         try {
             contentMapper.insertContent(content);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't insert new content: " + e.getMessage());
+            throw new RepositoryException("Can't insert new content: " + e.getMessage(), e);
         }
     }
 
-    public void updateContent(Content newContent) throws RepositoryException{
+    public void updateContent(ContentModel newContent) throws RepositoryException{
         try {
             contentMapper.updateContent(newContent);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't update content: " + e.getMessage());
+            throw new RepositoryException("Can't update content: " + e.getMessage(), e);
         }
     }
 
@@ -65,7 +65,7 @@ public class ContentRepository{
             contentMapper.removeContentById(id);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't remove content: " + e.getMessage());
+            throw new RepositoryException("Can't remove content: " + e.getMessage(), e);
         }
     }
 
@@ -74,12 +74,12 @@ public class ContentRepository{
             List<Content> contents = contentMapper.getPublishedContent(isPublish);
             List<ContentModel> contentModels = new ArrayList<>();
             for (Content tmpContent : contents){
-                contentModels.add(convertContentToModel(tmpContent));
+                contentModels.add(new ContentModel(tmpContent));
             }
             return contentModels;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get publish(or unpublished) content" + e.getMessage());
+            throw new RepositoryException("Can't get publish(or unpublished) content" + e.getMessage(), e);
         }
     }
 
@@ -88,27 +88,16 @@ public class ContentRepository{
             List<Content> contents = contentMapper.getContentsByTag(tagID);
             List<ContentModel> contentModels = new ArrayList<>();
             for (Content content: contents){
-                ContentModel tmpModel = convertContentToModel(content);
+                ContentModel tmpModel = new ContentModel(content);
                 contentModels.add(tmpModel);
             }
             return contentModels;
         }
         catch (Exception e){
-            throw new RepositoryException("Can't get contents byt tag: " + e.getMessage());
+            throw new RepositoryException("Can't get contents byt tag: " + e.getMessage(), e);
         }
     }
 
-    private ContentModel convertContentToModel(Content content){
-        ContentModel resModel = new ContentModel(content.getId(),
-                content.getTitle(),
-                content.getDescription(),
-                content.getCreatingDate(),
-                content.getCreatingTime(),
-                content.getImageLink(),
-                content.getMiniContent(),
-                content.getPublish());
-        return resModel;
-    }
 
 
 }

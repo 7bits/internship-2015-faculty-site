@@ -31,5 +31,12 @@ public interface ContentTagsMapper {
     @Delete("DELETE FROM content_tags WHERE content=#{content} and tag=#{tag}")
     void removePair(final @Param("content")Long contentID, final @Param("tag")Long tagID);
 
+    @Delete("DELETE FROM content_tags WHERE tag=#{tag}")
+    void removePairForTag(final @Param("tag")Long tagID);
+
+    @Delete("DELETE FROM content_tags WHERE content=#{content}")
+    void removePairForContent(final @Param("content")Long contentID);
+
+
 
 }

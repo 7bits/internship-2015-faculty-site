@@ -3,7 +3,9 @@ package it.sevenbits.FacultySite.web.domain.content;
 import it.sevenbits.FacultySite.core.domain.content.Content;
 import it.sevenbits.FacultySite.core.domain.content.ContentModel;
 import it.sevenbits.FacultySite.core.domain.tags.Tag;
+import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContentForm {
@@ -29,7 +31,7 @@ public class ContentForm {
         this.setTags(tags);
     }
 
-    public ContentForm(ContentModel content, List<Tag> tags){
+    public ContentForm(ContentModel content, List<TagModel> tags){
         this.setId(content.getId());
         this.setTitle(content.getTitle());
         this.setDescription(content.getDescription());
@@ -38,7 +40,7 @@ public class ContentForm {
         this.setImageLink(content.getImageLink());
         this.setMiniContent(content.getMiniContent());
         this.setPublish(content.getPublish());
-        this.setTags(tags);
+        this.setTagModels(tags);
     }
 
 
@@ -115,6 +117,21 @@ public class ContentForm {
     public void setTags(List<Tag> tags) {
         if (tags != null) {
             this.tags = tags;
+        }
+    }
+
+    public void addTag(Tag tag){
+        if (tag != null){
+            this.tags.add(tag);
+        }
+    }
+
+    public void setTagModels(List<TagModel> tags) {
+        if (tags != null) {
+            this.tags = new ArrayList<>();
+            for (TagModel tag : tags){
+                addTag(new Tag(tag.getId(), tag.getTitle()));
+            }
         }
     }
 

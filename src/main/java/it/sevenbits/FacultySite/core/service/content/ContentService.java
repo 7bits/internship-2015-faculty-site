@@ -1,6 +1,7 @@
 package it.sevenbits.FacultySite.core.service.content;
 
 import it.sevenbits.FacultySite.core.domain.content.Content;
+import it.sevenbits.FacultySite.core.domain.content.ContentModel;
 import it.sevenbits.FacultySite.core.domain.tags.Tag;
 import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 import it.sevenbits.FacultySite.core.repository.ContentRepository;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+
 @Service
 public class ContentService {
     Logger LOG = Logger.getLogger("ContentServiceLogger");
@@ -46,7 +48,7 @@ public class ContentService {
         customTX.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
     }
 
-    public ContentForm insertContent(Content newContent, List<Tag> tags) throws ServiceException{
+    public ContentForm insertContent(ContentModel newContent, List<TagModel> tags) throws ServiceException{
         TransactionStatus status = null;
         if (newContent == null){
             return null;
@@ -54,21 +56,21 @@ public class ContentService {
         try{
             status = txManager.getTransaction(customTX);
             contentRepository.insertContent(newContent);
-            List<Tag> resTags = new ArrayList<>();
-            for (Tag tag : tags){
+            List<TagModel> resTags = new ArrayList<>();
+            for (TagModel tag : tags){
                 if (tag == null){
                     continue;
                 }
-                if (tag.getId() == null && tag.getTitle() != null && !tag.getTitle().isEmpty()){
-                    try {
-                        TagModel tmpTag = tagsRepository.getTagByTitle(tag.getTitle());
-                        tag.setId(tmpTag.getId());
-                        createPair(newContent.getId(), tag.getId());
-                        resTags.add(tag);
+                TagModel tmpTag = tag;
+                try {
+                    if (tag.getId() == null && tag.getTitle() != null && !tag.getTitle().isEmpty()){
+                        tmpTag = tagsRepository.getTagByTitle(tag.getTitle());
                     }
-                    catch (RepositoryException e) {
-                        LOG.log(Level.WARNING, "Can't get tag or create pair: " + e.getMessage());
-                    }
+                    createPair(newContent.getId(), tmpTag.getId());
+                    resTags.add(tmpTag);
+                }
+                catch (RepositoryException e) {
+                    LOG.log(Level.WARNING, "Can't get tag or create pair: " + e.getMessage());
                 }
             }
             ContentForm contentForm = new ContentForm(newContent, resTags);
@@ -83,6 +85,43 @@ public class ContentService {
             throw new ServiceException("Can't save content: " + e.getMessage(), e);
         }
     }
+
+    public void updateContent(ContentModel contentModel, TagModel tagModel) throws ServiceException{
+        TransactionStatus status = null;
+        try{
+            status = txManager.getTransaction(customTX);
+            contentRepository.updateContent(contentModel);
+            txManager.commit(status);
+        }
+        catch (RepositoryException e){
+            if(status != null){
+                txManager.rollback(status);
+            }
+            throw new ServiceException("Can't update content: " + e.getMessage(), e);
+        }
+    }
+
+    public ContentForm getContentById(Long id) throws ServiceException{
+        if (id == null || id < 1){
+            return null;
+        }
+        TransactionStatus status = null;
+        try{
+            status = txManager.getTransaction(customTX);
+            List<TagModel> tags = tagsRepository.getTagsOfContent(id);
+            ContentModel contentModel = contentRepository.getContentById(id);
+            ContentForm resContent = new ContentForm(contentModel, tags);
+            txManager.commit(status);
+            return resContent;
+        }
+        catch (RepositoryException e){
+            if (status != null){
+                txManager.rollback(status);
+            }
+            throw new ServiceException("Can't give content: " + e.getMessage(), e);
+        }
+    }
+
 
     private void createPair(Long content, Long tag) throws ServiceException{
         if (content == null || tag == null){

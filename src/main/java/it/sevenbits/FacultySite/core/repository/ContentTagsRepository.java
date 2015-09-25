@@ -1,9 +1,9 @@
 package it.sevenbits.FacultySite.core.repository;
 
-
 import it.sevenbits.FacultySite.core.mappers.tags.ContentTagsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class ContentTagsRepository {
@@ -16,7 +16,16 @@ public class ContentTagsRepository {
             contentTagsMapper.insertPair(content, tag);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't create pair: " + e.getMessage());
+            throw new RepositoryException("Can't create pair: " + e.getMessage(), e);
+        }
+    }
+
+    public Boolean havePair(Long content, Long tag) throws RepositoryException{
+        try{
+
+        }
+        catch (Exception e){
+            throw new RepositoryException("Can't give pair: " + e.getMessage(), e);
         }
     }
 
@@ -25,7 +34,7 @@ public class ContentTagsRepository {
             contentTagsMapper.removePair(content, tag);
         }
         catch (Exception e){
-            throw new RepositoryException("Can't remove pair: " + e.getMessage());
+            throw new RepositoryException("Can't remove pair: " + e.getMessage(), e);
         }
     }
 

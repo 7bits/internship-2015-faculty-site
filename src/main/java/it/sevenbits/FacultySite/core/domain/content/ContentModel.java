@@ -22,6 +22,18 @@ public class ContentModel {
         this.publish = publish;
     }
 
+    public ContentModel(Content content){
+            this.id = content.getId();
+            this.title = content.getTitle();
+            this.description = content.getDescription();
+            this.creatingDate = content.getCreatingDate();
+            this.creatingTime = content.getCreatingTime();
+            this.imageLink = content.getImageLink();
+            this.miniContent = content.getMiniContent();
+            this.publish = content.getPublish();
+
+    }
+
     public ContentModel(String title, String description, String creatingDate, String creatingTime) {
         id = null;
         this.title = title;

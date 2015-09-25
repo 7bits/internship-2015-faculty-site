@@ -38,7 +38,7 @@ public interface ContentMapper {
                 "#{imageLink}, " +
                 "#{publish})")
     @Options(keyProperty = "id", useGeneratedKeys = true)
-    void insertContent(final Content description);
+    void insertContent(final ContentModel description);
 
     @Update("UPDATE content_of_pages SET " +
                 "title=#{title}, " +
@@ -48,7 +48,7 @@ public interface ContentMapper {
                 "publish=#{publish} " +
             "WHERE " +
                 "id=#{id}")
-    void updateContent(final Content description);
+    void updateContent(final ContentModel description);
 
 
     @Select("SELECT * FROM content_of_pages " +

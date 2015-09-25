@@ -2,6 +2,7 @@ package it.sevenbits.FacultySite.core.mappers.tags;
 
 
 import it.sevenbits.FacultySite.core.domain.tags.Tag;
+import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public interface TagMapper {
 
     @Insert("INSERT INTO tags (title) VALUES(#{title}")
     @Options(keyProperty = "id", useGeneratedKeys = true)
-    void insertTag(Tag tag);
+    void insertTag(TagModel tag);
 
     @Select("SELECT t.* FROM " +
             "content_tags ct, " +
