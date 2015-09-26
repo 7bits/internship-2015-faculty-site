@@ -61,9 +61,9 @@ public class TagsRepository {
         }
     }
 
-    public void updateTag(Tag tag) throws RepositoryException{
+    public void updateTag(TagModel tagModel) throws RepositoryException{
         try {
-            tagsMapper.updateTag(tag);
+            tagsMapper.updateTag(tagModel);
         }
         catch (Exception e){
             throw new RepositoryException("Can't update tag: " + e.getMessage(), e);

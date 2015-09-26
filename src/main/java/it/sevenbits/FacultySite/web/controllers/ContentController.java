@@ -15,11 +15,6 @@ public class ContentController {
     private static Logger LOG = Logger.getLogger(ContentController.class);
 
 
-//    @Autowired
-//    ContentOfPagesService contentOfPagesService;
-//
-//    @Autowired
-//    NewsService newsService;
 
 
     @RequestMapping(value="/upload", method=RequestMethod.GET)

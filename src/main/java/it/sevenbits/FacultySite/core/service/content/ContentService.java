@@ -1,8 +1,6 @@
 package it.sevenbits.FacultySite.core.service.content;
 
-import it.sevenbits.FacultySite.core.domain.content.Content;
 import it.sevenbits.FacultySite.core.domain.content.ContentModel;
-import it.sevenbits.FacultySite.core.domain.tags.Tag;
 import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 import it.sevenbits.FacultySite.core.repository.ContentRepository;
 import it.sevenbits.FacultySite.core.repository.ContentTagsRepository;
@@ -101,23 +99,31 @@ public class ContentService {
         }
     }
 
+    public void removeContent(Long id) throws ServiceException{
+        TransactionStatus status = null;
+        try{
+            status = txManager.getTransaction(customTX);
+            contentRepository.removeContentByID(id);
+            txManager.commit(status);
+        }catch (RepositoryException e){
+            if (status != null){
+                txManager.rollback(status);
+            }
+            throw new ServiceException("Can't remove content: " + e.getMessage(), e);
+        }
+    }
+
     public ContentForm getContentById(Long id) throws ServiceException{
         if (id == null || id < 1){
             return null;
         }
-        TransactionStatus status = null;
         try{
-            status = txManager.getTransaction(customTX);
             List<TagModel> tags = tagsRepository.getTagsOfContent(id);
             ContentModel contentModel = contentRepository.getContentById(id);
             ContentForm resContent = new ContentForm(contentModel, tags);
-            txManager.commit(status);
             return resContent;
         }
         catch (RepositoryException e){
-            if (status != null){
-                txManager.rollback(status);
-            }
             throw new ServiceException("Can't give content: " + e.getMessage(), e);
         }
     }
@@ -125,12 +131,18 @@ public class ContentService {
 
     private void createPair(Long content, Long tag) throws ServiceException{
         if (content == null || tag == null){
-            throw new ServiceException("Content or(and) tag id was null", null);
+            throw new ServiceException("Content or/and tag id was null", null);
         }
+        TransactionStatus status = null;
         try{
+            status = txManager.getTransaction(customTX);
             contentTagsRepository.insertPair(content, tag);
+            txManager.commit(status);
         }
         catch (Exception e){
+            if (status != null){
+                txManager.rollback(status);
+            }
             throw new ServiceException("Can't insert pair: " + e.getMessage(), e);
         }
     }

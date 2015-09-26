@@ -31,7 +31,7 @@ public interface TagMapper {
     Tag getTagByTitle(@Param("title")String title);
 
     @Update("UPDATE tags SET title=#{title} WHERE id=#{id}")
-    void updateTag(Tag tag);
+    void updateTag(TagModel tag);
 
     @Delete("DELETE FROM tags WHERE id=#{id} ")
     void removeTagById(@Param("id")Long id);

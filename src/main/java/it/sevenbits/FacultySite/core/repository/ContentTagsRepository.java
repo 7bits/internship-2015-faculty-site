@@ -1,6 +1,6 @@
 package it.sevenbits.FacultySite.core.repository;
 
-import it.sevenbits.FacultySite.core.mappers.tags.ContentTagsMapper;
+import it.sevenbits.FacultySite.core.mappers.content.ContentTagsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

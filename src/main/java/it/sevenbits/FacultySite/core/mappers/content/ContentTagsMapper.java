@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.core.mappers.tags;
+package it.sevenbits.FacultySite.core.mappers.content;
 
 import it.sevenbits.FacultySite.core.domain.content.Content;
 import org.apache.ibatis.annotations.Delete;
