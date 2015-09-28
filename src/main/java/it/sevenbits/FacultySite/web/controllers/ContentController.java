@@ -1,39 +1,20 @@
 package it.sevenbits.FacultySite.web.controllers;
 
-import it.sevenbits.FacultySite.core.domain.contentOfPages.ContentDescription;
-import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
-import it.sevenbits.FacultySite.web.service.ServiceException;
-import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
-import it.sevenbits.FacultySite.web.service.contentOfPages.NewsService;
-import it.sevenbits.FacultySite.web.service.gallery.ImageService;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import javax.imageio.ImageIO;
 
 @Controller
 public class ContentController {
     private static Logger LOG = Logger.getLogger(ContentController.class);
 
 
-    @Autowired
-    ContentOfPagesService contentOfPagesService;
-
-    @Autowired
-    NewsService newsService;
 
 
     @RequestMapping(value="/upload", method=RequestMethod.GET)
@@ -47,15 +28,15 @@ public class ContentController {
     public String handleFileUpload(@RequestParam(value = "files", required = false) List<MultipartFile> files, Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-
-        List<String> toOut = new ArrayList<>();
-        try{
-            toOut = contentOfPagesService.uploadFiles(files);
-        }
-        catch (ServiceException e){
-            LOG.error(e);
-        }
-        model.addAttribute("paths", toOut);
+//
+//        List<String> toOut = new ArrayList<>();
+//        try{
+//            toOut = contentOfPagesService.uploadFiles(files);
+//        }
+//        catch (ServiceException e){
+//            LOG.error(e);
+//        }
+//        model.addAttribute("paths", toOut);
         return "home/upload";
     }
 
@@ -79,38 +60,38 @@ public class ContentController {
                               @RequestParam(value = "createType", required = false)String createType,
                               @RequestParam(value = "deleteType", required = false)String deleteType,
                               Model model) {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "redirect:/main";
-        if (redact != null && redact){
-            deleteId = null;
-            id = redactId;
-        }
-        if (create != null && create){
-            id = null;
-            deleteId = null;
-            type = createType;
-        }
-        ContentDescription res = contentOfPagesService.editContentAction(imageLink,
-                deleteId,
-                type,
-                id,
-                title,
-                content,
-                miniContent,
-                publish);
-        if (res == null) {
-            if (deleteType.contains("News"))
-                return "redirect:/news";
-            else
-                return "redirect:/gallery";
-        }
-        model.addAttribute("content", res.getDescription());
-        model.addAttribute("title", res.getTitle());
-        model.addAttribute("type", res.getType());
-        model.addAttribute("miniContent", res.getMiniContent());
-        model.addAttribute("imageLink", res.getImageLink());
-        model.addAttribute("publish", res.getPublish());
-        model.addAttribute("id", res.getId());
+//        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+//            return "redirect:/main";
+//        if (redact != null && redact){
+//            deleteId = null;
+//            id = redactId;
+//        }
+//        if (create != null && create){
+//            id = null;
+//            deleteId = null;
+//            type = createType;
+//        }
+//        ContentDescription res = contentOfPagesService.editContentAction(imageLink,
+//                deleteId,
+//                type,
+//                id,
+//                title,
+//                content,
+//                miniContent,
+//                publish);
+//        if (res == null) {
+//            if (deleteType.contains("News"))
+//                return "redirect:/news";
+//            else
+//                return "redirect:/gallery";
+//        }
+//        model.addAttribute("content", res.getDescription());
+//        model.addAttribute("title", res.getTitle());
+//        model.addAttribute("type", res.getType());
+//        model.addAttribute("miniContent", res.getMiniContent());
+//        model.addAttribute("imageLink", res.getImageLink());
+//        model.addAttribute("publish", res.getPublish());
+//        model.addAttribute("id", res.getId());
         return "home/edit_content";
     }
 
@@ -120,15 +101,15 @@ public class ContentController {
     public String hiddenContent(@RequestParam(value="current", required = false) Long current,
                                 @RequestParam(value="page", required = false) String page,
                                 Model model) {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "redirect:/main";
-        model.addAttribute("title", "Скрытые записи");
-        try {
-            model = newsService.constructData(current, page, null, false, NewsController.countOnPage, model);
-        }
-        catch (ServiceException e){
-            LOG.error(e.getMessage(), e);
-        }
+//        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+//            return "redirect:/main";
+//        model.addAttribute("title", "Скрытые записи");
+//        try {
+//            model = newsService.constructData(current, page, null, false, NewsController.countOnPage, model);
+//        }
+//        catch (ServiceException e){
+//            LOG.error(e.getMessage(), e);
+//        }
         return "home/news";
     }
 
@@ -136,15 +117,15 @@ public class ContentController {
     public String visibleContent(@RequestParam(value="current", required = false) Long current,
                                  @RequestParam(value="page", required = false) String page,
                                  Model model) {
-        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
-            return "redirect:/main";
-        model.addAttribute("title", "Все записи");
-        try{
-            model = newsService.constructData(current, page, null, null, NewsController.countOnPage, model);
-        }
-        catch (ServiceException e){
-            LOG.error(e.getMessage(), e);
-        }
+//        if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
+//            return "redirect:/main";
+//        model.addAttribute("title", "Все записи");
+//        try{
+//            model = newsService.constructData(current, page, null, null, NewsController.countOnPage, model);
+//        }
+//        catch (ServiceException e){
+//            LOG.error(e.getMessage(), e);
+//        }
         return "home/news";
     }
 

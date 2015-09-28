@@ -1,14 +1,14 @@
-package it.sevenbits.FacultySite.web.service.gallery;
+package it.sevenbits.FacultySite.core.service.gallery;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
 import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
 import it.sevenbits.FacultySite.core.repository.ImageDescriptionRepository;
+import it.sevenbits.FacultySite.core.service.content.ContentService;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionModel;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
-import it.sevenbits.FacultySite.web.service.ServiceException;
-import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
+import it.sevenbits.FacultySite.core.service.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -302,7 +302,7 @@ public class ImageService {
         String toOut = "";
         if (file != null && !file.isEmpty()) {
             try {
-                String name = ContentOfPagesService.generateName(file.getOriginalFilename());
+                String name = ContentService.generateNameForFile(file.getOriginalFilename());
                 String parts[] = name.split("\\.");
                 String type = parts[parts.length-1];
 

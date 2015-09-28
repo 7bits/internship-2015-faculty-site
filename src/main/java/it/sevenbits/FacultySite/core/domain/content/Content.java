@@ -1,15 +1,30 @@
-package it.sevenbits.FacultySite.web.domain.contentOfPages;
+package it.sevenbits.FacultySite.core.domain.content;
 
-public class ContentDescriptionForm {
+
+public class Content {
     private Long id;
     private String title;
     private String description;
     private String creatingDate;
     private String creatingTime;
-    private String type;
     private String imageLink;
     private String miniContent;
     private Boolean publish;
+
+    public Content(){
+
+    }
+
+    public Content(Long id, String title, String description, String creatingDate, String creatingTime, String imageLink, String miniContent, Boolean publish) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.imageLink = imageLink;
+        this.miniContent = miniContent;
+        this.publish = publish;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -32,14 +47,10 @@ public class ContentDescriptionForm {
         this.creatingTime = creating_time;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
-
 
     public void setMiniContent(String miniContent) {
         this.miniContent = miniContent;
@@ -48,7 +59,6 @@ public class ContentDescriptionForm {
     public void setPublish(Boolean publish) {
         this.publish = publish;
     }
-
 
     public Long getId() {
         return id;
@@ -70,10 +80,6 @@ public class ContentDescriptionForm {
         return creatingTime;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public String getImageLink() {
         return imageLink;
     }
@@ -93,6 +99,6 @@ public class ContentDescriptionForm {
                 + "Mini content:\n" + getMiniContent() + "\n"
                 + "Date: " + getCreatingDate() + "\n"
                 + "Time: " + getCreatingTime() + "\n"
-                + "Type: " + getType() + "\n";
+                + "Publish: " + getPublish() + "\n";
     }
 }

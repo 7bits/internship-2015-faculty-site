@@ -1,13 +1,9 @@
 package it.sevenbits.FacultySite.web.controllers;
 
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
-import it.sevenbits.FacultySite.core.domain.gallery.ImageDescription;
-import it.sevenbits.FacultySite.core.domain.gallery.ImageFromAlbumDescription;
-import it.sevenbits.FacultySite.web.domain.gallery.ImageDescriptionForm;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
-import it.sevenbits.FacultySite.web.service.ServiceException;
-import it.sevenbits.FacultySite.web.service.contentOfPages.ContentOfPagesService;
-import it.sevenbits.FacultySite.web.service.gallery.ImageService;
+import it.sevenbits.FacultySite.core.service.ServiceException;
+import it.sevenbits.FacultySite.core.service.gallery.ImageService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,14 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,12 +76,12 @@ public class ImagesController {
                        @RequestParam(value = "relation-side-height", required = false) Double relationSideHeight){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        try {
-            id = imageDescriptionService.updateAlbum(relationSideWidth, relationSideHeight, id, title, description, toDeleteIDs, isHeadIDs, files);
-        }
-        catch (ServiceException e){
-            LOG.error(e);
-        }
+//        try {
+//            id = imageDescriptionService.updateAlbum(relationSideWidth, relationSideHeight, id, title, description, toDeleteIDs, isHeadIDs, files);
+//        }
+//        catch (ServiceException e){
+//            LOG.error(e);
+//        }
         return "redirect:/updateAlbum?id="+id;
     }
 
@@ -100,21 +90,21 @@ public class ImagesController {
     public String handleFileUpload(@RequestParam(value = "id", required = false) Long id, Model model){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        try{
-            if (id == null || id < 1) {
-                model.addAttribute("album", imageDescriptionService.getAlbumById(id));
-                model.addAttribute("photos", imageDescriptionService.getImagesFromAlbum(id));
-                return "home/edit-album";
-            }
-            AlbumDescription album = imageDescriptionService.getAlbumById(id);
-            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(id);
-            model.addAttribute("album", album);
-            model.addAttribute("photos", images);
-            return "home/edit-album";
-        }
-        catch (Exception e){
-            LOG.error(e.getMessage());
-        }
+//        try{
+//            if (id == null || id < 1) {
+//                model.addAttribute("album", imageDescriptionService.getAlbumById(id));
+//                model.addAttribute("photos", imageDescriptionService.getImagesFromAlbum(id));
+//                return "home/edit-album";
+//            }
+//            AlbumDescription album = imageDescriptionService.getAlbumById(id);
+//            List<ImageFromAlbumDescriptionModel> images = imageDescriptionService.getImagesFromAlbum(id);
+//            model.addAttribute("album", album);
+//            model.addAttribute("photos", images);
+//            return "home/edit-album";
+//        }
+//        catch (Exception e){
+//            LOG.error(e.getMessage());
+//        }
         return "home/edit-album";
     }
 

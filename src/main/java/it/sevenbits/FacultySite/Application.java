@@ -32,6 +32,7 @@ public class Application extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        builder.addCommandLineProperties(true);
         return builder.sources(Application.class);
     }
 
