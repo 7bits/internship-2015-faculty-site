@@ -85,13 +85,13 @@ public interface ContentMapper {
 
 
     @Select("SELECT cop.* FROM " +
-            "content_tags ct, " +
-            "tags t, " +
-            "content_of_pages cop " +
+                "content_tags ct, " +
+                "tags t, " +
+                "content_of_pages cop " +
             "WHERE " +
-            "ct.content=cop.id AND " +
-            "ct.tag=t.id AND " +
-            "ct.tag=#{tagID};")
+                "ct.content=cop.id AND " +
+                "ct.tag=t.id AND " +
+                "ct.tag=#{tagID};")
     @Results({
         @Result(column = "id", property = "id"),
         @Result(column = "title", property = "title"),
@@ -103,5 +103,27 @@ public interface ContentMapper {
     })
     List<Content> getContentsByTag(final @Param("tagID")Long idOfTag);
 
+    @Select("SELECT cop.* FROM " +
+                "content_tags ct, " +
+                "tags t, " +
+                "content_of_pages cop " +
+            "WHERE " +
+                "ct.content=cop.id AND " +
+                "ct.tag=t.id AND " +
+                "ct.tag=#{tagID} " +
+            "offset #{offsetBorder} " +
+            "limit #{limitBorder};")
+    @Results({
+            @Result(column = "id", property = "id"),
+            @Result(column = "title", property = "title"),
+            @Result(column = "description", property = "description"),
+            @Result(column = "creating_date", property = "creatingDate"),
+            @Result(column = "creating_time", property = "creatingTime"),
+            @Result(column = "mini_content", property = "miniContent"),
+            @Result(column = "image_link", property = "imageLink")
+    })
+    List<Content> getContentsByTagWithBorders(final @Param("tagID")Long idOfTag,
+                                              final @Param("offsetBorder")Integer leftBorder,
+                                              final @Param("limitBorder")Integer rightBorder);
 
 }

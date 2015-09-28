@@ -98,6 +98,22 @@ public class ContentRepository{
         }
     }
 
+    public List<ContentModel> getContentByTagWithBorders(Long tagID,
+                                                         Integer leftBorder,
+                                                         Integer rightBorder) throws RepositoryException{
+        try{
+            List<Content> contents = contentMapper.getContentsByTagWithBorders(tagID, leftBorder, rightBorder);
+            List<ContentModel> contentModels = new ArrayList<>();
+            for (Content content: contents){
+                ContentModel tmpModel = new ContentModel(content);
+                contentModels.add(tmpModel);
+            }
+            return contentModels;
+        }
+        catch (Exception e){
+            throw new RepositoryException("Can't get contents by tag with borders: " + e.getMessage(), e);
+        }
+    }
 
 
 }

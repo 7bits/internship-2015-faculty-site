@@ -1,6 +1,8 @@
 package it.sevenbits.FacultySite.core.service.content;
 
+import it.sevenbits.FacultySite.core.domain.content.Content;
 import it.sevenbits.FacultySite.core.domain.content.ContentModel;
+import it.sevenbits.FacultySite.core.domain.tags.Tag;
 import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 import it.sevenbits.FacultySite.core.repository.ContentRepository;
 import it.sevenbits.FacultySite.core.repository.ContentTagsRepository;
@@ -39,6 +41,9 @@ public class ContentService {
 
     @Value("${services.tx_main}")
     private String TX_NAME;
+
+    @Value("${services.contentOnPage}")
+    private Integer contentOnPage;
 
     public ContentService(){
         customTX = new DefaultTransactionDefinition();
@@ -83,6 +88,34 @@ public class ContentService {
             throw new ServiceException("Can't save content: " + e.getMessage(), e);
         }
     }
+
+    public List<ContentForm> getContentByTagOnPage(TagModel tagModel, Integer page) throws ServiceException{
+        if (tagModel == null || page == null)
+            return null;
+        try{
+            Integer rightBorder = contentOnPage*page; //sum of content, that will be observed
+            Integer leftBorder = contentOnPage*(page-1); //left border is less
+                                                         // rightBorder on one contentOnPage
+            List<ContentModel> contentModels = contentRepository.
+                    getContentByTagWithBorders(
+                            tagModel.getId(),
+                            leftBorder,
+                            rightBorder);
+            List<ContentForm> resContents = new ArrayList<>();
+            for (ContentModel tmp : contentModels){
+                List<TagModel> tagModels = tagsRepository.getTagsOfContent(tmp.getId());
+                ContentForm tmpContentForm = new ContentForm(tmp, tagModels);
+                resContents.add(tmpContentForm);
+            }
+            return resContents;
+        }
+        catch (RepositoryException e){
+            throw new ServiceException("Can't get content by tag on page: " + e.getMessage(), e);
+        }
+    }
+
+
+
 
     public void updateContent(ContentModel contentModel, TagModel tagModel) throws ServiceException{
         TransactionStatus status = null;
