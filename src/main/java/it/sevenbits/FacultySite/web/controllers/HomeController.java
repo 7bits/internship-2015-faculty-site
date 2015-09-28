@@ -3,6 +3,7 @@ package it.sevenbits.FacultySite.web.controllers;
 import it.sevenbits.FacultySite.core.domain.content.Content;
 import it.sevenbits.FacultySite.core.domain.gallery.AlbumDescription;
 import it.sevenbits.FacultySite.core.domain.tags.Tag;
+import it.sevenbits.FacultySite.core.domain.tags.TagModel;
 import it.sevenbits.FacultySite.core.service.ServiceException;
 import it.sevenbits.FacultySite.core.service.content.ContentService;
 import it.sevenbits.FacultySite.web.domain.gallery.ImageFromAlbumDescriptionModel;
@@ -37,19 +38,24 @@ public class HomeController {
 
     @RequestMapping(value = "/main")
     public String main(Model model) {
-        Content content = new Content();
-        content.setTitle("bla");
-        content.setDescription("<h2>HELLO^^</h2>");
-        content.setPublish(false);
-        Tag tag = new Tag("Новости");
-        List<Tag> tags = new ArrayList<>();
-        tags.add(tag);
-        try {
-            contentService.insertContent(content, tags);
-        }
-        catch (ServiceException e){
-            e.printStackTrace();
-        }
+//        Content content = new Content();
+//        content.setTitle("bla");
+//        content.setDescription("<h2>HELLO^^</h2>");
+//        content.setPublish(false);
+//        TagModel tag = new TagModel("Новости");
+//        List<TagModel> tags = new ArrayList<>();
+//        tags.add(tag);
+//        try {
+//            contentService.insertContent(content, tags);
+//        }
+//        catch (ServiceException e){
+//            e.printStackTrace();
+//        }
+
+//---------------------------------------------------- up - adding new content
+
+
+
 //        List<ContentDescriptionModel> news = new ArrayList<>();
 //        List<ContentDescription> mainInfo = new ArrayList<>();
 //        List<AlbumDescription> albums = new ArrayList<>();

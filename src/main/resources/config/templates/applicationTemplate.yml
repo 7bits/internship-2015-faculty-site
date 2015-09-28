@@ -18,6 +18,7 @@ services:
         imgMiniPrefix: #path to img mini prefix folder on your device
         imgGalleryFolderPrefix: #path to gallery prefix prefix folder on your device
         imgNewsFolderPrefix: #path to gallery prefix prefix folder on your device
+    newsOnPage: #sum of page on one pagination page
     imgUpload:
         targetMiniWidth: #default 480, gallery mini width
         targetMiniHeight: #default 270, gallery mini height
@@ -43,6 +44,7 @@ services:
         imgMiniPrefix: #path to img mini prefix folder on your device
         imgGalleryFolderPrefix: #path to gallery prefix prefix folder on your device
         imgNewsFolderPrefix: #path to gallery prefix prefix folder on your device
+    newsOnPage: #sum of page on one pagination page
     imgUpload:
         targetMiniWidth: #default 480, gallery mini width
         targetMiniHeight: #default 270, gallery mini height

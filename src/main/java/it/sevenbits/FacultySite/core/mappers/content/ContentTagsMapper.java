@@ -13,12 +13,18 @@ public interface ContentTagsMapper {
     @Select("SELECT content FROM content_tags " +
             "WHERE " +
                 "tag=#{tagID}")
-    List<Integer> getContentIDsByTagID(final @Param("tagID")Long tagId);
+    List<Long> getContentIDsByTagID(final @Param("tagID")Long tagId);
 
     @Select("SELECT tag FROM content_tags " +
             "WHERE " +
                 "content=#{contentID}")
-    List<Integer> getTagIDsByContentID(final @Param("contentID")Long contentId);
+    List<Long> getTagIDsByContentID(final @Param("contentID")Long contentId);
+
+    @Select("SELECT tag FROM content_tags " +
+            "WHERE " +
+            "content=#{contentID}" +
+            " and tag=#{tagID}")
+    List<Long> getTagIDsByContentAndTagIDs(final @Param("contentID")Long contentId, final @Param("tagID")Long tagId);
 
     @Insert("INSERT INTO content_tags (" +
                 "content, " +
@@ -27,6 +33,8 @@ public interface ContentTagsMapper {
                 "#{content}, " +
                 "#{tag})")
     void insertPair(final @Param("content")Long contentID, final @Param("tag")Long tagID);
+
+
 
     @Delete("DELETE FROM content_tags WHERE content=#{content} and tag=#{tag}")
     void removePair(final @Param("content")Long contentID, final @Param("tag")Long tagID);
