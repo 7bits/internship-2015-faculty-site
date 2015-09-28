@@ -19,32 +19,27 @@ public class ContentControlService {
     ContentService contentService;
     @Autowired
     TagService tagService;
-    @Autowired
-    StateContentCheckService stateContentCheckService;
 
 
     public void saveContent(ContentForm form){
-        stateContentCheckService.setContentForm(form);
-        if (stateContentCheckService.getCorrectly()){
-            ContentModel contentModel = new ContentModel(form.getId(),
-                    form.getTitle(),
-                    form.getDescription(),
-                    form.getCreatingDate(),
-                    form.getCreatingTime(),
-                    form.getImageLink(),
-                    form.getMiniContent(),
-                    form.getPublish());
-            List<TagModel> tagModelList = new ArrayList<>();
-            for (Tag tag : form.getTags()){
-                TagModel tmp = new TagModel(tag.getId(), tag.getTitle());
-                tagModelList.add(tmp);
-            }
-            try {
-                contentService.insertContent(contentModel, tagModelList);
-            }
-            catch (ServiceException e){
-                e.printStackTrace();
-            }
+        ContentModel contentModel = new ContentModel(form.getId(),
+                form.getTitle(),
+                form.getDescription(),
+                form.getCreatingDate(),
+                form.getCreatingTime(),
+                form.getImageLink(),
+                form.getMiniContent(),
+                form.getPublish());
+        List<TagModel> tagModelList = new ArrayList<>();
+        for (Tag tag : form.getTags()){
+            TagModel tmp = new TagModel(tag.getId(), tag.getTitle());
+            tagModelList.add(tmp);
+        }
+        try {
+            contentService.insertContent(contentModel, tagModelList);
+        }
+        catch (ServiceException e){
+            e.printStackTrace();
         }
     }
 }

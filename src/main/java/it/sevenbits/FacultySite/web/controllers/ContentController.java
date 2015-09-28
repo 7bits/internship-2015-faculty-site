@@ -21,7 +21,7 @@ public class ContentController {
     String handleFileUpload(){
         if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("root"))
             return "redirect:/main";
-        return "home/upload";
+        return "redirect:/main";//return "home/upload";
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
@@ -37,7 +37,7 @@ public class ContentController {
 //            LOG.error(e);
 //        }
 //        model.addAttribute("paths", toOut);
-        return "home/upload";
+        return "redirect:/main";//return "home/upload";
     }
 
 
@@ -92,7 +92,7 @@ public class ContentController {
 //        model.addAttribute("imageLink", res.getImageLink());
 //        model.addAttribute("publish", res.getPublish());
 //        model.addAttribute("id", res.getId());
-        return "home/edit_content";
+        return "redirect:/main";//return "home/edit_content";
     }
 
 
@@ -127,24 +127,6 @@ public class ContentController {
 //            LOG.error(e.getMessage(), e);
 //        }
         return "home/news";
-    }
-
-
-    public static Model adminModelAttributes(Model model, String type, Long redactId, Long deleteId){
-        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-            model.addAttribute("root", true);
-            model.addAttribute("createType", type);
-            model.addAttribute("canCreate", true);
-            if (redactId != null && redactId > 0) {
-                model.addAttribute("redactId", redactId);
-                model.addAttribute("canRedact", true);
-            }
-            if (redactId != null && redactId > 0) {
-                model.addAttribute("deleteId", deleteId);
-                model.addAttribute("canDelete", true);
-            }
-        }
-        return model;
     }
 
 }
