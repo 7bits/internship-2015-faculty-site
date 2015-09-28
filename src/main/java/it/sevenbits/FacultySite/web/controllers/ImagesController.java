@@ -29,31 +29,31 @@ public class ImagesController {
     @RequestMapping(value = "/gallery")
     public String gallery(Model model,
                           @RequestParam(value = "deleteId", required = false) Long removeAlbumId) {
-//        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
-//            model.addAttribute("root", true);
-//            if (removeAlbumId != null && removeAlbumId >0){
-//                try {
-//                    imageDescriptionService.removeAlbum(removeAlbumId);
-//                }
-//                catch (Exception e){
-//                    LOG.error(e.getMessage());
-//                }
-//            }
-//        }
-//        try {
-//            List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
-//            List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
-//            for (AlbumDescription album : albums) {
-//                images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
-//            }
-//            List<String> pagination = new ArrayList<>();
-//            model.addAttribute("albums", albums);
-//            model.addAttribute("images", images);
-//            model.addAttribute("pagination", pagination);
-//        }
-//        catch (Exception e){
-//            LOG.error(e.getMessage());
-//        }
+        if (SecurityContextHolder.getContext().getAuthentication().getName().equals("root")) {
+            model.addAttribute("root", true);
+            if (removeAlbumId != null && removeAlbumId >0){
+                try {
+                    imageDescriptionService.removeAlbum(removeAlbumId);
+                }
+                catch (Exception e){
+                    LOG.error(e.getMessage());
+                }
+            }
+        }
+        try {
+            List<AlbumDescription> albums = imageDescriptionService.getAllAlbums();
+            List<List<ImageFromAlbumDescriptionModel>> images = new ArrayList<>();
+            for (AlbumDescription album : albums) {
+                images.add(imageDescriptionService.getImagesFromAlbum(album.getId()));
+            }
+            List<String> pagination = new ArrayList<>();
+            model.addAttribute("albums", albums);
+            model.addAttribute("images", images);
+            model.addAttribute("pagination", pagination);
+        }
+        catch (Exception e){
+            LOG.error(e.getMessage());
+        }
         return "home/gallery";
     }
 

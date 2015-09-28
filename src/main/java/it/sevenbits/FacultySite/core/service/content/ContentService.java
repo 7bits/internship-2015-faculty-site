@@ -20,6 +20,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -44,6 +45,14 @@ public class ContentService {
 
     @Value("${services.contentOnPage}")
     private Integer contentOnPage;
+
+    public static String generateNameForFile(String input){
+        String name = input;
+        String partsOfName[] = name.split("\\.");
+        name = "." + partsOfName[partsOfName.length-1];
+        name = UUID.randomUUID().toString() + name;
+        return name;
+    }
 
     public ContentService(){
         customTX = new DefaultTransactionDefinition();

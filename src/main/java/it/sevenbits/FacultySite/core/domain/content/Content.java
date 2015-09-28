@@ -11,6 +11,21 @@ public class Content {
     private String miniContent;
     private Boolean publish;
 
+    public Content(){
+
+    }
+
+    public Content(Long id, String title, String description, String creatingDate, String creatingTime, String imageLink, String miniContent, Boolean publish) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.creatingDate = creatingDate;
+        this.creatingTime = creatingTime;
+        this.imageLink = imageLink;
+        this.miniContent = miniContent;
+        this.publish = publish;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
