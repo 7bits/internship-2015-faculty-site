@@ -1,6 +1,6 @@
 package it.sevenbits.FacultySite.web.domain.gallery;
 
-public class ImageDescriptionForm {
+public class ImageForm {
     private Long id;
     private Long album;
     private String title;
@@ -10,7 +10,7 @@ public class ImageDescriptionForm {
     private String link;
     private boolean isHead;
 
-    public ImageDescriptionForm(Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
+    public ImageForm(Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
         if (album != null)
             this.album = album;
         this.title = title;
@@ -21,7 +21,7 @@ public class ImageDescriptionForm {
         this.isHead = isHead;
     }
 
-    public ImageDescriptionForm(){
+    public ImageForm(){
         this.title = null;
         this.description = null;
         this.creating_date = null;
@@ -29,7 +29,7 @@ public class ImageDescriptionForm {
         this.link = null;
     }
 
-    public ImageDescriptionForm(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
+    public ImageForm(Long id, Long album, String title, String description, String creating_date, String creating_time, String link, boolean isHead) {
         this.id = id;
         this.album = album;
         this.title = title;

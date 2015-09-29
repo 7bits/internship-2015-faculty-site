@@ -1,7 +1,7 @@
 package it.sevenbits.FacultySite.core.domain.gallery;
 
 
-public class AlbumDescription {
+public class Album {
     private Long id;
     private String title;
     private String description;
@@ -10,27 +10,27 @@ public class AlbumDescription {
     private String link;
     private Long length;
 
-    public AlbumDescription() {}
+    public Album() {}
 
-    public AlbumDescription(String title, String description) {
+    public Album(String title, String description) {
         this.title = title;
         this.description = description;
     }
 
-    public AlbumDescription(Long id, String title, String description, String link) {
+    public Album(Long id, String title, String description, String link) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.link = link;
     }
 
-    public AlbumDescription(Long id, String title, String description) {
+    public Album(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
     }
 
-    public AlbumDescription(Long id, String title, String description, String creatingDate, String creatingTime, String link, Long length) {
+    public Album(Long id, String title, String description, String creatingDate, String creatingTime, String link, Long length) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -40,7 +40,7 @@ public class AlbumDescription {
         this.length = length;
     }
 
-    public AlbumDescription(Long id, String title, String description, String creatingDate, String creatingTime) {
+    public Album(Long id, String title, String description, String creatingDate, String creatingTime) {
         this.id = id;
         this.title = title;
         this.description = description;
