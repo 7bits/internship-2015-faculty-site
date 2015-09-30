@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.web.service;
+package it.sevenbits.FacultySite.web.service.content;
 
 import it.sevenbits.FacultySite.core.domain.content.ContentModel;
 import it.sevenbits.FacultySite.core.domain.tags.Tag;

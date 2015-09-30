@@ -1,8 +1,7 @@
 package it.sevenbits.FacultySite.web.controllers;
 
-import it.sevenbits.FacultySite.core.service.content.ContentService;
 import it.sevenbits.FacultySite.web.domain.content.ContentForm;
-import it.sevenbits.FacultySite.web.service.NewsService;
+import it.sevenbits.FacultySite.web.service.content.NewsService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

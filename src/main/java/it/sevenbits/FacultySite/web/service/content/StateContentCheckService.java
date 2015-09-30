@@ -1,4 +1,4 @@
-package it.sevenbits.FacultySite.web.service;
+package it.sevenbits.FacultySite.web.service.content;
 
 import it.sevenbits.FacultySite.web.domain.content.ContentForm;
 import org.springframework.stereotype.Service;

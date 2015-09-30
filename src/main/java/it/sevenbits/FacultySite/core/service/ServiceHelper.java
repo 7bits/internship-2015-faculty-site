@@ -140,18 +140,36 @@ public class ServiceHelper {
     }
 
 
-    public Boolean deleteFile(String path) throws ServiceException{
-        try {
-            File src = new File(path);
-            Boolean res = src.delete();
-            if (!res)
-                throw new ServiceException("Can't remove file: " + path, null);
-        }
-        catch (ServiceException e){
-            throw new ServiceException(e.getMessage(), e);
-        }
+    public Boolean deleteFile(String path){
+        File src = new File(path);
+        Boolean res = src.delete();
+        if (!res)
+            return false;
         return true;
     }
 
 
+    public Double getImgMiniImgWidth() {
+        return imgMiniImgWidth;
+    }
+
+    public Double getImgMiniImgHeight() {
+        return imgMiniImgHeight;
+    }
+
+    public String getImgGalleryFolderPrefix() {
+        return imgGalleryFolderPrefix;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public String getImgBigiPrefix() {
+        return imgBigiPrefix;
+    }
+
+    public String getImgMiniPrefix() {
+        return imgMiniPrefix;
+    }
 }

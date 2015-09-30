@@ -78,8 +78,12 @@ public class AlbumService {
                 Image image = imgService.getImageById(toDeleteId);
                 if (!image.getAlbum().equals(album.getId()))
                     continue;
-                helper.deleteFile(imgPath + imgGalleryFolderPrefix + imgBigiPrefix + image.getLink());
-                helper.deleteFile(imgPath + imgGalleryFolderPrefix + imgMiniPrefix + image.getLink());
+                helper.deleteFile(helper.getImgPath() +
+                        helper.getImgGalleryFolderPrefix() +
+                        helper.getImgBigiPrefix() + image.getLink());
+                helper.deleteFile(helper.getImgPath() +
+                        helper.getImgGalleryFolderPrefix() +
+                        helper.getImgMiniPrefix() + image.getLink());
                 imgService.removeImage(toDeleteId);
             }
         }
